@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3369d778-29d4-4975-824d-86e7f728abe0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Data/cfg/item_config.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/Data/cfg/item_config.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ethos/model/npcs/drops/TableGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ethos/model/npcs/drops/TableGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ethos/model/players/packets/itemoptions/ItemOptionOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ethos/model/players/packets/itemoptions/ItemOptionOne.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1XEGP4IGc2R2fvUlJEJ1DifH9XN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/deps" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ethos.model.content" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="Server" />
+      <command value="bob" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ethos.Server" />
+      <module name="Sovark_Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ethos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Server" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3369d778-29d4-4975-824d-86e7f728abe0" name="Default Changelist" comment="" />
+      <created>1580603814264</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580603814264</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="544" y="179" key="#Notifications" timestamp="1580664677524">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="544" y="179" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1580664677524" />
+    <state x="72" y="183" key="#Project_Structure" timestamp="1580605402344">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="72" y="183" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1580605402344" />
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580604112381">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580604112381" />
+    <state x="803" y="299" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1580606864472">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="803" y="299" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580606864472" />
+    <state x="703" y="343" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1580606829532">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="703" y="343" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580606829532" />
+    <state x="727" y="304" key="DetectedRootsChooserDialog" timestamp="1580606691628">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="727" y="304" key="DetectedRootsChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580606691628" />
+    <state x="753" y="343" key="FileChooserDialogImpl" timestamp="1580606853447">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="753" y="343" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1580606853447" />
+    <state x="127" y="145" key="SettingsEditor" timestamp="1580681211978">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="127" y="145" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1580681211978" />
+    <state width="254" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1580673793938">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580673793938" />
+    <state x="661" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1580930222693">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="661" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580930222693" />
+    <state x="608" y="242" width="672" height="677" key="run.anything.popup" timestamp="1580681231857">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="608" y="242" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580681231857" />
+    <state x="615" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1580842253006">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="615" y="239" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580842253006" />
+  </component>
+</project>

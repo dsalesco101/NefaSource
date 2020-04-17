@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    compile fileTree(dir: 'deps', include: ['*.jar'])
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
+}

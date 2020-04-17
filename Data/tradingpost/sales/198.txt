@@ -1,0 +1,1 @@
+goats milk	10382	1	0	1000000	0	true

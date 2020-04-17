@@ -1,0 +1,1 @@
+shadow panda	537	72	72	100000	0	true

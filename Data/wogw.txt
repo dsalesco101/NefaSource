@@ -1,0 +1,6 @@
+experience-amount=5000000
+experience-timer=0
+pc-amount=0
+pc-timer=0
+drops-amount=2600000
+drops-timer=0
