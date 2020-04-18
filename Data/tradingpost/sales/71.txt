@@ -1,1 +1,1 @@
-technoblade	6916	1	0	4000000	0	true
+paney	537	40	0	75000	0	true

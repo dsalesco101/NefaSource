@@ -1,1 +1,1 @@
-voldemort	12317	1	0	1000000	0	false
+Lucifer	4088	10	1	250000	0	false

@@ -1,1 +1,1 @@
-lucifer	4716	1	0	15728801	0	true
+tinnie	4151	1	0	6500000	0	true

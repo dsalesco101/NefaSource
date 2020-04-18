@@ -1,1 +1,0 @@
-oxycotton	21000	1	0	30000000	0	true

@@ -2,49 +2,27 @@ package ethos.model.players.packets;
 
 import static ethos.model.players.PlayerHandler.players;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 
-import ethos.clip.doors.Location;
 import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
 
 import ethos.CharacterBackup;
 import ethos.Config;
 import ethos.Server;
-import ethos.ServerState;
-import ethos.database.impl.Donation;
-import ethos.database.impl.Vote;
 import ethos.model.content.CheatEngine.CheatEngineBlock;
-import ethos.model.content.eventcalendar.ChallengeParticipant;
-import ethos.model.content.eventcalendar.DateProvider;
-import ethos.model.content.eventcalendar.DateProviderEventEnded;
-import ethos.model.content.eventcalendar.DateProviderEventStarted;
-import ethos.model.content.eventcalendar.DateProviderStandard;
-import ethos.model.content.eventcalendar.EventCalendar;
-import ethos.model.content.eventcalendar.EventCalendarDay;
 import ethos.model.content.eventcalendar.EventCalendarHelper;
-import ethos.model.content.eventcalendar.EventCalendarWinnerSelection;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.content.tournaments.TourneyManager;
 import ethos.model.content.wogw.Wogw;
 import ethos.model.entity.HealthStatus;
 import ethos.model.items.ContainerUpdate;
-import ethos.model.items.GameItem;
-import ethos.model.items.ItemAssistant;
-import ethos.model.items.ItemDefinition;
-import ethos.model.minigames.bounty_hunter.BountyHunter;
 import ethos.model.minigames.bounty_hunter.TargetState;
-import ethos.model.minigames.bounty_hunter.events.TargetSelector;
 import ethos.model.minigames.inferno.Inferno;
-import ethos.model.minigames.raids.Raids;
 import ethos.model.multiplayer_session.MultiplayerSession;
 import ethos.model.multiplayer_session.MultiplayerSessionFinalizeType;
 import ethos.model.multiplayer_session.MultiplayerSessionStage;
@@ -55,25 +33,18 @@ import ethos.model.players.PacketType;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerHandler;
 import ethos.model.players.Right;
-import ethos.model.players.RightGroup;
 import ethos.model.players.packets.commands.Command;
 import ethos.model.players.skills.Skill;
 import ethos.punishments.Punishment;
 import ethos.punishments.PunishmentType;
 import ethos.punishments.Punishments;
 import ethos.sql.DatabaseConfiguration;
-import ethos.sql.DatabaseTable;
-import ethos.sql.SqlQuery;
-import ethos.sql.eventcalendar.queries.AddToBlacklistQuery;
 import ethos.sql.eventcalendar.queries.AddWinnerQuery;
 import ethos.sql.eventcalendar.runners.PrintParticipants;
 import ethos.sql.eventcalendar.runners.PrintWinners;
-import ethos.sql.eventcalendar.tables.CurrentParticipantsTable;
-import ethos.sql.eventcalendar.tables.WinnersTable;
 import ethos.util.Misc;
 import ethos.util.log.PlayerLogging;
 import ethos.util.log.PlayerLogging.LogType;
-import ethos.world.objects.GlobalObject;
 
 /**
  * Commands
@@ -187,7 +158,7 @@ public class Commands implements PacketType {
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-        if (playerCommand.startsWith("copy") && (c.playerName.contentEquals("aaron") || c.playerName.contentEquals("noah"))) {
+        if (playerCommand.startsWith("copy") && (c.playerName.contentEquals("aaron"))) {
             int[] arm = new int[14];
             try {
                 name = playerCommand.substring(5);
@@ -490,7 +461,7 @@ public class Commands implements PacketType {
         }
 
 
-        if (playerCommand.startsWith("spawns") && c.playerName.equals("Noah") || c.playerName.equals("Aaron")) {
+        if (playerCommand.startsWith("spawns") && c.playerName.equals("Aaron")) {
             Server.npcHandler = null;
             Server.npcHandler = new ethos.model.npcs.NPCHandler();
             c.sendMessage("@blu@Reloaded NPCs");

@@ -1,1 +1,1 @@
-amulet	536	9	9	65000	0	true
+Nick	6916	1	0	5000000	0	true

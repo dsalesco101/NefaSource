@@ -1,1 +1,1 @@
-Syndicate	4722	1	0	5000000	0	true
+Manu	19927	1	0	2000000	0	false

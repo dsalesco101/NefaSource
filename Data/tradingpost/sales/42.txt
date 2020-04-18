@@ -1,1 +1,1 @@
-shadow panda	6185	1	0	5000000	0	true
+trent	4709	1	1	3500000	0	true

@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Log
 class EventCalendarTablesTest {
 
-    private static final String[] USERNAMES = {"michael", "noah", "aaron", "jesus", "chad", "stacy", "billy", "devin", "judas"};
+    private static final String[] USERNAMES = {""};
     private static final String ip = "127.0.0.1";
     private static final String mac = "unknown";
     private static final int amount = 2;

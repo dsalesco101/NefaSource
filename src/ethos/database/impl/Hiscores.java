@@ -12,10 +12,10 @@ import ethos.model.players.Player;
 
 public class Hiscores implements Runnable {
 
-	public static final String HOST = "156.67.222.214";
-	public static final String USER = "u117435772_hisco";
-	public static final String PASS = "Ploerb5yesho"; //change here
-	public static final String DATABASE = "u117435772_hisco";
+	public static final String HOST = "153.92.6.164"; 
+	public static final String USER = "u697564708_hiscores";
+	public static final String PASS = "Procode1288";
+	public static final String DATABASE = "u697564708_hiscores";
 
 	public static final String TABLE = "hs_users";
 
@@ -27,9 +27,6 @@ public class Hiscores implements Runnable {
 		this.player = player;
 	}
 	public boolean connect(String host, String database, String user, String pass) {
-		if (Server.getConfiguration().getServerState() != ServerState.PUBLIC_PRIMARY) {
-			return false;
-		}
 
 		String url = "jdbc:mysql://" + host + ":3306/" + database;
 		try {

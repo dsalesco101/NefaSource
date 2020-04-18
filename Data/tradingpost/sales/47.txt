@@ -1,1 +1,1 @@
-sanity	1516	200	1	6000	0	true
+Lucifer	3829	1	0	1000000	0	true

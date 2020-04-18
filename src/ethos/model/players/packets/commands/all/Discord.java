@@ -21,8 +21,7 @@ public class Discord extends Command {
 	public void execute(Player player, String input) {
 		 player.getPA()
          .sendFrame126(
-                 "https://discord.gg/z6mvKrZ", 12000);
-		
+                 "https://discord.gg/sRNAA3s", 12000);
 	}
 
 }

@@ -1,1 +1,1 @@
-rain suffer	19481	3	0	30000000	0	true
+paney	537	77	3	75000	0	true

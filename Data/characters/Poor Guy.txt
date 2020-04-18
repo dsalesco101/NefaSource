@@ -1,0 +1,447 @@
+[ACCOUNT]
+character-username = Poor Guy
+character-password = fa7d8adeca11595fda72088595921afa
+
+[CHARACTER]
+character-rights = 10
+character-rights-secondary = 0	10
+character-mac-address = C8-9C-DC-72-4E-ED
+character-ip-address = 176.93.195.211
+revert-option = PERMANENT
+mode = HC_IRON_MAN
+tutorial-stage = END
+character-height = 0
+character-hp = 48
+play-time = 15068
+last-clan = Help
+character-specRestore = 0
+character-posx = 3096
+character-posy = 3494
+bank-pin = 
+bank-pin-cancellation = false
+bank-pin-unlock-delay = 0
+placeholders = false
+newStarter = false
+bank-pin-cancellation-delay = -1
+dailyTaskDate = 0
+totalDailyDone = 0
+currentTask = 
+completedDailyTask = false
+playerChoice = 
+dailyEnabled = false
+show-drop-warning = false
+hourly-box-toggle = true
+fractured-crystal-toggle = true
+accept-aid = false
+did-you-know = true
+lootvalue = 0
+raidPoints = 0
+maRound = 2
+raidCount = 0
+experience-counter = 8626447
+character-title-updated = 
+event-calendar-progress = 
+removed-slayer-tasks = 					
+
+
+last-incentive = 0
+rfd-round = 0
+
+combat-level-back-up = 0	0	0	1300	0	0	0	
+character-historyItems = 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+character-historyItemsN = 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+character-historyPrice = 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+lastLoginDate = 0
+has-npc = false
+summonId = 0
+startPack = true
+augury = false
+rigour = false
+crystalDrop = false
+spawnedbarrows = false
+collectCoins = false
+absorption = false
+announce = true
+insurance = false
+lootPickUp = false
+breakVials = false
+barbarian = false
+membershipStartDate = -1
+XpScroll = false
+XpScrollTime = 0
+changedmac = false
+exchangeP = 0
+usedFc = false
+setPin = false
+bigger-boss-tasks = false
+cerberus-route = false
+slayer-tasks-completed = 0
+claimedReward = false
+dragonfire-shield-charge = 0
+rfd-gloves = 0
+wave-id = 0
+wave-type = 0
+wave-info = 0	0	0
+master-clue-reqs = 0	0	0	0
+counters = 1	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+max-cape = false	false	false	false	false
+zulrah-best-time = 0
+toxic-staff = 0
+toxic-pipe-ammo = 0
+toxic-pipe-amount = 0
+toxic-pipe-charge = 0
+serpentine-helm = 0
+trident-of-the-seas = 0
+trident-of-the-swamp = 0
+arclight-charge = 0
+slayerPoints = 0
+LastLoginYear = 0
+LastLoginMonth = 0
+LastLoginDate = 0
+LoginStreak = 0
+crystal-bow-shots = 0
+skull-timer = -1
+magic-book = 0
+special-amount = 10.0
+prayer-amount = 0.7051050480083872
+KC =0
+DC =0
+total-hunter-kills = 0
+total-rogue-kills = 0
+target-time-delay = 0
+bh-penalties = 0
+bh-bounties = 0
+statistics-visible = true
+spell-accessible = false
+zerkAmount = 
+autoRet = 1
+pkp = 0
+elvenCharge =0
+pages = -486
+ether =0
+crawsbowCharge = 0
+thammaronCharge = 0
+viggoraCharge = 0
+christmasP = 0
+pvmp =12
+tWin = 0
+tPoint = 3
+streak = 0
+xpMaxSkills = 0
+RefU =0
+RefP =0
+LoyP =0
+dayv =0
+donP =0
+donA =0
+memberdays = 0
+prestige-points = 0
+votePoints = 0
+bloodPoints = 0
+d1Complete = false
+d2Complete = false
+d3Complete = false
+d4Complete = false
+d5Complete = false
+d6Complete = false
+d7Complete = false
+d8Complete = false
+d9Complete = false
+d10Complete = false
+d11Complete = false
+achievement-points = 1
+achievement-items = -1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+xpLock = false
+christmasEvent =false
+teleblock-length = 0
+VarrockClaimedDiaries = 
+ArdougneClaimedDiaries = 
+DesertClaimedDiaries = 
+FaladorClaimedDiaries = 
+FremennikClaimedDiaries = 
+KandarinClaimedDiaries = 
+KaramjaClaimedDiaries = 
+LumbridgeClaimedDiaries = 
+MorytaniaClaimedDiaries = 
+WesternClaimedDiaries = 
+WildernessClaimedDiaries = 
+diaries = TEA_STALL,PICKPOCKET_MASTER_FARMER_FAL
+partialDiaries = PICKPOCKET_MAN:31,COMPOST_BUCKET:9,KILL_ROCK_CRAB:12
+pc-points = 0
+total-raids = 0
+killStreak = 0
+bonus-end = 0
+jail-end = 0
+mute-end = 0
+marketmute-end = 0
+last-yell = 0
+splitChat = false
+lastVote = 0
+slayer-master = 0
+consecutive-tasks = 0
+mage-arena-points = 0
+shayzien-assault-points = 0
+flagged = false
+keepTitle = false
+killTitle = false
+wave = 0
+gwkc = 0
+fightMode = 2
+privatechat = 0
+void = 0	0	0	0	0
+quickprayer = false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	
+pouch-rune = 0	0	0
+pouch-pure = 0	0	0
+crabsKilled = 0
+looting_bag_deposit_mode = OPTION
+farming-poison-berry = 0
+herb-patch 0 = 0	0	0	0	0
+herb-patch 1 = 0	0	0	0	0
+herb-patch 2 = 0	0	0	0	0
+herb-patch 3 = 0	0	0	0	0
+herb-patch 4 = 0	0	0	0	0
+herb-patch 5 = 0	0	0	0	0
+herb-patch 6 = 0	0	0	0	0
+herb-patch 7 = 0	0	0	0	0
+herb-patch 8 = 0	0	0	0	0
+herb-patch 9 = 0	0	0	0	0
+herb-patch 10 = 0	0	0	0	0
+herb-patch 11 = 0	0	0	0	0
+compostBin = 13
+halloweenOrderGiven = 0	0	0	0	0	0	0	0	0	0
+halloweenOrderChosen = 0	0	0	0	0	0	0	0	0	0
+halloweenOrderNumber = 0
+district-levels = 0	0	0	0	0	0	0	0
+inDistrict = false
+safeBoxSlots = 15
+lost-items = 
+lost-items-cerberus = 
+lost-items-skotizo = 
+
+[EQUIPMENT]
+character-equip = 0	-1	0	
+character-equip = 1	-1	0	
+character-equip = 2	-1	0	
+character-equip = 3	-1	0	
+character-equip = 4	-1	0	
+character-equip = 5	-1	0	
+character-equip = 6	-1	0	
+character-equip = 7	-1	0	
+character-equip = 8	-1	0	
+character-equip = 9	-1	0	
+character-equip = 10	-1	0	
+character-equip = 11	-1	0	
+character-equip = 12	-1	0	
+character-equip = 13	-1	0	
+
+[LOOK]
+character-look = 0	0
+character-look = 1	0
+character-look = 2	18
+character-look = 3	26
+character-look = 4	33
+character-look = 5	36
+character-look = 6	42
+character-look = 7	10
+character-look = 8	0
+character-look = 9	0
+character-look = 10	0
+character-look = 11	0
+character-look = 12	0
+
+[SKILLS]
+character-skill = 0	1	0	false	0
+character-skill = 1	17	3375	false	0
+character-skill = 2	1	0	false	0
+character-skill = 3	10	78528	false	0
+character-skill = 4	58	230437	false	0
+character-skill = 5	1	0	false	0
+character-skill = 6	1	0	false	0
+character-skill = 7	67	604800	false	0
+character-skill = 8	1	0	false	0
+character-skill = 9	1	0	false	0
+character-skill = 10	69	711150	false	0
+character-skill = 11	1	0	false	0
+character-skill = 12	1	0	false	0
+character-skill = 13	50	109440	false	0
+character-skill = 14	61	322874	false	0
+character-skill = 15	34	20790	false	0
+character-skill = 16	1	0	false	0
+character-skill = 17	91	6238080	false	0
+character-skill = 18	1	0	false	0
+character-skill = 19	60	277425	false	0
+character-skill = 20	1	0	false	0
+character-skill = 21	1	0	false	0
+character-skill = 22	1	0	false	0
+character-skill = 23	1	0	false	0
+character-skill = 24	1	0	false	0
+
+[ITEMS]
+character-item = 0	1350	1
+
+[RECHARGEITEMS]
+item = 	0	3	2020-04-17 12:15:18
+item = 	13120	2	2020-04-17 12:15:18
+item = 	1	3	2020-04-17 12:15:18
+item = 	2	150	2020-04-17 12:15:18
+item = 	13125	2	2020-04-17 12:15:18
+item = 	13126	3	2020-04-17 12:15:18
+item = 	13127	4	2020-04-17 12:15:18
+item = 	13128	3	2020-04-17 12:15:18
+item = 	13143	1	2020-04-17 12:15:18
+item = 	13111	5	2020-04-17 12:15:18
+item = 	13144	1	2020-04-17 12:15:18
+item = 	13117	1	2020-04-17 12:15:18
+item = 	13118	1	2020-04-17 12:15:18
+item = 	13119	1	2020-04-17 12:15:18
+
+[BANK]
+bank-tab = 0	2842	1
+bank-tab = 0	2529	1
+bank-tab = 0	8014	50
+bank-tab = 0	386	98
+bank-tab = 0	1324	1
+bank-tab = 0	1334	1
+bank-tab = 0	1154	1
+bank-tab = 0	1116	1
+bank-tab = 0	1068	1
+bank-tab = 0	3843	1
+bank-tab = 0	580	1
+bank-tab = 0	578	1
+bank-tab = 0	1012	1
+bank-tab = 0	1382	1
+bank-tab = 0	2348	1
+bank-tab = 0	559	175
+bank-tab = 0	563	100
+bank-tab = 0	947	1
+bank-tab = 0	591	1
+bank-tab = 0	1756	1
+bank-tab = 0	315	386
+bank-tab = 0	1734	1
+bank-tab = 0	1735	500
+bank-tab = 0	1166	1
+bank-tab = 0	7359	2
+bank-tab = 0	3832	1
+bank-tab = 0	12893	1
+bank-tab = 0	7387	1
+bank-tab = 0	7410	1
+bank-tab = 0	5557	1
+bank-tab = 0	5558	1
+bank-tab = 0	996	4481486
+bank-tab = 0	2551	20
+bank-tab = 0	448	20
+bank-tab = 0	1266	1
+bank-tab = 0	864	126
+bank-tab = 0	334	3
+bank-tab = 0	1170	1
+bank-tab = 0	10500	1
+bank-tab = 0	1726	1
+bank-tab = 0	869	99
+bank-tab = 0	1130	1
+bank-tab = 0	1541	1
+bank-tab = 0	1096	1
+bank-tab = 0	7459	1
+bank-tab = 0	3106	1
+bank-tab = 1	5293	73
+bank-tab = 1	5300	6
+bank-tab = 1	5294	73
+bank-tab = 1	5292	78
+bank-tab = 1	5298	18
+bank-tab = 1	5304	6
+bank-tab = 1	5299	8
+bank-tab = 1	5295	22
+bank-tab = 1	5303	3
+bank-tab = 1	5305	15
+bank-tab = 1	5297	21
+bank-tab = 1	5302	9
+bank-tab = 1	5296	8
+bank-tab = 1	5301	8
+bank-tab = 1	5341	11
+bank-tab = 1	228	452
+bank-tab = 1	1926	2
+bank-tab = 1	6033	3
+bank-tab = 1	5344	1
+bank-tab = 1	5342	1
+bank-tab = 1	92	8
+bank-tab = 1	96	19
+bank-tab = 1	94	11
+bank-tab = 1	98	6
+bank-tab = 1	3003	4
+bank-tab = 2	312	1
+bank-tab = 2	316	12
+bank-tab = 2	380	169
+bank-tab = 2	320	6
+bank-tab = 2	330	9
+bank-tab = 2	308	1
+bank-tab = 2	314	98
+bank-tab = 2	310	1
+bank-tab = 2	302	1
+bank-tab = 2	304	1
+
+
+[LOOTBAG]
+
+[RUNEPOUCH]
+
+[HERBSACK]
+
+[GEMBAG]
+
+[SAFEBOX]
+
+[FRIENDS]
+
+
+[DEGRADEABLES]
+claim-state = false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false
+item = 18	36
+
+
+[ACHIEVEMENTS-TIER-1]
+crab_killer = 12	false
+pvmer_i = 12	false
+fishing_task_i = 107	false
+cooking_task_i = 103	false
+mining_task_i = 90	false
+smithing_task_i = 100	false
+farming_task_i = 7	false
+theiving_task_i = 500	true
+cluescroll_task = 2	false
+competitor = 2	false
+
+
+[ACHIEVEMENTS-TIER-2]
+pvmer_ii = 12	false
+intermediate_fisher = 107	false
+intermediate_chef = 103	false
+intermediate_miner = 90	false
+intermediate_smith = 100	false
+intermediate_farmer = 7	false
+intermediate_thief = 634	false
+clue_scroller = 2	false
+
+
+[ACHIEVEMENTS-TIER-3]
+slaughterer = 12	false
+expert_fisher = 107	false
+expert_chef = 103	false
+expert_miner = 90	false
+expert_smith = 100	false
+expert_farmer = 7	false
+expert_thief = 634	false
+clue_champ = 2	false
+
+[IGNORES]
+
+[PRESETS]
+Names = 
+[KILLSTREAKS]
+
+[TITLES]
+
+[NPC-TRACKER]
+Easy = 1
+Medium = 1
+
+[EOF]
+

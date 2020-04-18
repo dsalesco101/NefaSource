@@ -1,1 +1,1 @@
-Soda	4716	1	1	5000000	1	false
+paney	537	68	0	75000	0	true

@@ -519,7 +519,7 @@ public class ShopAssistant {
 			case 171: //Exchange Points
 				switch (id) {
 					case 13346://ultra
-						return 30000;
+						return 60000;
 					case 6828://super
 						return 19000;
 					case 6199:
@@ -829,22 +829,56 @@ public class ShopAssistant {
 						return 90;
 				case 962:
 						return 50;
-				case 11862:
-						return 70;
-				case 1050:
-						return 35;
-				case 13343:
-						return 55;
-				case 4084:
-						return 70;
-				case 6199:
-						return 5;
-				case 6828:
-						return 15;
 				case 13346:
-						return 25;
+						return 20;
+				case 6199:
+					return 10;
+				case 6828:
+					return 15;
 				case 21259:
 						return 15;
+				case 15098:
+					return 50;
+				case 1053:
+				case 1055:
+				case 1057:
+					return 30;
+				case 2572:
+					return 5;
+				case 12785:
+					return 25;
+				case 11772:
+					return 5;
+				case 11773:
+				case 11770:
+				case 11771:
+					return 10;
+				case 6585:
+				case 19550:
+					return 10;
+				case 12004:
+					return 7;
+				case 13231:
+				case 13229:
+				case 13227:
+					return 25;
+				case 11832:
+				case 11834:
+					return 20;
+				case 11826:
+					return 10;
+				case 11828:
+				case 11830:
+					return 20;
+				case 11284:
+					return 15;
+				case 11802:
+				case 13576:
+					return 30;
+				case 11785:
+					return 25;
+				case 12924:
+					return 30;
 				}
 				break;
 			case 10: //slayer Shop

@@ -210,6 +210,7 @@ public class QuestTab {
                         }
                         return true;
                     case DONATOR_BENEFITS:
+                    	 player.getPA().sendFrame126("http://www.wisdomrsps.com/forums/index.php?/topic/13-donator-benefits/", 12000);
                         return true;
                     case ACHIEVEMENTS:
                         player.getAchievements().drawInterface(0);
@@ -218,8 +219,10 @@ public class QuestTab {
                         player.getTitles().display();
                         return true;
                     case COMMUNITY_GUIDES:
+                        player.getPA().sendFrame126("http://www.wisdomrsps.com/forums/index.php?/forum/15-wisdom-guides/", 12000);
                         return true;
                     case VOTE_PAGE:
+                        player.getPA().sendFrame126("http://www.wisdomosrs.com/vote", 12000);
                         return true;
                     case ONLINE_STORE:
                         player.getPA().sendFrame126("http://www.wisdomosrs.com/store", 12000);
@@ -228,6 +231,7 @@ public class QuestTab {
                         player.getPA().sendFrame126("http://www.wisdomosrs.com/", 12000);
                         return true;
                     case RULES:
+                        player.getPA().sendFrame126("http://www.wisdomrsps.com/forums/index.php?/topic/9-in-game-rules/", 12000);
                         return true;
                     case LOOT_TABLES:
                         LootableInterface.openInterface(player);

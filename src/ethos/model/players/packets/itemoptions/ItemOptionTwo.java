@@ -79,12 +79,12 @@ public class ItemOptionTwo implements PacketType {
 			break;
 		 case 21259:
 			 if(System.currentTimeMillis() - player.clickDelay < 120000) {
-	             player.sendMessage("Trade this to noah or aaron to change your name.");
+	             player.sendMessage("Trade this to aaron to change your name.");
                  return;
 			 	}
 			   List<Player> staff = PlayerHandler.nonNullStream().filter(Objects::nonNull).filter(p -> p.getRights().isOrInherits(Right.OWNER)).collect(Collectors.toList());
-               player.sendMessage("Trade this to noah or aaron to change your name.", 13611);
-               player.sendMessage("@red@You have alerted noah and aaron about the request if online.");
+               player.sendMessage("Trade this to aaron to change your name.", 13611);
+               player.sendMessage("@red@You have alerted aaron about the request if online.");
                player.startAnimation(3141);
 			   PlayerHandler.sendMessage("[@blu@NAME CHANGE REQUESTED]@red@"+player.playerName+" @blu@has just requeseted a name change", staff);	 
 	           player.clickDelay = System.currentTimeMillis();

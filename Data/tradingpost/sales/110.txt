@@ -1,1 +1,1 @@
-Livala	4722	1	0	8000000	0	true
+Manu	4712	3	0	3000000	0	false

@@ -1,0 +1,73 @@
+{
+  "6342": [],
+  "7554": [],
+  "2265": [
+    {
+      "id": 6135,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 6733,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 6131,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "3162": [],
+  "1": [],
+  "3129": [],
+  "2215": [],
+  "3": [],
+  "4": [],
+  "2267": [
+    {
+      "id": 6737,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 6151,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 441,
+      "amount": 200,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 6129,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 6128,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "2266": [
+    {
+      "id": 6139,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "239": [],
+  "965": [],
+  "6611": []
+}

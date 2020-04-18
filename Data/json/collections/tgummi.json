@@ -1,0 +1,43 @@
+{
+  "1": [
+    {
+      "id": 1297,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 7332,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 334,
+      "amount": 7,
+      "slot": 0,
+      "stackable": true
+    }
+  ],
+  "6342": [],
+  "2": [
+    {
+      "id": 10476,
+      "amount": 20,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 561,
+      "amount": 7,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 12261,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ]
+}

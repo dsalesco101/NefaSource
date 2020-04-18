@@ -148,6 +148,194 @@ public class RaidsChestItems {
                 new GameItem(21079, 1), //dex scroll     		   COMMON
                 new GameItem(21003, 1), //elder maul      	 	 UNCOMMON
                 new GameItem(20784, 1),  //D claws
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll   		        COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll    		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll       		   COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll      		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll     		   COMMON
+                new GameItem(21003, 1), //elder maul      	 	 UNCOMMON
+                new GameItem(20784, 1),  //D claws
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll   		        COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll    		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll       		   COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll      		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll     		   COMMON
+                new GameItem(21003, 1), //elder maul      	 	 UNCOMMON
+                new GameItem(20784, 1),  //D claws
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll   		        COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll    		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll       		   COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll      		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll     		   COMMON
+                new GameItem(21003, 1), //elder maul      	 	 UNCOMMON
+                new GameItem(20784, 1),  //D claws
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll   		        COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll    		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll       		   COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll      		    COMMON
+                new GameItem(22477, 1),  //avernic defender
+                new GameItem(21000, 1),  //twisted buckler
+                new GameItem(21015, 1),  //dinhs bulwark
+                new GameItem(21009, 1),  //dragon sword
+                new GameItem(21012, 1),  //dragon hunter crossbow
+                new GameItem(21902, 1),  //dragon c'bow
+                new GameItem(21006, 1),  //koadi wand
+                new GameItem(21034, 1), //arcane scroll
+                new GameItem(21079, 1), //dex scroll     		   COMMON
+                new GameItem(21003, 1), //elder maul      	 	 UNCOMMON
+                new GameItem(20784, 1),  //D claws
                 new GameItem(21018, 1),//ancestral hat
                 new GameItem(21021, 1),//ancestral top
                 new GameItem(21024, 1),//ancestral bottom

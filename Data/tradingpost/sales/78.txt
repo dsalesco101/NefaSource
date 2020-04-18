@@ -1,1 +1,1 @@
-shadow panda	1464	3	3	1500000	0	true
+Rukozi	19544	1	1	10000000	0	true

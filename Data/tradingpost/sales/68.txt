@@ -1,1 +1,1 @@
-scott	4712	1	1	6000000	0	false
+trent	4728	1	1	3500000	0	true

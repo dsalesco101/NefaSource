@@ -1,1 +1,0 @@
-rain suffer	19481	3	1	25000000	0	true

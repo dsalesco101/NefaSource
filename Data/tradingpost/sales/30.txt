@@ -1,1 +1,1 @@
-lucifer	4753	1	0	8000000	0	true
+lynx	1150	1	0	250000	0	false

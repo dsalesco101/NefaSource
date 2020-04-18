@@ -1,1 +1,1 @@
-shadow panda	4087	1	1	500000	0	true
+Lucifer	450	40	0	25000	0	false

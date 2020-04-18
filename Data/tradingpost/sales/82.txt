@@ -1,1 +1,1 @@
-mandy muse	12696	99	0	40000	0	true
+Manu	6739	1	0	2000000	0	false

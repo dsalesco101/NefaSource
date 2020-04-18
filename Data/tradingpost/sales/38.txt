@@ -1,1 +1,1 @@
-shadow panda	2577	1	0	30000000	0	true
+tinnie	6739	1	0	8000000	0	true

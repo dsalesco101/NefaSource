@@ -1,1 +1,1 @@
-boats	579	1	1	60000	0	true
+Lucifer	4088	10	0	500000	0	true

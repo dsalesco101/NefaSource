@@ -14,10 +14,7 @@ class DatabaseManagerTest {
 
     private static final String TABLE_NAME = "TEST_TABLE";
     private static String[] INSERTS = {
-            "INSERT INTO " + TABLE_NAME + "(name, age) VALUES('michael', 25)",
-            "INSERT INTO " + TABLE_NAME + "(name, age) VALUES('noah', 24)",
-            "INSERT INTO " + TABLE_NAME + "(name, age) VALUES('aaron', 22)",
-            "INSERT INTO " + TABLE_NAME + "(name, age) VALUES('jesus', 100)",
+
     };
 
     private DatabaseTable getTestTable() {

@@ -1,1 +1,1 @@
-Worthless	4720	1	0	6000000	0	true
+lynx	11840	1	0	5000000	0	true

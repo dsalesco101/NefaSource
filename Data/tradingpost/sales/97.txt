@@ -1,1 +1,1 @@
-shadow panda	841	1	0	10000000	0	true
+Nick	4755	1	1	3000000	1	false

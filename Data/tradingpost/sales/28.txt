@@ -1,1 +1,1 @@
-shadow panda	537	72	72	100000	0	true
+lynx	11236	1	1	3000000	0	true

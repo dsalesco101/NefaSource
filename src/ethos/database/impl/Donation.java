@@ -5,8 +5,16 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.text.WordUtils;
+
+import ethos.model.content.wogw.Wogw;
 import ethos.model.players.Player;
+import ethos.model.players.PlayerHandler;
+import ethos.model.players.Right;
 
 
 /**
@@ -17,14 +25,15 @@ import ethos.model.players.Player;
 public class Donation implements Runnable {
 
 	public static final String HOST = "153.92.6.164"; // website ip address
-	public static final String USER = "u697564708_stor";
-	public static final String PASS = "Procode598";
+	public static final String USER = "u697564708_store";
+	public static final String PASS = "Procode1288";
 	public static final String DATABASE = "u697564708_store";
 
 	private Player player;
 	private Connection conn;
 	private Statement stmt;
 
+	public int GoalIsReached = 0;
 	/**
 	 * The constructor
 	 * @param player
@@ -47,16 +56,58 @@ public class Donation implements Runnable {
 				int item_number = rs.getInt("item_number");
 				double paid = rs.getDouble("amount");
 				int quantity = rs.getInt("quantity");
-
-				switch (item_number) {// add products according to their ID in the ACP
-
-				case 1: // example
-					player.getItems().addItem(995, quantity);
+				List<Player> Owners = PlayerHandler.nonNullStream().filter(Objects::nonNull).filter(p -> p.getRights().isOrInherits(Right.OWNER)).collect(Collectors.toList());
+				switch (item_number) {// add products according to their ID in the ACP					
+				case 27: 
+					player.getItems().addItem(2403, 1 * quantity);
+					player.sendMessage("Thank you for supporting wisdom!");
+					player.sendMessage("You have received your $10 Donator Scroll.");
+					PlayerHandler.sendMessage("@red@["+player.playerName+"]@pur@ Has just donated for a total of $"+paid+"", Owners);
+					GoalIsReached = 10 * quantity;
+					break;
+				case 30: 
+					player.getItems().addItem(2396, 1 * quantity);
+					player.sendMessage("Thank you for supporting wisdom!");
+					player.sendMessage("You have received your $25 Donator Scroll.");
+					PlayerHandler.sendMessage("@red@["+player.playerName+"]@pur@ Has just donated for a total of $"+paid+"", Owners);
+					GoalIsReached = 25 * quantity;
+					break;
+				case 31: 
+					player.getItems().addItem(786, 1 * quantity);
+					player.sendMessage("Thank you for supporting wisdom!");
+					player.sendMessage("You have received your $50 Donator Scroll.");
+					PlayerHandler.sendMessage("@red@["+player.playerName+"]@pur@ Has just donated for a total of $"+paid+"", Owners);
+					GoalIsReached = 50 * quantity;
+					break;
+				case 32: 
+					player.getItems().addItem(761, 1 * quantity);
+					player.sendMessage("Thank you for supporting wisdom!");
+					player.sendMessage("You have received your $100 Donator Scroll.");
+					PlayerHandler.sendMessage("@red@["+player.playerName+"]@pur@ Has just donated for a total of $"+paid+"", Owners);
+					GoalIsReached = 100 * quantity;
+					break;
+				case 33: 
+					player.getItems().addItem(607, 1 * quantity);
+					player.sendMessage("Thank you for supporting wisdom!");
+					player.sendMessage("You have received your $250 Donator Scroll.");
+					PlayerHandler.sendMessage("@red@["+player.playerName+"]@pur@ Has just donated for a total of $"+paid+"", Owners);
+					GoalIsReached = 250 * quantity;
+					break;
+				case 34: 
+					player.getItems().addItem(608, 1 * quantity);
+					player.sendMessage("Thank you for supporting wisdom!");
+					player.sendMessage("You have received your $500 Donator Scroll.");
+					PlayerHandler.sendMessage("@red@["+player.playerName+"]@pur@ Has just donated for a total of $"+paid+"", Owners);
+					GoalIsReached = 500 * quantity;
 					break;
 
+				default:
+					player.sendMessage("@blu@The user @red@"+player.playerName+"@blu@ has not yet donated.");
+					break;
 				}
-
-				rs.updateInt("claimed", 1); // do not delete otherwise they can reclaim!
+				
+				player.sendMessage("Please be sure to press `received item` on paypal transcation.");
+				rs.updateInt("claimed", 1); 
 				rs.updateRow();
 			}
 
