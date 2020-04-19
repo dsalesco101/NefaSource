@@ -53,6 +53,18 @@
       "amount": 44,
       "slot": 0,
       "stackable": true
+    },
+    {
+      "id": 1367,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3837,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
     }
   ]
 }

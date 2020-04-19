@@ -269,6 +269,7 @@ public class Player extends Entity {
 	public boolean barbarian = false;
 	public boolean debugMessage = false;
 	public boolean breakVials = false;
+	public boolean hasPartner;
 	public boolean collectCoins = false;
 	public boolean rubyspecial = false;
 	/**
@@ -354,6 +355,7 @@ public class Player extends Entity {
 	private PvmCasket pvmCasket = new PvmCasket();
 	private SkillCasket skillCasket = new SkillCasket(this);
 	private DailyGearBox dailyGearBox = new DailyGearBox(this);
+	private DailyLogin dailylogin = new DailyLogin(this);
 	private DailySkillBox dailySkillBox = new DailySkillBox(this);
 
 	private LocalDate lastVote = LocalDate.of(1970, 1, 1);
@@ -1314,7 +1316,6 @@ public class Player extends Entity {
 			 * Welcome messages
 			 */
 			sendMessage("@bla@Welcome to Wisdom! Don't forget to join our ::discord");
-			
 			if(Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY 
 	        		|| Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
 				sendMessage("@bla@Bonus XP Weekend is currently [@gre@ACTIVE@bla@]");
@@ -1485,6 +1486,11 @@ public class Player extends Entity {
 			}
 			if (totalLevel >= 2000) {
 				getEventCalendar().progress(EventChallenge.HAVE_2000_TOTAL_LEVEL);
+			}
+			List<String> DailyLogin = DailyLoginUses.getUsedDL();
+			long usedDailyLogin = DailyLogin.stream().filter(data -> data.equals(getMacAddress())).count();
+			if (usedDailyLogin > 1) {
+				getDailyLogin().LoggedIn();
 			}
 			if (startPack == false) {
 				getRights().remove(Right.IRONMAN);
@@ -2650,7 +2656,9 @@ public class Player extends Entity {
 	public DailyGearBox getDailyGearBox() {
 		return dailyGearBox;
 	}
-
+	public DailyLogin getDailyLogin() {
+		return dailylogin;
+	}
 	public DailySkillBox getDailySkillBox() {
 		return dailySkillBox;
 	}
@@ -4432,7 +4440,7 @@ public class Player extends Entity {
 	public int LastLoginYear = 0;
     public int LastLoginMonth = 0;
     public int LastLoginDate = 0;
-    public int LoginStreak = 0;
+    public int LoginStreak = 1;
 	public boolean inTOB;
 
 	public boolean killedMaiden;

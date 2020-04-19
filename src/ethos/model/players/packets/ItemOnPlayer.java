@@ -14,6 +14,7 @@ import ethos.model.players.PacketType;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerHandler;
 import ethos.model.players.Right;
+import ethos.model.players.skills.slayer.DuoSlayer;
 import ethos.util.Misc;
 
 public class ItemOnPlayer implements PacketType {
@@ -83,6 +84,12 @@ public class ItemOnPlayer implements PacketType {
 			c.getItems().deleteItem(itemId, c.getItems().isStackable(itemId) ? c.getItems().getItemAmount(itemId) : 1);
 		}
 		switch (itemId) {
+		case 4155:
+			if (!c.getRights().getPrimary().isOrInherits(Right.OWNER)) {
+				return;
+			}
+			DuoSlayer.handleTask(c, c.item, playerIndex);
+			break;
 		case 2697:
 			if (c.inWild() || c.inDuelArena() || Server.getMultiplayerSessionListener().inAnySession(c)) {
 				return;

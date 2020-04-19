@@ -198,6 +198,10 @@ public class Slayer {
 						case 603:
 						case 8623:
 						case 8761:
+							 if(player.hasPartner == true) {
+						          player.hasPartner = false;
+						          return;
+						          }
 							taskAmount--;
 							player.getPA().addSkillXP(player.getRechargeItems().hasAnyItem(13113, 13114, 13115) && Boundary.isIn(player, Boundary.SLAYER_TOWER_BOUNDARY) ? (int) (task.getExperience() * 1.10) * (player.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.SLAYER_EXPERIENCE)
 											: task.getExperience() * (player.getMode().getType().equals(ModeType.OSRS) ? 3 : Config.SLAYER_EXPERIENCE),

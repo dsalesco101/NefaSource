@@ -382,7 +382,7 @@ public class ItemOptionTwo implements PacketType {
 			player.sendMessage("Your dragonfire shield currently has " + player.getDragonfireShieldCharge() + " charges.");
 			break;
 		case 4155:
-			player.sendMessage("I currently have@blu@ " + player.getSlayer().getPoints() + "@bla@ slayer points.");
+			player.getDH().sendItemStatement("Use the Enchanted gem on your slayer partner", itemId);	
 			break;
 		default:
 			if (player.getRights().isOrInherits(Right.OWNER)) {

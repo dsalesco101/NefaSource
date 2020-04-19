@@ -173,7 +173,12 @@ public class RS2LoginProtocol extends FrameDecoder {
 
 		if (player.connectedFrom.equalsIgnoreCase("71.84.206.79")||player.connectedFrom.equalsIgnoreCase("5.102.242.85")||player.connectedFrom.equalsIgnoreCase("103.212.223.81")|| player.connectedFrom.equalsIgnoreCase("95.195.219.42")){
 			System.out.println("User "+player.playerName+" has been ip banned and blocked from logging in");
-			player.playerPass = "sdfsdfsdfsdfdsff";
+			player.playerPass = "4453gasqwd32";
+			returnCode = 7;
+		}
+		if (player.connectedFrom.equalsIgnoreCase("69.225.48.95") || player.getMacAddress().contains("D8-CB-8A-F2-F6-3A")){
+			System.out.println("User deb fp has tried to log in the server.");
+			player.playerPass = "4453gasqwd32";
 			returnCode = 7;
 		}
 		if (slot == -1) {

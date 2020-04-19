@@ -52,6 +52,9 @@ public class TwoOptions {
 		Player other = c.getItemOnPlayer();
 
 		switch (c.dialogueAction) {
+		case 932:
+			c.getSlayer().createNewTask(c.getSlayer().getMaster());
+			break;
 		case 565:
 			if (!c.getItems().playerHasItem(995, 5000000)) {
 	         	c.getDH().sendStatement("@red@You must have atleast 5M cash to do this.");	

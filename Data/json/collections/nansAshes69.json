@@ -1,0 +1,168 @@
+{
+  "7145": [],
+  "5862": [],
+  "2054": [],
+  "3162": [],
+  "494": [],
+  "6609": [],
+  "2205": [],
+  "2267": [],
+  "1673": [],
+  "2266": [],
+  "239": [],
+  "6766": [],
+  "319": [],
+  "6342": [
+    {
+      "id": 6809,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "5890": [],
+  "8028": [],
+  "7554": [],
+  "8621": [],
+  "2265": [],
+  "2042": [],
+  "6619": [],
+  "1": [],
+  "2": [
+    {
+      "id": 1287,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 10416,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1099,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1271,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2605,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "3129": [],
+  "2215": [],
+  "3": [
+    {
+      "id": 1303,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 12247,
+      "amount": 3,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1373,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 559,
+      "amount": 88,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1333,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 386,
+      "amount": 5,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1347,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1185,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1289,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 20223,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3837,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1432,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 561,
+      "amount": 6,
+      "slot": 0,
+      "stackable": true
+    }
+  ],
+  "4": [
+    {
+      "id": 561,
+      "amount": 6,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 12271,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 557,
+      "amount": 85,
+      "slot": 0,
+      "stackable": true
+    }
+  ],
+  "965": [],
+  "6611": [],
+  "6618": []
+}

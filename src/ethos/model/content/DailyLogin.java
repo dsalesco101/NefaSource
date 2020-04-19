@@ -29,62 +29,46 @@ public class DailyLogin {
 		c.LoginStreak++;
 		switch(c.LoginStreak) {
 		case 1: //1 login
+			if(Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY 
+    		|| Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY
+    		|| Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY
+    		&& c.LoginStreak == 1){
+				c.sendMessage("You can only start the daily logins on monday.");
+				return;
+			}
+			c.sendMessage("BETA MESSAGE FOR DAILY LOGIN STREAK, DAY : MONDAY");
+			c.LoginStreak+=1;
+			c.sendMessage("@blu@You have logged in for @red@1@blu@ days in a row this week!");
 			break;
 		case 2: //2 logins
-			c.LoyP+=100;
-			c.sendMessage("You have logged in for two days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 100 loyalty points.");
+			c.sendMessage("BETA MESSAGE FOR DAILY LOGIN STREAK, DAY : MONDAY");
+			c.LoginStreak+=1;
+			c.sendMessage("@blu@You have logged in for @red@2@blu@ days in a row this week!");
 			break;
 		case 3: //3 logins
-			c.LoyP+=200;
-			c.sendMessage("You have logged in for three days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 200 loyalty points.");
+			c.sendMessage("BETA MESSAGE FOR DAILY LOGIN STREAK, DAY : MONDAY");
+			c.LoginStreak+=1;
+			c.sendMessage("@blu@You have logged in for @red@3@blu@ days in a row this week!");
 			break;
 		case 4: //4 logins
-			c.LoyP+=250;
-			c.sendMessage("You have logged in for four days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 250 loyalty points.");
+			c.sendMessage("BETA MESSAGE FOR DAILY LOGIN STREAK, DAY : MONDAY");
+			c.LoginStreak+=1;
+			c.sendMessage("@blu@You have logged in for @red@4@blu@ days in a row this week!");
 			break;
 		case 5: //5 logins
-			c.LoyP+=250;
-			c.getItems().addItemToBank(11739, 1);
-			c.sendMessage("You have logged in for five days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 250 loyalty points & a vote box.");
-			c.sendMessage("Your vote box went into your bank for safety purposes.");
+			c.sendMessage("BETA MESSAGE FOR DAILY LOGIN STREAK, DAY : MONDAY");
+			c.LoginStreak+=1;
+			c.sendMessage("@blu@You have logged in for @red@5@blu@ days in a row this week!");
 			break;
 		case 6: //6 logins
-			c.LoyP+=300;
-			c.sendMessage("You have logged in for six days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 300 loyalty points");
+			c.sendMessage("BETA MESSAGE FOR DAILY LOGIN STREAK, DAY : MONDAY");
+			c.LoginStreak+=1;
+			c.sendMessage("@blu@You have logged in for @red@6@blu@ days in a row this week!");
 			break;
 		case 7: //7 logins
-			c.LoyP+=300;
-			c.getItems().addItemToBank(11739, 1);
-			c.sendMessage("You have logged in for seven days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 250 loyalty points & a vote box.");
-			c.sendMessage("Your vote box went into your bank for safety purposes.");
-			break;
-		case 8: //8 logins
-			c.LoyP+=350;
-			c.sendMessage("You have logged in for eight days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 350 loyalty points.");
-			break;
-		case 9: //9 logins
-			c.LoyP+=350;
-			c.getItems().addItemToBank(11739, 1);
-			c.sendMessage("You have logged in for nine days in a row! Log in tomorrow for a better reward");
-			c.sendMessage("You have received 350 loyalty points & a vote box.");
-			c.sendMessage("Your vote box went into your bank for safety purposes.");
-			break;
-		case 10: //10 logins
-			c.LoyP+=350;
-			c.getItems().addItem(989, 1); 
-			c.getItems().addItem(11739, 3); 
-			c.sendMessage("You have logged in for the tenth time, and recieved the JACKPOT!");
-			c.sendMessage("You have received 350 loyalty points & a vote box x3 & 1 million coins.");
-			c.sendMessage("Your vote box went into your bank for safety purposes.");
-			PlayerHandler.executeGlobalMessage("[@blu@DAILY-LOGINS@bla@]@blu@ " + c.playerName + " @bla@has just logged in 10 days in a row!");
+			c.sendMessage("BETA MESSAGE FOR DAILY LOGIN STREAK, DAY : MONDAY");
 			c.LoginStreak = 0;
+			c.sendMessage("@blu@You have logged in for @red@7@blu@ days in a row this week!");
 			break;
 		}
 	}

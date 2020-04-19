@@ -12,7 +12,7 @@ public class Referrals {
 
     public static List<String> getUsedReferrals() {
         if (Server.getServerAttributes().getList(REFERALL_ATTRIBUTE_KEY) == null) {
-            Server.getServerAttributes().setList(REFERALL_ATTRIBUTE_KEY, new ArrayList());
+            Server.getServerAttributes().setList(REFERALL_ATTRIBUTE_KEY, new ArrayList<Object>());
         }
 
         return (List<String>) Server.getServerAttributes().getList(REFERALL_ATTRIBUTE_KEY);

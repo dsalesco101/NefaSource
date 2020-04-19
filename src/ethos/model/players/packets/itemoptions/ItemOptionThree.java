@@ -19,6 +19,7 @@ import ethos.model.players.Player;
 import ethos.model.players.Right;
 import ethos.model.players.combat.Degrade;
 import ethos.model.players.combat.Degrade.DegradableItem;
+import ethos.model.players.skills.slayer.DuoSlayer;
 import ethos.util.Misc;
 
 /**

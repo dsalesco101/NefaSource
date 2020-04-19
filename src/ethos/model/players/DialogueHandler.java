@@ -73,6 +73,10 @@ public class DialogueHandler {
 			return;
 		}
 		switch (dialogue) {
+		case 932:
+		      sendOption2("Accept shared slayer task from "+c.playerName+" .", "Decline invitation");
+		      c.dialogueAction = 932;
+		break;
 		case LootingBag.ITEM_ON_ITEM_DIALOGUE_ID:
 			sendOption5("Deposit 1", "Deposit 5", "Deposit 10", "Deposit X", "Deposit All"); //TODO
 			c.dialogueAction = LootingBag.ITEM_ON_ITEM_DIALOGUE_ID;
