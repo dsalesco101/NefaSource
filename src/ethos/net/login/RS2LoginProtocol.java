@@ -1,5 +1,7 @@
 package ethos.net.login;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.security.SecureRandom;
@@ -15,6 +17,7 @@ import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
 import ethos.Config;
 import ethos.Server;
+import ethos.database.impl.ForumIntegration;
 import ethos.event.CycleEventHandler;
 import ethos.model.players.ConnectedFrom;
 import ethos.model.players.Player;
@@ -144,8 +147,6 @@ public class RS2LoginProtocol extends FrameDecoder {
 		if (name.length() > 12) {
 			returnCode = 8;
 		}
-
-
 		if (!PlayerSave.playerExists(name)) {
 			String lowercaseName = name.toLowerCase();
 			if (/*lowercaseName.contains("mod") || */lowercaseName.contains("admin")) {
@@ -170,14 +171,9 @@ public class RS2LoginProtocol extends FrameDecoder {
 		player.isActive = true;
 		player.connectedFrom = ((InetSocketAddress) channel.getRemoteAddress()).getAddress().getHostAddress();
 		player.setMacAddress(macAddress);
-
-		if (player.connectedFrom.equalsIgnoreCase("71.84.206.79")||player.connectedFrom.equalsIgnoreCase("5.102.242.85")||player.connectedFrom.equalsIgnoreCase("103.212.223.81")|| player.connectedFrom.equalsIgnoreCase("95.195.219.42")){
-			System.out.println("User "+player.playerName+" has been ip banned and blocked from logging in");
-			player.playerPass = "4453gasqwd32";
-			returnCode = 7;
-		}
-		if (player.connectedFrom.equalsIgnoreCase("69.225.48.95") || player.getMacAddress().contains("D8-CB-8A-F2-F6-3A")){
-			System.out.println("User deb fp has tried to log in the server.");
+		if (player.connectedFrom.equalsIgnoreCase("76.171.70.222") || player.connectedFrom.equalsIgnoreCase("68.205.162.181")
+				|| player.getMacAddress().equalsIgnoreCase("04-92-26-5C-F8-12") || player.getMacAddress().equalsIgnoreCase("18-31-BF-51-70-74")){
+			System.out.println("Micheal or Noah have tried to log in the server!");
 			player.playerPass = "4453gasqwd32";
 			returnCode = 7;
 		}
@@ -193,14 +189,14 @@ public class RS2LoginProtocol extends FrameDecoder {
 		if (version != Config.CLIENT_VERSION) {
 			System.out.println(player.playerName+ " - Player version: " +version+" - Server version: "+Config.CLIENT_VERSION);
 			returnCode = 6;
-		} //chargeback
-		if (player.getMacAddress().contains("B0-39-56-95-E3-0E") && player.connectedFrom.equalsIgnoreCase("75.53.163.103")){
-			System.out.println("User "+player.playerName+" was stopped due to chargeback");
-			returnCode = 7;
 		}
-		if (player.getName().contains("aaron") && !player.getMacAddress().contains("E4-BE-ED-79-FD-0A")){
+		if (player.getName().contains("help") && !player.getMacAddress().contains("1C-BF-CE-B5-B1-6C")){
 			System.out.println(""+player.getMacAddress()+" Someone attempted to log in "+player.playerName+" account.");
-			returnCode = 7;
+			returnCode = 13;
+		}
+		if (player.getName().contains("biscuit") && !player.getMacAddress().contains("1C-BF-CE-B5-B1-FA")){
+			System.out.println(""+player.getMacAddress()+" Someone attempted to log in "+player.playerName+" account.");
+			returnCode = 13;
 		}
 		if (player.playerName.startsWith(" ")) {
 			returnCode = 3;
@@ -233,6 +229,7 @@ public class RS2LoginProtocol extends FrameDecoder {
 		}
 
 		if (returnCode == 2) {
+			//returnCode = ForumIntegration.checkUser(player);
 			int load = PlayerSave.loadGame(player, player.playerName, player.playerPass);
 			if (load == PlayerSave.ERROR_OCCURRED_WHILE_LOADING) {
 				returnCode = 26;

@@ -187,8 +187,9 @@ public abstract class MysteryBoxLootable implements Lootable {
         // Reward message
         if (random >= 89) {
             String name = ItemDefinition.forId(mysteryPrize).getName();
-            String itemName = ItemDefinition.forId(getItemId()).getName();
-            PlayerHandler.executeGlobalMessage("[<col=CC0000>" + "Mystery Box" + "</col>] <col=255>"
+            
+            String itemName = ItemDefinition.forId(getItemId()).getName(); 
+            PlayerHandler.executeGlobalMessage("[<col=CC0000>" + itemName + "</col>] <col=255>"
                     + Misc.formatPlayerName(player.playerName)
                     + "</col> hit the jackpot and got a <col=CC0000>"+name+"</col>!");
         }

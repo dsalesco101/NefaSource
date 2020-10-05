@@ -4,10 +4,12 @@ import ethos.Server;
 import ethos.clip.ObjectDef;
 import ethos.model.content.achievement_diary.falador.FaladorDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
+import ethos.model.content.loot.LootableInterface;
 import ethos.model.content.loot.impl.RaidsChestCommon;
 import ethos.model.content.loot.impl.RaidsChestRare;
 import ethos.model.content.tradingpost.Listing;
 import ethos.model.minigames.raids.Raids;
+import ethos.model.npcs.bosses.hydra.AlchemicalHydra;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
 import ethos.model.players.Right;
@@ -41,6 +43,41 @@ public class ObjectOptionTwo {
 		if (c.getRights().isOrInherits(Right.OWNER))
 			c.sendMessage("Clicked Object Option 2:  "+objectType+"");
 		switch (objectType) {
+		case 2996:
+            LootableInterface.openVoteChestView(c);
+			break;
+		case 30107:
+            LootableInterface.openRaidsChestView(c);
+			break;
+		case 172:
+            LootableInterface.openCrystalChestView(c);
+			break;
+		case 32508:
+            LootableInterface.openHhunlefChestView(c);
+			break;
+		case 34838:
+            c.getDH().sendDialogues(1053, -1);
+			break;
+		case 34832:
+			c.getDH().sendStatement("This chest seems to be locked.");
+			break;
+		case 34553:
+		case 34554:
+			if (!c.debugMessage)
+				if (!c.getSlayer().getTask().isPresent()) {
+					c.sendMessage("You must have an active Hydra task to enter this cave.");
+					return;
+				}
+			if (!c.debugMessage)
+				if (!c.getSlayer().getTask().get().getPrimaryName().equals("hydra")
+						&& !c.getSlayer().getTask().get().getPrimaryName().equals("alchemical hydra")) {
+					c.sendMessage("You must have an active Hydra task to enter this cave...");
+				  return;
+				}
+				  else {
+			new AlchemicalHydra(c);
+				  }
+			break;
 		case 29150:
 			c.playerMagicBook = 1;
 			c.setSidebarInterface(6, 838);
@@ -50,10 +87,6 @@ public class ObjectOptionTwo {
 				c.getPA().movePlayer(3088, 3505, 0);
 				c.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.GRAND_TREE_TELEPORT);
 				break;
-		case 34553:
-		case 34554:
-			c.getDH().sendStatement("Alchemical hydra is in developement.");
-			break;
 		case 29778:
 			c.sendMessage("hello");
 			break;
@@ -77,21 +110,6 @@ public class ObjectOptionTwo {
 		case 29879:
 			c.objectDistance = 4;
 
-			break;
-		case 30107:
-			 if (c.getItems().freeSlots() < 3) {
-					c.getDH().sendStatement("@red@You need at least 3 free slots for safety");
-					return;
-				}
-			 if (c.getItems().playerHasItem(Raids.COMMON_KEY, 1)) {
-				 new RaidsChestCommon().roll(c);
-				 return;
-			 }
-			 if (c.getItems().playerHasItem(Raids.RARE_KEY, 1)) {
-				 new RaidsChestRare().roll(c);
-				 return;
-			 }
-			c.getDH().sendStatement("@red@You need either a rare or common key.");
 			break;
 		case 7811:
 			if (!c.inClanWarsSafe()) {

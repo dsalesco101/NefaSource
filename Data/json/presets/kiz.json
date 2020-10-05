@@ -1,0 +1,117 @@
+[
+  {
+    "name": "dh",
+    "equipment": {
+      "weapon": 4718,
+      "helmet": 4716,
+      "shield": -1,
+      "ammo": 20229,
+      "plate": 4720,
+      "legs": 4722,
+      "boots": 11840,
+      "gloves": 7462,
+      "necklace": 1712,
+      "cape": 9750,
+      "ring": 2572
+    },
+    "inventory": [
+      {
+        "itemId": 7509,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 19681,
+        "amount": 1
+      },
+      {
+        "itemId": 19679,
+        "amount": 1
+      },
+      {
+        "itemId": 19683,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 1,
+    "spellBook": 2
+  },
+  {
+    "name": "dragon melee",
+    "equipment": {
+      "weapon": 4587,
+      "helmet": 10828,
+      "shield": 1540,
+      "ammo": 20229,
+      "plate": 4720,
+      "legs": 4722,
+      "boots": 11840,
+      "gloves": 7462,
+      "necklace": 1725,
+      "cape": 9750,
+      "ring": 2572
+    },
+    "inventory": [],
+    "ammoAmount": 1,
+    "spellBook": 2
+  },
+  {
+    "name": "guthans",
+    "equipment": {
+      "weapon": 4726,
+      "helmet": 4724,
+      "shield": -1,
+      "ammo": 20229,
+      "plate": 4728,
+      "legs": 4730,
+      "boots": 11840,
+      "gloves": 7462,
+      "necklace": 1712,
+      "cape": 9750,
+      "ring": 2572
+    },
+    "inventory": [
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 2440,
+        "amount": 1
+      },
+      {
+        "itemId": 2436,
+        "amount": 1
+      },
+      {
+        "itemId": 19683,
+        "amount": 1
+      },
+      {
+        "itemId": 19679,
+        "amount": 1
+      },
+      {
+        "itemId": 19681,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 1,
+    "spellBook": 2
+  }
+]

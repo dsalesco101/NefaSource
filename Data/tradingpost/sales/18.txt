@@ -1,1 +1,1 @@
-Lucifer	4088	10	0	500000	0	true
+free loot	4212	1	0	50000000	0	true

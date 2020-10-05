@@ -366,7 +366,7 @@ public class ItemHandler {
 		ItemList newItemList = new ItemList(itemId);
 		newItemList.itemName = ItemName;
 		newItemList.itemDescription = ItemDescription;
-		newItemList.ShopValue = ShopValue;
+		//newItemList.ShopValue = ShopValue; //THIS MAKES IT SO ONLY ITEM_PRICES THE ITEMS GO OFF
 		newItemList.LowAlch = LowAlch;
 		newItemList.HighAlch = HighAlch;
 		newItemList.Bonuses = Bonuses;

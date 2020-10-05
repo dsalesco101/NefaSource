@@ -9,8 +9,6 @@ import ethos.event.CycleEventHandler;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerHandler;
@@ -25,6 +23,8 @@ public class Firemaking {
 	public static void lightFire(final Player player, final int logUsed, final String usage) {
 		double osrsExperience = 0;
 		double regExperience = 0;
+		double medMode = 0;
+
 		int pieces = 0;
 		for (int i = 0; i < pyromancerOutfit.length; i++) {
 			if (player.getItems().isWearingItem(pyromancerOutfit[i])) {
@@ -105,10 +105,6 @@ public class Firemaking {
 					player.getPA().walkTo(0, 1);
 				}
 				Achievements.increase(player, AchievementType.FIRE, 1);
-				if (log.getlogId() == 1515)
-					DailyTasks.increase(player, PossibleTasks.LIGHT_YEW_LOGS);
-				if (log.getlogId() == 1513)
-					DailyTasks.increase(player, PossibleTasks.LIGHT_MAGIC_LOGS);
 				CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
 					@Override
 					public void execute(CycleEventContainer container) {
@@ -134,6 +130,7 @@ public class Firemaking {
 				player.getPA().addSkillXP((int) (player.getMode().getType().equals(ModeType.OSRS) ? osrsExperience / 2 : regExperience / 2), 11, true);
 			} else {
 				player.getPA().addSkillXP((int) (player.getMode().getType().equals(ModeType.OSRS) ? osrsExperience : regExperience), 11, true);
+
 			}
 			if (Misc.random(10000) == 2585) {
 				if (player.getItems().getItemCount(20693, false) > 0 || player.summonId == 20693) {
@@ -143,7 +140,9 @@ public class Firemaking {
 				player.getItems().addItemUnderAnyCircumstance(20693, 1);
 				PlayerHandler.executeGlobalMessage("[@red@PET@bla@] @cr20@<col=255> <img="+rights+">" + player.playerName + "</col> received a Phoenix pet.");
 			}
-			player.sendMessage("You light the " + name + ".");
+			if (player.notification == true) {
+				player.sendMessage("You light the " + name + ".");
+			}
 		}
 	}
 }

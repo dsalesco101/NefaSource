@@ -60,7 +60,7 @@ public class Impling {
 				}
 			}
 		}
-		if (!player.getItems().playerHasItem(11260)) {
+		if (!player.getItems().playerHasItem(11260) && !bareHanded) {
 			player.sendMessage("You must have an empty impling jar to catch this impling with.");
 			return;
 		}

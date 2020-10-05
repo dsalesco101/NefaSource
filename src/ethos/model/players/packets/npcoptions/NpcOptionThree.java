@@ -8,6 +8,7 @@ import ethos.model.content.achievement_diary.desert.DesertDiaryEntry;
 import ethos.model.content.achievement_diary.falador.FaladorDiaryEntry;
 import ethos.model.content.achievement_diary.fremennik.FremennikDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
+import ethos.model.content.limitedItems.PetGoblin;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.npcs.pets.PetHandler;
 import ethos.model.players.Boundary;
@@ -37,6 +38,9 @@ public class NpcOptionThree {
 		}
 
 		switch (npcType) {
+		case 2269:
+			PetGoblin.npcFilter(player);
+			break;
 		case 6637:
             if (player.getItems().freeSlots() < 1) {
                 player.sendMessage("Your inventory is full.");
@@ -98,6 +102,13 @@ public class NpcOptionThree {
 			player.getPA().requestUpdates();
 			player.sendMessage("@cr10@@blu@You are now skulled.");
 			break;
+		case 315:
+			player.isSkulled = true;
+			player.skullTimer = Config.EXTENDED_SKULL_TIMER;
+			player.headIconPk = 0;
+			player.getPA().requestUpdates();
+			player.getDH().sendStatement("@cr10@@blu@You are now skulled.");
+			break;
 		case 2200:
 			player.getPA().openUpBank();
 			break;
@@ -126,13 +137,11 @@ public class NpcOptionThree {
 		case 405:
 		case 6797:
 		case 7663:
+		case 8623:
 		case 8761:
 		case 5870:
 			player.getShops().openShop(10);
 			player.sendMessage("I currently have @blu@" + player.getSlayer().getPoints() + " @bla@slayer points.");
-			break;
-		case 315:
-			player.getDH().sendDialogues(548, 315);
 			break;
 		case 403:
 			player.getDH().sendDialogues(12001, -1);
@@ -146,7 +155,6 @@ public class NpcOptionThree {
 			break;
 		case 5449:
 			PotionMixing.decantInventory(player);
-			player.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.POTION_DECANT);
 			break;
 		case 2580:
 			if (Boundary.isIn(player, Boundary.VARROCK_BOUNDARY)) {

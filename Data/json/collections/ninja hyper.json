@@ -1,0 +1,29 @@
+{
+  "6342": [],
+  "2": [
+    {
+      "id": 1317,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 12275,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 561,
+      "amount": 9,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 563,
+      "amount": 17,
+      "slot": 0,
+      "stackable": true
+    }
+  ]
+}

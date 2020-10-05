@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import ethos.Config;
 import ethos.Server;
+import ethos.event.impl.RandomEvent;
 import ethos.model.content.SkillcapePerks;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
@@ -13,8 +14,6 @@ import ethos.model.content.achievement_diary.falador.FaladorDiaryEntry;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.content.achievement_diary.western_provinces.WesternDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.items.GameItem;
 import ethos.model.items.ItemDefinition;
 import ethos.model.npcs.NPC;
@@ -80,6 +79,7 @@ public class Thieving {
 	 */
 	public void steal(Stall stall, int objectId, Location3D location) {
 		double osrsExperience;
+		double medModeExperience;
 		double regExperience;
 		int pieces = 0;
 		for (int aRogueOutfit : rogueOutfit) {
@@ -122,9 +122,11 @@ public class Thieving {
 			}
 			break;
 		case General:
-			DailyTasks.increase(player, PossibleTasks.SILVER_SICKLES);
 			break;
 		case Scimitar:
+			if (player.eventFinished == false && RandomEvent.eventNumber == 3) {
+				player.eventStage += 1;
+			}
 			break;
 		case Fur:
 			if (Boundary.isIn(player, Boundary.ARDOUGNE_BOUNDARY)) {
@@ -164,7 +166,9 @@ public class Thieving {
 		player.startAnimation(ANIMATION);
 		player.getItems().addItem(item.getId(), item.getAmount());
 		player.getPA().addSkillXP((int) (player.getMode().getType().equals(ModeType.OSRS) ? osrsExperience : regExperience), Skill.THIEVING.getId(), true);
-		player.sendMessage("You steal a " + definition.getName() + " from the stall.");
+		if (player.notification == true) {
+			player.sendMessage("You steal a " + definition.getName() + " from the stall.");
+		}
 		Achievements.increase(player, AchievementType.THIEV, 1);
 		lastInteraction = System.currentTimeMillis();
 	}
@@ -212,7 +216,6 @@ public class Thieving {
 			if (Boundary.isIn(player, Boundary.DRAYNOR_BOUNDARY)) {
 				player.getDiaryManager().getLumbridgeDraynorDiary().progress(LumbridgeDraynorDiaryEntry.PICKPOCKET_FARMER_DRAY);
 			}
-			DailyTasks.increase(player, PossibleTasks.MASTER_FARMER);
 			break;
 		case MAN:
 			if (Boundary.isIn(player, Boundary.FALADOR_BOUNDARY)) {
@@ -282,8 +285,8 @@ public class Thieving {
 			{
 				put(Rarity.ALWAYS, Arrays.asList(new GameItem(5291), new GameItem(5292), new GameItem(5293)));
 				put(Rarity.COMMON, Arrays.asList(new GameItem(5294), new GameItem(5297), new GameItem(5296)));
-				put(Rarity.UNCOMMON, Arrays.asList(new GameItem(5295), new GameItem(7409), new GameItem(5298), new GameItem(5301), new GameItem(5302)));
-				put(Rarity.RARE, Arrays.asList(new GameItem(5299), new GameItem(5300), new GameItem(5303)));
+				put(Rarity.UNCOMMON, Arrays.asList(new GameItem(5295), new GameItem(5298), new GameItem(5301), new GameItem(5302)));
+				put(Rarity.RARE, Arrays.asList(new GameItem(5299), new GameItem(5300), new GameItem(5295), new GameItem(5303)));
 				put(Rarity.VERY_RARE, Collections.singletonList(new GameItem(5304)));
 			}
 		}), MENAPHITE_THUG(65, 75, 41000, new HashMap<Rarity, List<GameItem>>() {

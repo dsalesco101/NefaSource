@@ -2,6 +2,7 @@ package ethos.model.players.packets.commands.all;
 
 import java.util.Optional;
 
+import ethos.Config;
 import ethos.Server;
 import ethos.model.players.Player;
 import ethos.model.players.packets.commands.Command;
@@ -26,7 +27,7 @@ public class Home extends Command {
 			c.sendMessage("You can't use this command in the wilderness.");
 			return;
 		}
-		c.getPA().spellTeleport(3088, 3505, 0, false);
+		c.getPA().spellTeleport(Config.RESPAWN_X, Config.RESPAWN_Y, 0, false);
 	}
 
 	@Override

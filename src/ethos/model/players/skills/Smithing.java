@@ -9,8 +9,6 @@ import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.items.ItemAssistant;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
@@ -31,6 +29,7 @@ public class Smithing {
 	public static int remove;
 	public static int removeamount;
 	public static int maketimes;
+	
 	private static int exp;
 	private static int oreId;
 	private int oreId2;
@@ -77,7 +76,7 @@ public class Smithing {
 			item = 1145;
 			removeamount = 1;
 			maketimes = amounttomake;
-		} else if (type.equals("9380") && level >= 74) { // Dart tips
+		} else if (type.equals("9380") && level >= 73) { // bolts
 			xp = 63;
 			item = 9380;
 			removeamount = 1;
@@ -516,7 +515,6 @@ public class Smithing {
 			item = 1115;
 			removeamount = 5;
 			maketimes = amounttomake;
-			DailyTasks.increase(c, PossibleTasks.IRON_PLATEBODYS);
 		} else {
 			c.sendMessage("You don't have a high enough level to make this Item!");
 			return;
@@ -1210,7 +1208,9 @@ public class Smithing {
 				c.getPA().addSkillXP((int) (xp * (c.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.SMITHING_EXPERIENCE)), 13, true);
 				c.getPA().refreshSkill(13);
 				Achievements.increase(c, AchievementType.SMITH, 1);
-				c.sendMessage("You make a " + ItemAssistant.getItemName(toadd) + ".");
+				if (c.notification == true) {
+					c.sendMessage("You make a " + ItemAssistant.getItemName(toadd) + ".");
+				}
 				if (c.makeTimes != 1) {
 					c.startAnimation(898);
 				}

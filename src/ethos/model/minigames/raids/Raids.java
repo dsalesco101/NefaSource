@@ -12,10 +12,11 @@ import com.google.common.collect.Maps;
 import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
-import ethos.model.content.eventcalendar.EventChallenge;
+import ethos.event.impl.RandomEvent;
+import ethos.model.lobby.Lobby;
+import ethos.model.lobby.LobbyManager;
 import ethos.clip.doors.Location;
+import ethos.model.npcs.NPCDefinitions;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.PlayerHandler;
 import ethos.model.players.Player;
@@ -34,7 +35,7 @@ import lombok.Getter;
 public class Raids {
 	public static int COMMON_KEY = 3456;
 	public static int RARE_KEY = 3464;
-
+	public static int HITS = 0;
 	@Getter
 	private long lastActivity = -1;
 	private Map<String, Long> playerLeftAt = Maps.newConcurrentMap();
@@ -68,17 +69,6 @@ public class Raids {
 		return activePlayers;
 	}
 
-	/**
-	 * Add points
-	 */
-	public int addPoints(Player player, int points) {
-		if(!raidPlayers.containsKey(player.getName().toLowerCase()))
-			return 0;
-		int currentPoints = raidPlayers.getOrDefault(player.getName().toLowerCase(), 0);
-		raidPlayers.put(player.getName().toLowerCase(), currentPoints + points);
-		groupPoints = raidPlayers.entrySet().stream().mapToInt((val) -> val.getValue()).sum();
-		return currentPoints + points;
-	}
 	
 	public int getGroupPoints() {
 		return groupPoints;
@@ -268,9 +258,9 @@ public class Raids {
 			//lobbyPlayer.setInstance(instance);
 			
 			lobbyPlayer.getPA().movePlayer(getStartLocation().getX(),getStartLocation().getY(), currentHeight);
-			lobbyPlayer.sendMessage("@red@The raid has now started! Good Luck! type ::leaveraid to leave!");
-			lobbyPlayer.sendMessage("[TEMP] @blu@If you get stuck in a wall, type ::stuckraids to be sent back to room 1!");
+			HITS = 0;
 
+			
 
 		}
 		RaidConstants.raidGames.add(this);
@@ -353,15 +343,22 @@ public class Raids {
 	 * Handles giving the raid reward
 	 */
 	public void giveReward(Player player) {
-
+		if (player.eventFinished == false && RandomEvent.eventNumber == 15) {
+			player.eventStage += 1;
+		}
+		if (player.eventStage == 3 && player.eventFinished == false && RandomEvent.eventNumber == 15) {
+			player.sendMessage("@blu@You have completed the event challenge: @red@Complete 1 Raids Run.");
+			player.sendMessage("@blu@You receive @red@1 @blu@Event Point for completing the Event Challenge.");
+			player.eventPoints+=1;
+			player.eventStage = 0;
+			player.eventFinished = true;
+		}
 		int chance = Misc.random(1000);
 		if (chance >= 0 && chance < 975) {
 			player.getItems().addItemUnderAnyCircumstance(COMMON_KEY, 1);
-			player.getEventCalendar().progress(EventChallenge.COMPLETE_X_RAIDS);
 			player.sendMessage("@red@You have just recieved a @bla@Common Key." );
-		} else if (chance >= 975) {
+		} else if (chance >= 970) {
 			player.getItems().addItemUnderAnyCircumstance(RARE_KEY, 1);
-			player.getEventCalendar().progress(EventChallenge.COMPLETE_X_RAIDS);
 			player.sendMessage("@red@You have just recieved a @pur@Rare Key." );
 			PlayerHandler.executeGlobalMessage("@bla@[@blu@RAIDS@bla@] " + player.playerName + "@pur@ has just received a @bla@Rare Raids Key!");
 		}
@@ -406,17 +403,7 @@ public class Raids {
 			 * Crystal & Olm removal after olm's death
 			 */
 			olmDead = true;
-			//idk
-//			Server.getGlobalObjects().add(new GlobalObject(-1, 3233, 5751, currentHeight, 3, 10).setInstance(instance));
-//			Server.getGlobalObjects().add(new GlobalObject(-1, 3232, 5749, currentHeight, 3, 10).setInstance(instance));
-//			Server.getGlobalObjects().add(new GlobalObject(-1, 3232, 5750, currentHeight, 3, 10).setInstance(instance));
-//			Server.getGlobalObjects().add(new GlobalObject(-1, 3233, 5749, currentHeight, 3, 10).setInstance(instance));
-//			Server.getGlobalObjects().add(new GlobalObject(-1, 3233, 5750, currentHeight, 3, 10).setInstance(instance));
-//			Server.getGlobalObjects().add(new GlobalObject(-1, 3233, 5750, currentHeight, 3, 10).setInstance(instance));
-//			Server.getGlobalObjects().remove(new GlobalObject(29881, 3220, 5738, currentHeight, 3, 10).setInstance(instance));
-			
-
-			getPlayers().stream().forEach(player -> {
+				getPlayers().stream().forEach(player -> {
 				player.getPA().sendPlayerObjectAnimation(player, 3220, 5738, 7348, 10, 3, currentHeight);
 				player.sendMessage("@red@Congratulations you have defeated The Great Olm and completed the raid!");
 				player.sendMessage("@red@Please go up the stairs beyond the Crystals to get your reward " );
@@ -426,14 +413,11 @@ public class Raids {
 		case OLM_RIGHT_HAND:
 			rightHand = true;
 			if(leftHand == true) {
-				getPlayers().stream().forEach(player ->	player.sendMessage("@red@ You have defeated both of The Great Olm's hands he is now vulnerable."));
+			//	getPlayers().stream().forEach(player ->	player.sendMessage("@red@ You have defeated both of The Great Olm's hands he is now vulnerable."));
 				Server.getGlobalObjects().add(new GlobalObject(29888, 3220, 5733, currentHeight, 3, 10));
 			}else {
 				getPlayers().stream().forEach(player ->	player.sendMessage("@red@ You have defeated one of The Great Olm's hands destroy the other one quickly!"));
 			}
-			//Server.getGlobalObjects().remove(new GlobalObject(29887, 3220, 5733, currentHeight, 3, 10).setInstance(instance));
-
-			//Server.getGlobalObjects().add(new GlobalObject(29888, 3220, 5733, currentHeight, 3, 10).setInstance(instance));
 			getPlayers().stream()
 			.forEach(otherPlr -> {
 				otherPlr.getPA().sendPlayerObjectAnimation(otherPlr, 3220, 5733, 7352, 10, 3, currentHeight);
@@ -453,7 +437,7 @@ public class Raids {
 			.forEach(otherPlr -> {
 				otherPlr.getPA().sendPlayerObjectAnimation(otherPlr, 3220, 5743, 7360, 10, 3, currentHeight);
 				if(rightHand) {
-					otherPlr.sendMessage("@red@ You have defeated both of The Great Olm's hands he is now vulnerable.");
+					//otherPlr.sendMessage("@red@ You have defeated both of The Great Olm's hands he is now vulnerable.");
 				} else {
 					otherPlr.sendMessage("@red@ You have defeated one of The Great Olm's hands destroy the other one quickly!");
 				}
@@ -467,13 +451,6 @@ public class Raids {
 				getPlayers().stream().forEach(player ->	player.sendMessage("@red@ You have defeated one of The Great Olm's hands destroy the other one quickly!"));
 			}
 			return;
-		}
-		if(killer != null) {
-			int randomPoints = Misc.random(500);
-			int newPoints = addPoints(killer, randomPoints);
-		
-			killer.sendMessage("@red@You receive "+ randomPoints +" points from killing this monster.");
-			killer.sendMessage("@red@You now have "+ newPoints +" points.");
 		}
 		if(mobAmount <= 0) {
 			getPlayers().stream().forEach(player ->	player.sendMessage("@red@The room has been cleared and you are free to pass."));
@@ -722,10 +699,9 @@ public class Raids {
 			player.lastMysteryBox = System.currentTimeMillis();
 			player.raidCount+=1;
 			giveReward(player);
-			DailyTasks.increase(player, PossibleTasks.SKELETAL_MYSTICS_RAID);
-			DailyTasks.increase(player, PossibleTasks.TEKTON_RAID);
 			player.sendMessage("@red@You receive your reward." );
 			player.sendMessage("@red@You have completed "+player.raidCount+" raids." );
+			player.sendMessage("@blu@You have a total of @red@"+HITS+"@blu@ hit points that will help you with the chest + key.");
 			leaveGame(player);
 			break;
 

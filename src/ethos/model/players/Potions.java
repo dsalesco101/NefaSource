@@ -29,7 +29,13 @@ public class Potions {
 	}
 
 	public void handlePotion(int itemId, int slot) {
-		if (Boundary.isIn(c, Boundary.DUEL_ARENA) && Boundary.isIn(c, Boundary.WILDERNESS)) {
+		if (itemId >= 20989 && itemId <= 20992) {
+			if (!Boundary.isIn(c, Boundary.RAID_MAIN)) {
+				c.sendMessage("I should not attempt to drink this outside of the Raids dungeons.");
+				return;
+			}
+		}
+		if (Boundary.isIn(c, Boundary.DUEL_ARENA)) {
 			if (itemId >= 11730 && itemId <= 11733) {
 				c.sendMessage("You are not allowed to drink overloads whilst in the duel arena.");
 				return;
@@ -41,9 +47,6 @@ public class Potions {
 					return;
 				}
 			}
-		}
-		if (c.isDead) {
-			return;
 		}
 
 		if (c.potionTimer.elapsed() > 1200) {
@@ -268,11 +271,11 @@ public class Potions {
 				break;
 			case 155:
 				if (c.breakVials == true) {
-					drinkStatPotion(itemId, -1, slot,10, 3);
+					drinkStatPotion(itemId, -1, slot, 10, 3);
 					break;
 				}
 				drinkStatPotion(itemId, 229, slot, 10, 3);
-				
+
 				break;
 			case 3032:
 				drinkStatPotion(itemId, 3034, slot, 16, 3); // agility pot
@@ -535,7 +538,7 @@ public class Potions {
 					drinkEnergyPots(itemId, -1, slot);
 					break;
 				}
-				
+
 				drinkEnergyPots(itemId, 229, slot);
 				break;
 
@@ -554,13 +557,15 @@ public class Potions {
 				break;
 
 			/*
-			 * case 3144: drinkStatPotion2(itemId, -1, slot, 1, true); c.sendMessage("Eating it"); break;
+			 * case 3144: drinkStatPotion2(itemId, -1, slot, 1, true);
+			 * c.sendMessage("Eating it"); break;
 			 */
 			}
 		}
 	}
+
 	public void drinkSuperAntifire(int replaceItem, int slot, long duration) {
-		if (System.currentTimeMillis() - c.lastAntifirePotion < 600 * 5) { //needs adjusting
+		if (System.currentTimeMillis() - c.lastAntifirePotion < 600 * 5) { // needs adjusting
 			return;
 		}
 		c.startAnimation(829);
@@ -571,6 +576,7 @@ public class Potions {
 		c.antifireDelay = duration;
 		c.getPA().sendGameTimer(ClientGameTimer.ANTIFIRE, TimeUnit.MILLISECONDS, (int) (duration));
 	}
+
 	public void drinkAntifire(int replaceItem, int slot, long duration) {
 		if (System.currentTimeMillis() - c.lastAntifirePotion < 600 * 5) {
 			return;
@@ -583,7 +589,7 @@ public class Potions {
 		c.antifireDelay = duration;
 		c.getPA().sendGameTimer(ClientGameTimer.ANTIFIRE, TimeUnit.MILLISECONDS, (int) (duration));
 	}
-	
+
 	public void drinkStamina(int replaceItem, int slot, long duration) {
 		c.startAnimation(829);
 		c.playerItems[slot] = replaceItem + 1;
@@ -633,8 +639,8 @@ public class Potions {
 		c.startAnimation(829);
 		c.playerItems[slot] = replaceItem + 1;
 		c.getItems().resetItems(3214);
-		c.getHealth().resolveStatus(HealthStatus.POISON, duration);
 		c.getPA().sendGameTimer(ClientGameTimer.ANTIPOISON, TimeUnit.SECONDS, (int) (duration * .6));
+		c.getHealth().resolveStatus(HealthStatus.POISON, duration);
 		c.getPA().requestUpdates();
 	}
 
@@ -691,7 +697,7 @@ public class Potions {
 			c.playerLevel[5] += 5;
 		if (c.playerLevel[5] > c.getLevelForXP(c.playerXP[5]))
 			c.playerLevel[5] = c.getLevelForXP(c.playerXP[5]);
-			c.getPA().refreshSkill(5);
+		c.getPA().refreshSkill(5);
 	}
 
 	public void drinkEnergyPots(int itemId, int replaceItem, int slot) {
@@ -795,7 +801,8 @@ public class Potions {
 		if (c.getHealth().getCurrentHealth() <= 0 || c.isDead) {
 			return;
 		}
-		DuelSession session = (DuelSession) Server.getMultiplayerSessionListener().getMultiplayerSession(c, MultiplayerSessionType.DUEL);
+		DuelSession session = (DuelSession) Server.getMultiplayerSessionListener().getMultiplayerSession(c,
+				MultiplayerSessionType.DUEL);
 		if (Objects.nonNull(session)) {
 			if (session.getRules().contains(Rule.NO_FOOD)) {
 				c.sendMessage("The saradomin brew has been disabled because of its healing effect.");
@@ -1006,7 +1013,8 @@ public class Potions {
 			return false;
 		}
 		String name = ItemAssistant.getItemName(itemId);
-		return name.contains("(4)") || name.contains("(3)") || name.contains("(2)") || name.contains("(1)") || name.contains("Antidote");
+		return name.contains("(4)") || name.contains("(3)") || name.contains("(2)") || name.contains("(1)")
+				|| name.contains("Antidote");
 	}
 
 }

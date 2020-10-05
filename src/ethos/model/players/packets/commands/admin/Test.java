@@ -10,10 +10,12 @@ import ethos.Config;
 import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
+import ethos.event.impl.RandomEvent;
 import ethos.model.content.kill_streaks.Killstreak;
 import ethos.model.content.wogw.Wogw;
 import ethos.model.items.GameItem;
 import ethos.model.items.Item;
+import ethos.model.minigames.tob.ToBFrame;
 import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCDumbPathFinder;
 import ethos.model.npcs.NPCHandler;
@@ -70,13 +72,13 @@ public class Test extends Command {
 			break;
 		case "hydra":
 			new AlchemicalHydra(player);
+			break;
 		case "tekton":
 			player.getPA().startTeleport(3309, 5277, 1, "modern", false);
 			break;
 		case "mystics":
 			player.getPA().startTeleport(3343, 5248, 1, "modern", false);
 			break;
-		
 		case "upgrade":
 			ArrayList<RankUpgrade> orderedList = new ArrayList<>(Arrays.asList(RankUpgrade.values()));
 			orderedList.sort((one, two) -> Integer.compare(two.amount, one.amount));
@@ -95,7 +97,13 @@ public class Test extends Command {
 			NPCHandler.tektonAttack = "SPECIAL";
 			System.out.println("Setting attack: " + NPCHandler.tektonAttack);
 			break;
-			
+		case "randevent":
+		if (RandomEvent.stopEvent == true) {
+			RandomEvent.stopEvent = false;
+		} else {
+			RandomEvent.stopEvent = true;
+		}
+			break;
 		case "walk":
 			NPC TEKTON = NPCHandler.getNpc(7544);
 			NPCDumbPathFinder.walkTowards(TEKTON, 3308, 5296);

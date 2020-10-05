@@ -1,0 +1,322 @@
+{
+  "1": [
+    {
+      "id": 1361,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2633,
+      "amount": 7,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1313,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3835,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 559,
+      "amount": 242,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 558,
+      "amount": 112,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 3831,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1297,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2583,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1165,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1179,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 12261,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 563,
+      "amount": 36,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1167,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2595,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 995,
+      "amount": 72672,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 557,
+      "amount": 40,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 555,
+      "amount": 108,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1327,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 12267,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2635,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1195,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1107,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 7332,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 334,
+      "amount": 12,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 7364,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 7368,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3833,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 7356,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "6342": [],
+  "2": [
+    {
+      "id": 554,
+      "amount": 209,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1301,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1199,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1183,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 12273,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 556,
+      "amount": 114,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 559,
+      "amount": 121,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 12516,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "3": [
+    {
+      "id": 554,
+      "amount": 80,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 7348,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 558,
+      "amount": 112,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1213,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2491,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1289,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 20223,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 386,
+      "amount": 20,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1127,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2615,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 12257,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1373,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1347,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1303,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 20220,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "4": []
+}

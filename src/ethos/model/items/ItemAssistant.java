@@ -1220,6 +1220,7 @@ public class ItemAssistant {
 			break;
 
 		case 1377: // d battleaxe
+		case 6739:
 			c.getPA().sendFrame171(0, 7499);
 			specialAmount(weapon, c.specAmount, 7511, sendWeapon);
 			break;
@@ -1271,7 +1272,7 @@ public class ItemAssistant {
 			break;
 		case 13902: // Statius War
 			c.getPA().sendFrame171(0, 7474);
-			specialAmount(weapon, c.specAmount, 7486, sendWeapon);
+			specialAmount(weapon, c.specAmount, 7486);
 			break;
 		case 1434: // dragon mace
 		case 11061:
@@ -2316,7 +2317,7 @@ public class ItemAssistant {
 			c.getTutorial().refresh();
 			return;
 		}
-		if (freeSlots() == 0 && !playerHasItem(itemId)) {
+		if (freeSlots() == 0 && !playerHasItem(itemId) && !(item.getAmount() == 0)) { //ADDED EXTRA ADDITION TO STOP PLACEHOLDERS BUGGING OUT
 			c.sendMessage("Not enough space in your inventory.");
 			return;
 		}

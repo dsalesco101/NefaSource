@@ -16,18 +16,19 @@ import ethos.util.Misc;
  * @date Feb 18, 2015, 5:14:50 PM
  */
 public enum Mineral {
-			CLAY(new int[] { 7487, 7454, 11363 }, "none", 1, 18, 0, 3, 15, 30000, true, generateExclusive(434)), 
-			COPPER(new int[] { 7484, 11961, 11960, 11962, 13709, 11161 }, "bronze", 1, 18, 5, 5, 15, 15000, true, generateExclusive(436)), 
-			TIN(new int[] { 7485, 9714, 9716, 11957, 11958, 11959, 13712, 11360 }, "bronze", 1, 18, 5, 5, 15, 15000, true, generateExclusive(438)), 
-			IRON(new int[] { 7488, 11954, 11955, 11956, 13710, 13444, 13445, 13446, 7455, 11364 }, "iron", 15, 35, 5, 8, 17, 14800, true, generateExclusive(440)), 
-			COAL(new int[] { 7489, 9717, 9718, 9719, 2096, 13714, 13706, 11366 }, "none", 30, 50, 3, 15, 29, 14600, true, generateExclusive(453)), 
-			GOLD(new int[] { 7491, 7458, 9722, 9720, 13707, 14962, 14963, 14964, 13441, 13442, 13443, 8728, 8975, 11370 }, "gold", 40, 65, 3, 25, 32, 14200, true, generateExclusive(444)), 
-			MITHRIL(new int[] { 11373, 13718, 7459, 11373 }, "mithril", 55, 80, 3, 40, 35, 13800, true, generateExclusive(447)), 
-			ADAMANT(new int[] { 11375, 13720, 7460, 11375 }, "adamant", 70, 95, 2, 50, 37, 13200, true, generateExclusive(449)), 
-			RUNE(new int[] { 11376, 7461, 14175, 11376 }, "rune", 85, 125, 0, 100, 39, 12500, true, generateExclusive(451)), 
+			CLAY(new int[] { 7487, 7454, 11363 }, "none", 1, 18, 0, 3, 15, 30000, false, generateExclusive(434)), 
+			COPPER(new int[] { 7484, 11961, 11960, 11962, 13709, 11161 }, "bronze", 1, 18, 5, 5, 15, 15000, false, generateExclusive(436)), 
+			TIN(new int[] { 7485, 9714, 9716, 11957, 11958, 11959, 13712, 11360 }, "bronze", 1, 18, 5, 5, 15, 15000, false, generateExclusive(438)), 
+			IRON(new int[] { 7488, 11954, 11955, 11956, 13710, 13444, 13445, 13446, 7455, 11364 }, "iron", 15, 35, 5, 8, 17, 14800, false, generateExclusive(440)), 
+			COAL(new int[] { 7489, 9717, 9718, 9719, 2096, 13714, 13706, 11366 }, "none", 30, 50, 3, 15, 29, 14600, false, generateExclusive(453)), 
+			GOLD(new int[] { 7491, 7458, 9722, 9720, 13707, 14962, 14963, 14964, 13441, 13442, 13443, 8728, 8975, 11370 }, "gold", 40, 65, 3, 25, 32, 14200, false, generateExclusive(444)), 
+			MITHRIL(new int[] { 11373, 13718, 7459, 11373 }, "mithril", 55, 80, 4, 40, 35, 13800, true, generateExclusive(447)), 
+			ADAMANT(new int[] { 11375, 13720, 7460, 11375 }, "adamant", 70, 95, 3, 50, 37, 13200, true, generateExclusive(449)), 
+			RUNE(new int[] { 11376, 7461, 14175, 11376 }, "rune", 85, 125, 2, 100, 39, 12500, true, generateExclusive(451)), 
 			ESSENCE(new int[] { 7471, 14912, 34773 }, "none", 30, 5, -1, -1, 5, 15000, false, generateExclusive(7936)),
-			AMETHYST(new int[] { 30371, 30372, 11389, 11388 }, "none", 92, 140, 0, 100, 40, 11500, false, generateExclusive(21347)),			
-			GEM(new int[] { 9030 }, "none", 40, 5, 20, 25, 20, 15000, true, new MineralReturn() {
+			AMETHYST(new int[] { 30371, 30372, 11389, 11388 }, "none", 92, 140, 0, 100, 40, 11500, false, generateExclusive(21347)),	
+			//MINING_EVENT_ROCK(new int[] { 30371, 30372, 11389, 11388 }, "none", 92, 140, 0, 100, 40, 11500, false, generateExclusive(21347)),			
+			GEM(new int[] { 9030 }, "none", 40, 30, 20, 25, 20, 15000, true, new MineralReturn() {
 				
 				@Override
 				public int generate() {

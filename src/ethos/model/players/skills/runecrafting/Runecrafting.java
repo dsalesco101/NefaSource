@@ -8,8 +8,6 @@ import ethos.model.content.achievement_diary.falador.FaladorDiaryEntry;
 import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerHandler;
 import ethos.model.players.mode.ModeType;
@@ -33,7 +31,7 @@ public class Runecrafting extends SkillHandler {
 		LAVA(-1, -1, 10, new int[] { 23 }, 15, -1), 
 		COSMIC(24974, 564, 8, new int[] { 27, 59, 78 }, 22000, 20677), 
 		CHAOS(24976, 562, 8.5, new int[] { 35, 74, 86 }, 21500, 20679), 
-		ASTRAL(14911, 9075, 8.7, new int[] { 40, 82 }, 21000, 20689), 
+		ASTRAL(14911, 9075, 8.7, new int[] { 40, 82 }, 34771, 20689), 
 		NATURE(24975, 561, 9, new int[] { 44, 91, 95 }, 20000, 20681), 
 		LAW(25034, 563, 9.5, new int[] { 54, 79, 93 }, 19500, 20683), 
 		DEATH(25035, 560, 10, new int[] { 65, 84, 96 }, 19000, 20685), 
@@ -116,7 +114,7 @@ public class Runecrafting extends SkillHandler {
 					}
 				}
 				if (name.equals("earth")) {
-					if (multiply > 150) {
+					if (multiply >= 150) {
 						player.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.ALOT_OF_EARTH);
 					}
 					player.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.EARTH_RUNES);
@@ -125,24 +123,17 @@ public class Runecrafting extends SkillHandler {
 					if (multiply > 50) {
 						player.getDiaryManager().getKaramjaDiary().progress(KaramjaDiaryEntry.CRAFT_NATURES);
 					}
-					DailyTasks.increase(player, PossibleTasks.NATURE_RUNES);
 				}
-				if (name.equals("law"))
-					DailyTasks.increase(player, PossibleTasks.LAW_RUNES);
-				/*if (name.equals("astral")) {
-					if (multiply > 50) {
-						player.getDiaryManager().getFremennikDiary().progress(FremennikDiaryEntry.CRAFT_ASTRAL);
-					}
-				}*/
-				player.getItems().deleteItem2(7936, essence);
-				player.getItems().deleteItem2(1436, essence);
+				if (name.equals("law")) {
+					
+				}
+				player.getItems().deleteItem2(7936, 1 * essence);
+				player.getItems().deleteItem2(1436, 1 * essence);
 				player.gfx100(186);
 				player.startAnimation(791);
 				double percentOfXp = data.getExperience() * count * 2.5;
 				player.getPA().addSkillXP((int) (((double) (data.getExperience()) * count) * (player.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.RUNECRAFTING_EXPERIENCE) + (player.getItems().isWearingItem(20008) ? percentOfXp : 0)), 20, true);
 				player.getItems().addItem(data.getRuneId(), multiply);
-				//player.sendMessage("You bind the temple's power into " + essence + " " + name + " runes.");
-				//removed the above code due to it spamming everytime it exeutes.
 				player.getPA().requestUpdates();
 				
 					boolean hasGuardian = IntStream.range(20665, 20691).anyMatch(id -> player.getItems().getItemCount(id) > 0);

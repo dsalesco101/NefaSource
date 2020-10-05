@@ -30,6 +30,7 @@ public class BankPin {
 	};
 
 	public void open(int state) {
+		player.inBank = true;
 		player.getPA().sendFrame126("", 59507);
 		if (player.getTutorial().isActive()) {
 			return;

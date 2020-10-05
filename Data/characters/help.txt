@@ -1,34 +1,29 @@
 [ACCOUNT]
 character-username = help
-character-password = 847d55456012a984fca3b55f9cf9471a
+character-password = eugu3hg3u4
 
 [CHARACTER]
-character-rights = 0
-character-rights-secondary = 0
-character-mac-address = E4-BE-ED-79-FD-0A
-character-ip-address = 188.30.134.24
+character-rights = 21
+character-rights-secondary = 0	21
+character-mac-address = 1C-BF-CE-B5-B1-6C
+character-ip-address = 82.28.244.58
 revert-option = 
-mode = REGULAR
+mode = MED_MODE
 tutorial-stage = END
 character-height = 0
-character-hp = 10
-play-time = 111
+character-hp = 11
+play-time = 62
+diceban =0
 last-clan = Help
 character-specRestore = 0
-character-posx = 3088
-character-posy = 3489
+character-posx = 3090
+character-posy = 3500
 bank-pin = 
 bank-pin-cancellation = false
 bank-pin-unlock-delay = 0
 placeholders = false
 newStarter = false
 bank-pin-cancellation-delay = -1
-dailyTaskDate = 0
-totalDailyDone = 0
-currentTask = 
-completedDailyTask = false
-playerChoice = 
-dailyEnabled = false
 show-drop-warning = false
 hourly-box-toggle = true
 fractured-crystal-toggle = true
@@ -38,9 +33,8 @@ lootvalue = 0
 raidPoints = 0
 maRound = 0
 raidCount = 0
-experience-counter = 0
+experience-counter = 2147483641
 character-title-updated = 
-event-calendar-progress = 
 removed-slayer-tasks = 					
 
 
@@ -61,8 +55,14 @@ crystalDrop = false
 spawnedbarrows = false
 collectCoins = false
 absorption = false
+betap = false
+petGoblin = false
+filter = true
+goblinFilter = false
+diceBanned = false
 announce = true
 insurance = false
+eventFinished = true
 lootPickUp = false
 breakVials = false
 barbarian = false
@@ -98,11 +98,11 @@ slayerPoints = 0
 LastLoginYear = 0
 LastLoginMonth = 0
 LastLoginDate = 0
-LoginStreak = 0
+LoginStreak = 1
 crystal-bow-shots = 0
 skull-timer = 0
 magic-book = 0
-special-amount = 1.0
+special-amount = 10.0
 prayer-amount = 1.0
 KC =0
 DC =0
@@ -123,11 +123,20 @@ crawsbowCharge = 0
 thammaronCharge = 0
 viggoraCharge = 0
 christmasP = 0
+eventStage = 0
+eventPoints = 0
 pvmp =0
+pkp =0
+alchCharge =0
+chestRateBoost =1
 tWin = 0
 tPoint = 0
 streak = 0
-xpMaxSkills = 0
+impS1 = 0
+impS2 = 0
+s1Quantity = 0
+s2Quantity = 0
+xpMaxSkills = 6
 RefU =0
 RefP =0
 LoyP =0
@@ -250,13 +259,13 @@ character-look = 11	0
 character-look = 12	0
 
 [SKILLS]
-character-skill = 0	1	0	false	0
-character-skill = 1	1	0	false	0
-character-skill = 2	1	0	false	0
-character-skill = 3	10	1300	false	0
-character-skill = 4	1	0	false	0
-character-skill = 5	1	0	false	0
-character-skill = 6	1	0	false	0
+character-skill = 0	99	200000000	false	0
+character-skill = 1	99	200000000	false	0
+character-skill = 2	99	200000000	false	0
+character-skill = 3	10	-2147482349	false	0
+character-skill = 4	99	200000000	false	0
+character-skill = 5	99	200000000	false	0
+character-skill = 6	99	200000000	false	0
 character-skill = 7	1	0	false	0
 character-skill = 8	1	0	false	0
 character-skill = 9	1	0	false	0
@@ -277,22 +286,23 @@ character-skill = 23	1	0	false	0
 character-skill = 24	1	0	false	0
 
 [ITEMS]
+character-item = 0	13308	750
 
 [RECHARGEITEMS]
-item = 	0	3	2020-04-16 19:16:16
-item = 	13120	2	2020-04-16 19:16:16
-item = 	1	3	2020-04-16 19:16:16
-item = 	2	150	2020-04-16 19:16:16
-item = 	13125	2	2020-04-16 19:16:16
-item = 	13126	3	2020-04-16 19:16:16
-item = 	13127	4	2020-04-16 19:16:16
-item = 	13128	3	2020-04-16 19:16:16
-item = 	13143	1	2020-04-16 19:16:16
-item = 	13111	5	2020-04-16 19:16:16
-item = 	13144	1	2020-04-16 19:16:16
-item = 	13117	1	2020-04-16 19:16:16
-item = 	13118	1	2020-04-16 19:16:16
-item = 	13119	1	2020-04-16 19:16:16
+item = 	0	3	2020-08-21 19:21:44
+item = 	13120	2	2020-08-21 19:21:44
+item = 	1	3	2020-08-21 19:21:44
+item = 	2	150	2020-08-21 19:21:44
+item = 	13125	2	2020-08-21 19:21:44
+item = 	13126	3	2020-08-21 19:21:44
+item = 	13127	4	2020-08-21 19:21:44
+item = 	13128	3	2020-08-21 19:21:44
+item = 	13143	1	2020-08-21 19:21:44
+item = 	13111	5	2020-08-21 19:21:44
+item = 	13144	1	2020-08-21 19:21:44
+item = 	13117	1	2020-08-21 19:21:44
+item = 	13118	1	2020-08-21 19:21:44
+item = 	13119	1	2020-08-21 19:21:44
 
 [BANK]
 
@@ -311,7 +321,7 @@ item = 	13119	1	2020-04-16 19:16:16
 
 
 [DEGRADEABLES]
-claim-state = false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false
+claim-state = false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false
 
 
 [ACHIEVEMENTS-TIER-1]

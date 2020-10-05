@@ -14,7 +14,7 @@ public class Vote extends Command {
 
 	@Override
 	public void execute(Player c, String input) {
-		c.getPA().sendFrame126("http://wisdomrsps.com/vote", 12000);
+		c.getPA().sendFrame126("http://NefariousPkz.com/vote", 12000);
 	}
 
 	@Override

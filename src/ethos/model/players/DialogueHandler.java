@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import ethos.model.content.lootbag.LootingBag;
+import ethos.model.entity.HealthStatus;
 import ethos.model.npcs.bosses.zulrah.Zulrah;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +24,6 @@ import org.apache.commons.lang3.time.DateUtils;
 import ethos.Config;
 import ethos.Server;
 import ethos.model.content.IronManInterface.Action;
-import ethos.model.content.dailytasks.DailyTasks;
 import ethos.model.items.EquipmentSet;
 import ethos.model.items.ItemAssistant;
 import ethos.model.minigames.bounty_hunter.BountyHunterEmblem;
@@ -73,10 +73,115 @@ public class DialogueHandler {
 			return;
 		}
 		switch (dialogue) {
-		case 932:
-		      sendOption2("Accept shared slayer task from "+c.playerName+" .", "Decline invitation");
-		      c.dialogueAction = 932;
-		break;
+		case 1298:
+			sendNpcChat("Would you like to redeem your pkp tickets.");
+			c.nextChat = 1299;
+			break;
+		case 1299:
+			sendOption2("Yes", "No");
+			c.dialogueAction = 1299;
+			break;
+		case 1244:
+			sendOption2("Forum Rules", "In-Game Rules");
+			c.dialogueAction = 1244;
+			break;
+		case 1091:
+			sendNpcChat("You can use items on me to store all kinds of goods.");
+			c.nextChat = 1092;
+			break;
+		case 1092:
+			sendNpcChat("Food types are capped at a max of 30 quantity in the slot.");
+			c.nextChat = 1093;
+			break;
+		case 1093:
+			sendNpcChat("Once full you will have to remove items to clear the slots.");
+			c.nextChat = 1094;
+			break;
+		case 1094:
+			sendNpcChat("You do not pick what slot it goes in just fills slot 1 and then slot 2.");
+			c.nextChat = 1095;
+			break;
+		case 1095:
+			sendNpcChat("Hopefully you understand, goodluck!.");
+			c.nextChat = -1;
+			break;
+		case 1088:
+			sendOption2("Slot 1", "Slot 2");
+			c.dialogueAction = 1088;
+			break;
+		case 1089:
+			sendOption2("Check", "Remove");
+			c.dialogueAction = 1089;
+			break;
+		case 1090:
+			sendOption2("Check", "Remove");
+			c.dialogueAction = 1090;
+			break;
+		case 1070:
+			sendNpcChat("Lets go collect some loot!.");
+			c.nextChat = 1071;
+			break;
+		case 1071:
+			sendPlayerChat1("Okay!.");
+			c.nextChat = -1;
+			break;
+		case 1053:
+			sendOption5("Sotetseg Chest", "Seren Chest", "", "", "");
+			c.dialogueAction = 1053;
+			break;
+		case 1018:
+			sendNpcChat("What slayer task would you like?");
+			c.nextChat = 1019;
+			break;
+		case 1019:
+			sendOption5("Hydra Task", "Crystalline Task", "Kraken Task", "Cerberus Task", "");
+			c.dialogueAction = 1019;
+			break;
+		case 1007:
+			sendNpcChat("Do you want a dice ban for 72 hours?");
+			c.nextChat = 1005;
+			break;
+		case 1003:
+			sendNpcChat("Do you want a dice ban for 24 hours?");
+			c.nextChat = 1005;
+			break;
+
+		case 50040:
+				sendNpcChat3("Watch out, "+c.playerName+", you will enter the risk zone.", "In here you can't use protect from item and", "become skulled instantly.", 316, "Emblem Trader");
+				c.nextChat = 50043;
+				break;
+
+		case 50041:
+			sendNpcChat2("Watch out, "+c.playerName+", you will enter the risk zone.", "In here you are able use protect from item.", 316, "Emblem Trader");
+			c.nextChat = 50043;
+			break;
+
+		case 50042:
+			sendNpcChat2("Ahh, you are entering the safe zone. In here", "you wont lose any items. have fun!", 316, "Emblem Trader");
+			c.nextChat = 50043;
+			break;
+
+			case 50043:
+				sendOption2("Proceed","Cancel");
+				c.dialogueAction = 50043;
+				break;
+
+				case 1005:
+			sendNpcChat("This cannot be removed by staff, are you sure!");
+			c.nextChat = 1006;
+			break;
+		case 1006:
+			sendOption2("Yes", "No");
+			c.dialogueAction = 1006;
+			break;
+		case 950:
+			sendNpcChat("Are you sure you want to alch this item?");
+			c.nextChat = 951;
+			break;
+		case 951:
+			sendOption2("Yes", "No");
+			c.dialogueAction = 951;
+			break;
 		case LootingBag.ITEM_ON_ITEM_DIALOGUE_ID:
 			sendOption5("Deposit 1", "Deposit 5", "Deposit 10", "Deposit X", "Deposit All"); //TODO
 			c.dialogueAction = LootingBag.ITEM_ON_ITEM_DIALOGUE_ID;
@@ -170,7 +275,7 @@ public class DialogueHandler {
 			c.dialogueAction = 783;
 			break;
 		case 983:
-			sendOption2("Your Info", "Outlast Info");
+			sendOption2("Your Info", "Gulag Info");
 			c.dialogueAction = 983;
 			break;
 		case 459:
@@ -221,40 +326,17 @@ public class DialogueHandler {
 			sendOption2("Yes", "No");
 			c.dialogueAction = 689;
 			break;
-		case 996:
-			sendNpcChat("Please select an option for a referral reward.");
-			c.nextChat = 997;
-			break;
-		case 997:
-			sendOption5("Rsps-List", "Rune-Locus", "TopG", "Player", "More Options");
-			c.dialogueAction = 997;
-			c.nextChat = 998;
-			break;
-		case 998:
-			sendOption5("Discord", "YouTube", "Rune-Server", "Less Options", "");
-			c.dialogueAction = 998;
-			break;
-		case 999:
-			sendOption5("Walk Chaos", "Stable", "Frimb", "Fpk Merk", "More Options");
-			c.dialogueAction = 999;
-			break;
-		case 1000:
-			sendOption5("Vexia", "I Pk Max Jr", "Chopper Rsps", "Didyscape", "More Options");
-			c.dialogueAction = 1000;
-			break;
-		case 1001:
-			sendOption5("Fewb", "Artz", "Vihtic", "Less Options", "More Options");
-			c.dialogueAction = 1001;
-			break;
-		case 1002:
-			sendOption5("Sprad", "Less Options", "Exit", "", "");
-			c.dialogueAction = 1002;
-			break;
 		case 180:
 			sendNpcChat1("What kind of task would you like?", c.talkingNpc, "Nieve");
 			c.nextChat = 181;
 		break;
 		case 181:
+			if (c.talkingNpc == 7663) {
+				sendPlayerChat1("I would like a wilderness task.");
+				SlayerMaster.get(7663);
+				c.nextChat = 1086;
+				return;
+			}
 			sendOptions("I want an @blu@easy @bla@task", "I want a @blu@medium @bla@task",
 						"I want a @blu@hard @bla@task", "I want a @blu@boss @bla@task");
 			c.dialogueAction = 181;
@@ -290,6 +372,9 @@ public class DialogueHandler {
 		break;
 		case 189://Boss
 			c.getSlayer().createNewTask(6797);
+		break;
+		case 1086://Boss
+			c.getSlayer().createNewTask(7663);
 		break;
 		case 190:
 			sendNpcChat2("You're currently assigned to kill "+c.getSlayer().getTask().get().getPrimaryName()+"; Only",
@@ -388,7 +473,7 @@ public class DialogueHandler {
 			break;
 		// I would like to..
 		case 805:
-			if (c.getItems().playerHasItem(2996)) {
+			if (c.getItems().playerHasItem(13307)) {
 				sendNpcChat("You are carrying blood money, store them in your safe-box.");
 				c.nextChat = -1;
 				return;
@@ -536,16 +621,16 @@ public class DialogueHandler {
 
 		case 706:
 			if (c.getItems().playerHasItem(11286) && c.getItems().playerHasItem(1540)
-					&& c.getItems().playerHasItem(995, 5_000_000)) {
+					&& c.getItems().playerHasItem(13307, 3000)) {
 				c.getItems().deleteItem(11286, 1);
 				c.getItems().deleteItem(1540, 1);
-				c.getItems().deleteItem(995, 500_000);
+				c.getItems().deleteItem(13307, 3000);
 				c.getItems().addItem(11283, 1);
 				c.votePoints -= 5;
 				c.refreshQuestTab(2);
 				sendItemStatement("Oziach successfully bound your dragonfire shield.", 11283);
 			} else {
-				sendNpcChat("Come back with a shield, visage and 5M Gold!");
+				sendNpcChat("Come back with a shield, visage and 3000 blood money!");
 			}
 			c.nextChat = -1;
 			break;
@@ -926,7 +1011,10 @@ public class DialogueHandler {
 			sendNpcChat2("There you go Ethopian, good job.", "", 6071, "Achievement Handler");
 			c.nextChat = -1;
 			break;
-
+		case 698: 
+			sendOption3("Add 10 Charges", "Add 100 Charges", "Add 1000 Charges");
+			c.dialogueAction = 698;
+			break;
 		case 52: // Trident
 			sendOption3("Add 10 Charges", "Add 100 Charges", "Add 1000 Charges");
 			c.dialogueAction = 55;
@@ -1846,9 +1934,6 @@ public class DialogueHandler {
 			sendOption2("Buy Vesta's Spear", "I can't afford that");
 			c.dialogueAction = 51;
 			break;
-		case 56:
-			sendStatement("Hello " + c.playerName + ", you currently have " + c.pkp + " PK points.");
-			break;
 
 		case 57:
 			c.getPA().sendFrame126("Teleport to shops?", 2460);
@@ -2717,8 +2802,9 @@ public class DialogueHandler {
 			break;
 
 		case 645:
-			sendNpcChat("You've made it through!", "You have the option to play as an <col=" + Right.IRONMAN + "><img=12></img>Iron Man</col>,",
-                    "<col=" + Right.ULTIMATE_IRONMAN + "><img=13></img>Ultimate Iron Man</col>, <col=" + Right.HC_IRONMAN + "><img=9></img>Hardcore Iron Man</col>, or neither.", "Choose from the following interface.");
+			c.getPA().movePlayer(Config.RESPAWN_X, Config.RESPAWN_Y, Config.RESPAWN_Z);
+			sendNpcChat("You've made it through!, choose your gamemode "
+					+ "on the interface to continue");
             c.nextChat = 646;
 			break;
 
@@ -2743,19 +2829,39 @@ public class DialogueHandler {
 			
 			break;
 		case 2647:
-			sendOption2("Fast Xp Rates","@red@[WARNING] 1x XP Rates but +10% Drop Rate Boost[SLOW]");
+			sendOption5("Regular Xp Mode","OSRS mode (10% droprate boost)", "PVP MODE (99 COMBATS INSTANT)", "", "");
 			c.dialogueAction = 2647;
 		case 3647:
 			sendNpcChat("You have chosen fast xp rates, good luck!");
 			c.getTutorial().proceed();
-			
 			break;
 		case 4647:
 			c.setMode(Mode.forType(ModeType.OSRS));
 			c.getRights().setPrimary(Right.OSRS);
 			sendNpcChat("You have chosen @red@Extreme Rates @bla@,good luck!");
 			c.getTutorial().proceed();
-			
+			break;
+		case 4648:
+			c.getHealth().starterHP();
+			c.setMode(Mode.forType(ModeType.MED_MODE));
+			c.getRights().setPrimary(Right.MED_MODE);
+			c.getTutorial().proceed();
+			c.getItems().addItemUnderAnyCircumstance(13307, 750);
+			c.getPA().addSkillXP(200000000, 0, true); //ATTACK
+			c.getPA().addSkillXP(200000000, 1, true); //DEFENCE
+			c.getPA().addSkillXP(200000000, 2, true); //STRENGTH
+		    c.getPA().addSkillXP(200000000, 3, true); //HITPOINTS
+			c.getPA().addSkillXP(200000000, 4, true); //RANGE
+			c.getPA().addSkillXP(200000000, 5, true); //PRAYER
+			c.getPA().addSkillXP(200000000, 6, true); //MAGIC			
+			c.specAmount = 10.0;
+			c.getItems().addSpecialBar(c.playerEquipment[c.playerWeapon]);
+			c.playerLevel[5] = c.getPA().getLevelForXP(c.playerXP[5]);
+			c.getHealth().removeAllStatuses();
+			c.getHealth().reset();
+			c.getPA().refreshSkill(5);
+			c.getPA().refreshSkill(3);
+			sendNpcChat("You have chosen the full pvp mode.");
 			break;
 		case 648:
 			c.getTutorial().proceed();
@@ -2763,11 +2869,8 @@ public class DialogueHandler {
 			break;
 
 		case 649:
-			sendOption2("Fast Xp Rates","@red@[WARNING] 1x XP Rates but +10% Drop Rate Boost[SLOW]");
+			sendOption5("Fast Xp Mode","OSRS mode (10% droprate boost)", "PVP MODE (99s instant!)", "", "");
 			c.dialogueAction = 2647;
-			//sendNpcChat("Good luck on your adventure.");
-			//c.getPA().showInterface(3559);
-			//c.canChangeAppearance = true;
 			c.nextChat = -1;
 			c.getTutorial().proceed();
 			break;
@@ -3002,56 +3105,55 @@ public class DialogueHandler {
 			break;
 
 		case 673:
-			sendNpcChat("Welcome to Wisdom!", "Here is our home area!",
+			sendNpcChat("Welcome to nefariouspkz!", "Here is our home area!",
 					"Also, don't forget to join our ::discord!");
 			c.nextChat = 674;
 			break;
 
 		case 674:
-			c.getPA().movePlayer(3080, 3509, 0);
-			sendNpcChat("Here you can find all the shops needed", "when you first start out! You can buy combat gear,",
-					"foods and pots, or show off your fashion skills!");
+			c.getPA().movePlayer(3086, 3494, 0);
+			sendNpcChat("Here you can find all the shops you will need.");
 			c.nextChat = 675;
 			break;
 		case 675:
-			c.getPA().movePlayer(3075, 3504, 0);
-			sendNpcChat("This is the @red@Fire of Exchange@bla@.", "Use items on it to earn exchange points",
-					"which can be used to buy Mystery Boxes!");
+			c.getPA().movePlayer(3106, 3499, 0);
+			sendNpcChat("Here you will find the wilderness slayer master", 
+					"You can earn extra blood money of these tasks.");
 			c.nextChat = 676;
 			break;
 		case 676:
-			c.getPA().movePlayer(3079, 3493, 0);
-			sendNpcChat("Slayer Tasks and PvM shop is found here.", "If you would like to do Wilderness Slayer",
-					"head directly north-east and talk to Krystillia!");
+			c.getPA().movePlayer(3091, 3510, 0);
+			sendNpcChat("Here is the trading post", "this allows you to sell your own items at your own prices",
+					"and view other peoples sales.");
 			c.nextChat = 677;
 			break;
 
 		case 677:
-			c.getPA().movePlayer(3107, 3498, 0);
-			sendNpcChat("This is the Outlast Portal.", "Anybody can join, any level, or game mode!",
+			c.getPA().movePlayer(3081, 3510, 0);
+			sendNpcChat("This is the Gulag Portal.", "Anybody can join, any level, or game mode!",
 					"Use the Quest Tab to see when the next", "event will happen!");
 			c.nextChat = 678;
 			break;
 
 		case 678:
-			c.getPA().movePlayer(3099, 3505, 0);
+			c.getPA().movePlayer(3092, 3504, 0);
 			sendNpcChat("Here is the vote chest!", "After voting for all 4 sites 10 times you get a @yel@vote key@bla@!",
-					"Check out '@red@::chestrewards@bla@' to see what you can get!");
+					"Check out the loot table to see what you can get!");
 			c.nextChat = 680;
 			break;
 		case 680:
-			c.getPA().movePlayer(3083, 3496, 0);
+			c.getPA().movePlayer(3093, 3504, 0);
 			sendNpcChat("Here is the corrupt chest!", "There are 2 Wildy bosses that can be killed for keys!",
-					"Check out '@red@::chestrewards@bla@' to see what you can get!");
+					"Check out the loot table to see what you can get!");
 			c.nextChat = 681;
 			break;
 		case 681:
-			c.getPA().movePlayer(3084, 3476, 0);
+			c.getPA().movePlayer(3090, 3499, 0);
 			sendNpcChat("If you decide to be a restricted game mode", "you can use the shops here!");
 			c.nextChat = 679;
 			break;
 		case 679:
-			c.getPA().movePlayer(3083, 3488, 0);
+			c.getPA().movePlayer(3084, 3493, 0);
 			sendNpcChat("Finally, change your character style here!", "And don't forget you can select any teleport",
 					"in your mage book to open the Teleport Menu!");
 			c.nextChat = 645;
@@ -3185,52 +3287,6 @@ public class DialogueHandler {
 		case 121313: // city
 			c.getDH().sendOption5("Ardougne", "Camelot", "Mortania", "Catherby", "Relleka");
 			c.teleAction = 258369;
-			break;
-
-		case 900:
-			sendNpcChat4("Hello! Would you like to enable Daily Tasks?", "These tasks can be assigned and completed",
-					"once a day for some pretty neat rewards!", "Enable Daily Tasks?", 1909, "Daily Task Master");
-			c.nextChat = 901;
-			break;
-		case 901:
-			sendOption2("Yes, enable daily tasks", "No, disable daily tasks.");
-			c.dialogueAction = 901;
-			break;
-
-		case 902:
-			sendNpcChat2("Please select your preference on the type", "of tasks you would like to receive!", 1909,
-					"Daily Task Master");
-			c.nextChat = 903;
-			break;
-		case 903:
-			sendOption2("Choose PvM Related Task", "Choose Skilling Related Task");
-			c.dialogueAction = 903;
-			break;
-
-		case 904:
-			sendNpcChat2("You have enabled daily tasks! Please", "press continue to select a task preference.", 1909,
-					"Daily Task Master");
-			c.nextChat = 902;
-			break;
-		case 905:
-			sendNpcChat2("You have disabled daily tasks! Talk to", "me if you change your mind.", 1909,
-					"Daily Task Master");
-			c.nextChat = 0;
-			break;
-
-		case 906:
-			sendNpcChat2("Great, your tasks will now be PvM related", "until you change your mind!", 1909,
-					"Daily Task Master");
-			c.nextChat = 0;
-			DailyTasks.complete(c);
-			DailyTasks.assignTask(c);
-			break;
-		case 907:
-			sendNpcChat2("Great, your tasks will now be Skilling related", "until you change your mind!", 1909,
-					"Daily Task Master");
-			c.nextChat = 0;
-			DailyTasks.complete(c);
-			DailyTasks.assignTask(c);
 			break;
 
 		/**

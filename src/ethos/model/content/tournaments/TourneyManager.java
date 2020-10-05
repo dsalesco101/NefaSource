@@ -21,11 +21,15 @@ import ethos.ServerState;
 import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
+import ethos.event.impl.RandomEvent;
 import ethos.model.content.QuestTab;
+import ethos.model.content.SkillcapePerks;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
-import ethos.model.content.eventcalendar.EventChallenge;
+import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
 import ethos.model.entity.Entity;
+import ethos.model.entity.Health;
+import ethos.model.entity.HealthStatus;
 import ethos.model.items.GameItem;
 import ethos.model.players.Boundary;
 import ethos.model.players.Coordinate;
@@ -60,12 +64,12 @@ public class TourneyManager {
 
     public static void initialiseSingleton() {
         if (Server.getConfiguration().getServerState() != ServerState.DEBUG) {
-            _minuteBetweenTournaments = 60;
-            _secondsBetweenTournaments = 5 * 60;
+            _minuteBetweenTournaments = 180;
+            _secondsBetweenTournaments = 2 * 60;
             _playersToStart = 4;
         } else {
             _minuteBetweenTournaments = 3;
-            _secondsBetweenTournaments = 60;
+            _secondsBetweenTournaments = 180;
             _playersToStart = 1;
         }
         singleton = new TourneyManager();
@@ -83,7 +87,7 @@ public class TourneyManager {
 
     private ArrayList<String> currentPlayers = new ArrayList<>();
     private ArrayList<String> victors = new ArrayList<>();
-    private final String[] tourneyOrder = {"dharok", "melee", "monk", "dharok", "melee", "monk", "dharok", "nh"};
+    private final String[] tourneyOrder = {"dharok", "melee", "monk", "dharok", "monk", "dharok", "maxmelee", "nh"};
     private final Object timerObject = new Object();
     private final int[] itemsToRemove = {157, 159, 161, 145, 147, 149, 6687, 6689, 6691, 3026, 3028,
             229, 3030, 3024, 12695, 12697, 12699, 12701, 3024, 6685, 229, 229, 229, 229, 385};
@@ -176,7 +180,7 @@ public class TourneyManager {
     private boolean clearCurrentArena(Player player) {
         if (isArenaActive()) {
             if (Boundary.entitiesInArea(Boundary.OUTLAST) == 0) {
-                player.sendMessage("Killing arena, 0 entites found inside outlast but outlast @red@WAS@bla@ still active.");
+                player.sendMessage("Killing arena, 0 entites found inside Gulag but Gulag @red@WAS@bla@ still active.");
                 victors.clear();
                 arenaActive = false;
                 return true;
@@ -406,7 +410,7 @@ public class TourneyManager {
     private void announceNextTournament(String type) {
         Arrays.stream(PlayerHandler.players).forEach(p -> {
             if (p != null) {
-                p.getPA().sendBroadCast("An Outlast " + type + " tournament will begin soon! Type ::outlast to join.");
+                p.getPA().sendBroadCast("A Gulag " + type + " tournament will begin soon! Type ::Gulag to join.");
             }
         });
     }
@@ -731,7 +735,39 @@ public class TourneyManager {
             killer.getPA().refreshSkill(5);
         }
     }
-
+    public void resetVariables(Player c) {
+    	for (int skill = 0; skill < c.playerLevel.length; skill++) {
+			if (skill == 3)
+				continue;
+			if (c.playerLevel[skill] < c.getLevelForXP(c.playerXP[skill])) {
+				c.playerLevel[skill] += 8 + (c.getLevelForXP(c.playerXP[skill]));
+				if (SkillcapePerks.PRAYER.isWearing(c) || SkillcapePerks.isWearingMaxCape(c))
+					c.playerLevel[skill] += 5;
+				if (c.playerLevel[skill] > c.getLevelForXP(c.playerXP[skill])) {
+					c.playerLevel[skill] = c.getLevelForXP(c.playerXP[skill]);
+				}
+				if (Boundary.isIn(c, Boundary.DEMONIC_RUINS_BOUNDARY)) {
+					c.getDiaryManager().getWildernessDiary().progress(WildernessDiaryEntry.DEMONIC_RUINS);
+				}
+				c.getPA().refreshSkill(skill);
+				c.getPA().setSkillLevel(skill, c.playerLevel[skill], c.playerXP[skill]);
+				Health health = c.getHealth();
+				health.removeNonsusceptible(HealthStatus.POISON);
+				health.removeNonsusceptible(HealthStatus.VENOM);
+			}
+		}
+	
+			c.specRestore = 120;
+			c.specAmount = 10.0;
+			c.setRunEnergy(100);
+			c.getItems().addSpecialBar(c.playerEquipment[c.playerWeapon]);
+			c.playerLevel[5] = c.getPA().getLevelForXP(c.playerXP[5]);
+			c.getHealth().removeAllStatuses();
+			c.getHealth().reset();
+			c.getPA().refreshSkill(5); //prayer
+			c.getDH().sendItemStatement("Restored your HP, Prayer, Run Energy, and Spec", 4049);
+			c.nextChat =  -1;
+    }
     /**
      * Handles a player dying within the arena
      * @param playerName the player name
@@ -755,11 +791,21 @@ public class TourneyManager {
             if (currentPlayers.size() > 0) {
                 player.sendMessage("You have been defeated!");
             }
+        	resetVariables(player);
             player.getItems().deleteAllItems();
             player.getItems().deleteEquipment();
-            player.getEventCalendar().progress(EventChallenge.PARTICIPATE_IN_X_OUTLAST_TOURNIES);
             player.tPoint+=1;
             player.sendMessage("@blu@You have gained an extra point for participating.");
+        	if (player.eventFinished == false && RandomEvent.eventNumber == 13) {
+        		player.eventStage += 1;
+        	}
+        	if (player.eventStage == 1 && player.eventFinished == false && RandomEvent.eventNumber == 13) {
+           	   player.sendMessage("@blu@You have completed the event challenge: @red@Play 1 Tournament.");
+           	   player.sendMessage("@blu@You receive @red@1 @blu@Event Point for completing the Event Challenge.");
+           	   player.eventPoints+=1;
+           	   player.eventStage = 0;
+           	   player.eventFinished = true;
+               }
             player.getCombat().resetPrayers();
             for(int i = 0; i < 7; i++) {
                 player.playerXP[i] = player.combatLevelBackUp[i];
@@ -813,9 +859,9 @@ public class TourneyManager {
                 player.sendMessage("Congratulations you placed " + ((2 - i) + 1) + (i == 2 ? "st" : i == 1 ? "nd" : "rd") + " place in the Tournament!");
                 if (player!=null) {
                     if (i == 2) {
-                        player.getItems().addItemToBank(995, (1000000 * tier) + (6000000));//1st place gets 6m + 1m every 2 people
+                        player.getItems().addItemToBank(13307, 9900 + Misc.random(584));//1st place 9.9k plus random 0-584 blood money
                     } else if (i != 2) {
-                        player.getItems().addItemToBank(995, (500000 * tier) + (2000000));//2nd and 3rd get 2m + 500k ever 2 people
+                        player.getItems().addItemToBank(13307, 4100 + Misc.random(584));
                     }
                     player.tPoint += 1; //winner of tournament gets  a tournament win
 
@@ -828,21 +874,22 @@ public class TourneyManager {
                 if (i == 2) {
                     player.streak += 1;
                     if (player.streak == 5) {
-                        player.sendMessage("@red@You receive an extra 5m coins for having a 5 win streak.");
-                        announce("@blu@" + victors.get(i) + " has just reached 5 wins in a row in Outlast!");
-                        player.getItems().addItemToBank(995, (5000000));
+                    	int cockSucker = 5000 + Misc.random(585);
+                        player.sendMessage("@red@You receive an extra "+cockSucker+" blood money for having a 5 win streak.");
+                        announce("@blu@" + victors.get(i) + " has just reached 5 wins in a row in Gulag!");
+                        player.getItems().addItemToBank(13307, (5000000));
 
                     } else if (player.streak == 10) {
-                        player.sendMessage("@red@You receive an extra 10m coins for having a 10 win streak.");
-                        announce("@blu@" + victors.get(i) + " has just reached 10 wins in a row in Outlast!");
-                        player.getItems().addItemToBank(995, (10000000));
+                    	int cockSucker2 = 10000 + Misc.random(585);
+                        player.sendMessage("@red@You receive an extra "+cockSucker2+" blood money for having a 10 win streak.");
+                        announce("@blu@" + victors.get(i) + " has just reached 10 wins in a row in Gulag!");
+                        player.getItems().addItemToBank(13307, (10000000));
                     }
 
                     announce(Misc.optimizeText(victors.get(i)) + " has won the Tournament. Congratulations!");
                     announce(Misc.optimizeText(victors.get(i)) + " Current streak is " + player.streak + "!");
                     player.tWin += 1; //winner of tournament gets  a tournament win
                     player.tPoint += 3; //winner of tournament gets  a tournament win
-                    player.getEventCalendar().progress(EventChallenge.WIN_AN_OUTLAST_TOURNAMENT);
                     player.sendMessage("@blu@You now have a total of @bla@" + player.tPoint + " tournament points.");
                     player.sendMessage("@blu@You have won a total of @bla@" + player.tWin + " @blu@tournament wins.");
                     player.sendMessage("@blu@You have gained an extra point for participating.");
@@ -854,7 +901,6 @@ public class TourneyManager {
                 if (i != 2) {
                     player.streak = 0;
                     player.sendMessage("@blu@You now have a total of @bla@" + player.tPoint + " tournament points.");
-                    player.getEventCalendar().progress(EventChallenge.PARTICIPATE_IN_X_OUTLAST_TOURNIES);
                 }
             }
         }
@@ -977,10 +1023,7 @@ public class TourneyManager {
      */
     public boolean handleActionButtons(Player player, int button) {
         switch(button) {
-            case 1017:
-                if (!Boundary.isIn(player, Boundary.OUTLAST_HUT)) {
-                    return false;
-                }
+            case 1017:   
                 if (player.getTutorial().isActive()) {
                     player.getTutorial().refresh();
                     return false;
@@ -1013,11 +1056,11 @@ public class TourneyManager {
      */
     public String getTimeLeft() {
         if (isArenaActive()) {
-            return "Outlast: @gre@Active";
+            return "Gulag: @gre@Active";
         } else  if (isLobbyOpen()) {
-            return "Outlast: @whi@Starts in " + getLobbyTime();
+            return "Gulag: @whi@Starts in " + getLobbyTime();
         } else {
-            return "Outlast: @red@" + minutesUntilAutomatedEvent + " minutes";
+            return "Gulag: @red@" + minutesUntilAutomatedEvent + " minutes";
         }
     }
 

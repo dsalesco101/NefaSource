@@ -9,6 +9,7 @@ import ethos.model.players.Player;
 import ethos.model.players.mode.ModeType;
 import ethos.model.players.skills.agility.AgilityHandler;
 import ethos.model.players.skills.agility.MarkOfGrace;
+import ethos.util.Misc;
 
 /**
  * Rooftop Agility Al Kharid
@@ -29,6 +30,7 @@ public class RooftopAlkharid {
 	public boolean execute(final Player c, final int objectId) {
 		
 		for (int id : ALKHARID_OBJECTS) {
+			c.runEnergy += Misc.random(3) + 2;
 			if (System.currentTimeMillis() - c.lastObstacleFail < 3000) {
 				return false;
 			}
@@ -137,6 +139,12 @@ public class RooftopAlkharid {
 			AgilityHandler.delayEmote(c, "JUMP", 3301, 3195, 0, 2);
 			c.getAgilityHandler().roofTopFinished(c, 6, c.getMode().getType().equals(ModeType.OSRS) ? 180 : 4000, 8000);
 			Achievements.increase(c, AchievementType.AGIL, 1);
+			int graceEffect = 1 + Misc.random(20);
+			if (c.wearingGrace() && graceEffect > 18) {
+				c.getItems().addItemUnderAnyCircumstance(11849, 1);
+			}
+			int marks = 1 + Misc.random(3);
+			c.getItems().addItemUnderAnyCircumstance(11849, marks);
 		return true;
 		}
 		return false;

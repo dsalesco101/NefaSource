@@ -1,0 +1,25 @@
+package ethos.model.players.packets.commands.all;
+
+import java.util.Optional;
+
+import ethos.model.players.Player;
+import ethos.model.players.packets.commands.Command;
+
+/**
+ * Open the forums in the default web browser.
+ * 
+ * @author Emiel
+ */
+public class Benefits extends Command {
+
+	@Override
+	public void execute(Player c, String input) {
+		c.getPA().sendFrame126("http://www.NefariousPkz.com/forums/index.php?/topic/13-donator-benefits/", 12000);
+	}
+
+	@Override
+	public Optional<String> getDescription() {
+		return Optional.of("Opens a web page for donator benefits.");
+	}
+
+}

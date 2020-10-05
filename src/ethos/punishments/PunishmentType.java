@@ -1,7 +1,7 @@
 package ethos.punishments;
 
 public enum PunishmentType {
-	MUTE(0, "mute.dat"), BAN(1, "ban.dat"), NET_MUTE(2, "network_mute.dat"), NET_BAN(3, "network_ban.dat"), MAC_BAN(4, "mac_ban.dat");
+	MUTE(0, "mute.dat"), BAN(1, "ban.dat"), NET_MUTE(2, "network_mute.dat"), NET_BAN(3, "network_ban.dat"), MAC_BAN(4, "mac_ban.dat"), DICE_BAN(5, "dice_ban.dat");
 
 	/**
 	 * The identification value associated with this type of punishment

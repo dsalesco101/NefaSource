@@ -12,6 +12,7 @@ import ethos.model.content.achievement_diary.fremennik.FremennikDiaryEntry;
 import ethos.model.content.achievement_diary.kandarin.KandarinDiaryEntry;
 import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
+import ethos.model.content.limitedItems.PetGoblin;
 import ethos.model.content.tradingpost.Listing;
 
 import ethos.model.items.UseItem;
@@ -41,6 +42,8 @@ import ethos.util.Misc;
 
 public class NpcOptionOne {
 
+	private static int output;
+
 	public static void handleOption(Player player, int npcType) {
 		if (Server.getMultiplayerSessionListener().inAnySession(player)) {
 			return;
@@ -61,12 +64,38 @@ public class NpcOptionOne {
 		}
 
 		switch (npcType) {
-		case 3400:
-		//	player.getEventCalendar().openCalendar();
+		case 3215:
+			player.getShops().openShop(183);
+			break;
+		case 1789:
+			player.getShops().openShop(184);
+			break;
+		case 4065:
+			player.getShops().openShop(113);
+			player.sendMessage("@red@Any supplies that cost money will be in the blood money shop.");
+			break;
+		case 5008:
+		case 7020:
+			player.getDH().sendDialogues(1091, npcType);
+			break;
+		case 2269:
+			PetGoblin.npcSpeaking(player);
+			break;
+		case 1017:
+			if (player.diceBan == 86400 * 3) {
+				player.getDH().sendNpcChat("You have already got the max dice ban time.");
+				return;
+			}
+			if (player.diceBan > 100) {
+				player.getDH().sendDialogues(1007, npcType);
+			}
+			player.getDH().sendDialogues(1003, npcType);
+			break;
+		case 7995:
+			player.getDH().sendNpcChat1("Use your bones on me to unnote them.", 7995, "Elder Chaos Druid");
 			break;
 		case 7954:
-				//player.getShops().openShop(178);
-			player.sendMessage("Under construction.");
+			player.getShops().openShop(178);
 			break;
 		case 8906:
 			if (player.christmasEvent == true) {
@@ -99,7 +128,7 @@ public class NpcOptionOne {
 			player.sendMessage("You currently have @red@" + player.tPoint + " @bla@Tournament Points!");
 			break;
 		case 1013:
-			player.getShops().openShop(130);
+			player.getDH().sendStatement("You can use blood money to convert into platinum tokens.");
 			break;
 		case 1306:
 			if (player.getItems().isWearingItems()) {
@@ -113,9 +142,6 @@ public class NpcOptionOne {
 		case 5082:
 			player.getDH().sendNpcChat("Enter the portal at your own risk!");
 			break;
-		case 13:
-			player.getDH().sendDialogues(996, npcType);
-			break;
 		case 5449: //herblore shop
 			player.getShops().openShop(21);
 			break;
@@ -124,12 +150,12 @@ public class NpcOptionOne {
 			break;
 		case 555:
 			player.getShops().openShop(122);
-			player.sendMessage("@red@ You can sell me anything you want!");
+			player.sendMessage("@red@You can sell me anything you want!");
 			break;
 		case 9011:
 			player.getShops().openShop(77);
 			player.sendMessage("@red@ Please type in ::vote to go to the site. And do ::voted to receive them!");
-			player.sendMessage("@red@ Thank you for supporting Wisdom!");
+			player.sendMessage("@red@ Thank you for supporting NefariousPkz!");
 			break;
 		case 1011:
 			player.getDH().sendNpcChat1(
@@ -329,17 +355,17 @@ public class NpcOptionOne {
 			if (Config.BONUS_XP_WOGW) {
 				player.getDH().sendNpcChat1(
 						"Well of Goodwill is currently @red@active@bla@! \\n It is granting 1 hour of @red@Double XP@bla@!",
-						276, "Wisdom Crier");
+						276, "NefariousPkz Crier");
 			} else if (Config.BONUS_PC_WOGW) {
 				player.getDH().sendNpcChat1(
 						"Well of Goodwill is currently @red@active@bla@! \\n It is granting 1 hour of @red@Double Pc Points@bla@!",
-						276, "Wisdom Crier");
+						276, "NefariousPkz Crier");
 			} else if (Config.DOUBLE_DROPS) {
 				player.getDH().sendNpcChat1(
 						"Well of Goodwill is currently @red@active@bla@! \\n It is granting 1 hour of @red@Double Drops@bla@!",
-						276, "Wisdom Crier");
+						276, "NefariousPkz Crier");
 			} else {
-				player.getDH().sendNpcChat1("Well of Goodwill is currently @red@inactive@bla@!", 276, "Wisdom Crier");
+				player.getDH().sendNpcChat1("Well of Goodwill is currently @red@inactive@bla@!", 276, "NefariousPkz Crier");
 			}
 			break;
 		case 5520:
@@ -505,15 +531,12 @@ public class NpcOptionOne {
 			player.getShops().openShop(6);
 			break;
 			case 6875:
-				player.specRestore = 120;
-				player.specAmount = 10.0;
 				player.setRunEnergy(100);
-				player.getItems().addSpecialBar(player.playerEquipment[player.playerWeapon]);
 				player.playerLevel[5] = player.getPA().getLevelForXP(player.playerXP[5]);
 				player.getHealth().removeAllStatuses();
 				player.getHealth().reset();
 				player.getPA().refreshSkill(5);
-				player.getDH().sendItemStatement("Restored your HP, Prayer, Run Energy, and Spec", 4049);
+				player.getDH().sendItemStatement("You restore your health and prayer points.", 4049);
 				player.nextChat =  -1;
 				break;
 			case 732:
@@ -532,12 +555,11 @@ public class NpcOptionOne {
 			player.getDH().sendDialogues(3299, npcType);
 			player.sendMessage("@red@ Use the command ::wildymap to see the locations of wildy slayer monsters!");
 			break;
-		case 402:// slayer
-			if(player.combatLevel<20){
-				player.getDH().sendNpcChat2("Do not waste my time peasent.","You need a Combat level of 20.",402,"Mazchna");
-				return;
-			}
-			player.getDH().sendDialogues(3300, npcType);
+		case 402:
+			player.getDH().sendDialogues(1298, npcType);
+			break;
+		case 315:
+			player.getShops().openShop(3);
 			break;
 		case 401:
 			if(player.combatLevel<20){
@@ -561,10 +583,6 @@ public class NpcOptionOne {
 		case 6797: // Nieve
 				player.getDH().sendDialogues(3300, npcType);
 			break;
-		case 315:
-			player.getDH().sendDialogues(550, npcType);
-			break;
-
 		case 1308:
 			player.getDH().sendDialogues(538, npcType);
 			break;
@@ -710,7 +728,7 @@ public class NpcOptionOne {
 			player.getShops().openShop(6);
 			break;
 		case 8636:// range supplies
-			player.getShops().openShop(4);
+			player.getShops().openShop(5);
 			break;
 		case 1785:
 			player.getShops().openShop(8);
@@ -738,7 +756,7 @@ public class NpcOptionOne {
 			break;
 
 		case 8635:// melee supplies
-			player.getShops().openShop(8);
+			player.getShops().openShop(4);
 			break;
 
 		case 7913:
@@ -750,7 +768,7 @@ public class NpcOptionOne {
 			}
 			break;
 		case 7769:
-			player.getShops().openShop(2);
+			player.getShops().openShop(182);
 			break;
 
 		

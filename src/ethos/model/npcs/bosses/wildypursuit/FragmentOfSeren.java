@@ -7,7 +7,6 @@ import ethos.clip.PathChecker;
 import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
@@ -124,10 +123,8 @@ public class FragmentOfSeren {
 				if (p.getIceQueenDamageCounter() >= 80) {
 					p.sendMessage("@blu@The Wildy Boss has been killed!");
 					p.sendMessage("@blu@You receive a @red@key@blu@ for doing enough damage to the boss!");
-					p.getItems().addItemUnderAnyCircumstance(6792, 1);
-
-					p.getEventCalendar().progress(EventChallenge.OBTAIN_X_WILDY_EVENT_KEYS);
-					p.setIceQueenDamageCounter(0);
+					p.setIceQueenDamageCounter(0);  	
+                    	p.getItems().addItemUnderAnyCircumstance(6792, 1);
 				} else {
 					p.sendMessage("@blu@You didn't do enough damage to the boss to receive a reward.");
 					p.setIceQueenDamageCounter(0);

@@ -6,8 +6,6 @@ import java.util.Optional;
 import ethos.Config;
 import ethos.Server;
 import ethos.event.Event;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.players.Player;
 import ethos.model.players.mode.ModeType;
 import ethos.model.players.skills.Skill;
@@ -54,8 +52,6 @@ public class Crafting {
 					c.getItems().deleteItem(id, c.getItems().getItemSlot(id), 1);
 					c.getItems().addItem(gems[j][1], 1);
 					c.getPA().addSkillXP(gems[j][3] * (c.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.CRAFTING_EXPERIENCE), Player.playerCrafting, true);
-					if (gems[j][0] == 1631)
-						DailyTasks.increase(c, PossibleTasks.DRAGONSTONES);
 					break;
 				}
 			}

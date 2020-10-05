@@ -22,9 +22,17 @@ public class NpcOptionFour {
 		player.rememberNpcIndex = player.npcClickIndex;
 		player.npcClickIndex = 0;
 		switch (npcType) {
+		case 5293:
+		case 5294:
+		case 5295:
+		case 5296:
 		case 8781:
-			Server.getDropManager().search(player, "Seren");
-			break;
+		case 1672:
+		case 1673:
+		case 1674:
+		case 1675:
+		case 1676:
+		case 1677:
 		case 100:
 		case 1173:
 		case 2790:
@@ -58,7 +66,6 @@ public class NpcOptionFour {
 		case 5129:
 		case 3023:
 		case 70:
-		case 85:
 		case 2834:
 		case 1545:
 		case 2006:
@@ -196,6 +203,15 @@ public class NpcOptionFour {
 			Server.getDropManager().search(player, NPCDefinitions.get(npcType).getNpcName());
 			Server.getDropManager().select(player, 128240);
 			break;
+		case 5008:
+		case 7020:
+			player.getDH().sendDialogues(1088, npcType);
+			break;
+		case 85: //due to some reason it bugging
+			player.getPA().showInterface(39500);
+			Server.getDropManager().search(player, "ghost");
+			Server.getDropManager().select(player, 128240);
+			break;
 		case 17: //Rug merchant - Sophanem
 			player.startAnimation(2262);
 			AgilityHandler.delayFade(player, "NONE", 3285, 2815, 0, "You step on the carpet and take off...", "at last you end up in sophanem.", 3);
@@ -205,13 +221,13 @@ public class NpcOptionFour {
 			player.getPA().startTeleport(3039, 4788, 0, "modern", false);
 			player.teleAction = -1;
 			break;
-
 		case 402:
 		case 401:
 		case 405:
 		case 6797:
 		case 7663:
 		case 8761:
+		case 8623:
 		case 5870:
 			SlayerRewardsInterface.open(player, SlayerRewardsInterfaceData.Tab.TASK);
 			//player.getSlayer().handleInterface("buy");

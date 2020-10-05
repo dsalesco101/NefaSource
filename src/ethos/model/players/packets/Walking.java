@@ -9,6 +9,7 @@ import ethos.model.multiplayer_session.MultiplayerSessionStage;
 import ethos.model.multiplayer_session.MultiplayerSessionType;
 import ethos.model.multiplayer_session.duel.DuelSession;
 import ethos.model.multiplayer_session.duel.DuelSessionRules.Rule;
+import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
 import ethos.model.players.PacketType;
 import ethos.model.players.PathFinder;

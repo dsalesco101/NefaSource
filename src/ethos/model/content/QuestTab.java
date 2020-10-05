@@ -7,13 +7,16 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import ethos.Config;
 import ethos.Server;
+import ethos.event.impl.RandomEvent;
 import ethos.model.Area;
 import ethos.model.SquareArea;
 import ethos.model.content.CheatEngine.CheatEngineBlock;
 import ethos.model.content.loot.LootableInterface;
 import ethos.model.content.preset.PresetManager;
 import ethos.model.content.tournaments.TourneyManager;
+import ethos.model.content.wogw.Wogw;
 import ethos.model.npcs.drops.DropManager;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
@@ -97,18 +100,22 @@ public class QuestTab {
      */
 
     public void updateInformationTab() {
-
-        // Server Information
+    	   // Server Information
         boolean bonusWeekend = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY
                 || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY;
         int id = 10407;
         player.getPA().sendFrame126("@or1@- Players online : @gre@"+ PlayerHandler.getPlayers().size(), id++);
-        player.getPA().sendFrame126("@or1@- Wilderness count : @gre@"+(Boundary.entitiesInArea(Boundary.WILDERNESS) + Boundary.entitiesInArea(Boundary.WILDERNESS_UNDERGROUND)),id++);
+        long wogwTime = Wogw.EXPERIENCE_TIMER / 100;
+        if (Config.BONUS_XP_WOGW == true) {
+            player.getPA().sendFrame126("@or1@- Wogw: @gre@Active @yel@ ("+wogwTime+" Minutes)",  id++);
+        } else {
+            player.getPA().sendFrame126("@or1@- Wogw: @red@Not Active",  id++);
+        }
         player.getPA().sendFrame126("@or1@- " + TourneyManager.getSingleton().getTimeLeft(), id++);
         player.getPA().sendFrame126("@or1@- " + MonsterHunt.getTimeLeft(), id++);
         player.getPA().sendFrame126("@or1@- Bonus Weekend: " + (bonusWeekend ? "@gre@On" : "@red@Off"),  id++);
 
-        // Player Information
+        // Player Information  
         id = 10225;
 
         long milliseconds = (long) player.playTime * 600;
@@ -128,9 +135,10 @@ public class QuestTab {
             player.getPA().sendFrame126("@or1@- Slayer Task : @gre@" +player.getSlayer().getTaskAmount()+" "+player.getSlayer().getTask().get().getPrimaryName()+"s",id++);
         }
         player.getPA().sendFrame126("@or1@- Vote points : @gre@" +player.votePoints, id++);
-        player.getPA().sendFrame126("@or1@- Vote key : @yel@" +player.dayv/3 + "@gre@/30", id++);
+        player.getPA().sendFrame126("@or1@- Vote key : @yel@" +player.dayv/3 + "@gre@/10@or1@ Days", id++);
         player.getPA().sendFrame126("@or1@- PC points : @gre@" +player.pcPoints,id++);
         player.getPA().sendFrame126("@or1@- Exchange Points : @gre@" +player.exchangeP, id++);
+        player.getPA().sendFrame126("@or1@- Random Event Points : @gre@" +player.eventPoints, id++);
 
         // Unknown
         player.getPA().sendFrame126("@whi@@cr11@View the forums",47514);
@@ -145,6 +153,8 @@ public class QuestTab {
             icon = "";
         } else if (player.getRights().contains(Right.OSRS) && player.amDonated <= 0) {
             icon = "@cr22@";
+        } else if (player.getRights().contains(Right.MED_MODE) && player.amDonated <= 0) {
+            icon = "@cr21@";
         } else if (player.getRights().contains(Right.IRONMAN) && player.amDonated <= 0) {
             icon = "@cr12@";
         } else if (player.getRights().contains(Right.ULTIMATE_IRONMAN) && player.amDonated <= 0) {
@@ -175,14 +185,36 @@ public class QuestTab {
             icon = "@cr18@";
         } else 	if (player.amDonated >= 5000) { //divine
             icon = "@cr19@";
+        } 
+        if (player.getMode().isOsrs() || player.getMode().isHCIronman()) { 
+    	 	player.chestRateBoost = 2; 
         }
-
+        if (player.amDonated < 10) { 
+    	 	player.chestRateBoost = 1;
+    } else if (player.amDonated >= 10 && player.amDonated < 201) { //donator, super, ultra  	
+    	 	player.chestRateBoost = 2;
+     } else if (player.amDonated >= 200 && player.amDonated <=300) { //legendary
+    	 player.chestRateBoost = 3;
+    } else if (player.amDonated > 300 && player.amDonated <= 500) { // diamond club
+    	player.chestRateBoost = 4;
+	} else if (player.amDonated > 500 && player.amDonated <= 1000) { //onxy
+		player.chestRateBoost = 5;
+	} else if (player.amDonated > 2500) {
+		player.chestRateBoost = 6;
+	}
         id = 50616;
         player.getPA().sendFrame126("@or1@- Rank : @gre@"+icon+" "+ player.getRights().getPrimary().toString(), id++);
         player.getPA().sendFrame126("@or1@- Donator points: @gre@" + player.donatorPoints, id++);
         player.getPA().sendFrame126("@or1@- Total donated: @gre@$" + player.amDonated, id++);
         player.getPA().sendFrame126("@or1@- Drop rate bonus: @gre@" + DropManager.getModifier1(player), id++);
+        player.getPA().sendFrame126("@or1@- Chest rate bonus: @gre@" +player.chestRateBoost, id++);
+        if (player.moneyPerk == true) {
+        	player.getPA().sendFrame126("@or1@- Money Perk: @red@Purchased", 50622);
+        } else {
+            player.getPA().sendFrame126("@or1@- Money Perk: @red@Not-Bought", 50622);
+        }
     }
+   
 
     /**
      * Handles all actions within the help tab
@@ -201,16 +233,17 @@ public class QuestTab {
                     case PRESETS:
                         Area[] areas = {
                             new SquareArea(3066, 3521, 3135, 3456),
+                                new SquareArea(2234, 3731, 2301, 3731),
                         };
                         if (Arrays.stream(areas).anyMatch(area -> area.inside(player))) {
                             PresetManager.getSingleton().open(player);
                 			player.inPresets = true;
                         } else {
-                            player.sendMessage("You must be in Edgeville to open presets.");
+                            player.sendMessage("You must be in Edgeville or risk to open presets.");
                         }
                         return true;
                     case DONATOR_BENEFITS:
-                    	 player.getPA().sendFrame126("http://www.wisdomrsps.com/forums/index.php?/topic/13-donator-benefits/", 12000);
+                    	 player.getPA().sendFrame126("", 12000);
                         return true;
                     case ACHIEVEMENTS:
                         player.getAchievements().drawInterface(0);
@@ -219,19 +252,19 @@ public class QuestTab {
                         player.getTitles().display();
                         return true;
                     case COMMUNITY_GUIDES:
-                        player.getPA().sendFrame126("http://www.wisdomrsps.com/forums/index.php?/forum/15-wisdom-guides/", 12000);
+                        player.getPA().sendFrame126("", 12000);
                         return true;
                     case VOTE_PAGE:
-                        player.getPA().sendFrame126("http://www.wisdomosrs.com/vote", 12000);
+                        player.getPA().sendFrame126("http://www.nefariouspkz.com/vote", 12000);
                         return true;
                     case ONLINE_STORE:
-                        player.getPA().sendFrame126("http://www.wisdomosrs.com/store", 12000);
+                        player.getPA().sendFrame126("http://www.nefariouspkz.com/store", 12000);
                         return true;
                     case FORUMS:
-                        player.getPA().sendFrame126("http://www.wisdomosrs.com/", 12000);
+                        player.getPA().sendFrame126("http://www.nefariouspkz.com/", 12000);
                         return true;
                     case RULES:
-                        player.getPA().sendFrame126("http://www.wisdomrsps.com/forums/index.php?/topic/9-in-game-rules/", 12000);
+                    	player.getDH().sendDialogues(1244, -1);
                         return true;
                     case LOOT_TABLES:
                         LootableInterface.openInterface(player);

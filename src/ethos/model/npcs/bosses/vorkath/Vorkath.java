@@ -18,10 +18,10 @@ public class Vorkath {
 	public static int[][] commonDrops = { { 1303, 2 + Misc.random(1) }, { 1201, 2 + Misc.random(1) },
 			{ 562, 700 + Misc.random(300) }, { 1754, 14 + Misc.random(18) }, { 1752, 11 + Misc.random(19) },
 			{ 450, 10 + Misc.random(20) }, { 1602, 10 + Misc.random(20) }, { 6694, 10 + Misc.random(20) },
-			{ 1988, 250 + Misc.random(51) }, { 1514, 50 }, { 995, 37000 + Misc.random(44000) },
+			{ 1988, 250 + Misc.random(51) }, { 1514, 50 }, { 21930, 8 + Misc.random(15)}, { 995, 37000 + Misc.random(44000) },
 			{ 392, 25 + Misc.random(30) } };
 
-	public static int[][] uncommonDrops = { { 21975, 2 }, { 21338, 27 + Misc.random(3) }, { 21930, 55 + Misc.random(45) },
+	public static int[][] uncommonDrops = { { 21975, 2 }, { 21338, 27 + Misc.random(3) }, { 21930, 70 + Misc.random(57) },
 			{ 21486, 1 }, { 22118, 1 }, { 1377, 1 }, { 1305, 1 }, { 4087, 1 }, { 4585, 1 },
 			{ 560, 300 + Misc.random(200) }, { 1750, 10 + Misc.random(15) }, { 1748, 5 + Misc.random(20) },
 			{ 9189, 25 + Misc.random(10) }, { 9190, 25 + Misc.random(10) }, { 9191, 31 }, { 9192, 30 },

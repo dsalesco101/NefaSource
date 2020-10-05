@@ -42,9 +42,14 @@ public class ChambersOfXericLobby extends Lobby {
 				player.getMode().isUltimateIronman() || player.getMode().isHCIronman()) && player.totalLevel < 1500) {
 		player.sendMessage("You need a total level of atleast 1500 to join this raid!");
 		return false;
-		} else if (player.getMode().isOsrs() && player.totalLevel < 750) {
+		}
+		 if (player.getMode().isOsrs() && player.totalLevel < 750) {
 			player.sendMessage("You need a total level of atleast 750 to join this raid!");
-		return false;
+			return false;
+		 }
+		 if (player.getMode().isMedMode() && player.totalLevel < 1000) {
+			player.sendMessage("You need a total level of atleast 1000 to join this raid!");
+			return false;
 		}
 
 		// Don't allow multi-logging outside of debug

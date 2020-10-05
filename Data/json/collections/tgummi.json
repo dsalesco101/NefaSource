@@ -1,48 +1,55 @@
 {
-  "1": [
+  "3": [
     {
-      "id": 1297,
+      "id": 2639,
       "amount": 1,
       "slot": 0,
       "stackable": false
     },
     {
-      "id": 7332,
+      "id": 861,
       "amount": 1,
       "slot": 0,
       "stackable": false
     },
     {
-      "id": 334,
-      "amount": 7,
-      "slot": 0,
-      "stackable": true
-    }
-  ],
-  "6342": [],
-  "2": [
-    {
-      "id": 10476,
-      "amount": 20,
-      "slot": 0,
-      "stackable": true
-    },
-    {
-      "id": 561,
-      "amount": 7,
-      "slot": 0,
-      "stackable": true
-    },
-    {
-      "id": 12261,
+      "id": 2497,
       "amount": 1,
       "slot": 0,
       "stackable": false
-    }
-  ],
-  "239": [
+    },
     {
-      "id": 7980,
+      "id": 1347,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1432,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3827,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 557,
+      "amount": 132,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 559,
+      "amount": 26,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 2491,
       "amount": 1,
       "slot": 0,
       "stackable": false

@@ -17,7 +17,7 @@ public enum RaidMonsters {
 	MUTTADILE		(new Boundary(3297, 5316, 3325, 5339), 7563),
 	DEATHLY_RANGER	(new Boundary(3298, 5350, 3325, 5372), 7559),
 	DEATHLY_MAGER	(new Boundary(3298, 5350, 3325, 5372), 7560),
-	lEFT_CLAW		(new Boundary(3226, 5729, 3247, 5749), 7553),
+	LEFT_CLAW		(new Boundary(3226, 5729, 3247, 5749), 7553),
 	RIGHT_CLAW		(new Boundary(3226, 5729, 3247, 5749), 7555),
 	GREAT_OLM		(new Boundary(3226, 5729, 3247, 5749), 7554);
 	

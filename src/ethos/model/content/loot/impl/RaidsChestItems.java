@@ -361,6 +361,7 @@ public class RaidsChestItems {
                 new GameItem(22328, 1),  //justiciar legs		UNCOMMON
                 new GameItem(20997, 1),  //twisted bow			RARE
                 new GameItem(20851, 1), //olmlet pet			RARE
+                new GameItem(22324, 1), //olmlet pet			RARE
         		new GameItem(22325, 1)));  //olmlet pet			RARE
 
 

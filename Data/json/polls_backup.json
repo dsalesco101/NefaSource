@@ -1,129 +1,18 @@
 [
   {
-    "question": "My new question!",
-    "hours": 13,
-    "totalVotes": 1,
+    "question": "20 Players Giveaway Entry",
+    "hours": 1000000,
+    "totalVotes": 0,
     "answers": [
-      "Answer one",
-      "Answer two",
-      "Answer three"
+      "Enter"
     ],
     "votes": [
-      0,
-      1,
       0
     ],
     "voters": [
-      "g22"
+    
     ],
-    "startTime": 1581367360433
-  },
-  {
-    "question": "My new question!",
-    "hours": 13,
-    "totalVotes": 1,
-    "answers": [
-      "Answer one",
-      "Answer two",
-      "Answer three"
-    ],
-    "votes": [
-      1,
-      0,
-      0
-    ],
-    "voters": [
-      "g22"
-    ],
-    "startTime": 1581367949201,
-    "right": "HC_IRONMAN"
-  },
-  {
-    "question": "Should restricted accounts get the GP reward from outlast?",
-    "hours": 24,
-    "totalVotes": 0,
-    "answers": [
-      "Yes",
-      "No"
-    ],
-    "votes": [
-      0,
-      0
-    ],
-    "voters": [],
-    "startTime": 1582502364982,
-    "right": "PLAYER"
-  },
-  {
-    "question": "Should restricted accounts \n get the GP reward \n from outlast?",
-    "hours": 24,
-    "totalVotes": 0,
-    "answers": [
-      "Yes",
-      "No"
-    ],
-    "votes": [
-      0,
-      0
-    ],
-    "voters": [],
-    "startTime": 1582502416570,
-    "right": "PLAYER"
-  },
-  {
-    "question": "Should restricted accounts /n get the GP reward /n from outlast?",
-    "hours": 24,
-    "totalVotes": 0,
-    "answers": [
-      "Yes",
-      "No"
-    ],
-    "votes": [
-      0,
-      0
-    ],
-    "voters": [],
-    "startTime": 1582502439982,
-    "right": "PLAYER"
-  },
-  {
-    "question": "Should restricted | accounts get the GP | reward from outlast?",
-    "hours": 24,
-    "totalVotes": 23,
-    "answers": [
-      "Yes",
-      "No"
-    ],
-    "votes": [
-      20,
-      3
-    ],
-    "voters": [
-      "tuna sub",
-      "noah",
-      "mira",
-      "trent",
-      "plvnett",
-      "Alty",
-      "sassy",
-      "grizz",
-      "nxt",
-      "plonks",
-      "Crema",
-      "danny pk",
-      "allegations",
-      "dry guy",
-      "ironman",
-      "goats milk",
-      "meercat",
-      "crema",
-      "squa squa",
-      "oxycotton",
-      "hiro",
-      "jax",
-      "Plated ULT"
-    ],
-    "startTime": 1582503857771,
+    "startTime": 1,
     "right": "PLAYER"
   }
 ]

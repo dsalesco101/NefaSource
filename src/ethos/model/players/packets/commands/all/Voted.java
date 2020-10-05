@@ -21,7 +21,6 @@ public class Voted extends Command {
          }
     	 
 		new Thread(new Voting(c)).start();
-		
 		c.sendMessage("@blu@Succesfully scanned the name @red@"+c.playerName+" @blu@for your votes.");
 	}
 

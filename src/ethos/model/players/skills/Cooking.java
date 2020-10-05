@@ -12,8 +12,6 @@ import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorD
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.content.achievement_diary.western_provinces.WesternDiaryEntry;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.items.ItemAssistant;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
@@ -184,7 +182,8 @@ public class Cooking extends SkillHandler {
 			cookTheFish(c);
 			return;
 		}
-		viewCookInterface(c, itemID);
+		//viewCookInterface(c, itemID);
+		Cooking.getAmount(c, 28);
 	}
 
 	public static void getAmount(Player c, int amount) {
@@ -256,7 +255,9 @@ public class Cooking extends SkillHandler {
 				}
 				attachment.getItems().deleteItem(attachment.playerSkillProp[7][0], attachment.getItems().getItemSlot(attachment.playerSkillProp[7][0]), 1);
 				if (attachment.playerSkillProp[7][6] >= fishStopsBurning(attachment.playerSkillProp[7][0]) || cookFish(c)) {
-					attachment.sendMessage("You successfully cook the " + ItemAssistant.getItemName(attachment.playerSkillProp[7][0]).toLowerCase() + ".");
+					if (c.notification = true) {
+						c.sendMessage("You successfully cook the " + ItemAssistant.getItemName(attachment.playerSkillProp[7][0]).toLowerCase() + ".");
+					}
 					
 					switch (c.playerSkillProp[7][0]) {
 					case 7944:
@@ -265,7 +266,6 @@ public class Cooking extends SkillHandler {
 					case 377:
 						if (c.playerSkillProp[7][5] == 7183)
 							c.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.COOK_LOBSTER);
-						DailyTasks.increase(c, PossibleTasks.LOBSTERS);
 						break;
 					case 317:
 						if (Boundary.isIn(c, Boundary.LUMRIDGE_BOUNDARY)) {
@@ -283,7 +283,9 @@ public class Cooking extends SkillHandler {
 					attachment.getItems().addItem(attachment.playerSkillProp[7][4], 1);
 					Achievements.increase(c, AchievementType.COOK, 1);
 				} else {
-					attachment.sendMessage("Oops! You accidentally burnt the " + ItemAssistant.getItemName(attachment.playerSkillProp[7][0]).toLowerCase() + "!");
+					if (c.notification = true) {
+	 					attachment.sendMessage("Oops! You accidentally burnt the " + ItemAssistant.getItemName(attachment.playerSkillProp[7][0]).toLowerCase() + "!");
+					}
 					attachment.getItems().addItem(attachment.playerSkillProp[7][3], 1);
 				}
 				deleteTime(c);

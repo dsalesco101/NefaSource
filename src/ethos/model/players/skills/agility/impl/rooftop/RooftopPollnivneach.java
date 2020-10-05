@@ -9,6 +9,7 @@ import ethos.model.players.Player;
 import ethos.model.players.mode.ModeType;
 import ethos.model.players.skills.agility.AgilityHandler;
 import ethos.model.players.skills.agility.MarkOfGrace;
+import ethos.util.Misc;
 
 /**
  * Rooftop Agility Pollnivneach
@@ -37,6 +38,8 @@ public class RooftopPollnivneach {
 			if (id == objectId) {
 				MarkOfGrace.spawnMarks(c, "POLLNIVNEACH");
 			}
+			c.runEnergy += Misc.random(3) + 2;
+
 		}
 		
 		switch (objectId) {
@@ -230,6 +233,12 @@ public class RooftopPollnivneach {
 				AgilityHandler.delayEmote(c, "CLIMB_UP", 3364, 3002, 0, 1);
 				c.getAgilityHandler().roofTopFinished(c, 8, c.getMode().getType().equals(ModeType.OSRS) ? 890 : 20000, 22000);
 				 Achievements.increase(c, AchievementType.AGIL, 1);
+				 int graceEffect = 1 + Misc.random(20);
+					if (c.wearingGrace() && graceEffect > 18) {
+						c.getItems().addItemUnderAnyCircumstance(11849, 1);
+					}
+					int marks = 1 + Misc.random(3);
+					c.getItems().addItemUnderAnyCircumstance(11849, marks);
 		return true;
 		}
 		

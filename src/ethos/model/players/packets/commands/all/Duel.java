@@ -5,6 +5,8 @@ import java.util.Optional;
 import ethos.Server;
 import ethos.model.players.Player;
 import ethos.model.players.packets.commands.Command;
+import ethos.punishments.PunishmentType;
+import ethos.punishments.Punishments;
 
 /**
  * Teleport the player to the duel arena.
@@ -15,6 +17,13 @@ public class Duel extends Command {
 
 	@Override
 	public void execute(Player c, String input) {
+		Punishments punishments = Server.getPunishments();
+		if (punishments.contains(PunishmentType.MAC_BAN, c.getMacAddress()) || c.diceBan > 1) {
+			int time = c.diceBan / 60;
+			c.sendMessage("You are still banned from gambling.");
+			c.sendMessage("@blu@You have @red@"+time+"@blu@ seconds left.");
+			return;
+		}
 		if (Server.getMultiplayerSessionListener().inAnySession(c)) {
 			return;
 		}

@@ -15,8 +15,6 @@ import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.npcs.NPC;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
@@ -157,6 +155,12 @@ public class MiningEvent extends Event<Player> {
 				pieces += 6;
 			}
 		}
+		if (attachment.getItems().isWearingItem(21343)) {
+			pieces += 1;
+		}
+		if (attachment.getItems().isWearingItem(21345)) {
+			pieces += 2;
+		}
 		if (attachment == null || attachment.disconnected || attachment.getSession() == null) {
 			stop();
 			return;
@@ -207,7 +211,6 @@ public class MiningEvent extends Event<Player> {
 			break;
 		case GEM:
 			attachment.getDiaryManager().getFaladorDiary().progress(FaladorDiaryEntry.MINE_GEM_FAL);
-			DailyTasks.increase(attachment, PossibleTasks.GEM_ROCK);
 			break;
 		case GOLD:
 			if (Boundary.isIn(attachment, Boundary.TZHAAR_CITY_BOUNDARY)) {
@@ -233,7 +236,6 @@ public class MiningEvent extends Event<Player> {
 			}
 			break;
 		case RUNE:
-			DailyTasks.increase(attachment, PossibleTasks.RUNITE_ORE);
 			break;
 		case TIN:
 			break;
@@ -274,6 +276,14 @@ public class MiningEvent extends Event<Player> {
 		if (Misc.random(mineral.getPetChance()) == 10) {
 			attachment.getItems().addItem(20362, 1);
 			attachment.sendMessage("@blu@You appear to see a clue geode fall within the rock, and pick it up.");
+		}
+		if (Misc.random(mineral.getPetChance()) == 5) {
+			attachment.getItems().addItemUnderAnyCircumstance(21343, 1);
+			attachment.sendMessage("@blu@You appear to have unlocked a mysterious new item.");
+		}
+		if (Misc.random(mineral.getPetChance()) == 5) {
+			attachment.getItems().addItemUnderAnyCircumstance(21343, 1);
+			attachment.sendMessage("@blu@You appear to have unlocked a mysterious new item.");
 		}
 
 		if (Misc.random(mineral.getPetChance()) == 2 && attachment.getItems().getItemCount(13321, false) == 0

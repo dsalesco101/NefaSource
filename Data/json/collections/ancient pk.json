@@ -1,0 +1,46 @@
+{
+  "6609": [],
+  "6342": [],
+  "2": [
+    {
+      "id": 20232,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 558,
+      "amount": 105,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1371,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1183,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "2215": [
+    {
+      "id": 405,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "8621": [],
+  "2265": [],
+  "239": [],
+  "6611": [],
+  "2054": [],
+  "319": [],
+  "2042": [],
+  "6615": []
+}

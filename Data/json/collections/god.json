@@ -1,0 +1,234 @@
+{
+  "7145": [],
+  "6610": [
+    {
+      "id": 12000,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "5862": [],
+  "2054": [],
+  "3162": [],
+  "494": [],
+  "6609": [],
+  "2205": [
+    {
+      "id": 11785,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "1673": [],
+  "2267": [],
+  "1672": [],
+  "2266": [],
+  "239": [],
+  "6766": [],
+  "319": [],
+  "6342": [],
+  "5890": [],
+  "7554": [],
+  "8028": [],
+  "8621": [],
+  "2265": [],
+  "2042": [],
+  "1": [
+    {
+      "id": 7356,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 380,
+      "amount": 14,
+      "slot": 0,
+      "stackable": true
+    }
+  ],
+  "6619": [],
+  "2": [
+    {
+      "id": 1271,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 20235,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 995,
+      "amount": 35310,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 10416,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1371,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 12253,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1099,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 20223,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 20229,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1199,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 554,
+      "amount": 108,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 10402,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1317,
+      "amount": 2,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 6924,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1169,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1357,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3832,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    }
+  ],
+  "3129": [],
+  "3": [
+    {
+      "id": 1359,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3834,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 20226,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1127,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 558,
+      "amount": 95,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1163,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 10470,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3828,
+      "amount": 1,
+      "slot": 0,
+      "stackable": true
+    }
+  ],
+  "2215": [
+    {
+      "id": 11812,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 405,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "4": [],
+  "965": [],
+  "6611": [],
+  "6615": [],
+  "6618": [
+    {
+      "id": 12746,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 package ethos.model.players.packets.dialogueoptions;
 
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.content.achievement_diary.western_provinces.WesternDiaryEntry;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
 import ethos.model.content.barrows.RoomLocation;
-import ethos.model.content.dailytasks.TaskTypes;
+import ethos.model.content.limitedItems.PetImp;
 import ethos.model.content.tournaments.TourneyManager;
 import ethos.model.content.wogw.Wogw;
 import ethos.model.content.wogw.Wogwitems;
@@ -37,6 +38,9 @@ import ethos.model.players.combat.pkdistrict.District;
 import ethos.model.players.skills.agility.AgilityHandler;
 import ethos.model.players.skills.crafting.SpinMaterial;
 import ethos.model.players.skills.herblore.UnfCreator;
+import ethos.punishments.Punishment;
+import ethos.punishments.PunishmentType;
+import ethos.punishments.Punishments;
 import ethos.util.Misc;
 
 /*
@@ -50,10 +54,49 @@ public class TwoOptions {
 	 */
 	public static void handleOption1(Player c) {  //see This handles option 1 if u scroll down ull see the section two
 		Player other = c.getItemOnPlayer();
+		Punishments punishments = Server.getPunishments();
 
 		switch (c.dialogueAction) {
-		case 932:
-			c.getSlayer().createNewTask(c.getSlayer().getMaster());
+		case 1299:
+	        	if (c.wildLevel > 0) {
+	        		c.sendMessage("You cant use the exchange option in the wilderness.");
+	        		return;
+	        	}  
+	        	int pkp = c.getItems().getItemAmount(2996);
+	        	c.pkp+= pkp;
+	        	c.sendMessage("You have succesfully redeemed @red@"+pkp+"@bla@ pkp..");
+	        	c.getItems().deleteItem(2996, pkp);
+				c.getPA().closeAllWindows();
+			break;
+		case 1244:
+            c.getPA().sendFrame126("http://www.nefariouspkz.com", 12000);
+			break;
+		case 1088:
+			c.getDH().sendDialogues(1089, 7020);
+			break;
+		case 1089:
+			PetImp.checkSlot1(c);
+			break;
+		case 1090:
+			PetImp.checkSlot2(c);
+			break;
+		case 1006:
+			int time = c.diceBan / 60;
+			if (c.diceBan > 100) {
+				time = 86400 * 3;
+			}
+			if (c.diceBan <= 0) {
+				time = 86400;	
+			}
+			c.getPA().closeAllWindows();
+			c.diceBanned = true;
+			c.getPA().startTeleport(3087, 3500, 0, "modern", false);
+			c.sendMessage("You have been dice banned for  "+time+" seconds.");
+			punishments.add(new Punishment(PunishmentType.DICE_BAN, time, c.getMacAddress()));
+			break;
+		case 951:
+			c.alchCheck = true;
+			c.sendMessage("@red@You can now go ahead and alch this item.");
 			break;
 		case 565:
 			if (!c.getItems().playerHasItem(995, 5000000)) {
@@ -365,20 +408,6 @@ public class TwoOptions {
 		case 156:
 			c.getDH().sendDialogues(157, 1603);
 			break;
-		case 901:
-			c.dailyEnabled = true;
-			c.getDH().sendDialogues(904, 1909);
-			break;
-		case 903:
-			if (c.dailyEnabled == true) {
-				c.playerChoice = TaskTypes.PVM;
-				// c.dailyChoice = 1;
-				c.getDH().sendDialogues(906, 1909);
-			} else {
-				c.sendMessage("You must enable Daily Tasks first!");
-				c.getPA().closeAllWindows();
-			}
-			break;
 		case 784:
 			c.getDH().sendDialogues(785, -1);
 			break;
@@ -495,9 +524,6 @@ public class TwoOptions {
 		case 819:
 			c.getDH().sendDialogues(820, 822);
 			break;
-		case 2647:
-			c.getDH().sendDialogues(3647, 311);
-			break;
 		case 673:
 			c.getDH().sendDialogues(673, 311);
 			break;
@@ -593,6 +619,7 @@ public class TwoOptions {
 				c.refreshQuestTab(3);
 				c.getItems().replaceItem(c, 8839, 13072);
 				c.getDiaryManager().getWesternDiary().progress(WesternDiaryEntry.UPGRADE_VOID);
+				c.getDiaryManager().getWesternDiary().progress(WesternDiaryEntry.UPGRADE_VOID);
 				c.sendMessage("You have received a Elite Void Top in exchange for 200 pc points.");
 				c.getPA().closeAllWindows();
 			} else if (c.getItems().playerHasItem(8840) && !c.getItems().playerHasItem(8839)) {	
@@ -604,6 +631,7 @@ public class TwoOptions {
 				c.pcPoints -= 200;
 				c.refreshQuestTab(3);
 				c.getItems().replaceItem(c, 8840, 13073);
+				c.getDiaryManager().getWesternDiary().progress(WesternDiaryEntry.UPGRADE_VOID);
 				c.getDiaryManager().getWesternDiary().progress(WesternDiaryEntry.UPGRADE_VOID);
 				c.sendMessage("You have received a Elite Void robe in exchange for 200 pc points.");
 				c.getPA().closeAllWindows();
@@ -617,6 +645,7 @@ public class TwoOptions {
 			c.refreshQuestTab(3);
 			c.getItems().replaceItem(c, 8840, 13073);
 			c.getItems().replaceItem(c, 8839, 13072);
+			c.getDiaryManager().getWesternDiary().progress(WesternDiaryEntry.UPGRADE_VOID);
 			c.getDiaryManager().getWesternDiary().progress(WesternDiaryEntry.UPGRADE_VOID);
 			c.sendMessage("You have received an elite void set in exchange for 400 pc points.");
 			c.getPA().closeAllWindows();
@@ -671,8 +700,8 @@ public class TwoOptions {
 		        c.nextChat = -1;
 		        break;
 		case 10956: 
-			if (c.playerLevel[18] < 70) {
-				c.getDH().sendStatement("You need a Slayer level of 70 to use this slayer master.");
+			if (c.playerLevel[18] < 90) {
+				c.getDH().sendStatement("You need a Slayer level of 90 to use this slayer master.");
 				return;
 			}
 			if (c.getSlayer().getTask().isPresent()) {
@@ -680,15 +709,13 @@ public class TwoOptions {
 				return;
 			}
 
-			if (!c.getItems().playerHasItem(995, 1_000_000)) {
-				c.getDH().sendStatement("Come back when you've got the 1m ready.");
+			if (!c.getItems().playerHasItem(995, 2_000_000)) {
+				c.getDH().sendStatement("Come back when you've got the 2m coins.");
 				return;
-				}
-				c.getItems().deleteItem2(995, 1_000_000);
-
+			}
+				c.getItems().deleteItem2(995, 2_000_000);
 				c.getSlayer().createNewTask(8761);
 				c.getDH().sendNpcChat("You have been assigned "+ c.getSlayer().getTaskAmount() + " " + c.getSlayer().getTask().get().getPrimaryName());
-
 		        c.nextChat = -1;
 		        break;
 
@@ -1259,11 +1286,27 @@ public class TwoOptions {
 	public static void handleOption2(Player c) { //under this code is the dialogues OpTion two codIng ooh okay, and its the same id
 
 		switch (c.dialogueAction) {
-		case 1004:
-		case 565:
+		case 1244:
+            c.getPA().sendFrame126("http://www.nefariouspkz.com", 12000);
+			break;
+		case 1088:
+			c.getDH().sendDialogues(1090, 7020);
+			break;
+		case 1089:
+			PetImp.removeSlot1(c);
+			break;
+		case 1090:
+			PetImp.removeSlot2(c);
+			break;
+		case 951:
+			c.alchCheck = false;
 			c.getPA().closeAllWindows();
 			break;
+		case 1004:
+		case 1006:
+		case 565:
 		case 354:
+		case 1299:
 		case 356:
 			c.getPA().closeAllWindows();
 			break;
@@ -1301,22 +1344,8 @@ public class TwoOptions {
 		case 689:
 			c.getPA().closeAllWindows();
 			break;
-		case 903:
-			if (c.dailyEnabled == true) {
-				c.playerChoice = TaskTypes.SKILLING;
-				// c.dailyChoice = 2;
-				c.getDH().sendDialogues(907, 1909);
-			} else {
-				c.sendMessage("You must enable Daily Tasks first!");
-				c.getPA().closeAllWindows();
-			}
-			break;
 			case 450:
 				c.getPA().closeAllWindows();
-			break;
-		case 901:
-			c.dailyEnabled = false;
-			c.getDH().sendDialogues(905, 1909);
 			break;
 		case 263://lookback
 			c.getPA().closeAllWindows();
@@ -1372,9 +1401,6 @@ public class TwoOptions {
 
 		case 673:
 			c.getDH().sendDialogues(679, 311);
-			break;
-		case 2647:
-			c.getDH().sendDialogues(4647, 311);
 			break;
 		case 72: // Attempt for pet
 			c.getPA().closeAllWindows();

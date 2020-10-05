@@ -74,6 +74,26 @@ public class AttackNPC {
 					maximumAccuracy *= special.getAccuracy();
 					maximumDamage *= special.getDamageModifier();
 				}
+				if (attacker.summonId == 2269) {
+					NPC GOBLIN = NPCHandler.getNpc(2269);
+				switch (Misc.random(10)) {
+				case 1:
+					NPCHandler.npcs[GOBLIN.getIndex()].forceChat("KILL HIM MASTER! KILl HIM.");
+					break;
+				case 2:
+					NPCHandler.npcs[GOBLIN.getIndex()].forceChat("DIE!!!!!!!!!!!!!!!!!!!!!!.");
+					break;
+				case 3:
+					NPCHandler.npcs[GOBLIN.getIndex()].forceChat("COMON! DO MORE DAMAGE!!.");
+					break;
+				case 4:
+					NPCHandler.npcs[GOBLIN.getIndex()].forceChat("IM HUNGRY FOR LOOOT!.");
+					break;
+				case 5:
+					NPCHandler.npcs[GOBLIN.getIndex()].forceChat("IM FEELING SOME LOOT COMING ON HERE!!.");
+					break;
+				}
+			}
 				damage = Misc.random(maximumDamage);
 				accuracy = Misc.random(maximumAccuracy);
 				if (defender.npcType == 6600) {
@@ -393,7 +413,7 @@ public class AttackNPC {
 				}
 				if (attacker.magicDef) {
 					if (defender.npcType != 7413) {
-						attacker.getPA().addSkillXP((damage * (attacker.getMode().getType().equals(ModeType.OSRS) ? 3 : Config.MELEE_EXP_RATE) / 3), 1, true);
+						attacker.getPA().addSkillXP((damage * (attacker.getMode().getType().equals(ModeType.OSRS) ? 2 : Config.MELEE_EXP_RATE) / 3), 1, true);
 						attacker.getPA().refreshSkill(1);
 					}
 				}
@@ -1145,7 +1165,7 @@ public class AttackNPC {
 	public static boolean isAttackable(Player player, int i) {
 		if (NPCHandler.npcs[i] == null)
 			return false;
-		if (!NPCHandler.npcs[i].inMulti()) {
+		if (!NPCHandler.npcs[i].inMulti() && NPCHandler.npcs[i].npcType != 7563 && NPCHandler.npcs[i].npcType != 5890 && NPCHandler.npcs[i].npcType != 7563) {
 			if (!Boundary.isIn(player, Boundary.OLM) && !Boundary.isIn(player, Boundary.RAIDS)) {
 				if (NPCHandler.npcs[i].underAttackBy > 0 && NPCHandler.npcs[i].underAttackBy != player.getIndex()) {
 					player.npcAttackingIndex = 0;
@@ -1222,7 +1242,13 @@ public class AttackNPC {
 				return;
 			}
 		}
-		if (NPCHandler.npcs[i].npcType == 492) {
+		if (!Boundary.isIn(c, Boundary.RAIDS) && NPCHandler.npcs[i].npcType == 7573 || NPCHandler.npcs[i].npcType == 7566 || NPCHandler.npcs[i].npcType == 7527 || 
+				NPCHandler.npcs[i].npcType == 7528 || NPCHandler.npcs[i].npcType == 7529 || NPCHandler.npcs[i].npcType == 7585 || NPCHandler.npcs[i].npcType == 7604 ||
+				NPCHandler.npcs[i].npcType == 7605 || NPCHandler.npcs[i].npcType == 7506 || NPCHandler.npcs[i].npcType == 7544 || NPCHandler.npcs[i].npcType == 7563 ||
+				NPCHandler.npcs[i].npcType == 7553 || NPCHandler.npcs[i].npcType == 7554 || NPCHandler.npcs[i].npcType == 7555) {
+			Raids.HITS += 1;
+		}
+		if (NPCHandler.npcs[i].npcType == 494) {
 			if (!c.getSlayer().getTask().isPresent()) {
 				c.sendMessage("You do not have a cave kraken task.");
 				c.getCombat().resetPlayerAttack();

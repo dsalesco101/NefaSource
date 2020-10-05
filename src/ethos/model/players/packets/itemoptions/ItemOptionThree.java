@@ -14,12 +14,13 @@ import ethos.model.multiplayer_session.MultiplayerSessionFinalizeType;
 import ethos.model.multiplayer_session.MultiplayerSessionStage;
 import ethos.model.multiplayer_session.MultiplayerSessionType;
 import ethos.model.multiplayer_session.duel.DuelSession;
+import ethos.model.players.Boundary;
 import ethos.model.players.PacketType;
 import ethos.model.players.Player;
 import ethos.model.players.Right;
 import ethos.model.players.combat.Degrade;
+import ethos.model.players.combat.Hitmark;
 import ethos.model.players.combat.Degrade.DegradableItem;
-import ethos.model.players.skills.slayer.DuoSlayer;
 import ethos.util.Misc;
 
 /**
@@ -73,6 +74,34 @@ public class ItemOptionThree implements PacketType {
 			return;
 		}
 		switch (itemId) {
+		case 227:
+			int emptyVial = 229;
+			c.getItems().deleteItem(227, 1);
+			c.getItems().addItem(emptyVial, 1);
+			c.sendMessage("You empty this vial of water.");
+			break;
+		case 7509:
+			if (c.inDuelArena() || Boundary.isIn(c, Boundary.DUEL_ARENA)) {
+	                c.sendMessage("You cannot do this here.");
+	                return;
+	            }
+	            if (c.getHealth().getStatus().isPoisoned() || c.getHealth().getStatus().isVenomed()) {
+	                c.sendMessage("You are effected by venom or poison, you should cure this first.");
+	                return;
+	            }
+	            if (c.getHealth().getCurrentHealth() <= 1) {
+	                c.sendMessage("I better not do that.");
+	                return;
+	            }
+	            if (c.getItems().isWearingItem(4722) && c.getItems().isWearingItem(4716) && c.getItems().isWearingItem(4720) && c.getItems().isWearingItem(4718)) {
+	                c.sendMessage("I better not do that.");
+	                return;
+	            }
+	            c.forcedChat("Ow! I nearly broke a tooth!");
+	            c.startAnimation(829);
+	            int health = c.getHealth().getCurrentHealth();
+	            c.appendDamage(c.getHealth().getCurrentHealth() - 1, Hitmark.HIT);
+	        break;
 		case LootingBag.LOOTING_BAG:
 		case LootingBag.LOOTING_BAG_OPEN:
         	c.getDH().sendDialogues(LootingBag.OPTIONS_DIALOGUE_ID, 0);

@@ -13,7 +13,7 @@ import ethos.model.players.combat.range.RangeData;
 public class MagicShortBow extends Special {
 
 	public MagicShortBow() {
-		super(6.0, 1.15, 1.05, new int[] { 859, 861 });
+		super(6.0, 1.15, 1.05, new int[] { 859, 861, 12788});
 	}
 
 	public MagicShortBow(double cost) {

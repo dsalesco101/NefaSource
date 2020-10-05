@@ -53,6 +53,10 @@ public class IronmanMode extends Mode {
 		 * case 78: case 77: case 48: case 44: case 40: case 26: case 22: case 20: case 16: case 14: case 12: case 2:
 		 */
 		case 15:
+		case 176:
+		case 123:
+		case 124:
+		case 21:
 		case 77:
 		case 171:
 		case 178:
@@ -97,9 +101,12 @@ public class IronmanMode extends Mode {
 	@Override
 	public boolean isItemPurchasable(int shopId, int itemId) {
 		switch (shopId) {
+		case 176:
+		case 123:
 		case 15:
 		case 171:
 		case 172:
+		case 21:
 		case 178:
 		case 179:
 		case 173:
@@ -129,6 +136,12 @@ public class IronmanMode extends Mode {
 		case 44:
 		case 10:
 			return true;
+		case 124:
+			switch (itemId) {
+			case 11730:
+				return true;
+			}
+			return false;
 		case 6:
 			if (Item.getItemName(itemId).contains("rune")) {
 				return true;

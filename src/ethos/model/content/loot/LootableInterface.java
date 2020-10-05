@@ -89,7 +89,39 @@ public class LootableInterface {
     public static void openInterface(Player player) {
         open(player, LootableView.VOTE_KEY);
     }
-
+    public static void openMysteryView(Player player) {
+        open(player, LootableView.MYSTERY_BOX);
+    }
+    public static void openSuperMboxView(Player player) {
+        open(player, LootableView.SUPER_MYSTERY_BOX);
+    }
+    public static void openUltraMboxView(Player player) {
+        open(player, LootableView.ULTRA_MYSTERY_BOX);
+    }
+    public static void openPvmCasketView(Player player) {
+        open(player, LootableView.PVM_CASKET);
+    }
+    public static void openVoteMboxView(Player player) {
+        open(player, LootableView.VOTE_MYSTERY_BOX);
+    }
+    public static void openVoteChestView(Player player) {
+        open(player, LootableView.VOTE_KEY);
+    }
+    public static void openRaidsChestView(Player player) {
+        open(player, LootableView.RAIDS);
+    }
+    public static void openCrystalChestView(Player player) {
+        open(player, LootableView.CRYSTAL_CHEST);
+    }
+    public static void openHhunlefChestView(Player player) {
+        open(player, LootableView.HUNNLEFS_KEY);
+    }
+    public static void openSerenChestView(Player player) {
+        open(player, LootableView.SERENS_KEY);
+    }
+    public static void openSotetsegChestView(Player player) {
+        open(player, LootableView.SOTETSEGS_KEY);
+    }
     private static void open(Player player, LootableView view) {
         player.getPA().sendConfig(CURRENT_VIEW_CONFIG_ID, view.ordinal());
         player.getPA().resetScrollBar(COMMON_SCROLLABLE_INTERFACE_ID);

@@ -54,9 +54,9 @@ public class EnterAmountInput implements PacketType {
 			if(c.inWild() || c.inClanWars()) { //Fix wildy resource zone here inwild() && !inwildyzone
 				return;
 			}
-			if (amount > 10000) {
-				c.sendMessage("You can only buy 10,000 items at a time.");
-				amount = 10000;
+			if (amount > 1000000) {
+				c.sendMessage("You can only buy 1m items at a time.");
+				amount = 1000000;
 			}
 			c.getShops().buyItem(c.xRemoveId, c.xRemoveSlot, amount);// buy X
             c.xRemoveSlot = 0;

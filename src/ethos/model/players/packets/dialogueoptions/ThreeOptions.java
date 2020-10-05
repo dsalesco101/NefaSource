@@ -8,7 +8,9 @@ import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
+import ethos.model.players.PlayerHandler;
 import ethos.model.players.PlayerSave;
+import ethos.model.players.skills.slayer.Slayer;
 
 /*
  * @author Matt
@@ -22,6 +24,29 @@ public class ThreeOptions {
 	 */
 	public static void handleOption1(Player c) {
 		switch (c.dialogueAction) {
+		case 698:
+			if (!c.getItems().playerHasItem(561, 1 * 10)) {
+				c.getDH().sendStatement("You need atleast 10 nature runes.");
+				return;
+			}
+			if (!c.getItems().playerHasItem(554, 4 * 10)) {
+				c.getDH().sendStatement("You need atleast 40 fire runes.");
+				return;
+			}
+			if (!c.getItems().playerHasItem(995, 500 * 10)) {
+				c.getDH().sendStatement("You need atleast 5k coins.");
+				return;
+			}
+			c.getItems().deleteItem(561, 1 * 10);
+			c.getItems().deleteItem(554, 4 * 10);
+			c.getItems().deleteItem(995, 500 * 10);
+			c.alchCharge += 10;
+			c.sendMessage("@blu@You have added @red@10@blu@ charges to your alchemy pouch.");
+			c.sendMessage("@blu@You now have a total of @red@"+c.alchCharge+"@blu@ charges to your alchemy pouch.");
+			break;
+		case 950:
+			c.getDH().sendItemStatement("Please use this gem on your partner", 4155);
+			break;
 		case 265:
 			int amount = c.getItems().getItemAmount(20718);
 			int pages = 20718;
@@ -132,6 +157,32 @@ public class ThreeOptions {
 	public static void handleOption2(Player c) {
 
 		switch (c.dialogueAction) {
+		case 698:
+			if (!c.getItems().playerHasItem(561, 1 * 100)) {
+				c.getDH().sendStatement("You need atleast 100 nature runes.");
+				return;
+			}
+			if (!c.getItems().playerHasItem(554, 4 * 100)) {
+				c.getDH().sendStatement("You need atleast 400 fire runes.");
+				return;
+			}
+			if (!c.getItems().playerHasItem(995, 500 * 100)) {
+				c.getDH().sendStatement("You need atleast 50k coins.");
+				return;
+			}
+			c.getItems().deleteItem(561, 1 * 100);
+			c.getItems().deleteItem(554, 4 * 100);
+			c.getItems().deleteItem(995, 500 * 100);
+			c.alchCharge += 100;
+			c.sendMessage("@blu@You have added @red@100@blu@ charges to your alchemy pouch.");
+			c.sendMessage("@blu@You now have a total of @red@"+c.alchCharge+"@blu@ charges to your alchemy pouch.");
+			break;
+		case 950:
+			PlayerHandler.executeGlobalMessage("@pur@Type ::duo "+c.playerName+" to assistant with "+c.getSlayer().taskAmount+" "+c.getSlayer().task.get().getPrimaryName()+".");
+			break;
+		case 932:
+			c.getPA().removeAllWindows();
+			break;
 		case 265:
 			if (c.getItems().freeSlots() < 1) {
                 c.sendMessage("You need atleast 1 inventory space to do this.");
@@ -238,7 +289,28 @@ public class ThreeOptions {
 	 */
 	public static void handleOption3(Player c) {
 		switch (c.dialogueAction) {
+		case 698:
+			if (!c.getItems().playerHasItem(561, 1 * 1000)) {
+				c.getDH().sendStatement("You need atleast 1000 nature runes.");
+				return;
+			}
+			if (!c.getItems().playerHasItem(554, 4 * 1000)) {
+				c.getDH().sendStatement("You need atleast 4000 fire runes.");
+				return;
+			}
+			if (!c.getItems().playerHasItem(995, 500 * 100)) {
+				c.getDH().sendStatement("You need atleast 500k coins.");
+				return;
+			}
+			c.getItems().deleteItem(561, 1 * 1000);
+			c.getItems().deleteItem(554, 4 * 1000);
+			c.getItems().deleteItem(995, 500 * 1000);
+			c.alchCharge += 1000;
+			c.sendMessage("@blu@You have added @red@1000@blu@ charges to your alchemy pouch.");
+			c.sendMessage("@blu@You now have a total of @red@"+c.alchCharge+"@blu@ charges to your alchemy pouch.");
+			break;
 		case 265:
+		case 950:
 			c.getPA().removeAllWindows();
 			break;
 		case 809: // Withdraw

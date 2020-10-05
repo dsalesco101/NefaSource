@@ -45,6 +45,9 @@ public class NPCDeathTracker {
 			if (name.equalsIgnoreCase("none")) {
 				return;
 			}
+			if (name.equalsIgnoreCase("olm")) {
+				return;
+			}
 			if (!name.contains("clue-scroll")) {
 				player.sendMessage("Your " + Misc.capitalizeJustFirst(name.replaceAll("_", " "))
 					+ " kill count is: <col=FF0000>" + kills + "</col>.");

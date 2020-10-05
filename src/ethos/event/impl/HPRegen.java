@@ -19,6 +19,9 @@ public class HPRegen extends Event<Object> {
 	@Override
 	public void execute() {
 		PlayerHandler.nonNullStream().forEach(player -> { 
+			if (player.getHealth().getCurrentHealth() <= 10 && player.combatLevel == 3) {
+				return;
+			}
 			if (player.getHealth().getCurrentHealth() > 98) {
 				return;
 			}

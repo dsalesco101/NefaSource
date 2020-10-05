@@ -222,7 +222,7 @@ public class Tutorial {
 
 			@Override
 			public void display(Player player) {
-				if ((player.getMode().isUltimateIronman()) || (player.getMode().isIronman()) || (player.getMode().isHCIronman())) {
+				if ((player.getMode().isUltimateIronman()) || (player.getMode().isIronman()) || (player.getMode().isHCIronman()) || (player.getMode().isMedMode())) {
 					player.nextChat = -1;
 					player.getTutorial().proceed();
 				

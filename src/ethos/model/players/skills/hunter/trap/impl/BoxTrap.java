@@ -10,7 +10,6 @@ import ethos.Server;
 import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.items.GameItem;
 import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCDumbPathFinder;
@@ -115,9 +114,6 @@ public final class BoxTrap extends Trap {
 			System.out.println("Hunter; No trap existed while attempting to catch");
 			return;
 		}
-		if (npc.npcId == 2912) {
-			player.getEventCalendar().progress(EventChallenge.CATCH_X_BLACK_CHINCHOMPAS);
-		}
 		npc.randomWalk = false;
 		
 		event = Optional.of(new CycleEvent() {
@@ -129,9 +125,6 @@ public final class BoxTrap extends Trap {
 					container.stop();
 					npc.randomWalk = true;
 					return;
-				}
-				if (npc.npcId == 2912) {
-					player.getEventCalendar().progress(EventChallenge.CATCH_X_BLACK_CHINCHOMPAS);
 				}
 				if(npc.absX == getObject().getX() && npc.absY == getObject().getY()) {
 					container.stop();
@@ -218,10 +211,6 @@ public final class BoxTrap extends Trap {
 		if(!data.isPresent()) {
 			throw new IllegalStateException("Invalid object id.");
 		}
-		if (data.get().experience == 335) {
-				player.getEventCalendar().progress(EventChallenge.CATCH_X_BLACK_CHINCHOMPAS);
-
-		}
 		return data.get().experience;
 	}
 
@@ -251,8 +240,6 @@ public final class BoxTrap extends Trap {
 			this.setObject(FAILED_ID);
 			Server.getGlobalObjects().add(this.getObject());
 		}
-
-			player.getEventCalendar().progress(EventChallenge.CATCH_X_BLACK_CHINCHOMPAS);
 
 		player.sendMessage("Your trap has been triggered by something...");
 		super.setState(state);

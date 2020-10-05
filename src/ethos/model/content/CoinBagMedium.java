@@ -99,7 +99,7 @@ public class CoinBagMedium extends CycleEvent {
 		if (System.currentTimeMillis() - player.lastMysteryBox < 1200) {
 			return;
 		}
-		if (player.getItems().freeSlots() < 1) {
+		if (player.getItems().freeSlots() < 1 && !player.getItems().playerHasItem(995)) {
 			player.sendMessage("You need at least one free slots to open a Coin Bag.");
 			return;
 		}

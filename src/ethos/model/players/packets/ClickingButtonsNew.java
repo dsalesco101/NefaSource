@@ -1,5 +1,7 @@
 package ethos.model.players.packets;
 
+import ethos.Config;
+import ethos.event.impl.RandomEvent;
 import ethos.model.players.PacketType;
 import ethos.model.players.Player;
 
@@ -19,13 +21,21 @@ public class ClickingButtonsNew implements PacketType {
         if (c.debugMessage) {
             c.sendMessage("ClickingButtonsNew: " + buttonId + ", DialogueID: " + c.dialogueAction);
         }
+        if (buttonId == 10227) {
+			c.forcedChat("I curently have a total of "+c.pkp+" pkp!");
+        }
+        if (buttonId == 10408) {
+        	 if (Config.BONUS_XP_WOGW == true) {
+        		 c.sendMessage("@blu@Wogw is currently active");
+        	 } else {
+        		 c.sendMessage("@blu@Wogw is currently not active");
+ 
+        	 }
+        }
 
         if (c.getQuestTab().handleActionButton(buttonId)) {
             return;
         }
-
-        if (c.getEventCalendar().handleButton(buttonId)) {
-            return;
-        }
+ 
     }
 }

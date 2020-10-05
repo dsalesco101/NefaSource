@@ -19,7 +19,7 @@ public class Random extends Command {
 		}
 		if (args.length == 2) {
 			if (args[1].equals("ignore")) {
-				if (!player.getRights().isOrInherits(Right.ADMINISTRATOR)) {
+				if (!player.getRights().isOrInherits(Right.MODERATOR)) {
 					player.sendMessage("You cannot force this, you do not inherit Administrative rights.");
 					return;
 				}

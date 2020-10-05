@@ -65,6 +65,7 @@ public class IronManInterface {
 		actions.put(Action.ULTIMATE_IRON_MAN, UNSELECTED);
 		actions.put(Action.HC_IRON_MAN, UNSELECTED);
 		actions.put(Action.OSRS, UNSELECTED);
+		actions.put(Action.MED_MODE, UNSELECTED);
 		actions.put(Action.NPC, UNSELECTABLE);
 		actions.put(Action.PERMANENT, UNSELECTABLE);
 	}
@@ -128,7 +129,7 @@ public class IronManInterface {
 		List<Entry<Action, Byte>> selected = actions.entrySet().stream().filter(e -> e.getValue() == SELECTED).collect(Collectors.toList());
 		if (selected.stream().noneMatch(entry -> entry.getKey() == Action.NONE)) {
 			Optional<Entry<Action, Byte>> revert = selected.stream().filter(e -> e.getKey() == Action.NPC || e.getKey() == Action.PERMANENT).findFirst();
-			Optional<Entry<Action, Byte>> mode = selected.stream().filter(e -> e.getKey() == Action.STANDARD_IRON_MAN || e.getKey() == Action.ULTIMATE_IRON_MAN || e.getKey() == Action.OSRS|| e.getKey() == Action.HC_IRON_MAN).findFirst();
+			Optional<Entry<Action, Byte>> mode = selected.stream().filter(e -> e.getKey() == Action.STANDARD_IRON_MAN || e.getKey() == Action.ULTIMATE_IRON_MAN || e.getKey() == Action.MED_MODE || e.getKey() == Action.OSRS|| e.getKey() == Action.HC_IRON_MAN).findFirst();
 
 			if (!mode.isPresent()) {
 				player.sendMessage("You must select a mode.");
@@ -157,6 +158,10 @@ public class IronManInterface {
 				player.setMode(Mode.forType(ModeType.OSRS));
 				player.getRights().setPrimary(Right.OSRS);
 				break;
+			case MED_MODE:
+				player.setMode(Mode.forType(ModeType.MED_MODE));
+				player.getRights().setPrimary(Right.MED_MODE);
+				break;
 			case HC_IRON_MAN:
 				player.setMode(Mode.forType(ModeType.HC_IRON_MAN));
 				player.getRights().setPrimary(Right.HC_IRONMAN);
@@ -179,7 +184,8 @@ public class IronManInterface {
 		NPC(165165, 42405), 
 		PERMANENT(165166, 42406),
 		HC_IRON_MAN(165183, 42423),
-		OSRS(165183, 42423);
+		OSRS(165183, 42423),
+		MED_MODE(165183, 42423);
 
 		/**
 		 * The button clicked to perform the action
@@ -209,6 +215,7 @@ public class IronManInterface {
                 Action.ULTIMATE_IRON_MAN,
                 Action.NONE,
                 Action.OSRS,
+                Action.MED_MODE,
                 Action.NPC,
                 Action.PERMANENT
         }, new Action[]{
@@ -220,6 +227,7 @@ public class IronManInterface {
 				Action.NONE, 
 				Action.HC_IRON_MAN,
 				Action.OSRS, 
+                Action.MED_MODE,
 				Action.NPC, 
 				Action.PERMANENT 
 		}, new Action[] {
@@ -230,6 +238,7 @@ public class IronManInterface {
 				Action.NONE, 
 				Action.HC_IRON_MAN,
 				Action.OSRS, 
+                Action.MED_MODE,
 				Action.NPC, 
 				Action.PERMANENT 
 		},new Action[] {
@@ -239,7 +248,8 @@ public class IronManInterface {
 				Action.ULTIMATE_IRON_MAN, 
 				Action.STANDARD_IRON_MAN,
 				Action.HC_IRON_MAN,
-				Action.OSRS
+				Action.OSRS,
+                Action.MED_MODE,
 		}, new Action[] { 
 				Action.NPC, 
 				Action.PERMANENT 
@@ -252,6 +262,17 @@ public class IronManInterface {
 		PERMANENT(Action.PERMANENT, new Action[] { 
 				Action.NPC 
 		}, new Action[] {
+				
+		}), 
+		MED_MODE(Action.PERMANENT, new Action[] { 
+				Action.ULTIMATE_IRON_MAN, 
+				Action.STANDARD_IRON_MAN, 
+				Action.HC_IRON_MAN,
+				Action.OSRS,
+				Action.NONE,
+				Action.PERMANENT 
+		}, new Action[] {
+				Action.NPC
 				
 		}), 
 		OSRS(Action.OSRS, new Action[] { 

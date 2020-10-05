@@ -224,7 +224,7 @@ public class QuickUltra {
 		int random = Misc.random(1000);
 		if (random > 900) {
 			PlayerHandler.executeGlobalMessage("[<col=CC0000>Ultra Mystery Box</col>] <col=255>" + Misc.formatPlayerName(c.playerName)
-					+ "</col> hit the jackpot!");
+					+ "</col> hit the jackpot with "+name+"!");
 			
 			List<GameItem> itemList = random > 900 ? items.get(Rarity.RARE) : items.get(Rarity.RARE);
 			return Misc.getRandomItem(itemList);

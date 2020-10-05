@@ -2,13 +2,14 @@ package ethos.model.players;
 
 import ethos.Config;
 import ethos.Highscores.Highscores;
-import ethos.Server;
 import ethos.database.impl.Hiscores;
+import ethos.Server;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
 import ethos.event.Event;
 import ethos.event.impl.IronmanRevertEvent;
 import ethos.event.impl.MinigamePlayersEvent;
+import ethos.event.impl.MiningEvent;
 import ethos.event.impl.RunEnergyEvent;
 import ethos.event.impl.SkillRestorationEvent;
 import ethos.model.Animation;
@@ -21,11 +22,6 @@ import ethos.model.content.achievement_diary.AchievementDiaryManager;
 import ethos.model.content.achievement_diary.RechargeItems;
 import ethos.model.content.barrows.Barrows;
 import ethos.model.content.collection_log.CollectionLog;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
-import ethos.model.content.dailytasks.TaskTypes;
-import ethos.model.content.eventcalendar.EventCalendar;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.content.explock.ExpLock;
 import ethos.model.content.godwars.God;
 import ethos.model.content.godwars.Godwars;
@@ -122,6 +118,7 @@ import ethos.model.shops.ShopAssistant;
 import ethos.net.Packet;
 import ethos.net.Packet.Type;
 import ethos.net.outgoing.UnnecessaryPacketDropper;
+
 import ethos.util.Misc;
 import ethos.util.SimpleTimer;
 import ethos.util.Stopwatch;
@@ -130,6 +127,9 @@ import ethos.world.Clan;
 import lombok.Getter;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;
+
+import Ranked.Ranked.rankTasks;
+import Ranked.Ranked.rankTypes;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -262,6 +262,15 @@ public class Player extends Entity {
 	public int xericWaveType = 0;
 	public int xericDamage = 0;
 	
+	/*
+	 * ToB Variables
+	 */
+	public int theatrePoints = 0;
+	public int EventBossDamage = 0;
+	public int NightmareDamage = 0;
+	public int SolakDamage = 0;
+	public int MimicDamage = 0;
+	public int JackokrakenDamage = 0;
 
 	/**
 	 * Variables for trading post
@@ -269,17 +278,16 @@ public class Player extends Entity {
 	public boolean barbarian = false;
 	public boolean debugMessage = false;
 	public boolean breakVials = false;
-	public boolean hasPartner;
 	public boolean collectCoins = false;
-	public boolean rubyspecial = false;
+	public boolean rubyspecial = false;	
+	
 	/**
-	 * New Daily Task Variables
+	 * New ranked system Variables
 	 */
-	public PossibleTasks currentTask;
-	public TaskTypes playerChoice;
-	public boolean dailyEnabled = false, completedDailyTask;
-	public int dailyTaskDate, totalDailyDone = 0;
-
+	public rankTasks rankTask;
+	public rankTypes challengerChoice;
+	
+	
 	public int item, uneditItem, quantity, price, pageId = 1, searchId;
 	public String lookup;
 	public List<Integer> saleResults;
@@ -331,7 +339,6 @@ public class Player extends Entity {
 
 	private AchievementDiary<?> diary;
 	private QuestTab questTab = new QuestTab(this);
-	private EventCalendar eventCalendar = new EventCalendar(this);
 	private RunePouch runePouch = new RunePouch(this);
 	private HerbSack herbSack = new HerbSack(this);
 	private GemBag gemBag = new GemBag(this);
@@ -347,10 +354,6 @@ public class Player extends Entity {
 	private DamageQueueEvent damageQueue = new DamageQueueEvent(this);
 	private BountyHunter bountyHunter = new BountyHunter(this);
 	private SuperMysteryBox superMysteryBox = new SuperMysteryBox(this);
-	private CoinBagSmall coinBagSmall = new CoinBagSmall(this);
-	private CoinBagMedium coinBagMedium = new CoinBagMedium(this);
-	private CoinBagLarge coinBagLarge = new CoinBagLarge(this);
-	private CoinBagBuldging coinBagBuldging = new CoinBagBuldging(this);
 	private HourlyRewardBox hourlyRewardBox = new HourlyRewardBox();
 	private PvmCasket pvmCasket = new PvmCasket();
 	private SkillCasket skillCasket = new SkillCasket(this);
@@ -493,10 +496,10 @@ public class Player extends Entity {
 			makeTimes, event, ratsCaught, summonId, bossKills, droppedItem = -1, kbdCount, dagannothCount, krakenCount,
 			chaosCount, armaCount, bandosCount, saraCount, zammyCount, barrelCount, moleCount, callistoCount,
 			venenatisCount, vetionCount, rememberNpcIndex, diceMin, diceMax, otherDiceId, betAmount, totalProfit,
-			betsWon, betsLost, slayerPoints = 0, playTime, killStreak, day, month, YEAR, totalLevel, xpTotal,
+			betsWon, betsLost, slayerPoints = 0, playTime, diceBan, killStreak, day, month, YEAR, totalLevel, xpTotal,
 			smeltAmount = 0, smeltEventId = 5567, waveType, achievementsCompleted, achievementPoints, fireslit,
-			crabsKilled, treesCut, pkp, pvmp, xpMaxSkills, tWin, tPoint, exchangeP,  RefU, RefP, LoyP, dayv, killcount, deathcount, votePoints, bloodPoints, amDonated, level1 = 0,
-			showcase, streak, RDragonCount, ADragonCount, memberdays, autoRet,
+			crabsKilled, treesCut, bountyp, pvmp, pkp, alchCharge, chestRateBoost, xpMaxSkills, tWin, tPoint, exchangeP,  RefU, RefP, LoyP, dayv, killcount, deathcount, votePoints, bloodPoints, amDonated, level1 = 0,
+			showcase, streak, RDragonCount, ADragonCount, memberdays, autoRet, ranking,
 			level2 = 0, level3 = 0, treeX, treeY, homeTele = 0, homeTeleDelay = 0, lastLoginDate, playerBankPin,
 			recoveryDelay = 3, attemptsRemaining = 3, lastPinSettings = -1, setPinDate = -1, changePinDate = -1,
 			deletePinDate = -1, firstPin, secondPin, thirdPin, fourthPin, bankPin1, bankPin2, bankPin3, bankPin4,
@@ -697,10 +700,26 @@ public class Player extends Entity {
 	public int lastY;
 	public int graniteMaulSpecialCharges;
 
-	private int chatTextColor = 0, chatTextEffects = 0, dragonfireShieldCharge, runEnergy = 100, lastEnergyRecovery,
-			x1 = -1, y1 = -1, x2 = -1, y2 = -1, privateChat, shayPoints, arenaPoints, toxicStaffOfTheDeadCharge,
-			toxicBlowpipeCharge, toxicBlowpipeAmmo, toxicBlowpipeAmmoAmount, serpentineHelmCharge, tridentCharge,
-			toxicTridentCharge, arcLightCharge, runningDistanceTravelled, interfaceOpen;
+	private int chatTextColor = 0, chatTextEffects = 0, dragonfireShieldCharge;
+	public int runEnergy = 100;
+	private int lastEnergyRecovery;
+	private int x1 = -1;
+	private int y1 = -1;
+	private int x2 = -1;
+	private int y2 = -1;
+	private int privateChat;
+	private int shayPoints;
+	private int arenaPoints;
+	private int toxicStaffOfTheDeadCharge;
+	private int toxicBlowpipeCharge;
+	private int toxicBlowpipeAmmo;
+	private int toxicBlowpipeAmmoAmount;
+	private int serpentineHelmCharge;
+	private int tridentCharge;
+	private int toxicTridentCharge;
+	private int arcLightCharge;
+	private int runningDistanceTravelled;
+	private int interfaceOpen;
 
 	public final int walkingQueueSize = 50;
 	public static int playerCrafting = 12, playerSmithing = 13;
@@ -745,6 +764,8 @@ public class Player extends Entity {
 	/**
 	 * Strings
 	 */
+	
+
 	public String CERBERUS_ATTACK_TYPE = "";
 
 	public String getATTACK_TYPE() {
@@ -776,7 +797,7 @@ public class Player extends Entity {
 			expLock = false, buyingX, leverClicked = false, isBanking = true, inSafeBox = false, isCooking = false,
 			initialized = false, disconnected = false, ruleAgreeButton = false, rebuildNPCList = false,
 			isActive = false, isKicked = false, isSkulled = false, friendUpdate = false, newPlayer = false,
-			hasMultiSign = false, saveCharacter = false, mouseButton = false, splitChat = false, chatEffects = true,
+			hasMultiSign = false, saveCharacter = false, mouseButton = false, splitChat = false, chatEffects = true, notification = true,
 			nextDialogue = false, autocasting = false, autocastingDefensive, usedSpecial = false, mageFollow = false, dbowSpec = false,
 			craftingLeather = false, properLogout = false, secDbow = false, maxNextHit = false, ssSpec = false,
 			vengOn = false, addStarter = false, startPack = false, accountFlagged = false, msbSpec = false,
@@ -855,6 +876,7 @@ public class Player extends Entity {
 	private long revertModeDelay, experienceCounter, bestZulrahTime, lastIncentive, lastOverloadBoost, nameAsLong,
 			lastDragonfireShieldAttack;
 	public long clickDelay;
+	public long taskTime;
 
 	/**
 	 * The amount of time before we are out of combat.
@@ -1112,6 +1134,9 @@ public class Player extends Entity {
 		if (Boundary.isIn(this, Boundary.XERIC_LOBBY)) {
 			XericLobby.removePlayer(this);
 		}
+		if (inGodwars()) {
+			getPA().spellTeleport(absX, absX, getHeight(), false);
+		}
 		if(getRaidsInstance() != null) {
 			getRaidsInstance().logout(this);
 		}
@@ -1156,22 +1181,12 @@ public class Player extends Entity {
 		Server.getMultiplayerSessionListener().removeOldRequests(this);
 		if (clan != null) {
 			clan.removeMember(this);
-		}
+		} //LMFAO THIS IS SO BAD
+        //new Thread(new Hiscores(this)).start();
+
 		Server.getEventHandler().stop(this);
 		CycleEventHandler.getSingleton().stopEvents(this);
 		getFriends().notifyFriendsOfUpdate();
-		 if (getRights().contains(Right.OWNER) || getRights().contains(Right.GAME_DEVELOPER)) {
-		 } else if (getMode().isIronman()) {
-	          new Thread(new Hiscores(this)).start();
-		 } else if (getMode().isUltimateIronman()) {
-	          new Thread(new Hiscores(this)).start();
-		 } else if (getMode().isOsrs()) {
-	          new Thread(new Hiscores(this)).start();
-		 } else if (getMode().isHCIronman()) {
-	          new Thread(new Hiscores(this)).start();
-		 } else if (getMode().isRegular()) {
-	          new Thread(new Hiscores(this)).start();
-	      }
 		teleBlockDelay = 0;
 		teleBlockLength = 0;
 		saveCharacter = true;
@@ -1291,6 +1306,16 @@ public class Player extends Entity {
 
 	public void initialize() {
 		try {
+			if (augury == false) {
+				getPA().sendFrame36(PRAYER_GLOW[28], 0);
+			}
+			if (rigour == false) {
+				getPA().sendFrame36(PRAYER_GLOW[27], 0);
+			}
+			if (MiningEvent.EVENT_STARTED == true) {
+				sendMessage("@bla@Mining Event is currently [@gre@ACTIVE@bla@]");
+			}
+			alchCheck = false;
 			graceSum();
 			Achievements.checkIfFinished(this);
 			getPA().loadQuests();
@@ -1315,13 +1340,10 @@ public class Player extends Entity {
 			/**
 			 * Welcome messages
 			 */
-			sendMessage("@bla@Welcome to Wisdom! Don't forget to join our ::discord");
+			sendMessage("@bla@Welcome to NefariousPkz! Don't forget to join our ::discord");
 			if(Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY 
 	        		|| Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
 				sendMessage("@bla@Bonus XP Weekend is currently [@gre@ACTIVE@bla@]");
-			}
-			if (combatLevel >= 126) {
-				getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
 			}
 			if (getRights().getPrimary().equals(Right.HELPER)) {
 					PlayerHandler.executeGlobalMessage(
@@ -1484,9 +1506,6 @@ public class Player extends Entity {
 			if (TourneyManager.getSingleton().isInArenaBoundsOnLogin(this)) {
 				TourneyManager.getSingleton().handleLoginWithinArena(this);
 			}
-			if (totalLevel >= 2000) {
-				getEventCalendar().progress(EventChallenge.HAVE_2000_TOTAL_LEVEL);
-			}
 			List<String> DailyLogin = DailyLoginUses.getUsedDL();
 			long usedDailyLogin = DailyLogin.stream().filter(data -> data.equals(getMacAddress())).count();
 			if (usedDailyLogin > 1) {
@@ -1542,8 +1561,6 @@ public class Player extends Entity {
 			}
 			getCollectionLog().loadCollections();
 			rechargeItems.onLogin();
-			DailyTasks.complete(this);
-			DailyTasks.assignTask(this);
 			for (int i = 0; i < getQuick().getNormal().length; i++) {
 				if (getQuick().getNormal()[i]) {
 					getPA().sendConfig(QuickPrayers.CONFIG + i, 1);
@@ -1554,9 +1571,6 @@ public class Player extends Entity {
 
             PollTab.updateInterface(this);
 
-			if (EventCalendar.isEventRunning()) {
-				sendMessage(EventCalendar.MESSAGE_COLOUR + "The " + EventCalendar.EVENT_NAME + " is in progress! @red@Use ::cal for details.");
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Player login - Check for error");
@@ -1659,6 +1673,7 @@ public class Player extends Entity {
 
 	public int totalRaidsFinished;
 	public int totalXericFinished;
+	public int totalTheatreFinished;
 
 	public boolean hasClaimedRaidChest;
 
@@ -1670,7 +1685,7 @@ public class Player extends Entity {
 			13623, 13625, 13627, 13629, 13631, 13633, 13635, 13637, 13667, 13669, 13671, 13673, 13675, 13677, 21061,
 			21064, 21067, 21070, 21073, 21076 };
 
-	private boolean wearingGrace() {
+	public boolean wearingGrace() {
 		return getItems().isWearingAnyItem(GRACEFUL);
 	}
 
@@ -1802,6 +1817,9 @@ public class Player extends Entity {
 		}
 		if (playTime < Integer.MAX_VALUE && !isIdle) {
 			playTime++;
+		}
+		if (diceBanned == true) {
+			diceBan++;
 		}
 
 		//getPA().sendFrame126("@or1@Players Online: @gre@" + PlayerHandler.getPlayerCount() + "", 10222);
@@ -2487,7 +2505,7 @@ public class Player extends Entity {
 			amDonated = 0;
 		} 
 		if (amDonated >= 5 && amDonated < 10) { 
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.TRIAL_DONATOR);
 				//sendMessage("Your hidden trial donator rank is now active.");
 			} else {
@@ -2496,7 +2514,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 10 && amDonated < 50) { 
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.REGULAR_DONATOR);
 				//sendMessage("Your hidden donator rank is now active.");
 			} else {
@@ -2505,7 +2523,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 50 && amDonated < 100) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.SUPER_DONOR);
 				//sendMessage("Your hidden super donator rank is now active.");
 			} else {
@@ -2514,7 +2532,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 100 && amDonated < 200) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE)|| getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.EXTREME_DONOR);
 				//sendMessage("Your hidden extreme donator rank is now active.");
 			} else {
@@ -2523,7 +2541,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 200 && amDonated < 300) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.ULTRA_DONATOR);
 				//sendMessage("Your hidden ultra donator rank is now active.");
 			} else {
@@ -2532,7 +2550,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 300 && amDonated < 500) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.LEGENDARY_DONATOR);
 				//sendMessage("Your hidden legendary donator rank is now active.");
 			} else {
@@ -2541,7 +2559,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 500 && amDonated < 1000) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.DIAMOND_CLUB);
 				//sendMessage("Your hidden diamond club rank is now active.");
 			} else {
@@ -2550,7 +2568,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 1000 && amDonated < 2500) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.ONYX_CLUB);
 				//sendMessage("Your hidden onyx club donator rank is now active.");
 			} else {
@@ -2559,7 +2577,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 2500 && amDonated < 5000) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.PLATINUM);
 				//sendMessage("Your hidden Platinum donator rank is now active.");
 			} else {
@@ -2568,7 +2586,7 @@ public class Player extends Entity {
 			}
 		}
 		if (amDonated >= 5000) {
-			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
+			if (getRights().isOrInherits(Right.IRONMAN) || getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || getRights().isOrInherits(Right.OSRS) || getRights().isOrInherits(Right.MED_MODE) || getRights().isOrInherits(Right.HELPER) || getRights().isOrInherits(Right.MODERATOR) || getRights().isOrInherits(Right.HC_IRONMAN)) {
 				getRights().add(Right.DIVINE);
 				//sendMessage("Your hidden Divine donator rank is now active.");
 			} else {
@@ -2622,24 +2640,8 @@ public class Player extends Entity {
 		this.lastContainerSearch = lastContainerSearch;
 	}
 
-	public CoinBagSmall getCoinBagSmall() {
-		return coinBagSmall;
-	}
-	public CoinBagMedium getCoinBagMedium() {
-		return coinBagMedium;
-	}
-	public CoinBagLarge getCoinBagLarge() {
-		return coinBagLarge;
-	}
-	public CoinBagBuldging getCoinBagBuldging() {
-		return coinBagBuldging;
-	}
-
 	public SuperMysteryBox getSuperMysteryBox() {
 		return superMysteryBox;
-	}
-	public CoinBagSmall geCoinBagSmall() {
-		return coinBagSmall;
 	}
 	public HourlyRewardBox getHourlyRewardBox() {
 		return hourlyRewardBox;
@@ -2687,7 +2689,7 @@ public class Player extends Entity {
 			4222, 4223, 4734, 4934, 4935, 4936, 4937 };
 	public final int[] OTHER_RANGE_WEAPONS = { 11959, 10033, 10034, 800, 801, 802, 803, 804, 805, 20849, 806, 807, 808,
 			809, 810, 811, 812, 813, 814, 815, 816, 817, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836,
-			863, 864, 865, 866, 867, 868, 869, 870, 871, 872, 873, 874, 875, 876, 4934, 4935, 4936, 4937, 5628, 5629,
+			863, 864, 865, 866, 867, 868, 22804, 869, 870, 871, 872, 873, 874, 875, 876, 4934, 4935, 4936, 4937, 5628, 5629,
 			5630, 5632, 5633, 5634, 5635, 5636, 5637, 5639, 5640, 5641, 5642, 5643, 5644, 5645, 5646, 5647, 5648, 5649,
 			5650, 5651, 5652, 5653, 5654, 5655, 5656, 5657, 5658, 5659, 5660, 5661, 5662, 5663, 5664, 5665, 5666, 5667,
 			6522, 11230 };
@@ -3426,6 +3428,8 @@ public class Player extends Entity {
 		if(Boundary.isIn(this, Boundary.EDGEVILLE_PERIMETER) && !Boundary.isIn(this, Boundary.EDGE_BANK) && getHeight() == 8){
 			return true;
 		}
+		if (Boundary.isIn(this, Boundary.RISKPK))
+			return true;
 		if (Boundary.isIn(this, Boundary.SAFEPK))
 			return true;
 		if (Boundary.isIn(this, Boundary.WILDERNESS_UNDERGROUND))
@@ -4269,7 +4273,13 @@ public class Player extends Entity {
 		graphicMaskUpdate0x100 = true;
 		setUpdateRequired(true);
 	}
-
+	public int gfx1030(int gfx) {
+		mask100var1 = gfx;
+		mask100var2 = 6553600;
+		graphicMaskUpdate0x100 = true;
+		setUpdateRequired(true);
+		return gfx;
+	}
 	public void gfx0(int gfx) {
 		mask100var1 = gfx;
 		mask100var2 = 65536;
@@ -4422,6 +4432,10 @@ public class Player extends Entity {
 	public int taskAmount;
 	public boolean spawnedbarrows = false;
 	public boolean absorption;
+	public boolean betap = false;
+	public boolean moneyPerk = false;
+	public boolean diceBanned = false;
+	public boolean alchCheck = false;
 	public boolean insurance = false;
 	public boolean announce = true;
 	public boolean lootPickUp = false;
@@ -4450,8 +4464,7 @@ public class Player extends Entity {
 	public boolean killedXarpus;
 	public boolean killedVerzik;
 	public boolean changedmac = false;
-	
-	
+		
 	public int christmasP;
 	public boolean christmasEvent = false;
 	
@@ -4470,6 +4483,20 @@ public class Player extends Entity {
 	public boolean d10Complete = false;
 	public boolean d11Complete = false;
 	
+	
+	
+	public int eventStage = 0;
+	public int eventPoints;
+	public boolean eventFinished = true;
+	public boolean goblinFilter;
+	
+	public int impS1;
+	public int impS2;
+	public int s1Quantity;
+	public int s2Quantity;
+	
+	public boolean petGoblin;
+
 	/**
 	 * 0 North 1 East 2 South 3 West
 	 */
@@ -5458,7 +5485,6 @@ public class Player extends Entity {
 	public Mode setMode(Mode mode) {
 		return this.mode = mode;
 	}
-
 	public String getRevertOption() {
 		return revertOption;
 	}
@@ -5501,6 +5527,9 @@ public class Player extends Entity {
 
 	public int getArenaPoints() {
 		return arenaPoints;
+	}
+	public void ecoTokensIncrease(int arenaPoints) {
+		this.arenaPoints += arenaPoints;
 	}
 
 	public void setShayPoints(int shayPoints) {
@@ -5666,10 +5695,6 @@ public class Player extends Entity {
 
 	public QuestTab getQuestTab() {
 		return questTab;
-	}
-
-	public EventCalendar getEventCalendar() {
-		return eventCalendar;
 	}
 
 	public LocalDate getLastVote() {

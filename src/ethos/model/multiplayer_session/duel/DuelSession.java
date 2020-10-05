@@ -50,6 +50,12 @@ public class DuelSession extends MultiplayerSession {
 	public void accept(Player player, Player recipient, int stageId) {
 		switch (stageId) {
 		case MultiplayerSessionStage.OFFER_ITEMS:
+			if (player.diceBan > 1) {
+				int time = player.diceBan / 60;
+				player.sendMessage("You are still banned from gambling.");
+				player.sendMessage("You have "+time+" seconds left.");
+				return;
+			}
 			if (System.currentTimeMillis() - lastRuleModification < 5_000) {
 				player.sendMessage("<col=CC0000>A rule was changed in the last 5 seconds, you cannot accept yet.");
 				player.getPA().sendString("A rule was changed in recently, you cannot accept yet.", 6684);
@@ -101,6 +107,12 @@ public class DuelSession extends MultiplayerSession {
 			break;
 
 		case MultiplayerSessionStage.CONFIRM_DECISION:
+			if (player.diceBan > 1) {
+				int time = player.diceBan / 60;
+				player.sendMessage("You are still banned from gambling.");
+				player.sendMessage("You have "+time+" seconds left.");
+				return;
+			}
 			if (stage.hasAttachment() && stage.getAttachment() != player) {
 				stage.setStage(MultiplayerSessionStage.FURTHER_INTERATION);
 				Player opponent = getOther(player);

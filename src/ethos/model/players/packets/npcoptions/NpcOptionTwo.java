@@ -54,6 +54,16 @@ public class NpcOptionTwo {
 			}
 		} 
 		switch (npcType) {
+		case 402:
+			player.getShops().openShop(1);
+			break;
+		case 315:
+			player.getShops().openShop(2);
+			break;
+		case 2949:
+			player.getPA().movePlayer(3088, 3505, 0);
+			player.sendMessage("@red@You have been removed from pest control area.");
+			break;
 		case 7954:
 			player.getPA().showInterface(36000);
 			player.getAchievements().drawInterface(0);
@@ -75,6 +85,12 @@ public class NpcOptionTwo {
 				player.canChangeAppearance = true;
 			}
 			break;
+			
+		case 1603:
+			player.getShops().openShop(40);
+			player.sendMessage("You currently have @red@" + player.getArenaPoints() + " @bla@Arena points.");	
+			break;
+			
 		case 1011: //infernal gambler
 		    if (player.getItems().playerHasItem(6570, 10)) {
 		    	int InfernalChance = Misc.random(1000);
@@ -185,7 +201,7 @@ public class NpcOptionTwo {
 			long days = TimeUnit.MILLISECONDS.toDays(milliseconds);
 			long hours = TimeUnit.MILLISECONDS.toHours(milliseconds - TimeUnit.DAYS.toMillis(days));
 			String time = days + " days and " + hours + " hours.";
-			player.getDH().sendNpcChat1("You've been playing Wisdom for " + time, 3077, "Hans");
+			player.getDH().sendNpcChat1("You've been playing NefariousPkz for " + time, 3077, "Hans");
 			player.getDiaryManager().getLumbridgeDraynorDiary().progress(LumbridgeDraynorDiaryEntry.HANS);
 			break;
 
@@ -214,7 +230,6 @@ public class NpcOptionTwo {
 			break;
 
 		case 401:
-		case 402:
 		case 405:
 		case 7663:
 			player.getDH().sendDialogues(3304, npcType);
@@ -234,21 +249,46 @@ public class NpcOptionTwo {
 				player.getDH().sendDialogues(3305, 8761);
 			} else {
 				if (player.playerLevel[18] < 90) {
-					player.getDH().sendStatement("You need a Slayer level of 90 to kill these.");
+					player.getDH().sendStatement("You need a Slayer level of 90 to use this slayer master.");
 					return;
 				}
 				if (player.getSlayer().getTask().isPresent()) {
 					player.getDH().sendStatement("Please finish your current task first.");		
 					return;
 				}
-					if (!player.getItems().playerHasItem(995, 1_000_000)) {
-						player.getDH().sendStatement("Come back when you've got the 1m ready.");
-						return;
-					}
-					player.getItems().deleteItem2(995, 1_000_000);
-					player.getSlayer().createNewTask(8761);
+
+				if (!player.getItems().playerHasItem(13307, 2000)) {
+					player.getDH().sendStatement("Come back when you've got the 2k coins.");
+					return;
+				}
+				player.getItems().deleteItem2(13307, 2000);
+				player.getSlayer().createNewTask(8761);
+				player.getDH().sendNpcChat("You have been assigned "+ player.getSlayer().getTaskAmount() + " " + player.getSlayer().getTask().get().getPrimaryName());
+				player.nextChat = -1;
+			}
+			break;
+		case 8623: 
+			if (player.getSlayer().getTask().isPresent()) {
+				player.getDH().sendDialogues(8623, 8761);
+			} else {
+				if (player.playerLevel[18] < 95) {
+					player.getDH().sendStatement("You need a Slayer level of 95 to use this slayer master.");
+					return;
+				}
+				if (player.getSlayer().getTask().isPresent()) {
+					player.getDH().sendStatement("Please finish your current task first.");		
+					return;
+				}
+
+				if (!player.getItems().playerHasItem(13307, 15_000)) {
+					player.getDH().sendStatement("Come back when you've got the 15k cash.");
+					return;
+				}
+					player.getItems().deleteItem2(13307, 15_000);
+					player.getSlayer().createNewTask(8623);
 					player.getDH().sendNpcChat("You have been assigned "+ player.getSlayer().getTaskAmount() + " " + player.getSlayer().getTask().get().getPrimaryName());
 					player.nextChat = -1;
+		
 			}
 			break;
 		case 5870: 
@@ -263,11 +303,11 @@ public class NpcOptionTwo {
 					player.getDH().sendStatement("Please finish your current task first.");		
 					return;
 				}
-					if (!player.getItems().playerHasItem(995, 3_000_000)) {
-						player.getDH().sendStatement("Come back when you've got the 3m ready.");
+					if (!player.getItems().playerHasItem(13307, 3000)) {
+						player.getDH().sendStatement("Come back when you've got the 3k ready.");
 						return;
 					}
-					player.getItems().deleteItem2(995, 3_000_000);
+					player.getItems().deleteItem2(13307, 3000);
 					player.getSlayer().createNewTask(5870);
 					player.getDH().sendNpcChat("You have been assigned "+ player.getSlayer().getTaskAmount() + " " + player.getSlayer().getTask().get().getPrimaryName());
 					player.nextChat = -1;
@@ -354,9 +394,6 @@ public class NpcOptionTwo {
 			break;
 		case 5809:
 			player.getShops().openShop(20);
-			break;
-		case 315:
-			player.getShops().openShop(80);
 			break;
 		case 6599:
 			player.getShops().openShop(79);

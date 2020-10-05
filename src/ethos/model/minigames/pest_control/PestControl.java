@@ -9,10 +9,10 @@ import ethos.ServerState;
 import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
+import ethos.event.impl.RandomEvent;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.western_provinces.WesternDiaryEntry;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
@@ -61,7 +61,13 @@ public class PestControl {
 	};
 
 	private static int getLobbyTime() {
-		return Server.getConfiguration().getServerState() == ServerState.DEBUG ? 2 : 60;
+		if (lobbyMembers.size() == 1) {
+			return 20;
+		}
+		if (lobbyMembers.size() == 2) {
+			return 20;
+		}
+		return 60;
 	}
 
 	/**
@@ -190,9 +196,18 @@ public class PestControl {
 											   Config.BONUS_PC && !Config.BONUS_PC_WOGW ? 10 : POINT_REWARD;
 							
 							player.pcPoints += point_reward;
-							player.getEventCalendar().progress(EventChallenge.GAIN_X_PEST_CONTROL_POINTS, point_reward);
 							player.refreshQuestTab(3);
 							player.sendMessage("You won! You obtain "+ point_reward +" commendation points and " + COIN_REWARD + " coins as a bonus.");
+							if (player.eventFinished == false && RandomEvent.eventNumber == 9) {
+								player.eventStage += 1;
+							}
+							if (player.eventStage == 5 && player.eventFinished == false && RandomEvent.eventNumber == 9) {
+								player.sendMessage("@blu@You have completed the event challenge: @red@Complete 5 Pest Control runs 75.");
+								player.sendMessage("@blu@You receive @red@1 @blu@Event Point for completing the Event Challenge.");
+								player.eventPoints+=1;
+								player.eventStage = 0;
+								player.eventFinished = true;
+							}
 							player.getItems().addItem(995, COIN_REWARD);
 							refreshPlayer(player);
 						} else {

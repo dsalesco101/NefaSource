@@ -14,8 +14,6 @@ import ethos.model.content.SkillcapePerks;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.falador.FaladorDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.entity.HealthStatus;
 import ethos.model.players.Boundary;
 import ethos.model.players.ClientGameTimer;
@@ -52,8 +50,10 @@ public class Farming {
 	public void handleCompostAdd() {
 			if (player.getItems().playerHasItem(FarmingConstants.WEED)) {
 				player.compostBin += player.getItems().getItemAmount(FarmingConstants.WEED);
-				player.sendMessage("You have added "+player.getItems().getItemAmount(FarmingConstants.WEED)+" weed(s) to the compost bin.");
-				player.sendMessage("You have "+player.compostBin+" buckets worth of compost left in the compost bin.");
+				if (player.notification == true) {
+					player.sendMessage("You have added "+player.getItems().getItemAmount(FarmingConstants.WEED)+" weed(s) to the compost bin.");
+					player.sendMessage("You have "+player.compostBin+" buckets worth of compost left in the compost bin.");
+				}
 				player.getItems().deleteItem2(FarmingConstants.WEED, player.getItems().getItemAmount(FarmingConstants.WEED));
 			} else {
 				player.sendMessage("You have no weeds to add to the compost bin. You currently have "+player.compostBin+" buckets worth of compost.");
@@ -72,7 +72,9 @@ public class Farming {
 			
 			//int bucketsTotal = player.getItems().getItemAmount(FarmingConstants.BUCKET);
 			player.compostBin -= 1;
+			if (player.notification == true) {
 			player.sendMessage("You have filled a bucket of compost.");
+			}
 			if (player.compostBin % 5 == 0)
 				player.sendMessage("You have "+player.compostBin+" buckets worth of compost left in the compost bin.");
 			player.getItems().addItem(FarmingConstants.COMPOST, 1);
@@ -85,8 +87,10 @@ public class Farming {
 			
 			int compostTotal = player.compostBin;
 			player.compostBin -= compostTotal;
-			player.sendMessage("You have filled "+compostTotal+" buckets of compost.");
-			player.sendMessage("You have ran out of compost in the compost bin!");
+			if (player.notification == true) {
+				player.sendMessage("You have filled "+compostTotal+" buckets of compost.");
+				player.sendMessage("You have ran out of compost in the compost bin!");
+			}
 			player.getItems().addItem(FarmingConstants.COMPOST, compostTotal);
 			player.getItems().deleteItem2(FarmingConstants.BUCKET, compostTotal);
 			if (Boundary.isIn(player, Boundary.FALADOR_BOUNDARY)) {
@@ -155,7 +159,9 @@ public class Farming {
 								player.startAnimation(FarmingConstants.RAKING_ANIM);
 							} else if(weeds == 0) {
 								player.setFarmingState(id, State.RAKED.getId());
+								if (player.notification == true) {
 								player.sendMessage("You raked the patch of all it's weeds, now the patch is ready for compost.", 255);
+								}
 								player.startAnimation(65535);
 								updateObjects();
 								container.stop();
@@ -178,7 +184,9 @@ public class Farming {
 					player.getItems().deleteItem2(FarmingConstants.COMPOST, 1);
 					player.getItems().addItem(FarmingConstants.BUCKET, 1);
 					player.setFarmingState(id, State.COMPOST.getId());
-					player.sendMessage("You put compost on the soil, it is now time to seed it.", 255);
+					if (player.notification == true) {
+						player.sendMessage("You put compost on the soil, it is now time to seed it.", 255);
+					}
 				}
 			} else if(player.getFarmingState(id) >= State.COMPOST.getId() && player.getFarmingState(id) < State.SEEDED.getId()) {
 				if(!player.getItems().playerHasItem(FarmingConstants.SEED_DIBBER, 1)) {
@@ -231,7 +239,9 @@ public class Farming {
 							player.setOriginalFarmingTime(id, hasMagicSecateurs() ? herb.getGrowthTime() / 2 : herb.getGrowthTime());
 							player.setFarmingHarvest(id, 3 + Misc.random(hasMagicSecateurs() ? 7 : 4));
 							player.getPA().addSkillXP((int) (player.getMode().getType().equals(ModeType.OSRS) ? osrsExperience : regExperience), 19, true);
-							player.sendMessage("You dib a seed into the soil, it is now time to water it.", 255);
+							if (player.notification == true) {
+								player.sendMessage("You dib a seed into the soil, it is now time to water it.", 255);
+							}
 							updateObjects();
 							container.stop();
 						}
@@ -251,7 +261,9 @@ public class Farming {
 					player.turnPlayerTo(x, y);
 					player.startAnimation(FarmingConstants.WATERING_CAN_ANIM);
 					player.setFarmingState(id, State.GROWTH.getId());
+					if (player.notification == true) {
 					player.sendMessage("You water the herb, wait "+((int) (player.getFarmingTime(id) * .6))+" seconds for the herb to mature.", 255);
+					}
 					player.getPA().sendGameTimer(ClientGameTimer.FARMING, TimeUnit.SECONDS, time);
 					return true;
 				}
@@ -287,7 +299,9 @@ public class Farming {
 						return true;
 					player.stopPlayerSkill = true;
 					player.startAnimation(FarmingConstants.PICKING_HERB_ANIM);
+					if (player.notification == true) {
 					player.sendMessage("You start picking your herbs...", 600000);
+					}
 					CycleEventHandler.getSingleton().stopEvents(this);
 					CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
 
@@ -339,7 +353,6 @@ public class Farming {
 							case RANARR:
 								break;
 							case SNAP_DRAGON:
-								DailyTasks.increase(player, PossibleTasks.SNAPDRAGONS);
 								break;
 							case TARROMIN:
 								break;

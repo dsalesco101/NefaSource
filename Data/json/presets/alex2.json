@@ -1,0 +1,134 @@
+[
+  {
+    "name": "12",
+    "equipment": {
+      "weapon": 4151,
+      "helmet": 10828,
+      "shield": 6524,
+      "ammo": -1,
+      "plate": 1127,
+      "legs": 1079,
+      "boots": 4131,
+      "gloves": 7458,
+      "necklace": 1712,
+      "cape": 1052,
+      "ring": 2550
+    },
+    "inventory": [
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": 995,
+        "amount": 2162478
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      }
+    ],
+    "ammoAmount": -1,
+    "spellBook": 2
+  }
+]

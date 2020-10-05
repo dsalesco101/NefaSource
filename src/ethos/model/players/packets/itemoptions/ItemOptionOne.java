@@ -1,12 +1,17 @@
 package ethos.model.players.packets.itemoptions;
 
 import java.util.Calendar;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import ethos.Config;
 import ethos.Server;
+import ethos.model.content.AlchemyPouch;
 import ethos.model.content.DiceHandler;
+import ethos.model.content.DonatorBenefit;
 import ethos.model.content.DoubleExpScroll;
 import ethos.model.content.Packs;
 import ethos.model.content.RunePouch;
@@ -161,10 +166,96 @@ public class ItemOptionOne implements PacketType {
             return;
         }
 
-        switch (itemId) {   
+        switch (itemId) { 
+        /*case 13307:
+        	if (c.wildLevel > 0) {
+        		c.sendMessage("You cant use the exchange option in the wilderness.");
+        		return;
+        	}
+        	if (!c.getItems().playerHasItem(13307, 15)) {
+				c.sendMessage("You need 15 blood money in order to exchange it to 1 pkp.");
+				return;
+			}
+        	int bm = c.getItems().getItemAmount(13307) / 15;
+        	c.pkp+= 1 * bm;
+        	c.sendMessage("You have succesfully exchanged @red@"+bm * 15+"@bla@ blood money into @red@"+bm+"@bla@ pkp.");
+        	c.getItems().deleteItem(13307, bm * 15);
+        	break;*/
+        case 1464:
+        	if (c.wildLevel > 0) {
+        		c.sendMessage("You cant use the exchange option in the wilderness.");
+        		return;
+        	}
+        	int voteAmount = c.getItems().getItemAmount(1464);
+        	c.votePoints+= voteAmount;
+        	c.sendMessage("You have succesfully exchanged @red@"+voteAmount+"@bla@ Vote Tickets into Vote Points..");
+        	c.getItems().deleteItem(1464, voteAmount);
+        	break;
+        case 683:
+        	if (c.wildLevel > 0) {
+        		c.sendMessage("You cant use the exchange option in the wilderness.");
+        		return;
+        	}
+        	int bountyAmount = c.getItems().getItemAmount(683);
+        	c.votePoints+= bountyAmount;
+        	c.sendMessage("You have succesfully exchanged @red@"+bountyAmount+"@bla@ Bounty Hunter Tickets into Bounty Points.");
+        	c.getItems().deleteItem(683, bountyAmount);
+        	break;
+        case 2839:
+        	break;
+        case 977:
+        	AlchemyPouch.addCharges(c);
+        	break;
+        	
+        /**
+         * Coin bags, edit price if you want (int random)
+         */
+        	
+        case 10832:
+        	int random = 125000 + Misc.random(4156);
+        	c.getItems().addItemUnderAnyCircumstance(995, random);
+        	c.getItems().deleteItem(10832, 1);
+        	c.getDH().sendItemStatement("The bag contains "+random+" coins.", 10832);
+        	break;
+        	
+        case 10833:
+        	int random2 = 250000 + Misc.random(4156);
+        	c.getItems().addItemUnderAnyCircumstance(995, random2);
+        	c.getItems().deleteItem(10833, 1);
+        	c.getDH().sendItemStatement("The bag contains "+random2+" coins.", 10833);
+        	break;
+        	
+        case 10834:
+        	int random3 = 500000 + Misc.random(4156);
+        	c.getItems().addItemUnderAnyCircumstance(995, random3);
+        	c.getItems().deleteItem(10834, 1);
+        	c.getDH().sendItemStatement("The bag contains "+random3+" coins.", 10834);
+        	break;
+        	
+        case 10835:
+        	int random4 = 1080000 + Misc.random(4156);
+        	c.getItems().addItemUnderAnyCircumstance(995, random4);
+        	c.getItems().deleteItem(10835, 1);
+        	c.getDH().sendItemStatement("The bag contains "+random4+" coins.", 10835);
+        	break;
+        	
+        	
         case 21034:
         	c.getDH().sendDialogues(345, 9120);
         	break;
+        	
+            case 4278:
+            	if (c.wildLevel > 0) {
+            		c.sendMessage("You cannot redeem your points in the wildernmess");
+            		return;
+            	}
+            		int amountOfEcto = c.getItems().getItemAmount(4278);
+            	
+            		c.getItems().deleteItem(4278, amountOfEcto);
+    				c.ecoTokensIncrease(amountOfEcto);
+    				c.sendMessage("@red'You tranferd "+amountOfEcto+" Mage arena tokens into "+amountOfEcto+" Mage Arena points");
+            	break;
+        		
         case 21079:
         	c.getDH().sendDialogues(347, 9120);
         	break;
@@ -199,6 +290,31 @@ public class ItemOptionOne implements PacketType {
 			} else if (c.xpScroll == true) {
 				c.sendMessage("@red@You already activated this.");
 		}
+        	break;
+        case 4209:
+        	for (int i = 8144; i < 8195; i++) {
+				c.getPA().sendFrame126("", i);
+			}
+			int[] frames = { 8149, 8150, 8151, 8152, 8153, 8154, 8155, 8156, 8157, 8158, 8159, 8160, 8161, 8162, 8163, 8164, 8165, 8166, 8167, 8168, 8169, 8170, 8171, 8172, 8173,
+					8174, 8175, 8176, 8177, 8178, 8179, 8180, 8181, 8182, 8183, 8184, 8185, 8186, 8187, 8188, 8189, 8190, 8191, 8192, 8193, 8194 };
+			c.getPA().sendFrame126("@dre@Kill Tracker for @blu@" + c.playerName + "", 8144);
+			c.getPA().sendFrame126("", 8145);
+			c.getPA().sendFrame126("@blu@Total kills@bla@ - " + c.getNpcDeathTracker().getTotal() + "", 8147);
+			c.getPA().sendFrame126("", 8148);
+			int frameIndex = 0;
+			for (Map.Entry<String, Integer> entry : c.getNpcDeathTracker().getTracker().entrySet()) {
+				if (entry == null) {
+					continue;
+				}
+				if (frameIndex > frames.length - 1) {
+					break;
+				}
+				if (entry.getValue() > 0) {
+					c.getPA().sendFrame126("@blu@" + WordUtils.capitalize(entry.getKey().toLowerCase()) + ": @red@" + entry.getValue(), frames[frameIndex]);
+					frameIndex++;
+				}
+			}
+			c.getPA().showInterface(8134);
         	break;
             case 12007:
             case 22106:
@@ -577,7 +693,6 @@ public class ItemOptionOne implements PacketType {
             }
             c.forcedChat("Ow! I nearly broke a tooth!");
             c.startAnimation(829);
-            // c.getHealth().reduce(1);
             c.appendDamage(1, Hitmark.HIT);
             return;
         }
@@ -586,7 +701,7 @@ public class ItemOptionOne implements PacketType {
                 return;
             }
             if (c.getItems().playerHasItem(10269, 1)) {
-                c.getItems().addItem(995, 30000);
+                c.getItems().addItem(13307, 30000);
                 c.getItems().deleteItem(10269, 1);
             }
         }
@@ -595,7 +710,7 @@ public class ItemOptionOne implements PacketType {
                 return;
             }
             if (c.getItems().playerHasItem(10271, 1)) {
-                c.getItems().addItem(995, 10000);
+                c.getItems().addItem(13307, 10000);
                 c.getItems().deleteItem(10271, 1);
             }
         }
@@ -604,7 +719,7 @@ public class ItemOptionOne implements PacketType {
                 return;
             }
             if (c.getItems().playerHasItem(10273, 1)) {
-                c.getItems().addItem(995, 14000);
+                c.getItems().addItem(13307, 14000);
                 c.getItems().deleteItem(10273, 1);
             }
         }
@@ -613,7 +728,7 @@ public class ItemOptionOne implements PacketType {
                 return;
             }
             if (c.getItems().playerHasItem(10275, 1)) {
-                c.getItems().addItem(995, 18000);
+                c.getItems().addItem(13307, 18000);
                 c.getItems().deleteItem(10275, 1);
             }
         }
@@ -622,7 +737,7 @@ public class ItemOptionOne implements PacketType {
                 return;
             }
             if (c.getItems().playerHasItem(10277, 1)) {
-                c.getItems().addItem(995, 22000);
+                c.getItems().addItem(13307, 22000);
                 c.getItems().deleteItem(10277, 1);
             }
         }
@@ -631,32 +746,12 @@ public class ItemOptionOne implements PacketType {
                 return;
             }
             if (c.getItems().playerHasItem(10279, 1)) {
-                c.getItems().addItem(995, 26000);
+                c.getItems().addItem(13307, 26000);
                 c.getItems().deleteItem(10279, 1);
             }
         }
 
-        /*Coin Bags */
-        if (itemId == 10832)
-            if (c.getItems().playerHasItem(10832)) {
-                c.getCoinBagSmall().open();
-                return;
-            }
-        if (itemId == 10833)
-            if (c.getItems().playerHasItem(10833)) {
-                c.getCoinBagMedium().open();
-                return;
-            }
-        if (itemId == 10834)
-            if (c.getItems().playerHasItem(10834)) {
-                c.getCoinBagLarge().open();
-                return;
-            }
-        if (itemId == 10835)
-            if (c.getItems().playerHasItem(10835)) {
-                c.getCoinBagBuldging().open();
-                return;
-            }
+   
         if (itemId == 11739)
             if (c.getItems().playerHasItem(11739)) {
                 c.getHourlyRewardBox().roll(c);
@@ -675,11 +770,11 @@ public class ItemOptionOne implements PacketType {
                 c.getDailySkillBox().open();
                 return;
             }
-		/*if (itemId == 7310) //Skill Casket
+		if (itemId == 7310) //Skill Casket
 			if (c.getItems().playerHasItem(7310)) {
 				c.getSkillCasket().open();
 				return;
-			}*/
+			}
 
         if (itemId == 2714) { // Easy Clue Scroll Casket
         	if (c.getItems().freeSlots() < 3) {

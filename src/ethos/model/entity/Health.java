@@ -278,4 +278,9 @@ public final class Health {
 		requestUpdate();
 	}
 
+	public void starterHP() {
+		currentHealth +=89;
+		requestUpdate();
+	}
+
 }

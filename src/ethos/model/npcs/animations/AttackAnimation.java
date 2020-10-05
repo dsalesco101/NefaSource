@@ -22,6 +22,9 @@ public class AttackAnimation extends NPCHandler {
 		}
 		
 		switch (NPCHandler.npcs[i].npcType) {
+		//Muttadile:
+		case 7561:
+			return 7424;
 		//Wyverns
 		case 7792: //longtailed
 		case 7793: //taloned

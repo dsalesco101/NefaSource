@@ -7,7 +7,6 @@ import ethos.event.CycleEventHandler;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.items.ItemAssistant;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
@@ -173,7 +172,6 @@ public class FightCave {
 			player.getItems().addItemUnderAnyCircumstance(FIRE_CAPE, 2);
 			player.getItems().addItemUnderAnyCircumstance(item, 1);
 			PlayerHandler.executeGlobalMessage(player.playerName + " has completed 63 waves of jad and received " + ItemAssistant.getItemName(item) + ".");
-			player.getEventCalendar().progress(EventChallenge.COMPLETE_A_63_WAVE_FIRE_CAPE);
 			break;
 		}
 		player.getItems().addItemUnderAnyCircumstance(TOKKUL, (10000 * player.waveType) + Misc.random(5000));

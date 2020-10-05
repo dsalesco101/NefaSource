@@ -9,6 +9,7 @@ import ethos.model.players.Player;
 import ethos.model.players.mode.ModeType;
 import ethos.model.players.skills.agility.AgilityHandler;
 import ethos.model.players.skills.agility.MarkOfGrace;
+import ethos.util.Misc;
 
 /**
  * Rooftop Agility Rellekka
@@ -36,6 +37,7 @@ public class RooftopRellekka {
 			if (id == objectId) {
 				MarkOfGrace.spawnMarks(c, "RELLEKKA");
 			}
+			c.runEnergy += Misc.random(3) + 2;
 		}
 		
 		switch (objectId) {
@@ -109,6 +111,12 @@ public class RooftopRellekka {
 			c.getAgilityHandler().roofTopFinished(c, 5, c.getMode().getType().equals(ModeType.OSRS) ? 780 : 23000, 25000);
 			AgilityHandler.delayEmote(c, "JUMP", 2653, 3676, 0, 2);
 			 Achievements.increase(c, AchievementType.AGIL, 1);
+			 int graceEffect = 1 + Misc.random(20);
+				if (c.wearingGrace() && graceEffect > 18) {
+					c.getItems().addItemUnderAnyCircumstance(11849, 1);
+				}
+				int marks = 1 + Misc.random(3);
+				c.getItems().addItemUnderAnyCircumstance(11849, marks);
 		return true;
 		}
 		return false;

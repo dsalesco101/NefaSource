@@ -3,32 +3,27 @@ character-username = zattezot
 character-password = 35b2e7b37dc6d19063119e0ddd7a1ed8
 
 [CHARACTER]
-character-rights = 23
-character-rights-secondary = 0	23
-character-mac-address = A4-02-B9-3D-10-4E
+character-rights = 0
+character-rights-secondary = 0
+character-mac-address = E8-D0-FC-66-27-11
 character-ip-address = 84.194.127.184
 revert-option = 
-mode = OSRS
+mode = REGULAR
 tutorial-stage = END
 character-height = 0
-character-hp = 9
-play-time = 2192
+character-hp = 11
+play-time = 1214
+diceban =0
 last-clan = Help
 character-specRestore = 0
-character-posx = 3227
-character-posy = 10180
+character-posx = 3091
+character-posy = 3510
 bank-pin = 
 bank-pin-cancellation = false
 bank-pin-unlock-delay = 0
 placeholders = false
 newStarter = false
 bank-pin-cancellation-delay = -1
-dailyTaskDate = 0
-totalDailyDone = 0
-currentTask = 
-completedDailyTask = false
-playerChoice = 
-dailyEnabled = false
 show-drop-warning = false
 hourly-box-toggle = true
 fractured-crystal-toggle = true
@@ -36,11 +31,10 @@ accept-aid = false
 did-you-know = true
 lootvalue = 0
 raidPoints = 0
-maRound = 2
+maRound = 0
 raidCount = 0
-experience-counter = 19057
+experience-counter = 187500
 character-title-updated = 
-event-calendar-progress = 
 removed-slayer-tasks = 					
 
 
@@ -61,8 +55,14 @@ crystalDrop = false
 spawnedbarrows = false
 collectCoins = false
 absorption = false
+betap = false
+petGoblin = false
+filter = true
+goblinFilter = false
+diceBanned = false
 announce = true
 insurance = false
+eventFinished = true
 lootPickUp = false
 breakVials = false
 barbarian = false
@@ -98,7 +98,7 @@ slayerPoints = 0
 LastLoginYear = 0
 LastLoginMonth = 0
 LastLoginDate = 0
-LoginStreak = 0
+LoginStreak = 1
 crystal-bow-shots = 0
 skull-timer = 0
 magic-book = 0
@@ -117,26 +117,35 @@ zerkAmount =
 autoRet = 0
 pkp = 0
 elvenCharge =0
-pages = -40
+pages = 0
 ether =0
 crawsbowCharge = 0
 thammaronCharge = 0
 viggoraCharge = 0
 christmasP = 0
-pvmp =2
+eventStage = 0
+eventPoints = 0
+pvmp =0
+pkp =0
+alchCharge =0
+chestRateBoost =1
 tWin = 0
 tPoint = 0
 streak = 0
+impS1 = 0
+impS2 = 0
+s1Quantity = 0
+s2Quantity = 0
 xpMaxSkills = 0
 RefU =0
 RefP =0
 LoyP =0
-dayv =3
+dayv =0
 donP =0
 donA =0
 memberdays = 0
 prestige-points = 0
-votePoints = 3
+votePoints = 0
 bloodPoints = 0
 d1Complete = false
 d2Complete = false
@@ -186,7 +195,7 @@ keepTitle = false
 killTitle = false
 wave = 0
 gwkc = 0
-fightMode = 2
+fightMode = 0
 privatechat = 0
 void = 0	0	0	0	0
 quickprayer = false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	
@@ -222,13 +231,13 @@ lost-items-skotizo =
 character-equip = 0	1169	1	
 character-equip = 1	-1	1	
 character-equip = 2	-1	1	
-character-equip = 3	867	980	
+character-equip = 3	-1	0	
 character-equip = 4	1129	1	
 character-equip = 5	-1	1	
 character-equip = 6	-1	0	
-character-equip = 7	-1	1	
+character-equip = 7	1095	1	
 character-equip = 8	-1	0	
-character-equip = 9	-1	1	
+character-equip = 9	7458	1	
 character-equip = 10	-1	1	
 character-equip = 11	-1	0	
 character-equip = 12	-1	1	
@@ -252,9 +261,9 @@ character-look = 12	0
 [SKILLS]
 character-skill = 0	1	0	false	0
 character-skill = 1	1	0	false	0
-character-skill = 2	1	0	false	0
-character-skill = 3	10	1367	false	0
-character-skill = 4	33	18990	false	0
+character-skill = 2	56	187500	false	0
+character-skill = 3	10	1300	false	0
+character-skill = 4	1	0	false	0
 character-skill = 5	1	0	false	0
 character-skill = 6	1	0	false	0
 character-skill = 7	1	0	false	0
@@ -277,75 +286,44 @@ character-skill = 23	1	0	false	0
 character-skill = 24	1	0	false	0
 
 [ITEMS]
-character-item = 0	21821	20
-character-item = 1	380	1
-character-item = 3	380	1
-character-item = 4	380	1
-character-item = 5	380	1
-character-item = 6	380	1
-character-item = 7	380	1
-character-item = 8	380	1
-character-item = 9	380	1
-character-item = 10	380	1
-character-item = 11	380	1
-character-item = 12	380	1
-character-item = 13	380	1
-character-item = 14	380	1
-character-item = 15	380	1
-character-item = 16	380	1
-character-item = 17	380	1
-character-item = 18	380	1
-character-item = 19	380	1
-character-item = 20	380	1
-character-item = 21	380	1
-character-item = 22	380	1
-character-item = 23	380	1
-character-item = 24	380	1
-character-item = 25	380	1
-character-item = 26	380	1
-character-item = 27	380	1
+character-item = 0	2842	1
+character-item = 1	996	300000
+character-item = 3	20200	1
+character-item = 4	8014	50
+character-item = 5	381	100
+character-item = 6	387	100
+character-item = 7	1324	1
+character-item = 8	1334	1
+character-item = 9	1154	1
+character-item = 10	1116	1
+character-item = 11	1068	1
+character-item = 12	3843	1
+character-item = 13	580	1
+character-item = 14	578	1
+character-item = 15	1012	1
+character-item = 16	1382	1
+character-item = 21	864	100
+character-item = 22	869	100
+character-item = 23	559	100
+character-item = 24	563	100
 
 [RECHARGEITEMS]
-item = 	0	3	2020-04-18 10:59:06
-item = 	13120	2	2020-04-18 10:59:06
-item = 	1	3	2020-04-18 10:59:06
-item = 	2	150	2020-04-18 10:59:06
-item = 	13125	2	2020-04-18 10:59:06
-item = 	13126	3	2020-04-18 10:59:06
-item = 	13127	4	2020-04-18 10:59:06
-item = 	13128	3	2020-04-18 10:59:06
-item = 	13143	1	2020-04-18 10:59:06
-item = 	13111	5	2020-04-18 10:59:06
-item = 	13144	1	2020-04-18 10:59:06
-item = 	13117	1	2020-04-18 10:59:06
-item = 	13118	1	2020-04-18 10:59:06
-item = 	13119	1	2020-04-18 10:59:06
+item = 	0	3	2020-09-20 09:02:06
+item = 	13120	2	2020-09-20 09:02:06
+item = 	1	3	2020-09-20 09:02:06
+item = 	2	150	2020-09-20 09:02:06
+item = 	13125	2	2020-09-20 09:02:06
+item = 	13126	3	2020-09-20 09:02:06
+item = 	13127	4	2020-09-20 09:02:06
+item = 	13128	3	2020-09-20 09:02:06
+item = 	13143	1	2020-09-20 09:02:06
+item = 	13111	5	2020-09-20 09:02:06
+item = 	13144	1	2020-09-20 09:02:06
+item = 	13117	1	2020-09-20 09:02:06
+item = 	13118	1	2020-09-20 09:02:06
+item = 	13119	1	2020-09-20 09:02:06
 
 [BANK]
-bank-tab = 0	12957	1
-bank-tab = 0	8014	50
-bank-tab = 0	380	74
-bank-tab = 0	386	100
-bank-tab = 0	1324	1
-bank-tab = 0	1334	1
-bank-tab = 0	1154	1
-bank-tab = 0	1116	1
-bank-tab = 0	1068	1
-bank-tab = 0	3843	1
-bank-tab = 0	12895	1
-bank-tab = 0	578	1
-bank-tab = 0	1012	1
-bank-tab = 0	1382	1
-bank-tab = 0	7459	1
-bank-tab = 0	1096	1
-bank-tab = 0	869	100
-bank-tab = 0	559	100
-bank-tab = 0	563	100
-bank-tab = 0	580	1
-bank-tab = 0	10500	1
-bank-tab = 0	996	224000
-bank-tab = 0	864	100
-bank-tab = 0	2842	1
 
 
 [LOOTBAG]
@@ -359,23 +337,19 @@ bank-tab = 0	2842	1
 [SAFEBOX]
 
 [FRIENDS]
-character-friend = 30056605
 
 
 [DEGRADEABLES]
-claim-state = false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false
+claim-state = false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false
 
 
 [ACHIEVEMENTS-TIER-1]
-pvmer_i = 2	false
 
 
 [ACHIEVEMENTS-TIER-2]
-pvmer_ii = 2	false
 
 
 [ACHIEVEMENTS-TIER-3]
-slaughterer = 2	false
 
 [IGNORES]
 

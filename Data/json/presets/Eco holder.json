@@ -1,0 +1,398 @@
+[
+  {
+    "name": "safe",
+    "equipment": {
+      "weapon": 4675,
+      "helmet": 10828,
+      "shield": 3842,
+      "ammo": 9244,
+      "plate": 4101,
+      "legs": 4103,
+      "boots": 3105,
+      "gloves": 7462,
+      "necklace": 1712,
+      "cape": 6570,
+      "ring": 2550
+    },
+    "inventory": [
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 2444,
+        "amount": 1
+      },
+      {
+        "itemId": 2440,
+        "amount": 1
+      },
+      {
+        "itemId": 2436,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3026,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 2503,
+        "amount": 1
+      },
+      {
+        "itemId": 1079,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 9185,
+        "amount": 1
+      },
+      {
+        "itemId": 4151,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 1215,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 565,
+        "amount": 200
+      },
+      {
+        "itemId": 555,
+        "amount": 600
+      },
+      {
+        "itemId": 560,
+        "amount": 400
+      }
+    ],
+    "ammoAmount": 1039,
+    "spellBook": 2
+  },
+  {
+    "name": "tribeast",
+    "equipment": {
+      "weapon": 11791,
+      "helmet": 12931,
+      "shield": 12829,
+      "ammo": 9244,
+      "plate": 4712,
+      "legs": 4714,
+      "boots": 13239,
+      "gloves": 7462,
+      "necklace": 6585,
+      "cape": 6570,
+      "ring": 11773
+    },
+    "inventory": [
+      {
+        "itemId": 560,
+        "amount": 1744
+      },
+      {
+        "itemId": 565,
+        "amount": 382
+      },
+      {
+        "itemId": 555,
+        "amount": 510
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 11830,
+        "amount": 1
+      },
+      {
+        "itemId": 11828,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 11785,
+        "amount": 1
+      },
+      {
+        "itemId": 12954,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 11802,
+        "amount": 1
+      },
+      {
+        "itemId": 12006,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 1019,
+    "spellBook": 2
+  },
+  {
+    "name": "gaming tri",
+    "equipment": {
+      "weapon": 11791,
+      "helmet": 12931,
+      "shield": 12829,
+      "ammo": 9244,
+      "plate": 4712,
+      "legs": 4714,
+      "boots": 13239,
+      "gloves": 7462,
+      "necklace": 6585,
+      "cape": 6570,
+      "ring": 11773
+    },
+    "inventory": [
+      {
+        "itemId": 560,
+        "amount": 1744
+      },
+      {
+        "itemId": 565,
+        "amount": 382
+      },
+      {
+        "itemId": 555,
+        "amount": 510
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 11830,
+        "amount": 1
+      },
+      {
+        "itemId": 11828,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 11785,
+        "amount": 1
+      },
+      {
+        "itemId": 12954,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 6685,
+        "amount": 1
+      },
+      {
+        "itemId": 11802,
+        "amount": 1
+      },
+      {
+        "itemId": 12006,
+        "amount": 1
+      },
+      {
+        "itemId": 2444,
+        "amount": 1
+      },
+      {
+        "itemId": 12695,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 1019,
+    "spellBook": 2
+  }
+]

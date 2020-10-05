@@ -9,8 +9,6 @@ import ethos.Config;
 import ethos.Server;
 import ethos.clip.Region;
 import ethos.event.CycleEventHandler;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerHandler;
@@ -119,7 +117,7 @@ public final class Hunter {
 		player.startAnimation(827);
 		player.getItems().deleteItem(trap.getType().getItemId(), 1);
 		Server.getGlobalObjects().add(trap.getObject());
-		//Server.getGlobalObjects().add(trap.getObject());
+		Server.getGlobalObjects().add(trap.getObject());
 		if (player.getRegionProvider().getClipping(player.getX() - 1, player.getY(), player.heightLevel, -1, 0)) {
 			player.getPA().walkTo2(-1, 0);
 		} else if (player.getRegionProvider().getClipping(player.getX() + 1, player.getY(), player.heightLevel, 1, 0)) {
@@ -251,7 +249,6 @@ public final class Hunter {
 				PlayerHandler.executeGlobalMessage("[<col=CC0000>News</col>] @cr18@ <col=255>" + player.playerName + "</col> caught a <col=CC0000>Red Chinchompa</col> pet!");
 				player.getItems().addItemUnderAnyCircumstance(13323, 1);
 			}
-			DailyTasks.increase(player, PossibleTasks.RED_CHINCHOMPAS);
 			break;
 			
 		case 11959:

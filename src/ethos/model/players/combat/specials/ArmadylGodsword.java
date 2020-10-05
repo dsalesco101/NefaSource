@@ -8,7 +8,7 @@ import ethos.model.players.combat.Special;
 public class ArmadylGodsword extends Special {
 
 	public ArmadylGodsword() {
-		super(5.0, 1.75, 1.375, new int[] { 11802, 20368 });
+		super(5.0, 2.50, 1.375, new int[] { 11802, 20368 });
 	}
 
 	@Override

@@ -220,7 +220,18 @@ public class Boundary {
 	 * Boosted Xp Zones
 	 */
 	public static final Boundary SKILLING_ISLAND = new Boundary(3778, 3521, 3832, 3577);
-	
+
+	/**
+	 * Fun & risk pk boundaries
+	 */
+	public static final Boundary SAFEPKSAFE1 = new Boundary(2281, 3737, 2295, 3750);
+	public static final Boundary SAFEPKSAFE2 = new Boundary(2281, 3756, 2295, 3769);
+	public static final Boundary[] SAFEPK = { SAFEPKSAFE1, SAFEPKSAFE2 };
+
+	public static final Boundary RISKPK1 = new Boundary(2262, 3737, 2276, 3750);
+	public static final Boundary RISKPK2 = new Boundary(2262, 3756, 2276, 3769);
+	public static final Boundary[] RISKPK = { RISKPK1, RISKPK2 };
+
 	/*
 	 * 
 	 */
@@ -244,10 +255,11 @@ public class Boundary {
 	public static final Boundary COMBAT_DUMMY = new Boundary(2846, 2960, 2848, 2962);
 	
 	public static final Boundary SAFEPKMULTI = new Boundary(3090, 3525, 3109, 3536);
-	
-	public static final Boundary SAFEPKSAFE = new Boundary(3068, 3516, 3109, 3536);
-	
-	public static final Boundary SAFEPK = new Boundary(3068, 3525, 3109, 3536);
+
+	public static final Boundary RISKALLZONES = new Boundary(2249, 3742, 2249, 3748);
+	public static final Boundary RISKALLZONES2 = new Boundary(2242, 3750, 2248, 3756);
+	public static final Boundary RISKALLZONES3 = new Boundary(2249, 3758, 2249, 3764);
+	public static final Boundary[] RISK_ZONE_BOXES = {RISKALLZONES, RISKALLZONES2, RISKALLZONES3};
 	/**
 	 * Raids bosses
 	 */
@@ -354,6 +366,8 @@ public class Boundary {
 	public static final Boundary THEATRE_LOBBY = new Boundary(3052,9961,3067,9979);
 	public static final Boundary THEATRE_LOBBY_ENTRANCE = new Boundary(3058,9952,3061,9960);
 	public static final Boundary TOURNY_LOBBY = new Boundary(3032, 9961, 3047, 9979);
+	public static final Boundary GULAG = new Boundary(2750, 2556, 3823, 2624);
+
 	/**
 	 * Raids bosses
 	 */

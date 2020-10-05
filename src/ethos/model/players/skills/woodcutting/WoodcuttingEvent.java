@@ -17,9 +17,6 @@ import ethos.model.content.achievement_diary.kandarin.KandarinDiaryEntry;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerHandler;
@@ -84,7 +81,6 @@ public class WoodcuttingEvent extends Event<Player> {
 			attachment.getItems().addItem(tree.getWood(), 1);
 
 
-			attachment.getEventCalendar().progress(EventChallenge.CUT_DOWN_X_MAGIC_LOGS);
 			attachment.getPA().addSkillXP((int) (attachment.getRights().isOrInherits(Right.OSRS) ? osrsExperience : experience) , Skill.WOODCUTTING.getId(), true);
 			Achievements.increase(attachment, AchievementType.WOODCUT, 1);
 			handleRewards();
@@ -159,7 +155,6 @@ public class WoodcuttingEvent extends Event<Player> {
 	private void handleDiary(Tree tree) {
 		switch (tree) {
 			case MAGIC:
-				attachment.getEventCalendar().progress(EventChallenge.CUT_DOWN_X_MAGIC_LOGS, 2);
 				if (Boundary.isIn(attachment, Boundary.AL_KHARID_BOUNDARY)) {
 					attachment.getDiaryManager().getLumbridgeDraynorDiary().progress(LumbridgeDraynorDiaryEntry.CHOP_MAGIC_AL);
 				}
@@ -169,7 +164,6 @@ public class WoodcuttingEvent extends Event<Player> {
 				if (Boundary.isIn(attachment, Boundary.SEERS_BOUNDARY)) {
 					attachment.getDiaryManager().getKandarinDiary().progress(KandarinDiaryEntry.CUT_MAGIC_SEERS);
 				}
-				DailyTasks.increase(attachment, PossibleTasks.MAGIC_LOGS);
 				break;
 			case MAPLE:
 				break;
@@ -177,7 +171,7 @@ public class WoodcuttingEvent extends Event<Player> {
 				break;
 			case OAK:
 				if (Boundary.isIn(attachment, Boundary.LUMRIDGE_BOUNDARY) || Boundary.isIn(attachment, Boundary.DRAYNOR_BOUNDARY)) {
-					attachment.getDiaryManager().getLumbridgeDraynorDiary().progress(LumbridgeDraynorDiaryEntry.CHOP_OAK);
+					//attachment.getDiaryManager().getLumbridgeDraynorDiary().progress(LumbridgeDraynorDiaryEntry.CHOP_OAK);
 				}
 				if (Boundary.isIn(attachment, Boundary.RELLEKKA_BOUNDARY)) {
 					attachment.getDiaryManager().getFremennikDiary().progress(FremennikDiaryEntry.CHOP_OAK_FREM);
@@ -198,7 +192,6 @@ public class WoodcuttingEvent extends Event<Player> {
 				if (Boundary.isIn(attachment, Boundary.VARROCK_BOUNDARY)) {
 					attachment.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.YEWS_AND_BURN);
 				}
-				DailyTasks.increase(attachment, PossibleTasks.YEW_LOGS);
 				break;
 			case TEAK:
 				if (Boundary.isIn(attachment, Boundary.DESERT_BOUNDARY)) {

@@ -9,7 +9,7 @@ import ethos.model.players.combat.melee.CombatPrayer;
 public class DragonSword extends Special {
 
 	public DragonSword() {
-		super(4, 2.50, 2.50, new int[] { 21009 });
+		super(2.5, 1.25, 1.15, new int[] { 21009 });
 	}
 
 	@Override

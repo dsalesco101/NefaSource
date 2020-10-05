@@ -7,7 +7,7 @@ import ethos.util.Misc;
 
 public class WellOfGoodWillObject {
 
-	private static void sendInterfaces(Player c) {
+	public static void sendInterfaces(Player c) {
 		int objectID = 0;
 		if (objectID == 6097);
 		c.getPA().showInterface(38000);

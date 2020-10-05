@@ -202,6 +202,7 @@ public class OperateItem implements PacketType {
 			case 4202:
 			case 9786:
 			case 9787:
+			case 33051:
 				PlayerAssistant.ringOfCharosTeleport(c);
 				break;
 

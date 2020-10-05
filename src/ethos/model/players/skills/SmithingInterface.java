@@ -76,7 +76,7 @@ public class SmithingInterface {
 		c.getPA().sendFrame126(GetForlvl(87, c) + "Mace" + GetForlvl(2, c), 1093);
 		c.getPA().sendFrame126(GetForlvl(85, c) + "Dagger" + GetForlvl(1, c), 1094);
 		c.getPA().sendFrame126(GetForlvl(86, c) + "Axe" + GetForlvl(1, c), 1091);
-		c.getPA().sendFrame126(GetForlvl(89, c) + "Dart Tips" + GetForlvl(89, c), 1096);
+		c.getPA().sendFrame126(GetForlvl(88, c) + "Rune Tips" + GetForlvl(89, c), 1096);// new code
 		c.getPA().sendFrame34(1213, 0, 1119, 1); // dagger
 		c.getPA().sendFrame34(1359, 0, 1120, 1); // axe
 		c.getPA().sendFrame34(1113, 0, 1121, 1); // chain body

@@ -4,8 +4,6 @@ import ethos.Config;
 import ethos.event.Event;
 import ethos.model.content.achievement_diary.kandarin.KandarinDiaryEntry;
 import ethos.model.content.achievement_diary.western_provinces.WesternDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
 import ethos.model.players.mode.ModeType;
@@ -38,7 +36,6 @@ public class StringBowEvent extends Event<Player> {
 			break;
 		
 		case 857:
-			DailyTasks.increase(attachment, PossibleTasks.YEW_SHORTBOWS);
 			break;
 			
 		case 859:

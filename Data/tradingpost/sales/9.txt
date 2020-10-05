@@ -1,1 +1,1 @@
-lynx	12335	1	1	251377	0	true
+sir house1	6686	2000000	0	5000	0	false

@@ -14,7 +14,7 @@ public class Highscores extends Command {
 
 	@Override
 	public void execute(Player c, String input) {		
-		c.getPA().sendString("https//wisdomosrs.com/hiscores", 12000);
+		c.getPA().sendString("https//NefariousPkz.com/hiscores", 12000);
 
 	}
 

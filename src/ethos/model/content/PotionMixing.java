@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ethos.Server;
+import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.items.GameItem;
 import ethos.model.items.Item;
 import ethos.model.players.Player;
@@ -100,8 +101,10 @@ public class PotionMixing {
 			GameItem item = new GameItem(player.playerItems[index] - 1, player.playerItemsN[index], index);
 			if (!Item.itemIsNote[item.getId()]) {
 				decantUnnotedItem(player, item);
+				player.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.POTION_DECANT);
 			} else {
 				decantNotedItem(player, item);
+				player.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.POTION_DECANT);
 			}
 		}
 	}
@@ -195,7 +198,8 @@ public class PotionMixing {
 								3046), OVERLOAD(11730, 11731, 11732, 11733), PRAYER(2434, 139, 141, 143), RANGING(2444, 169, 171, 173), RESTORE(2430, 127, 129,
 										131), SARADOMIN_BREW(6685, 6687, 6689, 6691), STRENGTH(113, 115, 117, 119), SUPER_ANTIPOISON(2448, 181, 183, 185), SUPER_ATTACK(2436, 145,
 												147, 149), SUPER_COMBAT(12695, 12697, 12699, 12701), SUPER_DEFENCE(2442, 163, 165, 167), SUPER_ENERGY(3016, 3018, 3020,
-														3022), SUPER_RESTORE(3024, 3026, 3028, 3030), SUPER_STRENGTH(2440, 157, 159, 161), ZAMORAK_BREW(2450, 189, 191, 193);
+														3022), SUPER_RESTORE(3024, 3026, 3028, 3030), SUPER_STRENGTH(2440, 157, 159, 161), OVERLOAD_FLASKS(20992, 20991, 20990, 20989),
+		ZAMORAK_BREW(2450, 189, 191, 193);
 
 		Potion(int full, int threeQuarters, int half, int quarter) {
 			this.quarter = quarter;

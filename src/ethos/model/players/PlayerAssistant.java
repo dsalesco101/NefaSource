@@ -32,7 +32,6 @@ import ethos.model.content.RunePouch;
 import ethos.model.content.lootbag.LootingBag;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
 import ethos.model.content.bonus.DoubleExperience;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.content.instances.InstancedArea;
 import ethos.model.content.instances.InstancedAreaManager;
 import ethos.model.content.kill_streaks.Killstreak;
@@ -43,6 +42,7 @@ import ethos.model.items.GameItem;
 import ethos.model.items.Item;
 import ethos.model.items.ItemAssistant;
 import ethos.model.items.ItemDefinition;
+import ethos.model.items.ItemList;
 import ethos.model.items.bank.BankTab;
 import ethos.model.lobby.Lobby;
 import ethos.model.lobby.LobbyManager;
@@ -1582,6 +1582,7 @@ endHeight, lockon, time);
 		c.startAnimation(4409); //change in future
 		c.gfx100(726);
 		addSkillXP(c.getMode().isOsrs() ? 112 : 10000, 6, true);
+		addSkillXP(c.getMode().isMedMode() ? 135 : 10000, 6, true);
 		refreshSkill(6);
 		c.vengOn = true;
 		c.usingMagic = false;
@@ -1592,7 +1593,6 @@ endHeight, lockon, time);
 	 * Magic on items
 	 **/
 	public void alchemy(int itemId, String alch) {
-
 		if (c.inClanWars() || c.inClanWarsSafe()) {
 			c.sendMessage("@cr10@There is no need to do this here.");
 			return;
@@ -1685,6 +1685,7 @@ endHeight, lockon, time);
 				addSkillXP(MagicData.MAGIC_SPELLS[50][7] * (c.getMode().getType().equals(ModeType.OSRS) ? 1 : 125), 6,
 						true);
 				refreshSkill(6);
+				c.alchCheck = false;
 			}
 			break;
 		}
@@ -1976,52 +1977,51 @@ endHeight, lockon, time);
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ 10 pkp @bla@for ending a kill streak.");
 
 									}
-									int random = 30;
-									playerKiller.getEventCalendar().progress(EventChallenge.GET_X_KILLS_IN_WILDY);
+									int random = 5;
 									playerKiller.pkp += random;
 									playerKiller.refreshQuestTab(0);
 									if(c.amDonated >= 10 && c.amDonated <= 49) { //regular donator
-										int bonuspkp = 10;
+										int bonuspkp = 6;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");
 										
 									} else if(playerKiller.amDonated >= 50 && playerKiller.amDonated <= 99) { //super donator
-										int bonuspkp = 20;
+										int bonuspkp = 7;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");
 										
 									} else if(playerKiller.amDonated >= 100 && playerKiller.amDonated <= 199) { //extreme donator
-										int bonuspkp = 20;
+										int bonuspkp = 8;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");
 										
 									} else if(playerKiller.amDonated >= 200 && playerKiller.amDonated <= 299) { //ultra donator
-										int bonuspkp = 30;
+										int bonuspkp = 9;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");
 										
 									} else if(playerKiller.amDonated >= 300 && playerKiller.amDonated <= 499) { //legendary donator
-										int bonuspkp = 30;
+										int bonuspkp = 10;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");
 										
 									} else if(playerKiller.amDonated >= 500 && playerKiller.amDonated <= 999) { //diamond club
-										int bonuspkp = 40;
+										int bonuspkp = 11;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");										
 										
 									} else if(playerKiller.amDonated >= 1000 && playerKiller.amDonated <= 2500) { //onyx club
-										int bonuspkp = 50;
+										int bonuspkp = 12;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");										
 										
 									} else if(playerKiller.amDonated >= 1000 && playerKiller.amDonated <= 2500) { //platinum
-										int bonuspkp = 60;
+										int bonuspkp = 13;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");										
 										
 									} else if(playerKiller.amDonated >= 2500 && playerKiller.amDonated <= 5000) { //divine
-										int bonuspkp = 80;
+										int bonuspkp = 14;
 										playerKiller.pkp+=bonuspkp;
 										playerKiller.sendMessage("[@red@PKP@bla@] You are rewarded an extra@red@ " + bonuspkp + " pkp @bla@for your donator rank.");										
 									}
@@ -2039,7 +2039,7 @@ endHeight, lockon, time);
 						PlayerSave.saveGame(playerKiller);
 					}
 				} else if (killer instanceof NPC) {
-					if (!Boundary.isIn(c, Boundary.FIGHT_CAVE) && !Boundary.isIn(c, Zulrah.BOUNDARY)
+					if (!Boundary.isIn(c, Boundary.SAFEPK) && !Boundary.isIn(c, Boundary.FIGHT_CAVE) && !Boundary.isIn(c, Zulrah.BOUNDARY)
 							&& !Boundary.isIn(c, Boundary.KRAKEN_CAVE) && !Boundary.isIn(c, Boundary.RFD)
 							&& !Boundary.isIn(c, Boundary.LIGHTHOUSE) && !Boundary.isIn(c, Boundary.CERBERUS_BOSSROOMS)
 							&& !Boundary.isIn(c, Boundary.SKOTIZO_BOSSROOM) && !Boundary.isIn(c, Boundary.RAIDROOMS)) {
@@ -2186,6 +2186,17 @@ endHeight, lockon, time);
 					c.getItems().deleteItem2(itemId, c.getItems().getItemAmount(itemId));
 				}
 			}
+			if (c.itemId == 997 && c.wildLevel > 0) {
+				if (c.getItems().isWearingItem(997)) {
+					int slot = c.getItems().getItemSlot(997);
+					if (slot != -1) {
+						c.getItems().removeItem(997, slot);
+					}
+				}
+				if (c.getItems().playerHasItem(997)) {
+					c.getItems().deleteItem2(997, c.getItems().getItemAmount(997));
+				}
+			}
 
 			// Get the killer
 			Entity killer = c.getKiller();
@@ -2194,15 +2205,17 @@ endHeight, lockon, time);
 			c.getCombat().degradeVenemousItems(killer);
 
 			// If a player is not an ultimate ironman, update the items kept on death
-			if (c.getMode().isUltimateIronman() || c.getMode().isIronman() || c.getMode().isHCIronman() || c.getMode().isRegular() || c.getMode().isOsrs()) {
+			if (c.getMode().isUltimateIronman() || c.getMode().isIronman() || c.getMode().isHCIronman() || c.getMode().isRegular() || c.getMode().isOsrs()
+					|| c.getMode().isMedMode()) {
 				c.getItems().resetKeepItems();
 				c.updateItemsOnDeath();
 			}
 			// Handles the items kept on death
-			for (int item = 0; c.wildLevel < 21 && item < Config.ITEMS_KEPT_ON_DEATH.length; item++) {
+			for (int item = 0; item < Config.ITEMS_KEPT_ON_DEATH.length; item++) {
 				int itemId = Config.ITEMS_KEPT_ON_DEATH[item];
 				int itemAmount = c.getItems().getItemAmount(itemId) + c.getItems().getWornItemAmount(itemId);
-				if (c.getItems().playerHasItem(itemId) || c.getItems().isWearingItem(itemId)) {
+				
+				if (c.wildLevel < 21 && c.getItems().playerHasItem(itemId) || c.getItems().isWearingItem(itemId)) {
 					if (c.getMode().isUltimateIronman()) {
 						Server.itemHandler.createGroundItem(c, itemId, c.getX(), c.getY(), c.heightLevel, itemAmount,
 								c.getIndex());
@@ -2212,7 +2225,8 @@ endHeight, lockon, time);
 				}
 			}
 
-			if (c.getMode().isUltimateIronman() || c.getMode().isIronman() || c.getMode().isHCIronman() || c.getMode().isRegular() || c.getMode().isOsrs()) {
+			if (c.getMode().isUltimateIronman() || c.getMode().isIronman() || c.getMode().isHCIronman() || c.getMode().isRegular() || c.getMode().isOsrs()
+					|| c.getMode().isMedMode()) {
 				c.getItems().dropAllItems();
 				c.getItems().deleteAllItems();
 			}
@@ -2316,8 +2330,8 @@ endHeight, lockon, time);
 			Lowpkarena.handleDeath(c);
 		} else if (c.inClanWars() || c.inClanWarsSafe()) {
 			movePlayer(c.absX, 4759, 0);
-		} else if (Boundary.isIn(c, Boundary.SAFEPKSAFE)) {
-			movePlayer(Config.RESPAWN_X, Config.RESPAWN_Y, 0);
+		} else if (Boundary.isIn(c, Boundary.SAFEPK)) {
+			movePlayer(2290, 3753, 0);
 			c.isSkulled = false;
 			c.skullTimer = 0;
 			c.attackedPlayers.clear();
@@ -3475,9 +3489,6 @@ endHeight, lockon, time);
 			sendFrame126("Your attack level is now " + getLevelForXP(c.playerXP[skill]) + ".", 6249);
 			c.sendMessage("Congratulations, you just advanced an attack level.");
 			sendFrame164(6247);
-			if (c.combatLevel >= 126) {
-				c.getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
-			}
 			break;
 
 		case 1:
@@ -3485,9 +3496,6 @@ endHeight, lockon, time);
 			sendFrame126("Your defence level is now " + getLevelForXP(c.playerXP[skill]) + ".", 6255);
 			c.sendMessage("Congratulations, you just advanced a defence level.");
 			sendFrame164(6253);
-			if (c.combatLevel >= 126) {
-				c.getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
-			}
 			break;
 
 		case 2:
@@ -3495,9 +3503,6 @@ endHeight, lockon, time);
 			sendFrame126("Your strength level is now " + getLevelForXP(c.playerXP[skill]) + ".", 6208);
 			c.sendMessage("Congratulations, you just advanced a strength level.");
 			sendFrame164(6206);
-			if (c.combatLevel >= 126) {
-				c.getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
-			}
 			break;
 
 		case 3:
@@ -3506,16 +3511,10 @@ endHeight, lockon, time);
 			sendFrame126("Your hitpoints level is now " + getLevelForXP(c.playerXP[skill]) + ".", 6218);
 			c.sendMessage("Congratulations, you just advanced a hitpoints level.");
 			sendFrame164(6216);
-			if (c.combatLevel >= 126) {
-				c.getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
-			}
 			break;
 
 		case 4:
 			c.sendMessage("Congratulations, you just advanced a ranging level.");
-			if (c.combatLevel >= 126) {
-				c.getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
-			}
 			break;
 
 		case 5:
@@ -3523,9 +3522,6 @@ endHeight, lockon, time);
 			sendFrame126("Your prayer level is now " + getLevelForXP(c.playerXP[skill]) + ".", 6244);
 			c.sendMessage("Congratulations, you just advanced a prayer level.");
 			sendFrame164(6242);
-			if (c.combatLevel >= 126) {
-				c.getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
-			}
 			break;
 
 		case 6:
@@ -3533,9 +3529,6 @@ endHeight, lockon, time);
 			sendFrame126("Your magic level is now " + getLevelForXP(c.playerXP[skill]) + ".", 6213);
 			c.sendMessage("Congratulations, you just advanced a magic level.");
 			sendFrame164(6211);
-			if (c.combatLevel >= 126) {
-				c.getEventCalendar().progress(EventChallenge.HAVE_126_COMBAT);
-			}
 			break;
 
 		case 7:
@@ -3641,9 +3634,6 @@ endHeight, lockon, time);
 		if (c.maxRequirements(c)) {
 			PlayerHandler
 					.executeGlobalMessage("@red@[Server]" + Misc.capitalize(c.playerName) + " has reached max total level!");
-		}
-		if (c.totalLevel >= 2000) {
-			c.getEventCalendar().progress(EventChallenge.HAVE_2000_TOTAL_LEVEL);
 		}
 		
 		if (getLevelForXP(c.playerXP[skill]) == 99) {
@@ -3975,6 +3965,9 @@ endHeight, lockon, time);
 
 			// OSRS Modes receive only 1x the experience
 		} else if (c.getMode().getType().equals(ModeType.OSRS)) {
+			amount *= Config.SERVER_EXP_BONUS;
+		// ONLY GIVES 5X THE EXPERIENCE
+		} else if (c.getMode().getType().equals(ModeType.MED_MODE)) {
 			amount *= Config.SERVER_EXP_BONUS;
 
 			// If none of the above are applied, regular experience is given

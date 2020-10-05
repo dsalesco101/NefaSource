@@ -17,6 +17,7 @@ public class Donate extends Command {
 
 	@Override
 	public void execute(Player c, String input) {
+		c.getPA().sendFrame126("http://NefariousPkz.com/store", 12000);
 
 	}
 	@Override

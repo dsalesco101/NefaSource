@@ -1,90 +1,92 @@
 {
-  "6342": [],
-  "7554": [],
-  "6610": [],
-  "2054": [],
-  "6609": [],
   "1": [
     {
-      "id": 554,
-      "amount": 39,
+      "id": 1077,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 2635,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1367,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1167,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 3827,
+      "amount": 1,
       "slot": 0,
       "stackable": true
     },
     {
-      "id": 7332,
-      "amount": 1,
-      "slot": 0,
-      "stackable": false
-    },
-    {
-      "id": 3835,
-      "amount": 1,
-      "slot": 0,
-      "stackable": true
-    },
-    {
-      "id": 12265,
-      "amount": 1,
-      "slot": 0,
-      "stackable": false
-    },
-    {
-      "id": 1089,
-      "amount": 1,
-      "slot": 0,
-      "stackable": false
-    },
-    {
-      "id": 7386,
-      "amount": 1,
-      "slot": 0,
-      "stackable": false
-    },
-    {
-      "id": 12255,
+      "id": 1283,
       "amount": 1,
       "slot": 0,
       "stackable": false
     }
   ],
-  "6619": [],
   "2": [
     {
-      "id": 563,
-      "amount": 11,
-      "slot": 0,
-      "stackable": true
-    },
-    {
-      "id": 12247,
+      "id": 1331,
       "amount": 1,
       "slot": 0,
       "stackable": false
     },
     {
-      "id": 3833,
-      "amount": 1,
-      "slot": 0,
-      "stackable": true
-    },
-    {
-      "id": 1073,
+      "id": 1169,
       "amount": 1,
       "slot": 0,
       "stackable": false
     },
     {
-      "id": 1091,
+      "id": 2647,
       "amount": 1,
       "slot": 0,
       "stackable": false
     }
   ],
-  "3": [],
-  "4": [],
-  "1673": [],
-  "6611": [],
-  "6615": [],
-  "6618": []
+  "3": [
+    {
+      "id": 1079,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1185,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 10370,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1213,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 1201,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ]
 }

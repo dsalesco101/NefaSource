@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import ethos.Server;
+import ethos.model.Area;
+import ethos.model.SquareArea;
 import ethos.model.minigames.pest_control.PestControl;
 import ethos.model.multiplayer_session.Multiplayer;
 import ethos.model.multiplayer_session.MultiplayerSession;
@@ -11,12 +13,22 @@ import ethos.model.multiplayer_session.MultiplayerSessionStage;
 import ethos.model.multiplayer_session.MultiplayerSessionType;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
+import lombok.val;
+
+import static java.util.Arrays.stream;
 
 public class Trade extends Multiplayer {
 
 	public Trade(Player player) {
 		super(player);
 	}
+
+	private final Area[] restrictedAreas = {
+			SquareArea.of(3083, 3083, 3507, 3513),
+			SquareArea.of(3074, 3074, 3507, 3513),
+			SquareArea.of(2763, 2763, 2570, 2585),
+			SquareArea.of(2753, 2753, 2570, 2585)
+	};
 
 	@Override
 	public boolean requestable(Player requested) {
@@ -40,6 +52,11 @@ public class Trade extends Multiplayer {
 		if (requested.getBankPin().requiresUnlock()) {
 			return false;
 		}
+		boolean inside = stream(restrictedAreas).anyMatch(area -> area.inside(player) || area.inside(requested));
+		if (inside) {
+			player.sendMessage("You cannot trade while one of you are within a restricted area.");
+			return false;
+		}
 		if (requested.getTutorial().isActive()) {
 			player.sendMessage("This player has not completed the tutorial yet.");
 			return false;
@@ -56,8 +73,8 @@ public class Trade extends Multiplayer {
 			player.sendMessage("You cannot request a trade, you must play for at least 2 minutes.");
 			return false;
 		}
-		if (requested.playTime < (200)) {
-			player.sendMessage("You cannot trade this player, they have not played for 2 minutes.");
+		if (requested.playTime < (2000)) {
+			player.sendMessage("You cannot trade this player, they have not played for 20 minutes.");
 			return false;
 		}
 		if (Server.getMultiplayerSessionListener().requestAvailable(requested, player, MultiplayerSessionType.TRADE) != null) {

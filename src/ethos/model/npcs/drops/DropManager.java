@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 
 import ethos.Server;
 import ethos.model.content.godwars.Godwars;
+import ethos.model.content.limitedItems.PetGoblin;
 import ethos.model.items.GameItem;
 import ethos.model.items.ItemAssistant;
 import ethos.model.npcs.NPC;
@@ -18,6 +19,7 @@ import ethos.model.npcs.NPCDefinitions;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
+import ethos.model.players.PlayerHandler;
 import ethos.model.players.Right;
 import ethos.model.players.skills.slayer.SlayerMaster;
 import ethos.model.players.skills.slayer.Task;
@@ -123,7 +125,7 @@ public class DropManager {
 
 	public void create(Player player, NPC npc, Location3D location, int repeats) {
 		Optional<TableGroup> group = groups.values().stream().filter(g -> g.getNpcIds().contains(npc.npcType)).findFirst();
-		
+
 		group.ifPresent(g -> {
 			double modifier = getModifier(player);
 			List<GameItem> drops = g.access(player, modifier, repeats);
@@ -133,7 +135,17 @@ public class DropManager {
 					if (player.getRechargeItems().hasItem(13111) && player.inWild()) {
 						item.changeDrop(537, item.getAmount());
 					}
-				}			 
+				}	
+				if (item.getId() == 995 && player.moneyPerk == true) {
+					player.getItems().addItemToBank(995, item.getAmount());
+					item.changeDrop(-1, item.getAmount());
+						
+					}
+				if (item.getId() == 23951) {
+                	player.sendMessage("@bla@You notice a @blu@Crystalline key@bla@ on the floor.");
+				}
+				PetGoblin.npcDropManagement(player);
+		
 				if (player.getItems().isWearingItem(21816) && player.absorption == true && item.getId() == 21820 && (IntStream.of(revs).anyMatch(id -> id == npc.npcType))) {
 						 item.changeDrop(995, 50); //basically just changes coins for ether 
 						 int amount = Misc.random(12);	 // 1/12			  
@@ -189,6 +201,9 @@ public class DropManager {
 				}
 				if (item.getId() == 6729 && player.getRechargeItems().hasItem(13132)) {
 					item.changeDrop(6730, item.getAmount());
+				}
+				if (item.getId() == 405) {
+					player.sendMessage("@bla@You notice a @blu@pvm caskets@bla@ on the floor.");
 				}
 				// i keep these here just so i dont need to keep getting the item definiton.		
 				//tail = 22988
@@ -292,16 +307,19 @@ public class DropManager {
 						if (npc.inWild() && m.getId() == 7663) {
 							int slayerChance = 650;
 							int emblemChance = 100;
-							if (Misc.random(emblemChance) == 1) {
+							if (Misc.random(emblemChance) == 1 && player.goblinFilter == false) {
 								Server.itemHandler.createGroundItem(player, 12746, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
 								player.sendMessage("@red@You receive a mysterious emblem!");
 							}
-							if (Misc.random(slayerChance) == 1) {
+							if (Misc.random(slayerChance) == 1 && player.goblinFilter == false) {
 								Server.itemHandler.createGroundItem(player, 21257, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
-								//player.sendMessage("@red@A slayer's enchantment has dropped from your foe!");
-								//PlayerHandler.executeGlobalMessage(
-										//"@red@" + Misc.capitalize(player.playerName) + " received a drop: Slayer's Enchantment.</col>.");
-								//PlayerHandler.executeGlobalMessage("<col=FF0000>[Lootations] @cr19@ </col><col=255>"+ Misc.capitalize(player.playerName) + "</col> received a <col=255>Slayer's Enchantment</col>.");
+							}
+							if (Misc.random(emblemChance) == 1 && player.goblinFilter == true) {
+								player.getItems().addItemToBank(12746, 1);
+								player.sendMessage("@red@You receive a mysterious emblem!");
+							}
+							if (Misc.random(slayerChance) == 1 && player.goblinFilter == true) {
+								player.getItems().addItemToBank(21257, 1);
 							}
 						}
 					});
@@ -329,18 +347,42 @@ public class DropManager {
 			* Coin Bags
 			*/
 			if (Misc.random(13) == 5) {
-				player.sendMessage("@bla@You notice a @yel@Coin Bag@bla@ on the ground.");
-				if (npc.getDefinition().getNpcCombat() > 0 && npc.getDefinition().getNpcCombat() <= 70) {
+				if (npc.getDefinition().getNpcCombat() > 0 && npc.getDefinition().getNpcCombat() <= 70 && player.moneyPerk == false) {
 					Server.itemHandler.createGroundItem(player, 10832, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
+					player.sendMessage("@bla@You notice a @yel@Small coin Bag@bla@ on the ground.");
 				} 
-				if (npc.getDefinition().getNpcCombat() > 70 && npc.getDefinition().getNpcCombat() <= 110) {
+				if (npc.getDefinition().getNpcCombat() > 70 && npc.getDefinition().getNpcCombat() <= 110 && player.moneyPerk == false) {
 					Server.itemHandler.createGroundItem(player, 10833, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
+					player.sendMessage("@bla@You notice a @yel@Medium coin Bag@bla@ on the ground.");
 				}
-				if (npc.getDefinition().getNpcCombat() > 110 && npc.getDefinition().getNpcCombat() <= 200) {
+				if (npc.getDefinition().getNpcCombat() > 110 && npc.getDefinition().getNpcCombat() <= 200 && player.moneyPerk == false) {
 					Server.itemHandler.createGroundItem(player, 10834, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
+					player.sendMessage("@bla@You notice a @yel@Large Coin Bag@bla@ on the ground.");
 				}
-				if (npc.getDefinition().getNpcCombat() > 200) {
+				if (npc.getDefinition().getNpcCombat() > 200 && player.moneyPerk == false) {
 					Server.itemHandler.createGroundItem(player, 10835, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
+					player.sendMessage("@bla@You notice a @yel@Bulding coin Bag@bla@ on the ground.");
+				}
+			}
+			/**
+			* Coin Bags perk
+			*/
+			if (Misc.random(13) == 5) {
+				if (npc.getDefinition().getNpcCombat() > 0 && npc.getDefinition().getNpcCombat() <= 70 && player.moneyPerk == true) {
+					player.getItems().addItemToBank(10832, 1);
+            		player.sendMessage("@yel@The pet goblin has picked up your @red@Small Coin Bag@yel@.");
+				} 
+				if (npc.getDefinition().getNpcCombat() > 70 && npc.getDefinition().getNpcCombat() <= 110 && player.moneyPerk == true) {
+					player.getItems().addItemToBank(10833, 1);
+            		player.sendMessage("@yel@The pet goblin has picked up your @red@Medium Coin Bag@yel@.");
+				}
+				if (npc.getDefinition().getNpcCombat() > 110 && npc.getDefinition().getNpcCombat() <= 200 && player.moneyPerk == true) {
+					player.getItems().addItemToBank(10834, 1);
+            		player.sendMessage("@yel@The pet goblin has picked up your @red@Large Coin Bag@yel@.");
+				}
+				if (npc.getDefinition().getNpcCombat() > 200 && player.moneyPerk == true) {
+					player.getItems().addItemToBank(10835, 1);
+            		player.sendMessage("@yel@The pet goblin has picked up your @red@Buldging Coin Bag@yel@.");
 				}
 			}
 			/**
@@ -349,20 +391,27 @@ public class DropManager {
 			if (Misc.random(100) == 10) {
 				if (npc.getDefinition().getNpcCombat() >= 70 && npc.getDefinition().getNpcCombat() <= 100 && player.getItems().getItemCount(5509, true) == 1 && player.getItems().getItemCount(5510, true) != 1) {
 					Server.itemHandler.createGroundItem(player, 5510, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
-					//player.sendMessage("@pur@You sense an upgraded Runecrafting Pouch!");
+					player.sendMessage("@pur@You sense an upgraded Runecrafting Pouch!");
 				} else if (npc.getDefinition().getNpcCombat() > 100 && player.getItems().getItemCount(5510, true) == 1 && player.getItems().getItemCount(5512, true) != 1) {
 					Server.itemHandler.createGroundItem(player, 5512, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
-					//player.sendMessage("@pur@You sense an upgraded Runecrafting Pouch!");
+					player.sendMessage("@pur@You sense an upgraded Runecrafting Pouch!");
 				}
 			}
-
 			/**
 			 * Crystal keys
 			 */
 			if (Misc.random(115) == 1) {
-				player.sendMessage("@bla@You notice a @blu@crystal key@bla@ on the floor.");
-				Server.itemHandler.createGroundItem(player, 989, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
+                if (player.summonId > 2269 || player.summonId < 2269) {
+                	player.sendMessage("@bla@You notice a @blu@crystal key@bla@ on the floor.");
+    				Server.itemHandler.createGroundItem(player, 989, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
+                } else {
+                  		player.sendMessage("@yel@The pet goblin has picked up your @red@Crystal Key@yel@.");
+                  		NPC GOBLIN = NPCHandler.getNpc(2269);
+        				NPCHandler.npcs[GOBLIN.getIndex()].forceChat("oo some juicy loot!");
+        				NPCHandler.npcs[GOBLIN.getIndex()].gfx100(626);
+                    	player.getItems().addItemToBank(989, 1);
 			}
+		  }
 			/**
 			 * Ecumenical Keys
 			 */
@@ -375,8 +424,16 @@ public class DropManager {
 					if (player.getItems().getItemCount(Godwars.KEY_ID, true) > key_amount) {
 						return;
 					}
-					Server.itemHandler.createGroundItem(player, Godwars.KEY_ID, npc.getX(), npc.getY(), player.heightLevel, 1, player.getIndex());
-					//player.sendMessage("@pur@An Ecumenical Key drops from your foe.");
+	                if (player.summonId > 2269 || player.summonId < 2269) {
+						Server.itemHandler.createGroundItem(player, Godwars.KEY_ID, npc.getX(), npc.getY(), player.heightLevel, 1, player.getIndex());
+						player.sendMessage("@pur@An Ecumenical Key drops from your foe.");
+	                } else {
+								player.getItems().addItemToBank(Godwars.KEY_ID, 1);	
+		                  		player.sendMessage("@yel@The pet goblin has picked up your @red@Ecumenical Key@yel@.");
+		                  		NPC GOBLIN = NPCHandler.getNpc(2269);
+		        				NPCHandler.npcs[GOBLIN.getIndex()].forceChat("oo some juicy loot!");
+		        				NPCHandler.npcs[GOBLIN.getIndex()].gfx100(626);
+					}
 				}
 			}
 			int random = Misc.random(1200);
@@ -439,9 +496,9 @@ public class DropManager {
 			 * Dark Light
 			 */
 			if (Boundary.isIn(npc, Boundary.CATACOMBS)) {
-				if (Misc.random(1000) == 1) {
+				if (Misc.random(900) == 1) {
 					
-					//PlayerHandler.executeGlobalMessage("<col=FF0000>[Lootations] @cr19@ </col><col=255>"+ Misc.capitalize(player.playerName) + "</col> received a <col=255>Darklight!</col>.");
+					PlayerHandler.executeGlobalMessage("<col=FF0000>[Lootations] @cr19@ </col><col=255>"+ Misc.capitalize(player.playerName) + "</col> received a <col=255>Darklight!</col>.");
 					Server.itemHandler.createGroundItem(player, 6746, location.getX(), location.getY(), location.getZ(), 1, player.getIndex());
 				}
 			}
@@ -482,13 +539,22 @@ public class DropManager {
 		if(player.getMode().isOsrs()){
 			modifier -=.100;
 		}
+		if(player.getMode().isMedMode()){
+			modifier -=.100;
+		}
 		if (player.getItems().isWearingItem(2572)) {
 			modifier -= .03;
 		} else if (player.getItems().isWearingItem(12785)) {
-			modifier -= .08;
+			modifier -= .06;
 		}
 		if (player.isSkulled == true && Boundary.isIn(player, Boundary.REV_CAVE)) {
 			modifier -= .100;
+	 	}
+		if (player.getItems().isWearingItem(13342) || player.getItems().isWearingItem(13280) || player.getItems().isWearingItem(13329) || player.getItems().isWearingItem(13331)
+				|| player.getItems().isWearingItem(13333) || player.getItems().isWearingItem(13335) || player.getItems().isWearingItem(13337) || player.getItems().isWearingItem(20760)
+				|| player.getItems().isWearingItem(21285) || player.getItems().isWearingItem(21776) || player.getItems().isWearingItem(21780) || player.getItems().isWearingItem(21784)
+				|| player.getItems().isWearingItem(21898)) {
+			modifier -= .02;
 	 	}
 		if (player.getRights().contains(Right.DIVINE)) {
 			modifier -= 0.140;
@@ -521,8 +587,16 @@ public class DropManager {
 		if (player.isSkulled == true && Boundary.isIn(player, Boundary.REV_CAVE)) {
 			modifier += 2;
 	 	}
+		if (player.getItems().isWearingItem(13342) || player.getItems().isWearingItem(13280) || player.getItems().isWearingItem(13329) || player.getItems().isWearingItem(13331)
+				|| player.getItems().isWearingItem(13333) || player.getItems().isWearingItem(13335) || player.getItems().isWearingItem(13337) || player.getItems().isWearingItem(20760)
+				|| player.getItems().isWearingItem(21285) || player.getItems().isWearingItem(21776) || player.getItems().isWearingItem(21780) || player.getItems().isWearingItem(21784)
+				|| player.getItems().isWearingItem(21898)) {
+			modifier += 2;
+	 	}
 		if (player.getMode().isOsrs()) {
-			modifier += 10;
+			modifier += 7;
+		} else if (player.getRights().isOrInherits(Right.MED_MODE)) {
+			modifier += 3;
 		} else if (player.getMode().isIronman() || player.getMode().isRegular() || player.getMode().isHCIronman()) {
 			modifier += 0;
 		}

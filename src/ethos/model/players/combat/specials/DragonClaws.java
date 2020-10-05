@@ -12,7 +12,7 @@ import ethos.model.players.skills.Skill;
 public class DragonClaws extends Special {
 
 	public DragonClaws() {
-		super(5.0, 1.2, 1.0, new int[] { 20784 });
+		super(5.0, 1.35, 1.5, new int[] { 20784 });
 	}
 
 	@Override

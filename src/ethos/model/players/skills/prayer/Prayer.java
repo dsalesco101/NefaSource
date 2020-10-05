@@ -11,7 +11,7 @@ import com.google.common.base.Stopwatch;
 import ethos.Config;
 import ethos.Server;
 import ethos.event.Event;
-import ethos.model.content.eventcalendar.EventChallenge;
+import ethos.event.impl.RandomEvent;
 import ethos.model.items.ItemDefinition;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
@@ -74,12 +74,21 @@ public class Prayer {
 		if (lastAction.elapsed(TimeUnit.MILLISECONDS) < BURY_DELAY) {
 			return;
 		}
-		if (bone.getItemId() == 536) {
-			player.getEventCalendar().progress(EventChallenge.BURY_X_DRAGON_BONES);
+		if (player.eventFinished == false && RandomEvent.eventNumber == 2) {
+			player.eventStage += 1;
 		}
 		player.getSkilling().setSkill(Skill.PRAYER);
 		ItemDefinition definition = ItemDefinition.forId(bone.getItemId());
 		int prayerRestore=0;
+		 if (Boundary.isIn(player, Boundary.CATACOMBS) && bone.getItemId() == 526) {
+				prayerRestore+=1;
+			}
+		 if (Boundary.isIn(player, Boundary.CATACOMBS) && bone.getItemId() == 532) {
+				prayerRestore+=2;
+			}
+		 if (Boundary.isIn(player, Boundary.CATACOMBS) && bone.getItemId() == 536) {
+				prayerRestore+=4;
+			}
 		if(player.getItems().isWearingItem(22111)){
 			switch(bone.getItemId()){
 				case 526:
@@ -106,7 +115,9 @@ public class Prayer {
 			}
 			player.getPA().refreshSkill(5);
 		}
-		player.sendMessage("You bury the " + (definition == null ? "bone" : definition.getName()) + ".");
+		if (player.notification = true) {
+			player.sendMessage("You bury the " + (definition == null ? "bone" : definition.getName()) + ".");
+		}
 		player.getPA().addSkillXP(bone.getExperience() * (Boundary.isIn(player, Boundary.LAVA_DRAGON_ISLE) && bone.getItemId() == 11943 ? (player.getMode().getType().equals(ModeType.OSRS) ? 4 * 4 : Config.PRAYER_EXPERIENCE * 4) : (player.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.PRAYER_EXPERIENCE)), Skill.PRAYER.getId(), true);
 		player.getItems().deleteItem2(bone.getItemId(), 1);
 		player.startAnimation(827);

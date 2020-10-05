@@ -44,22 +44,22 @@ public class PetHandler {
     }
 
     public static enum Pets {
-        GRAARDOR(12650, 6632, "General Graardor", 500, "second"), 
-        KREE(12649, 6643, "Kree Arra", 500, "second"), 
-        ZILLY(12651, 6633, "Commander Zilyana", 500,"second"), 
-        TSUT(12652, 6634, "Kril Tsutsaroth", 500, "second"),
-        PRIME(12644, 6627, "Dagannoth Prime", 500, "second"), 
-        REX(12645, 6630, "Dagannoth Rex", 500, "second"),
-        SUPREME(12643, 6628,"Dagannoth Supreme", 500,"second"),
+        GRAARDOR(12650, 6632, "General Graardor", 600, "second"), 
+        KREE(12649, 6643, "Kree Arra", 600, "second"), 
+        ZILLY(12651, 6633, "Commander Zilyana", 600,"second"), 
+        TSUT(12652, 6634, "Kril Tsutsaroth", 600, "second"),
+        PRIME(12644, 6627, "Dagannoth Prime", 475, "second"), 
+        REX(12645, 6630, "Dagannoth Rex", 475, "second"),
+        SUPREME(12643, 6628,"Dagannoth Supreme", 475,"second"),
         CHAOS(11995, 5907, "Chaos Elemental", 500, "first"), 
         CHAOS_FANATIC(11995, 4444, "Chaos Fanatic", 500,"first"),
-        KBD(12653, 6636, "King Black Dragon", 500, "second"), 
+        KBD(12653, 6636, "King Black Dragon", 570, "second"), 
         KRAKEN(12655, 6640, "Kraken", 500,"second"), 
         CALLISTO(13178, 5558, "Callisto", 500, "second"), 
-        MOLE(12646, 6651, "Giant Mole", 500, "second"), 
+        MOLE(12646, 6651, "Giant Mole", 430, "second"), 
         VETION(13179, 5559, "Vetion", 500, "second"),
         VETION2(13180, 5560, "Vetion", 500, "second"),
-        VENENATIS(13177, 5557,"Venenatis", 500, "second"), 
+        VENENATIS(13177, 5557,"Venenatis", 550, "second"), 
         DEVIL(12648, 6639,"Thermonuclear Smoke Devil", 500,"second"),
         TZREK_JAD(13225, 5892, "Tztok-Jad", 110, "second"),
         HELLPUPPY(13247, 3099,"Cerberus", 600,"second"), 
@@ -139,7 +139,14 @@ public class PetHandler {
     	TEROR_DOG(10591, 6473, "Terror Dog", 500, "second"),
     	SMOLCANO(23760, 8731, "Smolcano", 500, "second"),
     	YOUNGLEF(23757, 8737, "Youngllef", 500, "second"),
-    	CORRUPT_YOUNGLEF(23759, 8738, "Corrupt youngllef", 500, "second");
+    	CORRUPT_YOUNGLEF(23759, 8738, "Corrupt youngllef", 500, "second"),
+    	
+    	/*
+    	 * Limited item pets
+    	 */
+    	PET_GOBLIN(10998, 2269, "Pet Goblin", 500, "second"),
+    	PET_IMP(13454, 5008, "Pet Imp", 500, "second"),
+    	PET_IMP2(13454, 7020, "Pet Imp", 500, "second");
 
 
         private final int itemId;
@@ -237,6 +244,9 @@ public class PetHandler {
         } else if (player.getRegionProvider().getClipping(player.getX(), player.getY() + 1, player.heightLevel, 0, 1)) {
             offsetY = 1;
         }
+        if (pet.itemId == 2269) {
+            player.petGoblin = true;
+        }
         if (pet.itemId == 12840 && !ignore) {
            
             player.getItems().deleteItem2(pet.itemId, 1);
@@ -292,6 +302,9 @@ public class PetHandler {
                 return true;
             } else {
                 if (NPCHandler.npcs[player.rememberNpcIndex].spawnedBy == player.getIndex()) {
+                	  if (itemId == 2269) {
+                          player.petGoblin = false;
+                      }
                     if (player.getItems().freeSlots() > 0) {
                         NPCHandler.npcs[player.rememberNpcIndex].absX = 0;
                         NPCHandler.npcs[player.rememberNpcIndex].absY = 0;
@@ -397,6 +410,10 @@ public class PetHandler {
                 case 5559:
                 case 5560:
                     NPCHandler.npcs[player.npcClickIndex].requestTransform(npcId == 5560 ? npcId - 1 : npcId + 1);
+                    break;
+                case 5008:
+                case 7020:
+                    NPCHandler.npcs[player.npcClickIndex].requestTransform(npcId == 7020 ? npcId - 1 : npcId + 1);
                     break;
 
             }

@@ -44,6 +44,19 @@ public class RaidsChestCommon implements Lootable {
             c.getItems().addItem(reward3.getId(), reward3.getAmount()* 1); //potentially gives the loot 3 times.
             c.sendMessage("@blu@You recieved a common item out of the storage unit.");
             c.pvmp += 10 + randompvmp;
+            if (c.amDonated >= 10 && c.amDonated < 201) { //donator, super, ultra  	
+				c.sendMessage("@blu@Due to your Donator rank you have received a @red@1% @blu@Chest Rate Boost.");
+		  } else if (c.getMode().isOsrs()) {
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@1% @blu@Chest Rate Boost.");
+	     } else if (c.amDonated >= 200 && c.amDonated <=300) { //donator
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@2% @blu@Chest Rate Boost.");
+	    } else if (c.amDonated > 300 && c.amDonated <= 500) {
+			c.sendMessage("@blu@Due to your Game Mode you have received a @red@3% @blu@Chest Rate Boost.");
+		} else if (c.amDonated > 500 && c.amDonated <= 1000) {
+			c.sendMessage("@blu@Due to your Game Mode you have received a @red@4% @blu@Chest Rate Boost.");
+		} else if (c.amDonated > 2500) {
+			c.sendMessage("@blu@Due to your Game Mode you have received a @red@5% @blu@Chest Rate Boost.");
+		}
         } else {
             c.sendMessage("@blu@The chest is locked, it won't budge!");
         }

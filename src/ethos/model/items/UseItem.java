@@ -14,6 +14,7 @@ import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.ardougne.ArdougneDiaryEntry;
 import ethos.model.content.achievement_diary.fremennik.FremennikDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
+import ethos.model.content.limitedItems.PetImp;
 import ethos.model.content.trails.MasterClue;
 import ethos.model.items.item_combinations.Godswords;
 import ethos.model.minigames.warriors_guild.AnimatedArmour;
@@ -21,6 +22,7 @@ import ethos.model.players.Boundary;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerAssistant;
 import ethos.model.players.combat.Degrade;
+import ethos.model.players.combat.magic.MagicData;
 import ethos.model.players.mode.ModeType;
 import ethos.model.players.packets.ExchangeSystem.FireOfExchange;
 import ethos.model.players.packets.objectoptions.impl.DarkAltar;
@@ -35,6 +37,7 @@ import ethos.model.players.skills.herblore.UnfCreator;
 import ethos.model.players.skills.prayer.Bone;
 import ethos.model.players.skills.prayer.Prayer;
 import ethos.model.players.skills.slayer.SlayerUnlock;
+import ethos.model.shops.ShopAssistant;
 import ethos.util.Misc;
 
 /**
@@ -130,29 +133,58 @@ public class UseItem {
 			}
 		}
 		switch (objectID) {
-		case 26782: 
-			c.objectYOffset = 5;
-			c.objectXOffset = 5;
-			c.objectDistance = 5;
-		    switch (itemId) {  	
+		case 26782: // fountain of rune
+			c.objectYOffset = 4;
+			c.objectXOffset = 4;
+			c.objectDistance = 4;
+			int totalAmount = 0;
+		    switch (itemId) {
 		    case 1704:
-	    		c.getItems().deleteItem(1704, 1);
-		    	c.getItems().addItem(1712, 1);
+		    	  if (c.getPA().freeSlots() < 1) {
+						c.sendMessage("You need atleast 1 inventory space to do this.");
+						return;
+					}
+		        totalAmount = c.getItems().getItemAmount(1704);
+	    		c.getItems().deleteItem(1704, totalAmount);
+		    	c.getItems().addItem(1704, totalAmount);
+		    	totalAmount = 0;
 		    	break;
 		    case 1706:
-		    	c.getItems().deleteItem(1706, 1);
-		    	c.getItems().addItem(1712, 1);
+		    	  if (c.getPA().freeSlots() < 1) {
+						c.sendMessage("You need atleast 1 inventory space to do this.");
+						return;
+		    	  }
+			    totalAmount = c.getItems().getItemAmount(1706);
+		    	c.getItems().deleteItem(1706, totalAmount);
+		    	c.getItems().addItem(1712, totalAmount);
+		    	totalAmount = 0;
 		    	break;
 		    case 1708:
-		    	c.getItems().deleteItem(1708, 1);
-		    	c.getItems().addItem(1712, 1);
+		    	  if (c.getPA().freeSlots() < 1) {
+						c.sendMessage("You need atleast 1 inventory space to do this.");
+						return;
+					}
+			    totalAmount = c.getItems().getItemAmount(1708);
+		    	c.getItems().deleteItem(1708, totalAmount);
+		    	c.getItems().addItem(1712, totalAmount);
+		    	totalAmount = 0;
 		    	break;
 		    case 1710:
-		    	c.getItems().deleteItem(1710, 1);
-		    	c.getItems().addItem(1712, 1);
+		    	  if (c.getPA().freeSlots() < 1) {
+						c.sendMessage("You need atleast 1 inventory space to do this.");
+						return;
+					}
+			    totalAmount = c.getItems().getItemAmount(1710);
+		    	c.getItems().deleteItem(1710, totalAmount);
+		    	c.getItems().addItem(1712, totalAmount);
+		    	break;
+		    case 1712:
+		    	c.sendMessage("Your glory is already full of charge.");
+		    	break;
+		    default:
+		    	c.sendMessage("You can only use glory types on the fountain of rune.");
 		    	break;
 		    }
-		    c.sendMessage("You need at least 1 inventory space to do this.");
 			break;
 		case 172:
 		case 170:
@@ -182,8 +214,7 @@ public class UseItem {
 			if (itemId == 6055) {
 				c.getItems().deleteItem(6055, 28);
 			}
-			break;
-		
+			break;		
 		case 9380:
 		case 9385:
 		case 9344:
@@ -321,7 +352,7 @@ public class UseItem {
 		case 411:
 			Optional<Bone> WildyBone = Prayer.isOperableBone(itemId);
 			if (WildyBone.isPresent()) {
-				c.getPrayer().setAltarBone(WildyBone);
+				c.getPrayer().alter(28);
 				c.getOutStream().createFrame(27);
 				c.settingUnnoteAmount = false;
 				c.boneOnAltar = true;
@@ -373,6 +404,48 @@ public class UseItem {
 		if (itemUsed == RunePouch.RUNE_POUCH_ID || useWith == RunePouch.RUNE_POUCH_ID) {
 			c.getRunePouch().addRunesFromInventory(itemUsed == RunePouch.RUNE_POUCH_ID ? useWith : itemUsed, Integer.MAX_VALUE);
 			return;
+		}
+		
+		int[] GRACEFUL_HOODS = {13579, 13591, 13603, 13615, 13627, 13667, 21061};
+		int[] GRACEFUL_CAPE = {13581, 13593, 13605, 13617, 13629, 13669, 21064};
+		int[] GRACEFUL_TOP = {13581, 13593, 13605, 13617, 13629, 13669, 21064};
+		int[] GRACEFUL_LEGS = {13585, 13597, 13609, 13621, 13633, 13673, 21070, };
+		int[] GRACEFUL_GLOVES = {13587, 13600, 13611, 13623, 13635, 13675, 21073};
+		int[] GRACEFUL_BOOTS = {13589, 13601, 13613, 13625, 13637, 13677, 21076};
+		if (itemUsed == 3224 || Misc.linearSearch(GRACEFUL_HOODS, useWith) != -1) {
+			c.getItems().deleteItem(useWith, 1);
+			c.getItems().addItemUnderAnyCircumstance(11850, 1);
+			return;
+		}
+		if (itemUsed == 3224 || Misc.linearSearch(GRACEFUL_CAPE, useWith) != -1) {
+			c.getItems().deleteItem(useWith, 1);
+			c.getItems().addItemUnderAnyCircumstance(11852, 1);
+			return;
+		}
+		if (itemUsed == 3224 || Misc.linearSearch(GRACEFUL_TOP, useWith) != -1) {
+			c.getItems().deleteItem(useWith, 1);
+			c.getItems().addItemUnderAnyCircumstance(11854, 1);
+			return;
+		}
+		if (itemUsed == 3224 || Misc.linearSearch(GRACEFUL_LEGS, useWith) != -1) {
+			c.getItems().deleteItem(useWith, 1);
+			c.getItems().addItemUnderAnyCircumstance(11856, 1);
+			return;
+		}
+		if (itemUsed == 3224 || Misc.linearSearch(GRACEFUL_GLOVES, useWith) != -1) {
+			c.getItems().deleteItem(useWith, 1);
+			c.getItems().addItemUnderAnyCircumstance(11858, 1);
+			return;
+		}
+		if (itemUsed == 3224 || Misc.linearSearch(GRACEFUL_BOOTS, useWith) != -1) {
+			c.getItems().deleteItem(useWith, 1);
+			c.getItems().addItemUnderAnyCircumstance(11860, 1);
+			return;
+		}
+		if (itemUsed == 22988 && useWith == 22111 || itemUsed == 22111 && useWith == 22988) {
+			c.getItems().deleteItem(itemUsed, 1);
+			c.getItems().deleteItem(useWith, 1);
+			c.getItems().addItem(22986, 1);
 		}
 		if (itemUsed == 22969 && useWith == 22971 || useWith == 22973 || itemUsed == 22971 && useWith == 22969 || useWith == 22973
 				|| itemUsed == 22973 && useWith == 22969 || useWith == 22971) {
@@ -1170,6 +1243,20 @@ public class UseItem {
 				c.getDH().sendStatement("You have combined 2 salve amulets to create the (e) version..");
 				c.nextChat = -1;
 			}
+		if (itemUsed == 4081 && useWith == 10588 || itemUsed == 10588 && useWith == 4081) {
+			c.getItems().deleteItem2(itemUsed, 1);
+			c.getItems().deleteItem2(useWith, 1);
+			c.getItems().addItem(12017, 1);
+			c.getDH().sendStatement("You have combined 2 salve amulet + (e) version to create the (i) version..");
+			c.nextChat = -1;
+		}
+		if (itemUsed == 10588 && useWith == 12017 || itemUsed == 12017 && useWith == 10588) {
+			c.getItems().deleteItem2(itemUsed, 1);
+			c.getItems().deleteItem2(useWith, 1);
+			c.getItems().addItem(12018, 1);
+			c.getDH().sendStatement("You have combined 2 salve amulett (i) version to create the (ie) version..");
+			c.nextChat = -1;	
+		}
 		if (itemUsed == 12804 && useWith == 11838 || itemUsed == 11838 && useWith == 12804) {
 			// c.getDH().sendDialogues(550, -1);
 		}
@@ -1509,6 +1596,93 @@ public class UseItem {
 			return;
 		}
 		switch (npcId) {
+		case 5008:
+		case 7020:
+			if (Misc.linearSearch(PetImp.FOOD, itemId) != -1 && player.s1Quantity >= 30) {
+				player.getDH().sendStatement("Slots 1 are full, please remove to add another.");
+				return;
+			}
+			if (!(Misc.linearSearch(PetImp.FOOD, itemId) != -1) && player.s1Quantity >= 1) {
+				player.getDH().sendStatement("Slots 1 are full, please remove to add another.");
+				return;
+			}
+			if (Misc.linearSearch(PetImp.FOOD, itemId) != -1 && player.s2Quantity >= 30) {
+				player.getDH().sendStatement("Slots 2 are full, please remove to add another.");
+				return;
+			}
+			if (!(Misc.linearSearch(PetImp.FOOD, itemId) != -1) && player.s2Quantity >= 1) {
+				player.getDH().sendStatement("Slots 2 are full, please remove to add another.");
+				return;
+			}
+			if (!(Misc.linearSearch(PetImp.FOOD, itemId) != -1) && player.s2Quantity >= 1 &&  player.s1Quantity >= 1) {
+				player.getDH().sendStatement("Both slots are full, please remove to add another.");
+				return;
+			}
+			if (Misc.linearSearch(PetImp.FOOD, itemId) != -1 && player.s2Quantity >= 30 &&  player.s1Quantity >= 30) {
+				player.getDH().sendStatement("Both slots are full, please remove to add another.");
+				return;
+			}
+			if(player.impS1 <= 0 && player.s1Quantity <=0) {
+				if (player.impS1 > 0 && player.impS1 != itemId) {
+					player.getDH().sendStatement("You cant overwrite an item, you must remove first.");
+					return;
+				}
+				int maxAdd = 30 - player.getItems().getItemAmount(player.s2Quantity);
+				player.impS1 = itemId;
+				player.s1Quantity +=maxAdd;
+				String s1Item = Item.getItemName(player.impS1);
+				player.getDH().sendStatement("You have succesfully added your "+maxAdd+" "+s1Item+" to slot 1.");
+		} else if (player.impS1 > 0 && player.s1Quantity > 0) {
+				if (player.impS2 > 0 && player.impS2 != itemId) {
+					player.getDH().sendStatement("You cant overwrite an item, you must remove first.");
+					return;
+				}
+					int maxAdd = 30 - player.getItems().getItemAmount(player.s2Quantity);
+					player.impS2 = itemId;
+					player.s2Quantity +=maxAdd;
+					String s2Item = Item.getItemName(player.impS2);
+					player.getDH().sendStatement("You have succesfully added your "+maxAdd+" "+s2Item+" to slot 1.");
+			}
+			break;
+
+		case 8761:
+			if (player.playerLevel[18] < 90) {
+				player.getDH().sendStatement("You need a Slayer level of 90 to use this slayer master.");
+				return;
+			}
+			if (player.getSlayer().getTask().isPresent()) {
+				player.getDH().sendStatement("Please finish your current task first.");		
+				return;
+			}
+			if (!player.getItems().playerHasItem(23877, 3000)) {
+				player.getDH().sendStatement("Youneed 3k crystal shards to get a task.");
+				return;
+			}
+			player.getItems().deleteItem2(23877, 3000);
+			player.getSlayer().createNewTask(8761);
+			player.getDH().sendNpcChat("You have been assigned "+ player.getSlayer().getTaskAmount() + " " + player.getSlayer().getTask().get().getPrimaryName());
+			player.nextChat = -1;
+			break;
+		case 7995:
+			int minCoins = 6000;
+			int amount = player.getItems().getItemAmount(player.itemId);
+			int boneUsing = 0;
+			int boneAmount = 0;
+			int boneCost = 6000 * amount;
+			if (player.getItems().playerHasItem(995, minCoins)) {
+				player.sendMessage("@red@You need atleast 6000 coins, 6k per bone.");
+				return;
+			}
+			if (player.getItems().playerHasItem(995, boneCost)) {
+				player.sendMessage("@red@You need "+boneCost+" coins to unnote all your bones.");
+				return;
+			}
+			boneUsing = player.itemId;
+			boneAmount = amount;
+			player.getItems().deleteItem(player.itemId, amount);
+			player.getItems().addItem(boneUsing - 1, amount);
+			player.sendMessage("@blu@The chaos druid unnoted all of your bones.");
+			break;
 		case 905:			
 			PlayerAssistant.decantResource(player, itemId);
 			break;

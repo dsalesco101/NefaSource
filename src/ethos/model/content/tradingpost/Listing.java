@@ -477,14 +477,7 @@ public class Listing {
 				sale.setLastCollectedSold(0);
 			}
 			try {
-				/*try {
-					if(sale.getTotalSold() != sale.getQuantity())
-						CreateListing.getSingleton().updateListing(sale.getSaleId(), sale.getQuantity(), false);
-					else
-						CreateListing.getSingleton().updateListing(sale.getSaleId(), sale.getQuantity(), true);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}*/
+				
 				BufferedReader read = new BufferedReader(new FileReader(PLAYERS_DIRECTORY+sale.getName()+".txt"));
 				while((line = read.readLine()) != null) {
 					if(line.equals(Integer.toString(sale.getSaleId()))) continue;
@@ -655,16 +648,8 @@ public class Listing {
 		c.getItems().resetItems(3214);
 		PlayerSave.save(c);
 		
-		c.sendMessage("saleId: " + sales.getSaleId());
-		
-		c.sendMessage("collect: " + sales.getLastCollectedAmount());
-		c.sendMessage("total sold: " + sales.getTotalSold());
-		
 		sales.setLastCollectedSold(sales.getLastCollectedAmount() + amount);
 		sales.setTotalSold(sales.getTotalSold() + amount);
-		
-		c.sendMessage("collect 2: " + sales.getLastCollectedAmount());
-		c.sendMessage("total sold 2: " + sales.getTotalSold());
 		save(sales);
 		if(PlayerHandler.getPlayerID(sales.getName()) != -1) {
 			Player seller = (Player) PlayerHandler.players[PlayerHandler.getPlayerID(sales.getName())];

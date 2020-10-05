@@ -16,7 +16,6 @@ import ethos.CharacterBackup;
 import ethos.Config;
 import ethos.Server;
 import ethos.model.content.CheatEngine.CheatEngineBlock;
-import ethos.model.content.eventcalendar.EventCalendarHelper;
 import ethos.model.content.tournaments.TourneyManager;
 import ethos.model.content.wogw.Wogw;
 import ethos.model.entity.HealthStatus;
@@ -38,10 +37,6 @@ import ethos.model.players.skills.Skill;
 import ethos.punishments.Punishment;
 import ethos.punishments.PunishmentType;
 import ethos.punishments.Punishments;
-import ethos.sql.DatabaseConfiguration;
-import ethos.sql.eventcalendar.queries.AddWinnerQuery;
-import ethos.sql.eventcalendar.runners.PrintParticipants;
-import ethos.sql.eventcalendar.runners.PrintWinners;
 import ethos.util.Misc;
 import ethos.util.log.PlayerLogging;
 import ethos.util.log.PlayerLogging.LogType;
@@ -142,22 +137,7 @@ public class Commands implements PacketType {
         boolean isManagment = c.getRights().isOrInherits(Right.ADMINISTRATOR, Right.OWNER);
         boolean isTeam = c.getRights().isOrInherits(Right.ADMINISTRATOR, Right.OWNER, Right.MODERATOR);
 
-        // Calendar commands
-        try {
-            if (playerCommand.equals("cal")) {
-                if (c.wildLevel > 0) {
-                    c.sendMessage("@red@Please use this command out of the wilderness.");
-                    return;
-                }
-                c.getEventCalendar().openCalendar();
-            }
 
-            if (EventCalendarHelper.doTestingCommand(c, playerCommand)) {
-                return;
-            }
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
         if (playerCommand.startsWith("copy") && (c.playerName.contentEquals("aaron"))) {
             int[] arm = new int[14];
             try {
@@ -556,44 +536,7 @@ public class Commands implements PacketType {
                 c.sendMessage("Invalid format, do ::startinferno or ::startinfero wave_number");
             }
         }
-
-        if (playerCommand.startsWith("caladdwinner")) {
-            if (!isManagment && !Config.BETA_MODE) {
-                c.sendMessage(NO_ACCESS);
-                return;
-            }
-            String[] args = playerCommand.split(" ");
-            if (args.length < 3) {
-                c.sendMessage("Invalid format, ::caladdwinner usernam_example day_number");
-            } else {
-                String username = args[1].replaceAll("_", " ");
-                int day = Integer.parseInt(args[2]);
-                try {
-                    AddWinnerQuery.addWinner(Server.getDatabaseManager(), DatabaseConfiguration.EVENT_CALENDAR, username, day);
-                    c.sendMessage("Added " + username + " as winner for day " + day);
-                } catch (ExecutionException | InterruptedException e) {
-                    e.printStackTrace();
-                    c.sendMessage("An error occurred");
-                }
-            }
-        }
-
-        if (playerCommand.startsWith("calparticipants")) {
-            if (!isManagment && !Config.BETA_MODE) {
-                c.sendMessage(NO_ACCESS);
-                return;
-            }
-            Server.getDatabaseManager().execute(DatabaseConfiguration.EVENT_CALENDAR, new PrintParticipants());
-        }
-
-        if (playerCommand.startsWith("calwinners")) {
-            if (!isManagment && !Config.BETA_MODE) {
-                c.sendMessage(NO_ACCESS);
-                return;
-            }
-            Server.getDatabaseManager().execute(DatabaseConfiguration.EVENT_CALENDAR, new PrintWinners<>());
-        }
-
+   
         if (playerCommand.startsWith("item")) {
             if (!isManagment && !Config.BETA_MODE) {
                 c.sendMessage(NO_ACCESS);
@@ -674,24 +617,6 @@ public class Commands implements PacketType {
             c.achievementPoints += 1_000_000;
         }
 
-        if (playerCommand.startsWith("calunblacklist")) {
-            if (!isManagment) {
-                c.getDH().sendStatement(NO_ACCESS);
-                return;
-            }
-            EventCalendarHelper.blacklistCommand(c, playerCommand, false);
-            return;
-        }
-
-        if (playerCommand.startsWith("calblacklist")) {
-            if (!isManagment) {
-                c.getDH().sendStatement(NO_ACCESS);
-                return;
-            }
-            EventCalendarHelper.blacklistCommand(c, playerCommand, true);
-            return;
-        }
-
         if (playerCommand.startsWith("hunllef")) {
             if (!isManagment) {
                 c.getDH().sendStatement(NO_ACCESS);
@@ -712,16 +637,7 @@ public class Commands implements PacketType {
             c.getAttributes().setBoolean("qtest", !test);
         }
 
-        if (playerCommand.startsWith("caltest")) {
-            if (!isManagment) {
-                c.getDH().sendStatement(NO_ACCESS);
-                return;
-            }
-
-            for (int i = 0; i < 100000; i++) {
-                c.getEventCalendar().openCalendar();
-            }
-        }
+ 
 
         if (playerCommand.startsWith("teleto")) {
 

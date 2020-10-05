@@ -1,0 +1,134 @@
+[
+  {
+    "name": "1",
+    "equipment": {
+      "weapon": 4151,
+      "helmet": 10828,
+      "shield": 8850,
+      "ammo": -1,
+      "plate": 1127,
+      "legs": 1079,
+      "boots": 4131,
+      "gloves": 7462,
+      "necklace": 1725,
+      "cape": 1052,
+      "ring": -1
+    },
+    "inventory": [
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 5698,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 391,
+        "amount": 1
+      },
+      {
+        "itemId": 12746,
+        "amount": 1
+      },
+      {
+        "itemId": 2440,
+        "amount": 1
+      },
+      {
+        "itemId": 2436,
+        "amount": 1
+      },
+      {
+        "itemId": 2442,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 9075,
+        "amount": 952
+      },
+      {
+        "itemId": 557,
+        "amount": 9880
+      },
+      {
+        "itemId": 560,
+        "amount": 226
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 0,
+    "spellBook": 2
+  }
+]

@@ -259,6 +259,7 @@ public class Fletching {
 			player.getItems().deleteItem2(a.getId(), 15);
 			player.getItems().addItem(a.getReward(), 15);
 			player.getPA().addSkillXP((int) a.getExperience() * (player.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.FLETCHING_EXPERIENCE), Skill.FLETCHING.getId(), true);
+
 		});
 	}
 	

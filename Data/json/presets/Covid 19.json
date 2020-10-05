@@ -1,0 +1,154 @@
+[
+  {
+    "name": "dh",
+    "equipment": {
+      "weapon": 4718,
+      "helmet": 4716,
+      "shield": -1,
+      "ammo": -1,
+      "plate": 4720,
+      "legs": 4722,
+      "boots": 11840,
+      "gloves": 7462,
+      "necklace": -1,
+      "cape": -1,
+      "ring": -1
+    },
+    "inventory": [
+      {
+        "itemId": 12701,
+        "amount": 1
+      },
+      {
+        "itemId": 3030,
+        "amount": 1
+      },
+      {
+        "itemId": 3028,
+        "amount": 1
+      },
+      {
+        "itemId": 3026,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 4151,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 385,
+        "amount": 1
+      },
+      {
+        "itemId": 557,
+        "amount": 10
+      },
+      {
+        "itemId": 560,
+        "amount": 42
+      },
+      {
+        "itemId": 9075,
+        "amount": 64
+      }
+    ],
+    "ammoAmount": 0,
+    "spellBook": 2
+  },
+  {
+    "name": "mage",
+    "equipment": {
+      "weapon": 22296,
+      "helmet": 10828,
+      "shield": -1,
+      "ammo": -1,
+      "plate": 4712,
+      "legs": 4714,
+      "boots": 6920,
+      "gloves": 6922,
+      "necklace": -1,
+      "cape": 6570,
+      "ring": 11770
+    },
+    "inventory": [
+      {
+        "itemId": 12791,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 0,
+    "spellBook": 2
+  }
+]

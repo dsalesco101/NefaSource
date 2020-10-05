@@ -23,7 +23,6 @@ public class FourOptions {
 	public static void handleOption1(Player c) {
 
 		switch (c.dialogueAction) {
-		
 		case 181:
 			if (c.getSlayer().getTask().isPresent()) {
 				c.getDH().sendDialogues(190, 6797);
@@ -174,7 +173,6 @@ public class FourOptions {
 	 */
 	public static void handleOption2(Player c) {
 		switch (c.dialogueAction) {
-		
 		case 181:
 			if (c.getSlayer().getTask().isPresent()) {
 				c.getDH().sendDialogues(190, 6797);
@@ -357,7 +355,6 @@ public class FourOptions {
 	 */
 	public static void handleOption3(Player c) {
 		switch (c.dialogueAction) {
-		
 		case 181:
 			if (c.getSlayer().getTask().isPresent()) {
 				c.getDH().sendDialogues(190, 6797);

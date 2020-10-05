@@ -1,32 +1,25 @@
 package ethos.model.players.packets.dialogueoptions;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
 import ethos.event.impl.WheatPortalEvent;
 import ethos.model.content.DiceHandler;
 import ethos.model.content.LootValue;
 import ethos.model.content.QuickSets;
 import ethos.model.content.RecolourGraceful;
-import ethos.model.content.Referrals;
-import ethos.model.content.Starter;
 import ethos.model.content.StatReset;
 import ethos.model.content.achievement_diary.ardougne.ArdougneDiaryEntry;
 import ethos.model.content.achievement_diary.desert.DesertDiaryEntry;
 import ethos.model.content.achievement_diary.falador.FaladorDiaryEntry;
 import ethos.model.content.achievement_diary.kandarin.KandarinDiaryEntry;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
+import ethos.model.content.loot.LootableInterface;
 import ethos.model.content.teleportation.TeleportationDevice;
 import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerAssistant;
-import ethos.model.players.PlayerHandler;
 import ethos.model.players.combat.Degrade;
 import ethos.model.players.combat.Degrade.DegradableItem;
 import ethos.model.players.skills.agility.AgilityHandler;
-import ethos.util.Misc;
 
 /*
  * @author Matt
@@ -41,65 +34,35 @@ public class FiveOptions {
 	 */
 	public static void handleOption1(Player c) {
 			switch (c.dialogueAction) {
-			case 1002:
-				List<String> starters351 = Referrals.getUsedReferrals();
-				long usedReferral161 = starters351.stream().filter(data -> data.equals(c.getMacAddress())).count();
-				if (usedReferral161 >= 1) {
-					c.getPA().closeAllWindows();
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-					return;
-					}
-				if (c.RefU > (1)) {
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-	         		return;
-				}
-				Referrals.setUsedReferral(c);
-	        	c.RefU +=5; //guy can no longer refer after getting that point
-				c.gfx100(199);
-			    c.getItems().addItemToBank(995, 1500000);
-			    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-	            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-	        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@SPRAD]");
-	        	String loc151 = "./data/refers/youtube/sprad/" +c.playerName + ".txt";
-	            File file151 = new File(loc151);
-	            try {
-					file151.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-				c.getPA().closeAllWindows();
+			case 1053:
+	            LootableInterface.openSotetsegChestView(c);
 				break;
-			case 1001:
-				List<String> starters35 = Referrals.getUsedReferrals();
-				long usedReferral16 = starters35.stream().filter(data -> data.equals(c.getMacAddress())).count();
-				if (usedReferral16 >= 1) {
-					c.getPA().closeAllWindows();
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-					return;
+			case 1019:
+				if (c.getSlayer().getTask().isPresent()) {
+					c.getDH().sendDialogues(8623, 8623);
+				} else {
+					if (c.playerLevel[18] < 95) {
+						c.getDH().sendStatement("You need a Slayer level of 95 to use this slayer master.");
+						return;
 					}
-				if (c.RefU > (1)) {
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-	         		return;
+					if (c.getSlayer().getTask().isPresent()) {
+						c.getDH().sendStatement("Please finish your current task first.");		
+						return;
+					}
+
+					if (!c.getItems().playerHasItem(995, 5000000)) {
+						c.getDH().sendStatement("Come back when you've got the 5m cash.");
+						return;
+					}
+						c.getItems().deleteItem2(995, 5000000);
+						c.getSlayer().createNewTask(8623);
+						c.getDH().sendNpcChat("You have been assigned "+ c.getSlayer().getTaskAmount() + " " + c.getSlayer().getTask().get().getPrimaryName());
+						c.nextChat = -1;
+			
 				}
-				Referrals.setUsedReferral(c);
-	        	c.RefU +=5; //guy can no longer refer after getting that point
-				c.gfx100(199);
-			    c.getItems().addItemToBank(995, 1500000);
-			    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-	            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-	        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@FEWB]");
-	        	String loc15 = "./data/refers/youtube/fewb/" +c.playerName + ".txt";
-	            File file15 = new File(loc15);
-	            try {
-					file15.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-				c.getPA().closeAllWindows();
+				break;
+			case 2647:
+				c.getDH().sendDialogues(3647, 311);
 				break;
 			case 838:
 			c.getDiaryManager().getDesertDiary().progress(DesertDiaryEntry.TRAVEL_POLLNIVNEACH);
@@ -110,123 +73,6 @@ public class FiveOptions {
 			break;
 			case 765:
 				c.getShops().openShop(172);
-				break;
-			case 1000:
-				List<String> starters34 = Referrals.getUsedReferrals();
-				long usedReferral15 = starters34.stream().filter(data -> data.equals(c.getMacAddress())).count();
-				if (usedReferral15 >= 1) {
-					c.getPA().closeAllWindows();
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-					return;
-					}
-				if (c.RefU > (1)) {
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-	         		return;
-				}
-				Referrals.setUsedReferral(c);
-	        	c.RefU +=5; //guy can no longer refer after getting that point
-				c.gfx100(199);
-			    c.getItems().addItemToBank(995, 1500000);
-			    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-	            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-	        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@VEXIA]");
-	        	String loc14 = "./data/refers/youtube/vexia/" +c.playerName + ".txt";
-	            File file14 = new File(loc14);
-	            try {
-					file14.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-				c.getPA().closeAllWindows();
-				break;
-			case 999:
-				List<String> starters33 = Referrals.getUsedReferrals();
-				long usedReferral13 = starters33.stream().filter(data -> data.equals(c.getMacAddress())).count();
-				if (usedReferral13 >= 1) {
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-					return;
-					}
-				if (c.RefU > (1)) {
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-	         		return;
-				}
-				Referrals.setUsedReferral(c);
-	        	c.RefU +=5; //guy can no longer refer after getting that point
-				c.gfx100(199);
-			    c.getItems().addItemToBank(995, 1500000);
-			    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-	            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-	        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@WALK CHAOS]");
-	        	String loc13 = "./data/refers/youtube/walk chaos/" +c.playerName + ".txt";
-	            File file13 = new File(loc13);
-	            try {
-					file13.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-				c.getPA().closeAllWindows();
-				break;
-			case 998:
-				List<String> starters = Referrals.getUsedReferrals();
-				long usedReferral = starters.stream().filter(data -> data.equals(c.getMacAddress())).count();
-				if (usedReferral >= 1) {
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-					return;
-					}
-				if (c.RefU > (1)) {
-	         		c.getDH().sendStatement("@red@You have already used your referral");
-	         		return;
-				}
-				Referrals.setUsedReferral(c);
-	        	c.RefU +=5; //guy can no longer refer after getting that point
-				c.gfx100(199);
-			    c.getItems().addItemToBank(995, 1500000);
-			    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-	            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-	        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [DISCORD]");
-	        	String loc1 = "./data/refers/discord/" +c.playerName + ".txt";
-	            File file1 = new File(loc1);
-	            try {
-					file1.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-				c.getPA().closeAllWindows();
-				break;
-			case 997:
-				List<String> starters2 = Referrals.getUsedReferrals();
-				long usedReferral2 = starters2.stream().filter(data -> data.equals(c.getMacAddress())).count();
-				if (usedReferral2 >= 1) {
-	        		c.getDH().sendStatement("@red@You have already used your referral");
-					return;
-					}
-				if (c.RefU > (1)) {
-	        		c.getDH().sendStatement("@red@You have already used your referral");
-					return;
-				}
-				Referrals.setUsedReferral(c);
-	        	c.RefU +=5; //guy can no longer refer after getting that point
-			    c.gfx100(199);
-			    c.getItems().addItemToBank(995, 1500000);
-			    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-	            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-	        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [RSPS-LIST]");
-	        	String loc = "./data/refers/rsps-list/" +c.playerName + ".txt";
-	            File file = new File(loc);
-	            try {
-					file.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-				c.getPA().closeAllWindows();
 				break;
 			case 4487:
 				c.getPA().startTeleport(2881, 5310, 2, "modern", false);
@@ -320,9 +166,6 @@ public class FiveOptions {
 			
 		case 76: //Max cape
 				c.getPA().closeAllWindows();
-				if (c.inWild()) {
-					return;
-				}
 				if (c.playerMagicBook == 0) {
 					c.playerMagicBook = 1;
 					c.setSidebarInterface(6, 838);
@@ -510,39 +353,27 @@ public class FiveOptions {
 	public static void handleOption2(Player c) {
 
 		switch (c.dialogueAction) {
+		case 1053:
+            LootableInterface.openSerenChestView(c);
+			break;
+		case 1019: 
+			if (c.playerLevel[18] < 90) {
+				c.getDH().sendStatement("You need a Slayer level of 90 to use this slayer master.");
+				return;
+			}
+			if (c.getSlayer().getTask().isPresent()) {
+				c.getDH().sendStatement("Please finish your current task first.");		
+				return;
+			}
+				c.getSlayer().createNewTask(8761);
+				c.getDH().sendNpcChat("You have been assigned "+ c.getSlayer().getTaskAmount() + " " + c.getSlayer().getTask().get().getPrimaryName());
+		        c.nextChat = -1;
+		        break;
+		case 2647:
+			c.getDH().sendDialogues(4647, 311);
+			break;
 		case 1002:
 			c.getDH().sendDialogues(1001, 13);
-			break;
-		case 1001:
-			List<String> starters35 = Referrals.getUsedReferrals();
-			long usedReferral16 = starters35.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral16 >= 1) {
-				c.getPA().closeAllWindows();
-         		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@ARTZ]");
-        	String loc15 = "./data/refers/youtube/artz/" +c.playerName + ".txt";
-            File file15 = new File(loc15);
-            try {
-				file15.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
 			break;
 		case 838:
 			c.startAnimation(2262);
@@ -553,103 +384,19 @@ public class FiveOptions {
 		case 765:
 			c.getShops().openShop(173);
 			break;
-		case 1000:
-			List<String> starters37 = Referrals.getUsedReferrals();
-			long usedReferral17 = starters37.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral17 >= 1) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@I PK MAX JR]");
-        	String loc17 = "./data/refers/youtube/i pk max jr/" +c.playerName + ".txt";
-            File file17 = new File(loc17);
-            try {
-				file17.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-			break;
-		case 999:
-			List<String> starters33 = Referrals.getUsedReferrals();
-			long usedReferral14 = starters33.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral14 >= 1) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@STABLE]");
-        	String loc14 = "./data/refers/youtube/stable/" +c.playerName + ".txt";
-            File file14 = new File(loc14);
-            try {
-				file14.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-			break;
 		case 998:
 			c.getDH().sendDialogues(999, 13);
             break;
-		case 997:
-			List<String> starters4 = Referrals.getUsedReferrals();
-			long usedReferral4 = starters4.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral4 >= 1) {
-        		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-        		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [RUNE-LOCUS]");
-        	String loc = "./data/refers/rune-locus/" +c.playerName + ".txt";
-            File file = new File(loc);
-            try {
-				file.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-			break;
 		case 4487:
-			if (c.getItems().playerHasItem(995, 150000)) {
+			if (!c.getItems().playerHasItem(995, 150000)) {
+				c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
+				return;
+			}
 				c.getItems().deleteItem(995, 150000);
 				c.getPA().startTeleport(2858, 5354, 2, "modern", false);
 				c.sendMessage("@red@You have teleported to Bandos Enterance for @red@150k");
-			}
-			c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
 			break;
 		case 851:
 			//c.getDH().sendDialogues(856, 7520);
@@ -933,36 +680,28 @@ public class FiveOptions {
 	public static void handleOption3(Player c) {
 
 		switch (c.dialogueAction) {
-		case 1002:
-			c.getPA().closeAllWindows();
-			break;
-		case 1001:
-			List<String> starters39 = Referrals.getUsedReferrals();
-			long usedReferral19 = starters39.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral19 >= 1) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
+		case 1019:
+			if (c.playerLevel[18] < 87) {
+				c.sendMessage("You need a Slayer level of 87 to kill these.");
 				return;
+			}
+			if (c.getSlayer().getTask().isPresent()) {
+				c.getDH().sendStatement("Please finish your current task first.");		
+				return;
+			}
+				if (!c.getItems().playerHasItem(995, 1_000_000)) {
+					c.getDH().sendStatement("Come back when you've got the 1m ready.");
+					return;
 				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@VIHTIC]");
-        	String loc19 = "./data/refers/youtube/vihtic/"+c.playerName + ".txt";
-            File file19 = new File(loc19);
-            try {
-				file19.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
+				c.getItems().deleteItem2(995, 1_000_000);
+				c.getSlayer().createNewTask(603);
+				c.getDH().sendNpcChat("You have been assigned "+ c.getSlayer().getTaskAmount() + " " + c.getSlayer().getTask().get().getPrimaryName());
+		        c.nextChat = -1;
+		        break;
+		case 2647:
+			c.getDH().sendDialogues(4648, 311);
+			break;
+		case 1002:
 			c.getPA().closeAllWindows();
 			break;
 		case 838:
@@ -971,129 +710,17 @@ public class FiveOptions {
 					"at last you end up in Al Kharid.", 3);
 			c.getPA().removeAllWindows();
 			break;
-		case 1000:
-			List<String> starters37 = Referrals.getUsedReferrals();
-			long usedReferral17 = starters37.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral17 >= 1) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@CHOPPER RSPS]");
-        	String loc18 = "./data/refers/youtube/chopper rsps/"+c.playerName + ".txt";
-            File file18 = new File(loc18);
-            try {
-				file18.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-			break;
-		case 999:
-			List<String> starters33 = Referrals.getUsedReferrals();
-			long usedReferral15 = starters33.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral15 >= 1) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@FRIMB]");
-        	String loc15 = "./data/refers/youtube/frimb/" +c.playerName + ".txt";
-            File file15 = new File(loc15);
-            try {
-				file15.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-			break;
-		case 998:
-			List<String> starters5 = Referrals.getUsedReferrals();
-			long usedReferral5 = starters5.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral5 >= 1) {
-        		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-        		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-		    c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [RSPS-LIST]");
-        	String loc1 = "./data/refers/rsps-list/" +c.playerName + ".txt";
-            File file1 = new File(loc1);
-            try {
-				file1.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-            break;
-		case 997:
-			List<String> starters6 = Referrals.getUsedReferrals();
-			long usedReferral6 = starters6.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral6 >= 1) {
-        		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-				}
-			if (c.RefU > (1)) {
-        		c.getDH().sendStatement("@red@You have already used your referral");
-				return;
-			}
-			Referrals.setUsedReferral(c);
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [TopG]");
-        	String loc = "./data/refers/topg/" +c.playerName + ".txt";
-            File file = new File(loc);
-            try {
-				file.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-            break;
+			
 		case 4487:
-			if (c.getItems().playerHasItem(995, 150000)) {
+			if (!c.getItems().playerHasItem(995, 150000)) {
+				c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
+				return;
+			}
 				c.getItems().deleteItem(995, 150000);
 				c.getPA().startTeleport(2914, 5300, 1, "modern", false);
 				c.sendMessage("@red@You have teleported to Saradomin Enterance for @red@150k");
-			}
-			c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
 			break;
 		case 851:
 			c.getDH().sendDialogues(852, 7520);
@@ -1340,6 +967,23 @@ public class FiveOptions {
 	public static void handleOption4(Player c) {
 
 		switch (c.dialogueAction) {	
+		case 1019:
+		if (c.getSlayer().getTask().isPresent()) {
+			c.getDH().sendDialogues(3305, 8761);
+		} else {
+			if (c.playerLevel[18] < 90) {
+				c.getDH().sendStatement("You need a Slayer level of 90 to kill these.");
+				return;
+			}
+			if (c.getSlayer().getTask().isPresent()) {
+				c.getDH().sendStatement("Please finish your current task first.");		
+				return;
+			}
+				c.getSlayer().createNewTask(5870);
+				c.getDH().sendNpcChat("You have been assigned "+ c.getSlayer().getTaskAmount() + " " + c.getSlayer().getTask().get().getPrimaryName());
+				c.nextChat = -1;
+		}
+		break;
 		case 1001:
 			c.getDH().sendDialogues(1000, 13);
 			break;
@@ -1349,100 +993,16 @@ public class FiveOptions {
 					"at last you end up in Bandit Camp.", 3);
 			c.getPA().removeAllWindows();
 			break;
-		case 1000:
-			List<String> starters333 = Starter.getStarters();
-			long usedReferral153 = starters333.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral153 >= 1) {
-				c.getDH().sendStatement("@red@You have used your referral on this mac address.");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-        	c.RefU +=2; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@DIDYSCAPE]");
-        	String loc164 = "./data/refers/youtube/didyscape/" +c.playerName + ".txt";
-            File file164 = new File(loc164);
-            try {
-				file164.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-		break;
-		case 999:
-			List<String> starters33 = Starter.getStarters();
-			long usedReferral15 = starters33.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral15 >= 1) {
-				c.getDH().sendStatement("@red@You have used your referral on this mac address.");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-        	c.RefU +=2; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	PlayerHandler.executeGlobalMessage("@cr10@[@blu@REFERRAL]@blu@"  + Misc.formatPlayerName(c.playerName) + "@blu@ Has come from@red@ [@cr14@FPK MERK]");
-        	String loc16 = "./data/refers/youtube/fpk merk/" +c.playerName + ".txt";
-            File file16 = new File(loc16);
-            try {
-				file16.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-			break;
-		case 998:
-			c.getDH().sendDialogues(997, 13);
-			break;
-		case 997:
-			List<String> starters35 = Starter.getStarters();
-			long usedReferral17 = starters35.stream().filter(data -> data.equals(c.getMacAddress())).count();
-			if (usedReferral17 >= 1) {
-				c.getDH().sendStatement("@red@You have used your referral on this mac address.");
-				return;
-				}
-			if (c.RefU > (1)) {
-         		c.getDH().sendStatement("@red@You have already used your referral");
-         		return;
-			}
-        	c.RefU +=5; //guy can no longer refer after getting that point
-			c.gfx100(199);
-		    c.getItems().addItemToBank(995, 1500000);
-		    c.sendMessage("@red@Your @red@1.5 million coins @bla@has been added to your bank.");
-		    c.sendMessage("@red@You have received 1 referral point for referring a site/player");
-            c.sendMessage("@red@You can gain more by inviting more of your friends!");
-        	String loc18 = "./data/refers/youtube/player/" +c.playerName + ".txt";
-            File file18 = new File(loc18);
-            try {
-				file18.createNewFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			c.getDH().sendStatement("@or2@Thank you for using your referral code.");
-			c.getPA().closeAllWindows();
-			break;
 		case 4487:
-			if (c.getItems().playerHasItem(995, 150000)) {
+			if (!c.getItems().playerHasItem(995, 150000)) {
+				c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
+				return;
+			}
 				c.getItems().deleteItem(995, 150000);
 				c.getPA().startTeleport(2921, 5339, 2, "modern", false);
 				c.sendMessage("@red@You have teleported to Zamorak Enterance for @red@150k");
-			}
-			c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
 			break;
 		case 851:
 			c.getDH().sendDialogues(853, 7520);
@@ -1687,12 +1247,15 @@ public class FiveOptions {
 			c.getDH().sendDialogues(998, 13);
 			break;
 		case 4487:
-			if (c.getItems().playerHasItem(995, 150000)) {
+			if (!c.getItems().playerHasItem(995, 150000)) {
+				c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
+				return;
+			}
 				c.getItems().deleteItem(995, 150000);
 				c.getPA().startTeleport(2839, 5292, 2, "modern", false);
 				c.sendMessage("@red@You have teleported to Armadyl Enterance for @red@150k");
-			}
-			c.sendMessage("@red@You need 150k coins to use this teleport.");
+				c.getPA().closeAllWindows();
 			break;
 		case 711:
 		case 77:

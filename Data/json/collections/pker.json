@@ -1,0 +1,36 @@
+{
+  "1": [
+    {
+      "id": 995,
+      "amount": 4469,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 2635,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ],
+  "2": [
+    {
+      "id": 374,
+      "amount": 6,
+      "slot": 0,
+      "stackable": true
+    },
+    {
+      "id": 1169,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    },
+    {
+      "id": 10438,
+      "amount": 1,
+      "slot": 0,
+      "stackable": false
+    }
+  ]
+}

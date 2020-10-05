@@ -21,12 +21,10 @@ public class Hunllef extends InstancedArea {
 				player.getInstance().dispose();
 			}
 			player.getPA().spellTeleport(3278, 6050, 0, false);
-			player.getItems().addItem(23776, 1);
-			player.hunllefDead = false;
-		}
-		player.hunllefDead = false;
+    			player.getItems().addItem(23776, 1);
+          }
+			player.hunllefDead = false;	
 	}
-
 	public static void start(Player c) {
 		c.getPA().closeAllWindows();
 		Hunllef instance = new Hunllef(c);

@@ -257,6 +257,7 @@ public class AttackPlayer {
 				experience += (damage * (c.getMode().getType().equals(ModeType.OSRS) ? 4 : Config.RANGE_EXP_RATE)) + (damage * (c.getMode().getType().equals(ModeType.OSRS) ? 4 : Config.RANGE_EXP_RATE) / 2);
 				c.getPA().addSkillXP(damage * (c.getMode().getType().equals(ModeType.OSRS) ? 4 : Config.RANGE_EXP_RATE), 1, showXpDrops);
 				c.getPA().addSkillXP(damage * (c.getMode().getType().equals(ModeType.OSRS) ? 4 : Config.RANGE_EXP_RATE) / 2, 4, showXpDrops);
+				
 				break;
 			}
 			break;
@@ -910,6 +911,7 @@ public class AttackPlayer {
 				}
 				if (attacker.magicDef) {
 					attacker.getPA().addSkillXP((damage * (attacker.getMode().getType().equals(ModeType.OSRS) ? 3 : Config.MELEE_EXP_RATE) / 3), 1, false);
+					attacker.getPA().addSkillXP((damage * (attacker.getMode().getType().equals(ModeType.OSRS) ? 5 : Config.MELEE_EXP_RATE) / 3), 1, false);
 					attacker.getPA().refreshSkill(1);
 				}
 				DamageEffect tsotdEffect = new ToxicStaffOfTheDeadEffect();
@@ -1392,12 +1394,6 @@ public class AttackPlayer {
 					}
 
 					c.faceUpdate(i + 32768);
-					if (!c.canAttack) {
-						c.stopMovement();
-						c.getCombat().resetPlayerAttack();
-						c.sendMessage("You cannot attack players right now.");
-						return;
-					}
 					if (!Boundary.isIn(c, Boundary.DUEL_ARENA) && !TourneyManager.getSingleton().isInArena(c)) {
 						if (!c.attackedPlayers.contains(c.playerAttackingIndex) && !PlayerHandler.players[c.playerAttackingIndex].attackedPlayers.contains(c.getIndex())) {
 							c.attackedPlayers.add(c.playerAttackingIndex);

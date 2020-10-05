@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.Queue;
 import java.util.function.Predicate;
 
+import Ranked.Ranked;
+
 /**
  * A class that manages events that are pulsed every game cycle.
  * 

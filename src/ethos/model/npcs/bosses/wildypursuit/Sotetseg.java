@@ -1,6 +1,5 @@
 package ethos.model.npcs.bosses.wildypursuit;
 
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
@@ -36,10 +35,8 @@ public class Sotetseg {
 				if (p.getGlodDamageCounter() >= 80) {
 					p.sendMessage("@blu@The wildy boss has been killed!");
 					p.sendMessage("@blu@You receive a key for doing enough damage to the boss!");
-
-					p.getItems().addItemUnderAnyCircumstance(4185, 1);
-					p.getEventCalendar().progress(EventChallenge.OBTAIN_X_WILDY_EVENT_KEYS);
-					p.setGlodDamageCounter(0);
+					p.setGlodDamageCounter(0); 
+						p.getItems().addItemUnderAnyCircumstance(4185, 1);
 				} else {
 					p.sendMessage("@blu@You didn't do enough damage to the boss to receive a reward.");
 					p.setGlodDamageCounter(0);

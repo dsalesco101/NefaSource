@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import ethos.Server;
+import ethos.event.impl.RandomEvent;
 import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
 import ethos.model.content.achievement_diary.lumbridge_draynor.LumbridgeDraynorDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
@@ -132,6 +133,16 @@ public class PlayerEmotes {
 				if (System.currentTimeMillis() - player.lastPerformedEmote < 3500)
 					return;			
 				if (animation.getButton() == 166) {
+					if (player.eventFinished == false && RandomEvent.eventNumber == 6) {
+						player.eventStage += 1;
+					}
+				if (player.eventStage == 75 && player.eventFinished == false && RandomEvent.eventNumber == 6) {
+						player.sendMessage("@blu@You have completed the event challenge: @red@use emote dance 75 times.");
+						player.sendMessage("@blu@You receive @red@1 @blu@Event Point for completing the Event Challenge.");
+						player.eventPoints+=1;
+						player.eventStage = 0;
+						player.eventFinished = true;
+					}
 					if (Boundary.isIn(player, Boundary.VARROCK_BOUNDARY)) {
 						player.getDiaryManager().getVarrockDiary().progress(VarrockDiaryEntry.BECOME_A_DANCER);
 					}

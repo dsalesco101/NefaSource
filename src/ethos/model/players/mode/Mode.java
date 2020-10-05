@@ -13,7 +13,7 @@ public abstract class Mode {
 	 * A list of all {@link Mode}'s that exist in the game.
 	 */
 	private static final List<Mode> MODES = ImmutableList
-			.copyOf(Arrays.asList(new RegularMode(ModeType.REGULAR), new IronmanMode(ModeType.IRON_MAN), new HCIronmanMode(ModeType.HC_IRON_MAN), new UltimateIronmanMode(ModeType.ULTIMATE_IRON_MAN), new OsrsMode(ModeType.OSRS)));
+			.copyOf(Arrays.asList(new RegularMode(ModeType.REGULAR), new IronmanMode(ModeType.IRON_MAN), new HCIronmanMode(ModeType.HC_IRON_MAN), new UltimateIronmanMode(ModeType.ULTIMATE_IRON_MAN), new OsrsMode(ModeType.OSRS),  new MedMode(ModeType.MED_MODE)));
 
 	/**
 	 * The type of mode
@@ -173,6 +173,10 @@ public abstract class Mode {
 	public boolean isOsrs() {
 		return type == ModeType.OSRS;
 	}
+	public boolean isMedMode() {
+		return type == ModeType.MED_MODE;
+	}
+
 
 	/**
 	 * Returns a particular {@link Mode} for the given {@link ModeType}.

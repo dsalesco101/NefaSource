@@ -30,13 +30,6 @@ public class Duel extends Multiplayer {
 		long milliseconds = (long) requested.playTime * 600;
 		long days = TimeUnit.MILLISECONDS.toDays(milliseconds);
 
-		/*if(days < 1){
-			requested.sendMessage("@red@ You need to be at least 1 day old to stake.");
-			requested.sendMessage("@red@ This is to prevent our new players from getting cleaned.");
-			requested.sendMessage("@red@ Please enjoy all other aspects of the game though. Thanks.");
-			return false;
-		}*/
-
 		if (player.getLootingBag().isWithdrawInterfaceOpen() || player.getLootingBag().isDepositInterfaceOpen() ||
 				requested.getLootingBag().isWithdrawInterfaceOpen() || requested.getLootingBag().isDepositInterfaceOpen()) {
 			return false;

@@ -125,7 +125,7 @@ public class PollTab {
         if (!isPollActive(poll) || poll.getQuestion().equalsIgnoreCase("")) {
             player.setSidebarInterface(13, 21406);
             player.getPA().sendFrame126(":pollHeight-1", 21406);
-            player.getPA().sendFrame126("Poll: @red@Inactive", 21408);
+            player.getPA().sendFrame126("Giveaway: @red@Inactive", 21408);
             player.getPA().sendFrame126("---", 21409);
 
             for(int i = 0; i < 5; i++) {
@@ -141,9 +141,9 @@ public class PollTab {
             poll.getAnswers().removeIf(String::isEmpty);
             player.getPA().sendFrame126(":pollHeight-" + poll.getQuestion().split("\\|").length, 21406);
             player.getPA().sendFrame126((poll.getRight() != Right.PLAYER ? "<img=" + (poll.getRight().getValue() - 1) + ">" : "") + "Poll:\\n" + poll.getQuestion().replace("|", "\\n"), 21408);
-            player.getPA().sendFrame126("Time Left to Vote: @whi@" + (getHoursLeft() == -1 ? "TBD" : getHoursLeft() <= 0 ? "~ 1" : "" + getHoursLeft()) + " hour(s)", 21409);
+            player.getPA().sendFrame126("Time Left till giveaway: @whi@" + (getHoursLeft() == -1 ? "TBD" : getHoursLeft() <= 0 ? "~ 1" : "" + getHoursLeft()) + " hour(s)", 21409);
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 1; i++) {
                 if (i < poll.getAnswers().size()) {
                     player.getPA().sendFrame126(poll.getAnswers().get(i).replace("|", "\\n"), 21412 + (i * 3));
                 } else {
@@ -153,7 +153,7 @@ public class PollTab {
             }
         } else {
             player.setSidebarInterface(13, 21429);
-            player.getPA().sendFrame126("Current Votes: (" + poll.getTotalVotes() + ")", 21430);
+            player.getPA().sendFrame126("Current Entries: (" + poll.getTotalVotes() + ")", 21430);
 
             int highestIndex = -1;
             int highestValue = 0;

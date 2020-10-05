@@ -459,7 +459,7 @@ public class CombatAssistant {
 
 	public void checkVenomousItems() {
 		if (c.getItems().isWearingItem(12926) && c.getItems().getWornItemSlot(12926) == c.playerWeapon) {
-			if (c.getItems().isWearingItem(10499) || c.getItems().isWearingItem(13337) || c.getItems().isWearingItem(21898) ||c.getItems().isWearingItem(22109) || c.getItems().isWearingItem(21285) || SkillcapePerks.RANGING.isWearing(c) || SkillcapePerks.isWearingMaxCape(c)) {
+			if (c.getItems().isWearingItem(10499) || c.getItems().isWearingItem(13337) || c.getItems().isWearingItem(33037) || c.getItems().isWearingItem(9756) || c.getItems().isWearingItem(9757) || c.getItems().isWearingItem(21898) ||c.getItems().isWearingItem(22109) || c.getItems().isWearingItem(21285) || SkillcapePerks.RANGING.isWearing(c) || SkillcapePerks.isWearingMaxCape(c)) {
 				if (RandomUtils.nextInt(0, 15) > 1) {
 					return;
 				}
@@ -496,10 +496,9 @@ public class CombatAssistant {
 					c.sendMessage("<col=255>You have " + c.getSerpentineHelmCharge() + " charges remaining in your serpentine helm.</col>");
 				}
 				if (c.getSerpentineHelmCharge() <= 0) {
-					c.sendMessage("Your serpentine helm has lost all of it's charge.");
-					c.getItems().wearItem(-1, 0, c.playerHat);
-					c.getItems().addItemUnderAnyCircumstance(uncharged, 1);
+					c.sendMessage("Your helmet has lost all of it's charges, please recharge it first.");
 					c.setSerpentineHelmCharge(0);
+					c.getCombat().resetPlayerAttack();
 				}
 			}
 		}

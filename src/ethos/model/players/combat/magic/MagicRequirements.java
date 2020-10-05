@@ -41,7 +41,7 @@ public class MagicRequirements extends MagicConfig {
 		int wep = c.playerEquipment[c.playerWeapon];
 		switch (runeId) {
 		case FIRE:
-			if (wep == 12000 || wep == 1387 || wep == 1393 || wep == 1401 || wep == 12796 || wep == 11789 || wep == 12000 || wep == 12795 || wep == 22335)
+			if (wep == 12000 || wep == 1387 || wep == 1393 || wep == 1401 || wep == 12796 || wep == 11789 || wep == 12000 || wep == 12795 || wep == 22335 || wep == 3054 || wep == 3053)
 				return true;
 			break;
 		case WATER:
@@ -49,12 +49,20 @@ public class MagicRequirements extends MagicConfig {
 				return true;
 			break;
 		case AIR:
-			if (wep == 12000 ||wep == 1381 || wep == 1397 || wep == 1405 || wep == 12000 || wep == 20736 || wep == 20736 || wep == 20730 || wep == 22335)
+			if (wep == 12000 ||wep == 1381 || wep == 1397 || wep == 1405 || wep == 20736 || wep == 12000 || wep == 20736 || wep == 20736 || wep == 20730 || wep == 22335)
 				return true;
 			break;
 			
 		case EARTH:
-			if (wep == 1385 || wep == 1399 || wep == 1407 || wep == 6563 || wep == 20736 | wep == 20736)
+			if (wep == 1385 || wep == 3053 || wep == 20736 || wep == 1399 || wep == 1407 || wep == 6563 || wep == 20736 | wep == 20736)
+				return true;
+			break;
+		case MIST:
+			if (wep == 20733 || wep == 20730)
+				return true;
+			break;
+		case DUST:
+			if (wep == 20739 || wep == 20736)
 				return true;
 			break;
 		}
@@ -192,4 +200,8 @@ public class MagicRequirements extends MagicConfig {
 	public static final int BLOOD = 565;
 	public static final int SOUL = 566;
 	public static final int ASTRAL = 9075;
+	public static final int MIST = 4695;
+	public static final int DUST = 4696;
+
+
 }

@@ -8,7 +8,7 @@ import ethos.model.players.combat.Special;
 public class VestaLongsword extends Special {
 
 	public VestaLongsword() {
-		super(2.5, 1.3, 1.15, new int[] { 22613 });
+		super(2.5, 2.50, 1.15, new int[] { 22613 });
 	}
 
 	@Override

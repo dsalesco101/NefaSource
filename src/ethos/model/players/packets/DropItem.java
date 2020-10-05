@@ -55,6 +55,10 @@ public class DropItem implements PacketType {
 				return;
 			}
 		}
+		if (c.itemId == 997) {
+			c.sendMessage("You cannot delete this item, type ::empty to remove it.");
+			return;
+		}
 		for (int item : Config.CHECK_BEFORE_DROP) {
 			if (item == itemId) {
 				c.destroyingItemId = itemId;
@@ -68,7 +72,6 @@ public class DropItem implements PacketType {
 		}
 			for (int item : Config.TOURNY_PERMITS) {
 				if (Boundary.isIn(c, Boundary.OUTLAST_AREA) && (item == itemId)) {
-					c.getItems().deleteItem(itemId, 1);
 					c.sendMessage("Your food dissapears as it hits the floor..");
 					return;
 				}

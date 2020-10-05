@@ -773,7 +773,6 @@ public class ClickingButtons implements PacketType {
 
 		case 55095:// This is the button id
 			if (c.droppingItem) {
-				// c.getPA().destroyItem(c.droppedItem);
 				if (c.getItems().playerHasItem(c.droppedItem) && c.droppedItem != -1 && !c.isDead) {
 					PlayerLogging.write(PlayerLogging.LogType.DROP, c, String.format("Dropped %s at %s",
 							new GameItem(c.droppedItem, c.playerItemsN[c.getItems().getItemSlot(c.droppedItem)]), c.getPosition()));
@@ -791,11 +790,6 @@ public class ClickingButtons implements PacketType {
 			} else {
 				c.usingMagic = true;
 				c.getPA().removeAllWindows();
-				// if (!c.getItems().playerHasItem(554, 5) || !c.getItems().playerHasItem(561,
-				// 1)) {
-				// c.sendMessage("You do not have the required runes to do this.");
-				// return;
-				// }
 				c.getPA().alchemy(c.droppedItem, "high");
 			}
 			break;
@@ -1032,7 +1026,7 @@ public class ClickingButtons implements PacketType {
 			if (tab == null || tab.size() == 0)
 				return;
 			for (BankItem item : tab.getItems()) {
-				long tempValue = item.getId() - 1 == 995 ? 1 : ShopAssistant.getItemShopValue(item.getId() - 1);
+				long tempValue = item.getId() - 1 == 13307 ? 1 : ShopAssistant.getItemShopValue(item.getId() - 1);
 				value += tempValue * item.getAmount();
 			}
 
@@ -1043,7 +1037,7 @@ public class ClickingButtons implements PacketType {
 				value = 0;
 				for (BankTab tabIt : c.getBank().getBankTab()) {
 					for (BankItem item : tabIt.getItems()) {
-						long tempValue = item.getId() - 1 == 995 ? 1 : ShopAssistant.getItemShopValue(item.getId() - 1);
+						long tempValue = item.getId() - 1 == 13307 ? 1 : ShopAssistant.getItemShopValue(item.getId() - 1);
 						value += tempValue * item.getAmount();
 					}
 				}
@@ -1235,7 +1229,9 @@ public class ClickingButtons implements PacketType {
 			break;
 		case 39241:
 			break;
-
+		case 10227:
+			c.forcedChat("I curently have a total of "+c.pkp+" pkp!");
+			break;
 		case 113240:
 			//c.forcedChat("I currently have: " + c.pkp + " PK Points.");
 			break;
@@ -1249,13 +1245,13 @@ public class ClickingButtons implements PacketType {
 			//c.forcedChat("I currently have: " + c.pcPoints + " PC Points.");
 			break;
 		case 185154: // view the forums
-			c.getPA().sendFrame126("https://www.Wisdomosrs.com/", 12000);
+			c.getPA().sendFrame126("https://www.NefariousPkz.com/", 12000);
 			break;
 		case 185155: // Discord
-			c.getPA().sendFrame126("https://www.Wisdomosrs.com/vote", 12000);
+			c.getPA().sendFrame126("https://www.NefariousPkz.com/vote", 12000);
 			break;
 		case 185156: // Store
-			c.getPA().sendFrame126("https://www.Wisdomosrs.com/store", 12000);
+			c.getPA().sendFrame126("https://www.NefariousPkz.com/store", 12000);
 			break;
 		case 185157: // in-game rules
 			break;
@@ -1546,6 +1542,15 @@ public class ClickingButtons implements PacketType {
 					c.sendMessage("...as a restricted game mode you receive less xp.");
 					c.getPA().closeAllWindows();
 					return;
+				} else if (c.normalLamp && !c.antiqueLamp && c.getItems().playerHasItem(2528, 1) && c.getMode().isMedMode()) {
+					c.usingLamp = false;
+					c.inLamp = false;
+					c.getPA().addSkillXP(12500, c.antiqueSelect, true);//note: thie experience doubles in game, so 1000 = 2000
+					c.getItems().deleteItem(2528, 1);
+					c.sendMessage("The lamp mysteriously vanishes...");
+					c.sendMessage("...as a restricted game mode you receive less xp.");
+					c.getPA().closeAllWindows();
+					return;
 				}
 				if (c.getItems().playerHasItem(21027) && c.normalLamp && !c.antiqueLamp && c.getMode().isRegular() || c.getMode().isHCIronman() || c.getMode().isUltimateIronman() || c.getMode().isIronman()) {
 					c.usingLamp = false;
@@ -1555,7 +1560,7 @@ public class ClickingButtons implements PacketType {
 					c.sendMessage("The dark relic mysteriously vanishes...");
 					c.sendMessage("...and you gain some experience!");
 					c.getPA().closeAllWindows();
-				} else if (c.normalLamp && !c.antiqueLamp && c.getItems().playerHasItem(21027, 1) && c.getMode().isOsrs()) {
+				} else if (c.normalLamp && !c.antiqueLamp && c.getItems().playerHasItem(21027, 1) && c.getMode().isOsrs() || c.getMode().isMedMode()) {
 					c.usingLamp = false;
 					c.inLamp = false;
 					c.getPA().addSkillXP(1000, c.antiqueSelect, true);//note: thie experience doubles in game, so 125 = 250
@@ -2034,7 +2039,7 @@ public class ClickingButtons implements PacketType {
 			c.getPA().startTeleport(Config.RESPAWN_X, Config.RESPAWN_Y, Config.RESPAWN_Z, "modern", false);
 			break;
 		case 166013:
-			c.getPA().sendFrame126("https://www.Wisdomosrs.com/store", 12000);
+			c.getPA().sendFrame126("https://www.NefariousPkz.com/store", 12000);
 			break;
 		case 7212:
 			c.setSidebarInterface(0, 328);
@@ -2174,6 +2179,11 @@ public class ClickingButtons implements PacketType {
 		case 29038:
 		case 48023:
 		case 29113:
+			if (c.getItems().isWearingItem(1377, c.playerWeapon)) {
+			c.usingSpecial = !c.usingSpecial;
+			c.getItems().updateSpecialBar();
+			return;
+			}
 			session = (DuelSession) Server.getMultiplayerSessionListener().getMultiplayerSession(c,
 					MultiplayerSessionType.DUEL);
 			if (session != null) {
@@ -2599,9 +2609,7 @@ public class ClickingButtons implements PacketType {
 				c.sendMessage("You can't teleport above " + Config.NO_TELEPORT_WILD_LEVEL + " in the wilderness.");
 				return;
 			}
-			c.getPA().spellTeleport(3087, 3500, 0, true);
-			//c.getPA().showInterface(51000);
-			//c.getTeleport().selection(c, 0);
+			c.getPA().spellTeleport(Config.RESPAWN_X, Config.RESPAWN_Y, Config.RESPAWN_Z, false);
 			break;
 		case 50056:
 			if (c.homeTeleport >= 1 && c.homeTeleport <= 10) {
@@ -2609,31 +2617,6 @@ public class ClickingButtons implements PacketType {
 			}
 			c.getPA().spellTeleport(3087, 3500, 0, true);
 			break;
-
-			// case 4171: case 50056: case 117048: if (c.homeTeleDelay <= 0) { c.homeTele =
-			// 10; } else if (c.homeTeleDelay <= 0) { c.homeTele = 10; }
-			//
-			//
-			// if (c.reset == false) { c.HomePort(); String type = c.playerMagicBook == 0 ?
-			// "modern" : "ancient"; c.getPA().startTeleport(Config.EDGEVILLE_X,
-			// Config.EDGEVILLE_Y, 0,
-			// type); } else if (c.reset == true) { c.resetHomePort(); }
-
-			/*
-			 * case 29031: c.getDH().sendDialogues(121312, -1); break;
-			 */
-
-			/*
-			 * case 51013: case 6004: case 118242: c.getDH().sendOption5("Lumbridge",
-			 * "Varrock", "Camelot", "Falador", "Canifis"); c.teleAction = 20; break;
-			 */
-			/*
-			 * case 4140: case 4143: case 4150: case 4146: case 6004: case 6005: case 29031:
-			 * case 50235: case 50245: case 50253: case 51005: case 51013: case 51023: case
-			 * 51031: case 51039: case 117112: case 117131: case 117154: case 117186: case
-			 * 117210: case 118018: case 118042: case 118058:
-			 * c.getPA().showInterface(62100); break;
-			 */
 
 		case 9125: // Accurate
 		case 6221: // range accurate
@@ -2753,7 +2736,12 @@ public class ClickingButtons implements PacketType {
 			c.getCombat().activatePrayer(9);
 			break;
 		case 21241: // protect Item
-			c.getCombat().activatePrayer(10);
+			if (Boundary.isIn(c, Boundary.RISK_ZONE_BOXES)) {
+				c.getDH().sendStatement("You can't use this in here.");
+				return;
+			} else {
+				c.getCombat().activatePrayer(10);
+			}
 			break;
 		case 77104: // 26 range
 			c.getCombat().activatePrayer(11);
@@ -2893,6 +2881,17 @@ public class ClickingButtons implements PacketType {
 				c.chatEffects = false;
 				c.getPA().sendFrame36(501, 0);
 				c.getPA().sendFrame36(171, 1);
+			}
+			break;
+		case 162070:
+			if (!c.notification) {
+				c.notification = true;
+				c.getPA().sendFrame36(505, 1);
+				c.getPA().sendFrame36(155, 0);
+			} else {
+				c.notification = false;
+				c.getPA().sendFrame36(505, 0);
+				c.getPA().sendFrame36(155, 1);
 			}
 			break;
 		case 74188:

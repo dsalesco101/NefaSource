@@ -304,42 +304,44 @@ public class CombatPrayer {
 		}
 		if (i == 27) {
 			if (c.rigour == false) {
-				if (c.playerLevel[1] < 70) {
-					if (c.playerLevel[5] < 74) {
-						c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
-						c.getPA().sendFrame126("You need a @bl2@Prayer @bla@level of " + c.PRAYER_LEVEL_REQUIRED[i] + " to use @bl2@" + c.PRAYER_NAME[i] + "@bla@.", 357);
-						c.getPA().sendFrame126("Click here to continue", 358);
-						c.getPA().sendFrame164(356);
-					}
-					c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
-					c.nextChat = -1;
-					c.sendMessage("You need a defence @bla@level of at least 70 to use this prayer.");
-					return;
-				}
 				c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
 				c.getDH().sendStatement("You have not unlocked the Dextorious prayer scroll");	
 				return;
 			}
+			if (c.playerLevel[1] < 70) {
+				c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
+				c.nextChat = -1;
+				c.sendMessage("You need a defence @bla@level of at least 70 to use this prayer.");
+				return;
 			}
+			if (c.playerXP[5] < 1096279) {
+				c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
+				c.getPA().sendFrame126("You need a @bl2@Prayer @bla@level of " + c.PRAYER_LEVEL_REQUIRED[i] + " to use @bl2@" + c.PRAYER_NAME[i] + "@bla@.", 357);
+				c.getPA().sendFrame126("Click here to continue", 358);
+				c.getPA().sendFrame164(356);
+				return;
+			}
+		}
 		if (i == 28) {
 			if (c.augury == false) {
-				if (c.playerLevel[1] < 70) {
-					if (c.playerLevel[5] < 77) {
-						c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
-						c.getPA().sendFrame126("You need a @bl2@Prayer @bla@level of " + c.PRAYER_LEVEL_REQUIRED[i] + " to use @bl2@" + c.PRAYER_NAME[i] + "@bla@.", 357);
-						c.getPA().sendFrame126("Click here to continue", 358);
-						c.getPA().sendFrame164(356);
-					}
-					c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
-					c.nextChat = -1;
-					c.sendMessage("You need a defence @bla@level of at least 70 to use this prayer.");
-					return;
-				}
 				c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
 				c.getDH().sendStatement("You have not unlocked the Arcane prayer scroll");	
 				return;
 			}
+			if (c.playerLevel[1] < 70) {
+				c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
+				c.nextChat = -1;
+				c.sendMessage("You need a defence @bla@level of at least 70 to use this prayer.");
+				return;
+			}
+			if (c.playerXP[5] < 1475582) {
+				c.getPA().sendFrame36(c.PRAYER_GLOW[i], 0);
+				c.getPA().sendFrame126("You need a @bl2@Prayer @bla@level of " + c.PRAYER_LEVEL_REQUIRED[i] + " to use @bl2@" + c.PRAYER_NAME[i] + "@bla@.", 357);
+				c.getPA().sendFrame126("Click here to continue", 358);
+				c.getPA().sendFrame164(356);
+			return;
 		}
+	}		
 		if (Server.getMultiplayerSessionListener().inSession(c, MultiplayerSessionType.TRADE)) {
 			c.sendMessage("You cannot activate prayers whilst trading!");
 			return;

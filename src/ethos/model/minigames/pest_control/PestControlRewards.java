@@ -94,6 +94,7 @@ public class PestControlRewards {
 				HERB_PACK(144189, 0, 180, new PackReward(30, PackReward.HERB_PACK)), 
 				SEED_PACK(144192, 0, 220, new PackReward(15, PackReward.SEED_PACK)),
 				MINERAL_PACK(144195, 210, 180, new PackReward(15, PackReward.MINERAL_PACK)), 
+				
 				VOID_MACE(144198, 0, 280, new ItemReward(160, new GameItem(8841))), 
 				VOID_KNIGHT_ROBE(144201, 0, 320, new ItemReward(175, new GameItem(8840))), 
 				VOID_MAGE_HELM(144204, 0, 360, new ItemReward(150, new GameItem(11663))), 
@@ -101,9 +102,9 @@ public class PestControlRewards {
 				VOID_KNIGHT_TOP(144210, 210, 280, new ItemReward(175, new GameItem(8839))), 
 				VOID_KNIGHT_GLOVES(144213, 210, 320, new ItemReward(110, new GameItem(8842))), 
 				VOID_RANGE_HELM(144216, 210, 360, new ItemReward(150, new GameItem(11664))),
-				FIGHTER_TORSO(144219, 210, 360, new ItemReward(300, new GameItem(10551))),
-				BARROWS_GLOVES(14422, 210, 360, new ItemReward(80, new GameItem(7462))),
-				FIGHTER_HAT(14422, 210, 360, new ItemReward(60, new GameItem(10548))
+				FIGHTER_TORSO(144219, 210, 400, new ItemReward(300, new GameItem(10551))),
+				BARROWS_GLOVES(144222, 0, 420, new ItemReward(80, new GameItem(7462))),
+				FIGHTER_HAT(144225, 210, 480, new ItemReward(60, new GameItem(10548))
 
 		);
 		
@@ -219,15 +220,18 @@ public class PestControlRewards {
 				player.sendMessage("You need a level of " + REQUIRED_LEVEL + " to purchase this experience.");
 				return;
 			}
-			if (player.getMode().isIronman() || player.getMode().isUltimateIronman() ||	player.getMode().isOsrs()  ||	player.getMode().isHCIronman()) {
+			if (player.getMode().isIronman() || player.getMode().isUltimateIronman() ||	player.getMode().isOsrs() || player.getMode().isMedMode()  ||	player.getMode().isHCIronman()) {
 				player.sendMessage("Non-Regular accounts are currently unable to purchase xp rewards from pest control.");
 				return;
 			}
+			
 			player.buyPestControlTimer = System.currentTimeMillis();
 			player.pcPoints -= cost;
 			player.refreshQuestTab(3);
 			player.getPA().addSkillXP((player.getMode().isOsrs() ? experience / 26 : experience) * cost, skillId, true);
+			player.getPA().addSkillXP((player.getMode().isMedMode() ? experience / 12 : experience) * cost, skillId, true);
 			player.sendMessage("You have received " + ((player.getMode().isOsrs() ? experience / 26 : experience) * cost) + " experience in exchange for " + cost + " points.");
+			player.sendMessage("You have received " + ((player.getMode().isMedMode() ? experience / 12 : experience) * cost) + " experience in exchange for " + cost + " points.");
 		}
 	}
 

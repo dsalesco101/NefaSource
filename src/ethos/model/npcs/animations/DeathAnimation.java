@@ -26,6 +26,10 @@ public class DeathAnimation extends NPCHandler {
 		/**
 		 * Theatre of blood npcs end
 		 */
+			
+			//Muttadile:
+		case 7561:
+			return 7426;
 
 			//Wyverns
 		case 7792: //longtailed

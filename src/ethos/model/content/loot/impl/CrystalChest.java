@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import ethos.Server;
+import ethos.event.impl.RandomEvent;
+import ethos.model.content.QuestTab;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.loot.LootRarity;
@@ -199,6 +201,29 @@ public class CrystalChest implements Lootable {
 			}
 			Achievements.increase(c, AchievementType.LOOT_CRYSTAL_CHEST, 1);
 			c.sendMessage("@blu@You stick your hand in the chest and pull an item out of the chest.");
+			if (c.eventFinished == false && RandomEvent.eventNumber == 4) {
+				c.eventStage += 1;
+			}
+			if (c.eventStage == 3 && c.eventFinished == false && RandomEvent.eventNumber == 4) {
+				c.sendMessage("@blu@You have completed the event challenge: @red@Open 3 crystal chests.");
+				c.sendMessage("@blu@You receive @red@1 @blu@Event Point for completing the Event Challenge.");
+				c.eventPoints+=1;
+				c.eventStage = 0;
+				c.eventFinished = true;
+			}
+			  if (c.amDonated >= 10 && c.amDonated < 201) { //donator, super, ultra  	
+					c.sendMessage("@blu@Due to your Donator rank you have received a @red@1% @blu@Chest Rate Boost.");
+			  } else if (c.getMode().isOsrs()) {
+					c.sendMessage("@blu@Due to your Game Mode you have received a @red@1% @blu@Chest Rate Boost.");
+		     } else if (c.amDonated >= 200 && c.amDonated <=300) { //donator
+					c.sendMessage("@blu@Due to your Game Mode you have received a @red@2% @blu@Chest Rate Boost.");
+		    } else if (c.amDonated > 300 && c.amDonated <= 500) {
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@3% @blu@Chest Rate Boost.");
+			} else if (c.amDonated > 500 && c.amDonated <= 1000) {
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@4% @blu@Chest Rate Boost.");
+			} else if (c.amDonated > 2500) {
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@5% @blu@Chest Rate Boost.");
+			}
 		} else {
 			c.sendMessage("@blu@The chest is locked, it won't budge!");
 		}

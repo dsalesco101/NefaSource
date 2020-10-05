@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
+import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.concurrent.Executors;
@@ -16,11 +17,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
-import ethos.model.content.eventcalendar.EventCalendar;
-import ethos.model.content.eventcalendar.EventCalendarWinnerSelection;
 import ethos.model.AttributesSerializable;
 import ethos.model.content.polls.PollTab;
-import ethos.sql.DatabaseManager;
 import ethos.util.TeeOutputStream;
 import lombok.extern.java.Log;
 import org.jboss.netty.bootstrap.ServerBootstrap;
@@ -36,6 +34,7 @@ import ethos.event.EventHandler;
 import ethos.event.impl.BonusApplianceEvent;
 import ethos.event.impl.DidYouKnowEvent;
 import ethos.event.impl.HPRegen;
+import ethos.event.impl.RandomEvent;
 import ethos.event.impl.UpdateQuestTab;
 import ethos.event.impl.WheatPortalEvent;
 import ethos.model.content.collection_log.CollectionLog;
@@ -179,11 +178,6 @@ public class Server {
 	private static ServerConfiguration configuration;
 
 	/**
-	 * The database manager.
-	 */
-	private static final DatabaseManager databaseManager = new DatabaseManager();
-	
-	/**
 	 * Handles the main game processing.
 	 */
 	private static final ScheduledExecutorService GAME_THREAD = Executors.newSingleThreadScheduledExecutor();
@@ -192,7 +186,6 @@ public class Server {
 	
 	private static final Runnable SERVER_TASKS = () -> {
 		try {
-			EventCalendarWinnerSelection.getSingleton().tick();
 			itemHandler.process();
 			playerHandler.process();
 			npcHandler.process();
@@ -227,10 +220,9 @@ public class Server {
 			enableExceptionLogging();
 			long startTime = System.currentTimeMillis();
 			System.setOut(extracted());
-
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver()); 
 			loadConfiguration();
 			loadAttributes();
-			EventCalendar.verifyCalendar();
 			PUNISHMENTS.initialize();
 			CharacterBackup.sequence();
 			events.submit(new DidYouKnowEvent());
@@ -238,6 +230,7 @@ public class Server {
 			events.submit(new BonusApplianceEvent());
 			events.submit(new PunishmentCycleEvent(PUNISHMENTS, 50));
 			events.submit(new UpdateQuestTab());
+			//events.submit(new RandomEvent());
 			events.submit(new HPRegen());
 			Listing.init();
 			Wogw.init();
@@ -337,9 +330,6 @@ public class Server {
 		return configuration;
 	}
 
-	public static DatabaseManager getDatabaseManager() {
-		return databaseManager;
-	}
 
 	public static ServerAttributes getServerAttributes() {
 		return serverAttributes;

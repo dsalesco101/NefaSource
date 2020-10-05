@@ -10,6 +10,7 @@ import ethos.model.players.combat.Hitmark;
 import ethos.model.players.mode.ModeType;
 import ethos.model.players.skills.agility.AgilityHandler;
 import ethos.model.players.skills.agility.MarkOfGrace;
+import ethos.util.Misc;
 
 /**
  * Rooftop Agility Canafis
@@ -39,6 +40,7 @@ public class RooftopCanafis {
 			if (id == objectId) {
 				MarkOfGrace.spawnMarks(c, "CANAFIS");
 			}
+			c.runEnergy += Misc.random(3) + 2;
 		}
 		
 		switch (objectId) {
@@ -96,6 +98,12 @@ public class RooftopCanafis {
 			c.getAgilityHandler().roofTopFinished(c, 6, c.getMode().getType().equals(ModeType.OSRS) ? 240 : 12000, 14000);
 			AgilityHandler.delayEmote(c, "JUMP", 3508, 3485, 0, 2);
 			 Achievements.increase(c, AchievementType.AGIL, 1);
+			 int graceEffect = 1 + Misc.random(20);
+				if (c.wearingGrace() && graceEffect > 18) {
+					c.getItems().addItemUnderAnyCircumstance(11849, 1);
+				}
+				int marks = 1 + Misc.random(3);
+				c.getItems().addItemUnderAnyCircumstance(11849, marks);
 		return true;
 		}
 		return false;

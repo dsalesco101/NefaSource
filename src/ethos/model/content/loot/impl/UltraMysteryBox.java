@@ -170,12 +170,8 @@ public class UltraMysteryBox extends MysteryBoxLootable {
 						new GameItem(20104),//ankou leggings
 						new GameItem(20098),//ankou top
 						new GameItem(20107),//ankou socks
-						new GameItem(20101),//ankou gloves
-						new GameItem(20083),//mummy top
-						new GameItem(20089),//mummy legs
-						new GameItem(20080),//mummy mask
-						new GameItem(20086),//mummy hands
-						new GameItem(20092))//mummy feet		
+						new GameItem(20101))//ankou gloves
+	
 					);
 			
 			items.put(LootRarity.RARE,//8% chance
@@ -187,6 +183,7 @@ public class UltraMysteryBox extends MysteryBoxLootable {
 							new GameItem(1040),//yellow phat
 							new GameItem(1042),//blue phat
 							new GameItem(1044),//green phat
+							new GameItem(12785),//ring of wealth (I) 
 							new GameItem(1046),//purp phat
 							new GameItem(1048),//white phat
 							new GameItem(11862),//black phat

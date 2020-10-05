@@ -17,6 +17,9 @@ public class MasterClue {
 			player.getItems().deleteItem(2722, 1);
 			player.getItems().addItem(19835, 1);
 			generateRequirement(player);
+			player.getHealth().removeAllStatuses();
+			player.getHealth().reset();
+			player.getPA().refreshSkill(5);
 			player.sendMessage("Here you go, a master clue just for you;");
 			player.sendMessage("A " + Skill.forId(player.masterClueRequirement[0]).name().toLowerCase() + " level of " + player.masterClueRequirement[1] + " and " + Skill.forId(player.masterClueRequirement[2]).name().toLowerCase() + " level of " + player.masterClueRequirement[3] + " is what you need.");
 		} else {
@@ -29,6 +32,9 @@ public class MasterClue {
 		if (player.playerLevel[player.masterClueRequirement[0]] >= player.masterClueRequirement[1] && player.playerLevel[player.masterClueRequirement[2]] >= player.masterClueRequirement[3]) {
 			player.getItems().deleteItem(19835, 1);
 			player.getItems().addItem(19841, 1);
+			player.getHealth().removeAllStatuses();
+			player.getHealth().reset();
+			player.getPA().refreshSkill(5);
 			player.sendMessage("You've received a master clue scroll casket.");
 			player.masterClueRequirement[0] = 0; player.masterClueRequirement[1] = 0;
 			player.masterClueRequirement[2] = 0; player.masterClueRequirement[3] = 0;

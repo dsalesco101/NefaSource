@@ -6,6 +6,7 @@ import java.util.Objects;
 import ethos.Server;
 import ethos.model.entity.Entity;
 import ethos.model.items.ItemDefinition;
+import ethos.model.items.ItemList;
 import ethos.model.multiplayer_session.MultiplayerSessionFinalizeType;
 import ethos.model.multiplayer_session.MultiplayerSessionStage;
 import ethos.model.multiplayer_session.MultiplayerSessionType;
@@ -190,8 +191,8 @@ public class LootingBag {
             player.sendMessage("You cannot do this right now.");
             return;
         }
-        if (!player.Area(1592, 1670, 3659, 3696) && !player.inBank() || player.inWild()) {
-            player.sendMessage("You must be at home to do this.");
+        if (player.wildLevel >= 1) {
+            player.sendMessage("@or2@you must be out of the wilderness to deposit your items from looting bag.");
             return;
         }
         if (getLootingBagContainer().items.isEmpty()) {
@@ -315,9 +316,10 @@ public class LootingBag {
                 continue;
             }
             if (ItemDefinition.forId(item.getId()) != null) {
+        		ItemList newItemList = new ItemList(item.getId());
                 if (player.debugMessage)
-                    player.sendMessage("Name: " + ItemDefinition.forId(item.getId()).getName() + "- Value:" + ItemDefinition.forId(item.getId()).getValue() + " - Amount:" + item.getAmount());
-                total += ((ItemDefinition.forId(item.getId()).getValue() * item.getAmount()));
+                    player.sendMessage("Name: " + ItemDefinition.forId(item.getId()).getName() + "- Value:" + newItemList.HighAlch+ " - Amount:" + item.getAmount());
+                total += newItemList.HighAlch * item.getAmount();
             }
         }
         player.getPA().sendFrame126("Value: " + Misc.insertCommas(total), 39348);

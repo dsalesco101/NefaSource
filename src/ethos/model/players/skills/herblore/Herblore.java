@@ -19,8 +19,6 @@ import ethos.model.content.achievement_diary.fremennik.FremennikDiaryEntry;
 import ethos.model.content.achievement_diary.kandarin.KandarinDiaryEntry;
 import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.items.GameItem;
 import ethos.model.items.Item;
 import ethos.model.items.ItemDefinition;
@@ -80,7 +78,9 @@ public class Herblore {
 			player.getPA().addSkillXP(h.getExperience() * (player.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.HERBLORE_EXPERIENCE), Skill.HERBLORE.getId(), true);
 			player.getItems().deleteItem2(h.getGrimy(), 1);
 			player.getItems().addItem(h.getClean(), 1);
-			player.sendMessage("You identify the herb as " + definition.getName() + ".");
+			if (player.notification == true) {
+				player.sendMessage("You identify the herb as " + definition.getName() + ".");
+			}
 		});
 	}
 
@@ -129,7 +129,6 @@ public class Herblore {
 					Achievements.increase(player, AchievementType.HERB, 1);
 					switch (p) {
 					case PRAYER:
-						DailyTasks.increase(player, PossibleTasks.PRAYER_POTIONS);
 						break;
 					case SUPER_DEFENCE:
 						if (Boundary.isIn(player, Boundary.RELLEKKA_BOUNDARY)) {

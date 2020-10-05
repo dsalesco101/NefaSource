@@ -36,7 +36,8 @@ public class RunEnergyEvent extends Event<Player> {
 			super.stop();
 			return;
 		}
-		if (attachment.getRunEnergy() == 100) {
+		if (attachment.getRunEnergy() > 100) {
+			attachment.runEnergy = 100;
 			return;
 		}
 		if (super.getElapsedTicks() >= ticksRequired) {

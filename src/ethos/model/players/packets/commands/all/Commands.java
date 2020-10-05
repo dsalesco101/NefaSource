@@ -22,7 +22,7 @@ public class Commands extends Command {
 			return;
 		}
 		int counter = 8144;
-		c.getPA().sendFrame126("@dre@Wisdom's Commands", counter++);
+		c.getPA().sendFrame126("@dre@NefariousPkz's Commands", counter++);
 		c.getPA().sendFrame126("", counter++);
 		c.getPA().sendFrame126("@dre@Player Command", counter++);
 		counter++; // 8146 is already being used

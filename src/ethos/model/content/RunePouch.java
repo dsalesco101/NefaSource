@@ -30,7 +30,7 @@ public class RunePouch extends Pouch {
 		this.player = player;
 	}
 
-	public int[] runes = new int[] { 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566};
+	public int[] runes = new int[] { 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 4699, 4695, 21880};
 
 	public void onDeath(Player o, String entity) {
 		if (o == null) {

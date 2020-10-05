@@ -6,12 +6,11 @@ import ethos.event.CycleEventHandler;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.kandarin.KandarinDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.players.Player;
 import ethos.model.players.mode.ModeType;
 import ethos.model.players.skills.agility.AgilityHandler;
 import ethos.model.players.skills.agility.MarkOfGrace;
+import ethos.util.Misc;
 
 /**
  * Rooftop Agility Seers
@@ -37,6 +36,7 @@ public class RooftopSeers {
 			if (id == objectId) {
 				MarkOfGrace.spawnMarks(c, "SEERS");
 			}
+			c.runEnergy += Misc.random(3) + 2;
 		}
 		
 		switch (objectId) {
@@ -129,8 +129,13 @@ public class RooftopSeers {
 			AgilityHandler.delayEmote(c, "JUMP", 2704, 3464, 0, 2);
 			c.getAgilityHandler().roofTopFinished(c, 4, c.getMode().getType().equals(ModeType.OSRS) ? 570 : 34000, 6000);
 			c.getDiaryManager().getKandarinDiary().progress(KandarinDiaryEntry.SEERS_AGILITY);
-			DailyTasks.increase(c, PossibleTasks.SEERS_COURSE);
 			Achievements.increase(c, AchievementType.AGIL, 1);
+			int graceEffect = 1 + Misc.random(20);
+			if (c.wearingGrace() && graceEffect > 18) {
+				c.getItems().addItemUnderAnyCircumstance(11849, 1);
+			}
+			int marks = 1 + Misc.random(3);
+			c.getItems().addItemUnderAnyCircumstance(11849, marks);
 			return true;
 		}
 		return false;

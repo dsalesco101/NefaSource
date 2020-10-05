@@ -96,15 +96,15 @@ public class Yell extends Command {
 			return 0;
 		}
 		if (rights.contains(Right.ONYX_CLUB) || rights.contains(Right.HELPER)) {
-			return TimeUnit.SECONDS.toMillis(1);
+			return TimeUnit.SECONDS.toMillis(0);
 		} else if (rights.contains(Right.DIAMOND_CLUB)) {
-			return TimeUnit.SECONDS.toMillis(1);
+			return TimeUnit.SECONDS.toMillis(0);
 		} else if (rights.contains(Right.LEGENDARY_DONATOR)) {
-			return TimeUnit.SECONDS.toMillis(30);
+			return TimeUnit.SECONDS.toMillis(5);
 		} else if (rights.contains(Right.ULTRA_DONATOR)) {
-			return TimeUnit.SECONDS.toMillis(60);
+			return TimeUnit.SECONDS.toMillis(15);
 		} else if (rights.contains(Right.EXTREME_DONOR)) {
-			return TimeUnit.SECONDS.toMillis(60);
+			return TimeUnit.SECONDS.toMillis(30);
 		} else if (rights.contains(Right.SUPER_DONOR)) {
 			return TimeUnit.SECONDS.toMillis(60);
 		} else if (rights.contains(Right.REGULAR_DONATOR) || 

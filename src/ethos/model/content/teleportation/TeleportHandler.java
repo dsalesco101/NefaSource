@@ -31,7 +31,7 @@ public class TeleportHandler {
 			"Desert Bandits", "Elf Warriors", "Dagannoths", "Mithril Dragons", "Slayer Tower", "Fremennik Slayer Dungeon",
 			"Taverley Dungeon", "Stronghold Cave", "Smoke Devils", "Asgarnian Ice Dungeon", "Brimhaven Dungeon", "Lithkren Vault", "Crystal Cave", "", "", "", "", "", "", "", ""};
 	String[] minigameNames = {"Raids", "Warriors Guild", "Pest Control",
-			"Fight Caves", "Barrows", "Clan Wars", "Outlast", "Mage Arena", "Duel Arena", "Inferno", "Dagannoth Mother", "", "", "",
+			"Fight Caves", "Barrows", "Clan Wars", "Gulag", "Mage Arena", "Duel Arena", "Inferno", "Dagannoth Mother", "", "", "",
 			"", "", "", "", "", "", "", "", "", "", "" };
 	String[] bossNames = { "Barrelchest", "Dagannoth Kings",
 			"King Black Dragon@red@ (DANGEROUS!)", "Giant Mole", "Kalphite Queen", "Godwars",
@@ -286,8 +286,8 @@ public class TeleportHandler {
 				 if (player.amDonated >= 5) {
 					 player.getPA().startTeleport(3809, 2844, 0, "modern", false); 
 				 } else {
-				 }
 				 player.sendMessage("You need to be a regular donator to teleport here.");
+				 }
 			} else if (player.teleSelected == 6) { // Other - Slayer Masters
 				player.getPA().startTeleport(3078, 3494, 0, "modern", false); // change
 				// player.sendMessage("Teleporting to "+otherNames[1]+".");
@@ -300,9 +300,8 @@ public class TeleportHandler {
 			if (player.teleSelected == 0) { // Monsters - Rock Crabs
 				player.getPA().startTeleport(2673, 3710, 0, "modern", false);
 				// player.sendMessage("Teleporting to "+monsterNames[2]+".");
-			} else if (player.teleSelected == 1) { // Minigames - Warriors Guild
+			} else if (player.teleSelected == 1) {  //warriors guild
 				player.getPA().startTeleport(2874, 3546, 0, "modern", false);
-				// player.sendMessage("Teleporting to "+minigameNames[2]+".");
 			} else if (player.teleSelected == 2) { // Bosses - Daggononoth Kings
 				player.getPA().startTeleport(1913, 4367, 0, "modern", false);
 				// player.sendMessage("Teleporting to "+bossNames[2]+".");
@@ -353,8 +352,7 @@ public class TeleportHandler {
 					 player.sendMessage("You need a donator status of Onyx to tele here.");
 				 }
 			} else if (player.teleSelected == 6) { // Other - Agility - Grace
-				player.getPA().startTeleport(3080, 3484, 0, "modern", false);
-				// player.sendMessage("Teleporting to "+otherNames[4]+".");
+				player.getPA().startTeleport(3083, 3489, 0, "modern", false);
 			}
 			break;
 		
@@ -447,8 +445,8 @@ public class TeleportHandler {
 			if (player.teleSelected == 0) { // Monsters - Dagannoths
 				player.getPA().startTeleport(2442, 10147, 0, "modern", false);
 				// player.sendMessage("Teleporting to "+monsterNames[7]+".");
-			} else if (player.teleSelected == 1) { // Minigames - outlast
-				player.getPA().startTeleport(3107, 3498, 0, "modern", false);
+			} else if (player.teleSelected == 1) { // Minigames - gulag
+				player.getPA().startTeleport(2759, 2578, 0, "modern", false);
 				// player.sendMessage("Teleporting to "+minigameNames[7]+".");
 			} else if (player.teleSelected == 2) { // Bosses - Corporeal Beast
 				player.getPA().startTeleport(2964, 4382, 2, "modern", false);
@@ -571,6 +569,7 @@ public class TeleportHandler {
 				return;
 			if (player.teleSelected == 0) {
 				player.getPA().startTeleport(2452, 9820, 0, "modern", false);
+			} else if (player.teleSelected == 1) {
 			} else if (player.teleSelected == 2) {
 				player.getPA().startTeleport(2404, 9415, 0, "modern", false);
 			} else if (player.teleSelected == 3) {

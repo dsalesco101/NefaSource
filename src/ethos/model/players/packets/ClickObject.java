@@ -112,6 +112,9 @@ public class ClickObject implements PacketType {
 				break;
 			}
 			switch (c.objectId) {
+			case 32990:
+				c.objectDistance = 1;
+				break;
 			case 31622:
 				if (c.hasFollower) {
 					c.sendMessage("@red@You have a pet spawned, bank it.");
@@ -135,7 +138,11 @@ public class ClickObject implements PacketType {
 			case 26738:
 				TourneyManager.getSingleton().leaveLobby(c);
 				break;
+			case 24303:
+				c.objectDistance = 1;
+				break;
 			case 29778:
+			case 33037:
 				c.objectDistance = 4;
 				break;
 			case 29777:
@@ -256,7 +263,7 @@ public class ClickObject implements PacketType {
 				c.getPA().startTeleport(2202, 3056, 0, "modern", false);
 				break;
 			case 9398:// deposit
-				c.getPA().sendFrame126("The Bank of Wisdom - Deposit Box", 7421);
+				c.getPA().sendFrame126("The Bank of NefariousPkz - Deposit Box", 7421);
 				c.getPA().sendFrame248(4465, 197);// 197 just because you can't
 				// see it =\
 				c.getItems().resetItems(7423);
@@ -565,7 +572,6 @@ public class ClickObject implements PacketType {
 			case 10778:
 			case 27255:
 			case 31557:
-			case 24303:
 			case 16671:
 			case 172:
 			case 2144:
@@ -867,6 +873,10 @@ public class ClickObject implements PacketType {
 				c.objectXOffset = 3;
 				c.objectYOffset = 3;
 				break;
+				
+			case 29150:
+				c.objectYOffset = 1;
+				break;
 
 			case 2561:
 			case 2562:
@@ -995,6 +1005,9 @@ public class ClickObject implements PacketType {
 				c.objectDistance = 4;
 
 				break;
+			case 29150:
+				c.objectYOffset = 1;
+				break;
 			default:
 				c.objectDistance = 1;
 				c.objectXOffset = 0;
@@ -1057,6 +1070,9 @@ public class ClickObject implements PacketType {
 			}
 			switch (c.objectId) {
 
+			case 29150:
+				c.objectYOffset = 1;
+				break;
 			default:
 				c.objectDistance = 1;
 				c.objectXOffset = 0;

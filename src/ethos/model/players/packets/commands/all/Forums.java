@@ -14,7 +14,7 @@ public class Forums extends Command {
 
 	@Override
 	public void execute(Player c, String input) {
-		c.getPA().sendFrame126("https://www.wisdomrsps.com/forums", 12000);
+		c.getPA().sendFrame126("https://www.NefariousPkz.com/forums", 12000);
 	}
 
 	@Override

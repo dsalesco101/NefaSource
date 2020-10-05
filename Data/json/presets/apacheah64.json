@@ -1,0 +1,205 @@
+[
+  {
+    "name": "dh main",
+    "equipment": {
+      "weapon": 12006,
+      "helmet": 4716,
+      "shield": 12954,
+      "ammo": -1,
+      "plate": 10551,
+      "legs": 11834,
+      "boots": 11840,
+      "gloves": -1,
+      "necklace": 6585,
+      "cape": 6570,
+      "ring": 11773
+    },
+    "inventory": [],
+    "ammoAmount": 0,
+    "spellBook": 2
+  },
+  {
+    "name": "pure pk ags",
+    "equipment": {
+      "weapon": 861,
+      "helmet": 9749,
+      "shield": -1,
+      "ammo": 21326,
+      "plate": 1115,
+      "legs": 1067,
+      "boots": 3105,
+      "gloves": 2491,
+      "necklace": 19553,
+      "cape": 9748,
+      "ring": 11773
+    },
+    "inventory": [
+      {
+        "itemId": 557,
+        "amount": 5000
+      },
+      {
+        "itemId": 560,
+        "amount": 5000
+      },
+      {
+        "itemId": 9075,
+        "amount": 5000
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 12695,
+        "amount": 1
+      },
+      {
+        "itemId": 11802,
+        "amount": 1
+      },
+      {
+        "itemId": 12848,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 5000,
+    "spellBook": 2
+  },
+  {
+    "name": "dh",
+    "equipment": {
+      "weapon": 4151,
+      "helmet": 4716,
+      "shield": 12954,
+      "ammo": -1,
+      "plate": 4720,
+      "legs": 4722,
+      "boots": 11840,
+      "gloves": 7462,
+      "necklace": 6585,
+      "cape": 6570,
+      "ring": 11773
+    },
+    "inventory": [
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 3144,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      },
+      {
+        "itemId": 11802,
+        "amount": 1
+      },
+      {
+        "itemId": 12848,
+        "amount": 1
+      },
+      {
+        "itemId": 12695,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 3024,
+        "amount": 1
+      },
+      {
+        "itemId": 13441,
+        "amount": 1
+      }
+    ],
+    "ammoAmount": 0,
+    "spellBook": 2
+  }
+]

@@ -20,6 +20,10 @@ public class SquareArea implements Area {
         this.highY = highY;
     }
 
+    public static SquareArea of(int lowX, int highX, int lowY, int highY) {
+        return new SquareArea(lowX, highY, highX, lowY);
+    }
+
     public boolean inside(Entity entity) {
         return entity.getX() >= lowX && entity.getY() >= lowY && entity.getX() <= highX && entity.getY() <= highY;
     }

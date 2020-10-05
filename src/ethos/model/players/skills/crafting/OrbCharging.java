@@ -62,6 +62,7 @@ public class OrbCharging {
 								c.sendMessage("You make an " + ItemAssistant.getItemName(l.getProduct()) + ".");
 								c.getPA().addSkillXP((int) l.getXP() * (c.getMode().getType().equals(ModeType.OSRS) ? 1 : 40), 6, true);
 								amount--;
+								
 								if (!c.getItems().playerHasItem(567, l.getOrbAmount())) {
 									c.sendMessage("You have run out of unpowered orbs.");
 									container.stop();

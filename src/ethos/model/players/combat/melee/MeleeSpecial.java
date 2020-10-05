@@ -64,6 +64,7 @@ public class MeleeSpecial {
 		case 12788:
 		case 10887:
 		case 13263:
+		case 20622:
 			if (c.specAmount >= 5) {
 				c.specAmount -= 5;
 				c.getItems().addSpecialBar(weapon);

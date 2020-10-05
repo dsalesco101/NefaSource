@@ -70,7 +70,9 @@ public class Location {
 	public static Location of(int x, int y, int z) {
 		return new Location(x, y, z);
 	}
-
+	public static Location of2(int x, int y) {//TOB
+		return new Location(x, y);
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

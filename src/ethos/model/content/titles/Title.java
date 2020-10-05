@@ -209,13 +209,13 @@ public enum Title implements Comparator<Title> {
 		}
 	}, "To receive access to this title, a player must complete at least 150 slayer tasks."),
 
-	GRAVE_DIGGER("Grave Digger", 0, TitleCurrency.NONE, new TitleRequirement() {
+	BETA_PLAYER("Most Loyal", 0, TitleCurrency.NONE, new TitleRequirement() {
 
 		@Override
 		public boolean meetsStandard(Player player) {
-			return player.getAchievements().isComplete(AchievementTier.TIER_3.ordinal(), Achievement.BARROWS_GOD.getId());
+			return player.betap == true;
 		}
-	}, "To receive access to this title, a player must complete the barrows minigame at least 500 times."),
+	}, "A player who has dedicated time before the release of the game."),
 
 	IRON_MAN("Ironman", 0, TitleCurrency.NONE, new TitleRequirement() {
 

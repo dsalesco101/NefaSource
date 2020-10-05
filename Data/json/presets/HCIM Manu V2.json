@@ -1,0 +1,153 @@
+[
+  {
+    "name": "mage slayer",
+    "equipment": {
+      "weapon": 6914,
+      "helmet": 11865,
+      "shield": 12612,
+      "ammo": -1,
+      "plate": 4712,
+      "legs": 4714,
+      "boots": 6920,
+      "gloves": 7462,
+      "necklace": 6585,
+      "cape": 2414,
+      "ring": -1
+    },
+    "inventory": [
+      {
+        "itemId": 555,
+        "amount": 17710
+      },
+      {
+        "itemId": 565,
+        "amount": 7769
+      },
+      {
+        "itemId": 560,
+        "amount": 7285
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      },
+      {
+        "itemId": -1,
+        "amount": 0
+      }
+    ],
+    "ammoAmount": 0,
+    "spellBook": 2
+  },
+  {
+    "name": "melee",
+    "equipment": {
+      "weapon": 12006,
+      "helmet": 4724,
+      "shield": 1540,
+      "ammo": -1,
+      "plate": 10551,
+      "legs": 4730,
+      "boots": 11840,
+      "gloves": 7462,
+      "necklace": 6585,
+      "cape": 6570,
+      "ring": 6735
+    },
+    "inventory": [],
+    "ammoAmount": 0,
+    "spellBook": 2
+  }
+]

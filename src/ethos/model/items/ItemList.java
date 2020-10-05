@@ -5,7 +5,7 @@ package ethos.model.items;
  * 
  * @author Sanity Revised by Shawn Notes by Shawn
  */
-public class ItemList {
+public class ItemList { 
 
 	public int itemId;
 	public String itemName;

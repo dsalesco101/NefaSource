@@ -193,6 +193,19 @@ public class SerenChest implements Lootable {
                 }
                 c.sendMessage("@blu@You stick your hand in the chest and pull an item out of the chest.");
                 c.sendMessage("@blu@You also receive @red@" + pkpbonus + " @blu@pkp as a bonus for killing a wildy boss.");
+                if (c.amDonated >= 10 && c.amDonated < 201) { //donator, super, ultra  	
+					c.sendMessage("@blu@Due to your Donator rank you have received a @red@1% @blu@Chest Rate Boost.");
+			  } else if (c.getMode().isOsrs()) {
+					c.sendMessage("@blu@Due to your Game Mode you have received a @red@1% @blu@Chest Rate Boost.");
+		     } else if (c.amDonated >= 200 && c.amDonated <=300) { //donator
+					c.sendMessage("@blu@Due to your Game Mode you have received a @red@2% @blu@Chest Rate Boost.");
+		    } else if (c.amDonated > 300 && c.amDonated <= 500) {
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@3% @blu@Chest Rate Boost.");
+			} else if (c.amDonated > 500 && c.amDonated <= 1000) {
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@4% @blu@Chest Rate Boost.");
+			} else if (c.amDonated > 2500) {
+				c.sendMessage("@blu@Due to your Game Mode you have received a @red@5% @blu@Chest Rate Boost.");
+			}
             } else {
                 c.sendMessage("@blu@The chest is locked, it won't budge!");
             }}

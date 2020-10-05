@@ -92,6 +92,12 @@ public class MeleeData {
 			c.playerRunIndex = 1836;
 			return;
 		}
+		if (weaponName.startsWith("white partyhat")) {
+			c.playerStandIndex = c.gfx1030(367);;
+			c.playerWalkIndex = c.gfx1030(367);
+			c.playerRunIndex = c.gfx1030(367);
+			return;
+		}
 		if (weaponName.contains("sled")) {
 			c.playerStandIndex = 1461;
 			c.playerWalkIndex = 1468;
@@ -206,8 +212,13 @@ public class MeleeData {
 			c.playerTurn90CWIndex = 7052;
 			c.playerTurn90CCWIndex = 7052;
 			break;
+		case 22325:
 		case 1305:
+		case 1419:
+		case 10735:
 			c.playerStandIndex = 809;
+			c.playerRunIndex = 1210;
+			c.playerWalkIndex = 1146;
 			break;
 			
 		default:

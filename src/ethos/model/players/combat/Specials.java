@@ -48,7 +48,9 @@ public enum Specials {
 	DRAGON_WARHAMMER(new DragonWarhammer()),
 	ZAMORAK_GODSWORD(new ZamorakGodsword()),
 	DRAGON_THROWNAXE(new DragonThrownaxe()),
-	DRAGON_HARPOON(new DragonHarpoon());
+	DRAGON_HARPOON(new DragonHarpoon()),
+	DRAGON_PICKAXE(new DragonPickaxe()),
+	DRAGON_AXE(new DragonAxe());
 
 	/**
 	 * A {@link Set} of elements from the {@link Specials} enumeration.

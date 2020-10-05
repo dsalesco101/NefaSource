@@ -73,7 +73,7 @@ public class CoinBagLarge extends CycleEvent {
 		if (System.currentTimeMillis() - player.lastMysteryBox < 1200) {
 			return;
 		}
-		if (player.getItems().freeSlots() < 1) {
+		if (player.getItems().freeSlots() < 1 && !player.getItems().playerHasItem(995)) {
 			player.sendMessage("You need at least one free slots to open a Coin Bag.");
 			return;
 		}
@@ -123,8 +123,8 @@ public class CoinBagLarge extends CycleEvent {
 			container.stop();
 			return;
 		}
-		int coins = 90000 + Misc.random(100000);
-		int coinsDouble = 1000000 + Misc.random(500000);
+		int coins = 95000 + Misc.random(120000);
+		int coinsDouble = 1200000 + Misc.random(530000);
 		int random = Misc.random(100);
 		List<GameItem> itemList = random < 55 ? items.get(Rarity.COMMON) : random >= 55 && random <= 80 ? items.get(Rarity.UNCOMMON) : items.get(Rarity.RARE);
 		GameItem item = Misc.getRandomItem(itemList);

@@ -174,6 +174,6 @@ public class MonsterHunt {
 		
 		long timeLeft = System.currentTimeMillis() - monsterKilled;
 		int minutesPassed = (int) (timeLeft / (1000 * 60));
-		return "Wildy Event: @red@" + (40 - minutesPassed) + " minutes";
+		return "Wildy Event: @red@" + (60 - minutesPassed) + " minutes";
 	}
 }

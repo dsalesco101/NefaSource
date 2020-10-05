@@ -7,12 +7,12 @@ import org.apache.commons.lang3.Range;
 
 import ethos.Config;
 import ethos.Server;
+import ethos.event.impl.RandomEvent;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
 import ethos.model.content.achievement_diary.morytania.MorytaniaDiaryEntry;
 import ethos.model.content.achievement_diary.western_provinces.WesternDiaryEntry;
-import ethos.model.content.eventcalendar.EventChallenge;
 import ethos.model.items.ItemAssistant;
 import ethos.model.npcs.NPC;
 import ethos.model.players.Boundary;
@@ -46,7 +46,7 @@ public class Slayer {
 	/**
 	 * The current task for this player
 	 */
-	private Optional<Task> task = Optional.empty();
+	public Optional<Task> task = Optional.empty();
 
 	/**
 	 * The {@link NPC} id of the master that this player receives tasks from
@@ -66,7 +66,7 @@ public class Slayer {
 	/**
 	 * The amount of the task the player has left to slay
 	 */
-	private int taskAmount;
+	public int taskAmount;
 
 	/**
 	 * The player that will be referenced in slayer related operations
@@ -120,6 +120,8 @@ public class Slayer {
 	@SuppressWarnings("unlikely-arg-type")
 	public void createNewTask(int masterId) {
 		SlayerMaster.get(masterId).ifPresent(m -> {
+			
+			//NORMAL SLAYER CODE
 			if (player.calculateCombatLevel() < m.getLevel()) {
 				player.getDH().sendNpcChat("You need a combat level of " + m.getLevel() + " to receive tasks from me.", "Please come back when you have this combat level.");
 				return;
@@ -157,7 +159,8 @@ public class Slayer {
 			player.talkingNpc = 6797;
 			player.getDH().sendNpcChat("You have been assigned " + taskAmount + " " + task.get().getPrimaryName() + ".", "It costs 30 points to cancel task in the Rewards tab!", "Or choose an easier task and lose your streak.");
 			player.nextChat = -1;
-			master = m.getId();
+			master = m.getId();	
+			
 		});
 	}
 
@@ -198,10 +201,8 @@ public class Slayer {
 						case 603:
 						case 8623:
 						case 8761:
-							 if(player.hasPartner == true) {
-						          player.hasPartner = false;
-						          return;
-						          }
+						case 5870:
+							//normal slayer starts here
 							taskAmount--;
 							player.getPA().addSkillXP(player.getRechargeItems().hasAnyItem(13113, 13114, 13115) && Boundary.isIn(player, Boundary.SLAYER_TOWER_BOUNDARY) ? (int) (task.getExperience() * 1.10) * (player.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.SLAYER_EXPERIENCE)
 											: task.getExperience() * (player.getMode().getType().equals(ModeType.OSRS) ? 3 : Config.SLAYER_EXPERIENCE),
@@ -221,9 +222,6 @@ public class Slayer {
 						handleSuperiorExp(npc);
 					}
 					if (taskAmount == 0) {
-						if (!(player.getSlayer().getMaster() == 401 && !(player.getSlayer().getMaster() == 402))) {
-						player.getEventCalendar().progress(EventChallenge.COMPLETE_X_HARD_SLAYER_ASSIGNMENTS);
-						}
 						int consecutive = consecutiveTasks + 1;
 						this.consecutiveTasks++;
 						this.points += m.getPointReward(0);
@@ -374,36 +372,6 @@ public class Slayer {
 
 						}
 						
-						
-					/*	int bonusPoints = 
-							this.consecutiveTasks == 10 ? m.getPointReward(80) :
-							this.consecutiveTasks == 20 ? m.getPointReward(130) : 
-							this.consecutiveTasks == 30 ? m.getPointReward(180) :
-							this.consecutiveTasks == 40 ? m.getPointReward(230) : 
-							this.consecutiveTasks == 50 ? m.getPointReward(280) :
-							this.consecutiveTasks == 60 ? m.getPointReward(300) :
-							this.consecutiveTasks == 70 ? m.getPointReward(330) : 
-							this.consecutiveTasks == 80 ? m.getPointReward(350) :
-							this.consecutiveTasks == 90 ? m.getPointReward(380) :
-							this.consecutiveTasks == 100 ? m.getPointReward(450) : 
-							this.consecutiveTasks == 150 ? m.getPointReward(700) : 0;
-
-							RightGroup rights = player.getRights();
-							bonusPoints+= player.amDonated >= 5000 ? 35 : 0 ;
-							bonusPoints+= player.amDonated >= 2500 ? 35 : 0 ;
-							bonusPoints+= player.amDonated >= 1000 ? 35 : 0 ;
-							bonusPoints+= player.amDonated >= 500 ? 30 : 0 ;
-							bonusPoints+= player.amDonated >= 300 ? 25 : 0 ;
-							bonusPoints+= player.amDonated >= 200 ? 20 : 0 ;
-							bonusPoints+= player.amDonated >= 100 ? 15 : 0 ;
-							bonusPoints+= player.amDonated >= 50 ? 10 : 0 ;
-							bonusPoints+= player.amDonated >= 10 ? 5 : 0 ;	
-							bonusPoints+= player.amDonated >= 5 ? 5 : 0 ;
-						if (bonusPoints > 2) {
-							points += bonusPoints;
-							player.sendMessage("You have completed " + consecutive + " tasks in a row and receive " + bonusPoints + " additional points.");
-						}
-						*/
 
 						player.refreshQuestTab(5);
 						player.refreshQuestTab(6);
@@ -421,6 +389,16 @@ public class Slayer {
 								player.getPA().addSkillXP(BOSS_TASK_EXPERIENCE, Skill.SLAYER.getId(), true);
 								player.sendMessage("You have completed a boss task and have gained an additional "
 										+ Misc.insertCommas(Integer.toString(BOSS_TASK_EXPERIENCE)) + " experience.", 255);
+								if (player.eventFinished == false && RandomEvent.eventNumber == 10) {
+									player.eventStage += 1;
+								}
+								if (player.eventStage == 2 && player.eventFinished == false && RandomEvent.eventNumber == 10) {
+									player.sendMessage("@blu@You have completed the event challenge: @red@Complete 2 Boss Slayer Tasks.");
+									player.sendMessage("@blu@You receive @red@1 @blu@Event Point for completing the Event Challenge.");
+									player.eventPoints+=1;
+									player.eventStage = 0;
+									player.eventFinished = true;
+								}
 								break;
 						}
 						Achievements.increase(player, AchievementType.SLAY, 1);
@@ -433,7 +411,7 @@ public class Slayer {
 
 	public void handleSuperiorSpawn(NPC npc) {
 		task.ifPresent(task -> {
-			int chance = Misc.random(199);
+			int chance = Misc.random(120);
 			if (chance == 0) {
 				if (superiorSpawned){
 					return;
@@ -663,13 +641,13 @@ public class Slayer {
 	}
 
 	public int getCancelTaskCost() {
-		if (player.amDonated >= 2500) {
+		if (player.amDonated > 2499) {
 			return 10;
-		} else if (player.amDonated >= 500) {
+		} else if (player.amDonated >= 500 && player.amDonated < 2500) {
 			return 15;
-		} else if (player.amDonated >= 100) {
+		} else if (player.amDonated >= 100 && player.amDonated < 500) {
 			return 20;
-		} else if (player.amDonated >= 10) {
+		} else if (player.amDonated >= 10 && player.amDonated < 100) {
 			return 25;
 		} else {
 			return 30;
@@ -755,6 +733,10 @@ public class Slayer {
 						slayerHelmet = 19647;
 						slayerHelmetI = 19649;
 					}
+					if (player.getItems().playerHasItem(23073)) {
+						slayerHelmet = 23073;
+						slayerHelmetI = 23075;
+					}
 					points -= cost;
 					player.getItems().deleteItem2(slayerHelmet, 1);
 					player.getItems().addItem(slayerHelmetI, 1);
@@ -821,6 +803,7 @@ public class Slayer {
 
 			case 160052:
 				int amount = player.getMode().isOsrs() ? 10_000 : 60_000;
+				int amount1 = player.getMode().isMedMode() ? 30_000 : 60_000;
 				if (System.currentTimeMillis() - player.buySlayerTimer < 500) {
 					return true;
 				}

@@ -11,6 +11,7 @@ import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
 import ethos.model.content.loot.impl.CrystalChest;
+import ethos.model.content.loot.impl.DonatorChest;
 import ethos.model.content.Obelisks;
 import ethos.model.content.SkillcapePerks;
 import ethos.model.content.achievement_diary.ardougne.ArdougneDiaryEntry;
@@ -26,11 +27,13 @@ import ethos.model.content.godwars.God;
 import ethos.model.content.instances.InstancedAreaManager;
 import ethos.model.content.loot.impl.RaidsChestCommon;
 import ethos.model.content.loot.impl.HunllefChest;
+import ethos.model.content.loot.impl.LarransChest;
 import ethos.model.content.loot.impl.RaidsChestRare;
 import ethos.model.content.loot.impl.SerenChest;
 import ethos.model.content.loot.impl.SotetsegChest;
 import ethos.model.content.loot.impl.VoteChest;
 import ethos.model.content.tradingpost.Listing;
+import ethos.model.entity.Health;
 import ethos.model.entity.HealthStatus;
 import ethos.model.items.EquipmentSet;
 import ethos.model.lobby.LobbyManager;
@@ -44,6 +47,7 @@ import ethos.model.minigames.raids.Raids;
 import ethos.model.minigames.rfd.DisposeTypes;
 import ethos.model.minigames.rfd.RecipeForDisaster;
 import ethos.model.minigames.theatre.TheatreObjects;
+import ethos.model.minigames.warriors_guild.AnimatedArmour;
 import ethos.model.multiplayer_session.MultiplayerSessionType;
 import ethos.model.multiplayer_session.duel.DuelSession;
 import ethos.model.multiplayer_session.duel.DuelSessionRules.Rule;
@@ -60,6 +64,7 @@ import ethos.model.players.packets.objectoptions.impl.DarkAltar;
 import ethos.model.players.packets.objectoptions.impl.Overseer;
 import ethos.model.players.packets.objectoptions.impl.RaidObjects;
 import ethos.model.players.packets.objectoptions.impl.TrainCart;
+import ethos.model.players.packets.objectoptions.impl.WellOfGoodWillObject;
 import ethos.model.players.skills.FlaxPicking;
 import ethos.model.players.skills.Skill;
 import ethos.model.players.skills.agility.AgilityHandler;
@@ -75,6 +80,8 @@ import ethos.model.players.skills.woodcutting.Woodcutting;
 import ethos.util.Location3D;
 import ethos.util.Misc;
 import ethos.world.objects.GlobalObject;
+
+import javax.swing.*;
 
 /*
  * @author Matt
@@ -189,6 +196,11 @@ public class ObjectOptionOne {
 		}	
 		Location3D location = new Location3D(obX, obY, c.heightLevel);
 		switch (objectType) {
+		case 34771:
+			break;
+		case 33037:
+			c.getDH().sendDialogues(1018, 6797);
+			break;
 		case 16664:
 			c.getPA().movePlayer(3045, 10323, 0);
 			break;
@@ -231,13 +243,21 @@ public class ObjectOptionOne {
 		case 23554:
 			c.getWildernessAgility().wildernessCourse(c, objectType);
 			break;
-				
+		case 23955:
+			c.sendMessage("Please use ur desired armour you want to animate.");
+			break;
 		case 29333:
 			if (c.getRights().isOrInherits(Right.IRONMAN) || c.getRights().isOrInherits(Right.ULTIMATE_IRONMAN) || c.getRights().isOrInherits(Right.HC_IRONMAN)) {
 				c.sendMessage("@red@You are not permitted to make use of this.");	
 				return;
 			}
 			Listing.openPost(c, false, true);	
+			break;
+		case 34832:
+			c.objectDistance = 3;
+			c.objectXOffset = 3;
+			c.objectYOffset = 3;
+			new LarransChest().roll(c);
 			break;
 		case 20391:		
 			c.getPA().movePlayer(3284, 2808, 0);
@@ -299,6 +319,9 @@ public class ObjectOptionOne {
 		case 7127: //tournament cup
 			c.TournamentHiscores(c);
 			break;
+		case 32990:
+				new DonatorChest().roll(c);
+			break;
 		case 1524:
 			if (c.absX == 2958) {
 				c.getPA().movePlayer(2957, 3821, 0);
@@ -340,14 +363,12 @@ public class ObjectOptionOne {
 				AgilityHandler.delayEmote(c, "JUMP", obX, obY, 0, 3);
 				c.startAnimation(3067);
 			   break;
-			/*
-			 * Cheers, ye boi Tutus <3
-			 */
+		
 		case 34553:
 		case 34554:
 			if (!c.debugMessage)
 				if (!c.getSlayer().getTask().isPresent()) {
-					c.sendMessage("You must have an active Hydra task to enter this cave...");
+					c.sendMessage("You must have an active Hydra task to enter this cave.");
 					return;
 				}
 			if (!c.debugMessage)
@@ -435,17 +456,12 @@ public class ObjectOptionOne {
 
 
 		case 29150:
-			int spellBook = c.playerMagicBook == 0 ? 1 : (c.playerMagicBook == 1 ? 2 : 0);
-			int interfaceId = c.playerMagicBook == 0 ? 838 : (c.playerMagicBook == 1 ? 29999 : 938);
-			String type = c.playerMagicBook == 0 ? "ancient" : (c.playerMagicBook == 1 ? "lunar" : "normal");
-
-			c.sendMessage("You switch spellbook to " + type + " magic.");
-			c.setSidebarInterface(6, interfaceId);
-			c.playerMagicBook = spellBook;
-			c.autocasting = false;
-			c.autocastId = -1;
+			c.playerMagicBook = 0;
+			c.setSidebarInterface(6, 938);
+			c.sendMessage("You are now on the modern spelbook.");
 			c.getPA().resetAutocast();
 			break;
+			
 		case 29241:
 			if (c.amDonated == 0 && !c.getRights().isOrInherits(Right.ULTRA_DONATOR)
 					&& !c.getRights().isOrInherits(Right.ADMINISTRATOR)) {
@@ -600,6 +616,11 @@ public class ObjectOptionOne {
 				c.getPA().movePlayer(3126, 3833);
 				break;
 			case 23709:
+				if (c.inWild()) {
+					c.forcedChat("I don't think that's a good idea!");
+					c.startAnimation(1835);
+					return;
+				}
 				for (int skill = 0; skill < c.playerLevel.length; skill++) {
 					if (skill == 3)
 						continue;
@@ -615,20 +636,54 @@ public class ObjectOptionOne {
 						}
 						c.getPA().refreshSkill(skill);
 						c.getPA().setSkillLevel(skill, c.playerLevel[skill], c.playerXP[skill]);
+						Health health = c.getHealth();
+						health.removeNonsusceptible(HealthStatus.POISON);
+						health.removeNonsusceptible(HealthStatus.VENOM);
+						c.getHealth().resolveStatus(HealthStatus.POISON, 100);
+						c.getPA().requestUpdates();
 					}
 				}
-			
-			c.specRestore = 120;
-			c.specAmount = 10.0;
 			c.setRunEnergy(100);
-			c.getItems().addSpecialBar(c.playerEquipment[c.playerWeapon]);
 			c.playerLevel[5] = c.getPA().getLevelForXP(c.playerXP[5]);
 			c.getHealth().removeAllStatuses();
 			c.getHealth().reset();
-			c.getPA().refreshSkill(5); //prayer
-			c.getDH().sendItemStatement("Restored your HP, Prayer, Run Energy, and Spec", 4049);
+			c.getPA().refreshSkill(5);
+			c.getDH().sendItemStatement("The box restores your health and prayer points.", 4049);
 			c.nextChat =  -1;
 			break;
+			/*
+			Fun pk barriers
+			 */
+			case 4469:
+				if (c.getY() == 3754)
+					c.sendMessage("You can't enter this yet.");
+					//c.getPA().movePlayer(c.getX(), 3755);
+				if (c.getY() == 3752)
+					//c.getPA().movePlayer(c.getX(), 3751);
+					c.sendMessage("You can't enter this yet.");
+				if (c.getY() == 3755)
+					//c.getPA().movePlayer(c.getX(), 3754);
+				c.sendMessage("You can't enter this yet.");
+				if (c.getY() == 3751)
+					//c.getPA().movePlayer(c.getX(), 3752);
+				c.sendMessage("You can't enter this yet.");
+				break;
+
+				/*
+			Risk pk barriers
+			 */
+			case 4470:
+				if (c.getY() == 3754)
+					c.getDH().sendDialogues(50041, 316);
+				if (c.getY() == 3752)
+					c.getDH().sendDialogues(50041, 316);
+				if (c.getY() == 3755)
+					c.getPA().movePlayer(c.getX(), 3754);
+				if (c.getY() == 3751)
+					c.getPA().movePlayer(c.getX(), 3752);
+				if (c.getY() == 3749)
+				break;
+
 		case 7811:
 			if (!c.inClanWarsSafe()) {
 				return;
@@ -1155,6 +1210,11 @@ public class ObjectOptionOne {
 			break;
 
 		case 537:
+			if (!c.getSlayer().getTask().isPresent()) {
+				c.sendMessage("You do not have a cave kraken task.");
+				c.getCombat().resetPlayerAttack();
+				return;
+			}
 			c.getKraken().init();
 			break;
 
@@ -1890,6 +1950,7 @@ public class ObjectOptionOne {
 
 		case 24303:
 			c.getPA().movePlayer(2840, 3539, 0);
+			c.isRunning = false;
 			break;
 
 		case 16671:
@@ -2229,7 +2290,7 @@ public class ObjectOptionOne {
 			break;
 			
 		case 6097:
-			c.getPA().showInterface(38000);
+			WellOfGoodWillObject.sendInterfaces(c);
 			break;
 			
 			case 5090:
@@ -2474,13 +2535,18 @@ public class ObjectOptionOne {
 			}
 			break;
 		case 36201:	
-			if ((c.getMode().isRegular() || c.getMode().isIronman() || 
+			if ((c.getMode().isRegular() || c.getMode().isIronman() ||
 					c.getMode().isUltimateIronman() || c.getMode().isHCIronman()) && c.totalLevel < 1500) {
 			c.sendMessage("You need a total level of atleast 1500 to join this raid!");
 			return;
-			} else if (c.getMode().isOsrs() && c.totalLevel < 750) {
+			}
+			 if (c.getMode().isOsrs() && c.totalLevel < 750) {
 				c.sendMessage("You need a total level of atleast 750 to join this raid!");
-			return;
+				return;
+			 }
+			 if (c.getMode().isMedMode() && c.totalLevel < 1000) {
+				c.sendMessage("You need a total level of atleast 1000 to join this raid!");
+				return;
 			}
 			if (Boundary.isIn(c, Boundary.RAIDS_LOBBY_ENTRANCE)) {
 				LobbyManager.get(LobbyType.CHAMBERS_OF_XERIC).ifPresent(lobby -> lobby.attemptJoin(c));
@@ -2494,8 +2560,6 @@ public class ObjectOptionOne {
 			}
 			LobbyManager.get(LobbyType.CHAMBERS_OF_XERIC)
 			.ifPresent(lobby -> lobby.attemptJoin(c));
-
-			//c.sendMessage("Please wait for next update as we are reworking Olm.");
 			break;
 		case 30396: //Raids Lobbies
 			if (Boundary.isIn(c, Boundary.XERIC_LOBBY_ENTRANCE)) {
@@ -2897,10 +2961,9 @@ public class ObjectOptionOne {
 
 		case 733:
 			GlobalObject objectOne = null;
-			int chance = c.getRechargeItems().hasAnyItem(13108, 13109, 13110, 13111) ? 0 : 4;
 			c.startAnimation(451);
 			c.sendMessage("You fail to cut through it.");
-			if (Misc.random(chance) == 0) {
+			if (Misc.random(2) == 1) {
 				c.sendMessage("You slash the web apart.");
 				if (c.objectX == 3092 && c.objectY == 3957) {
 					objectOne = new GlobalObject(734, obX, obY, c.heightLevel, 2, 0, 50, 733);

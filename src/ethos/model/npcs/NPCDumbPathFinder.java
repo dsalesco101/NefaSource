@@ -319,8 +319,8 @@ private static final int NORTH = 0, EAST = 1,  SOUTH = 2, WEST = 3;
 				}
 			}
 
-		if (direction == -1) {
-			return;
+		if (direction < 0) { // was just a return
+			direction = 0;
 		}
 
 		npc.moveX = NPCClipping.DIR[direction][0];

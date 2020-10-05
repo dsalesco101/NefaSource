@@ -6,7 +6,7 @@ import ethos.Config;
 import ethos.Server;
 import ethos.model.content.DiceHandler;
 import ethos.model.content.lootbag.LootingBag;
-import ethos.model.content.eventcalendar.EventChallenge;
+import ethos.model.items.ItemDefinition;
 import ethos.model.multiplayer_session.MultiplayerSessionFinalizeType;
 import ethos.model.multiplayer_session.MultiplayerSessionStage;
 import ethos.model.multiplayer_session.MultiplayerSessionType;
@@ -74,23 +74,9 @@ public class WearItem implements PacketType {
 			c.sendMessage("You can't wear an item while changing appearence.");
 			return;
 		}
-		if (c.getItems().isWearingItem(5553)
-				&& c.getItems().isWearingItem(5554)
-				&& c.getItems().isWearingItem(5555)
-				&& c.getItems().isWearingItem(5556)
-				&& c.getItems().isWearingItem(5557)) {
-			c.getEventCalendar().progress(EventChallenge.WIELD_FULL_ROGUE);
-		}
 		if (LootingBag.isLootingBag(c, wearId)) {
 			c.getLootingBag().openWithdrawalMode();
 			return;
-		}
-		if (c.getItems().isWearingItem(5553) && c.getItems().isWearingItem(5554)
-				&& c.getItems().isWearingItem(5555) && c.getItems().isWearingItem(5556) && c.getItems().isWearingItem(5557)) {
-			c.getEventCalendar().progress(EventChallenge.CATCH_X_BLACK_CHINCHOMPAS);
-		}	
-		if (c.getItems().isWearingItem(12954) || c.getItems().isWearingItem(19722)) {
-			c.getEventCalendar().progress(EventChallenge.WIELD_A_DRAGON_DEFENDER);
 		}
 		if (wearId == 4155) {
 			if (!c.getSlayer().getTask().isPresent()) {
@@ -108,7 +94,25 @@ public class WearItem implements PacketType {
 			c.headIconPk = 0;
 			c.sendMessage("@blu@The @red@Cape of skulls@blu@ has automatically made you skull for @yel@20 minutes.");
 		}
+		String name = ItemDefinition.forId(wearId).getName();
 		switch (wearId) {
+		case 12792:
+			c.sendMessage("@blu@Use this item on a graceful peice to color it.");
+			break;
+		case 19553:
+		case 20366:
+			if(c.playerLevel[3] < 75) {
+				c.sendMessage("You must have a hitpoints level of at least 75 to wear the "+name+"");
+				return;
+			}
+			break;
+		case 19547:
+		case 22249:
+			if(c.playerLevel[3] < 75) {
+				c.sendMessage("You must have a hitpoints level of at least 75 to wear the "+name+"");
+				return;
+			}
+			break;
 		case 21347:
 			c.boltTips = true;
 			c.arrowTips = false;

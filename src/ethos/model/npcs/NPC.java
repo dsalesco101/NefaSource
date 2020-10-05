@@ -605,7 +605,10 @@ public class NPC extends Entity {
 	}
 
 	public void getNextNPCMovement() {
-		Preconditions.checkState(direction == -1, "Direction is already set!");
+		//Preconditions.checkState(direction == -1, "Direction is already set!");
+		if (direction <0) {
+			direction = 0;
+		}
 		if (freezeTimer == 0) {
 			direction = getNextWalkingDirection();
 		}
@@ -842,4 +845,11 @@ public class NPC extends Entity {
 	public void setNoRespawn(boolean b) {
 		this.noRespawn = b;
 	}
+
+	public void kill() { //TOB
+		isDead = true;
+		applyDead = true;
+		actionTimer = 0;
+	}
+
 }

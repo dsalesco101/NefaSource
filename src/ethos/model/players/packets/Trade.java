@@ -39,9 +39,12 @@ public class Trade implements PacketType {
 			c.sendMessage("You cannot trade yourself.");
 			return;
 		}
-		if (Boundary.isIn(c, Boundary.OUTLAST_AREA)) {
+		if (Boundary.isIn(c, Boundary.OUTLAST_AREA) || Boundary.isIn(c, Boundary.GULAG)) {
 			c.sendMessage("You cannot trade in the arena.");
 			return;
+		}
+		if (Boundary.isIn(c, Boundary.TOURNY_LOBBY)) {
+			c.sendMessage("You can't trade in here.");
 		}
 		if (c.getInterfaceEvent().isActive()) {
 			c.sendMessage("Please finish what you're doing.");

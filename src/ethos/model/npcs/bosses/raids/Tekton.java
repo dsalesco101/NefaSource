@@ -8,8 +8,6 @@ import ethos.Server;
 import ethos.event.CycleEvent;
 import ethos.event.CycleEventContainer;
 import ethos.event.CycleEventHandler;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.npcs.NPC;
 import ethos.model.npcs.NPCHandler;
 import ethos.model.players.Boundary;
@@ -97,7 +95,6 @@ public class Tekton {
 				p.sendMessage("@dre@You dealt " + p.getTektonDamageCounter() + " damage towards tekton; granting " + reward + " raid points.");
 				//p.getItems().addItemUnderAnyCircumstance(995, reward);
 				p.setRaidPoints(p.getRaidPoints() + p.getTektonDamageCounter());
-				DailyTasks.increase(p, PossibleTasks.TEKTON_RAID);
 				if (Misc.random(20) == 0) {
 					p.getItems().addItemUnderAnyCircumstance(405, 1);
 					p.sendMessage("@pur@You noticed a PvM Casket has dropped and picked it up right away.");

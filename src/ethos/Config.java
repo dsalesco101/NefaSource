@@ -4,12 +4,12 @@ import ethos.model.content.lootbag.LootingBag;
 
 public class Config {
 
-	public static String SERVER_NAME = "Wisdom";
+	public static String SERVER_NAME = "nefariouspkz";
 
 	public static int PLAYERMODIFIER = 0;
 
 	// Make sure this matches client version in configuration.java and the cache version.txt
-	public static final int CLIENT_VERSION = 142;
+	public static final int CLIENT_VERSION = 143;
 
 	/**
 	 * Decides max incoming packets per cyclebank
@@ -60,7 +60,7 @@ public class Config {
 	/**
 	 * The max amount of players until your server is full.
 	 */
-	public static final int MAX_PLAYERS = 150;
+	public static final int MAX_PLAYERS = 120;
 
 	/**
 	 * The maximum number of npcs allowed in the local player's list.
@@ -90,9 +90,9 @@ public class Config {
 	/**
 	 * Items that cannot be sold in any stores.
 	 */
-	public static final int[] ITEM_SELLABLE = {22545, 22550, 22555, 21898, 33033, 33034, 33035, 33036, 33037, 33038, 33039, 33040, 33041, 33042,
+	public static final int[] ITEM_SELLABLE =  {22542, 22547, 22552, 21898, 33033, 33034, 33035, 33036, 33037, 33038, 33039, 33040, 33041, 33042,
 			33043, 33044, 33045, 33046, 33047, 33048, 33049, 33050, 33051, 33052, 33053, 33054, 33055, 4083, 2677, 2722, 2801, 2714, 2775, 2802,
-			12899, 21816, 11730, 11731, 11732, 11733, 22322, 13190, 9927, 2841, 13072, 19730, 12020, 6713, 13307, 12013, 12014, 12015, 12016, 20008, 776, 10071, 13258, 132259,
+			12899, 21816, 11730, 11731, 11732, 11733, 13190, 9927, 2841, 13072, 19730, 12020, 6713, 13307, 12013, 12014, 12015, 12016, 20008, 776, 10071, 13258, 132259,
 			13260, 13261, 10933, 10939, 10940, 10941, 10945, 13640, 13642, 13644, 13646, 5553, 5554, 5555, 5556, 5557,
 			20704, 20706, 20708, 20710, 13667, 13669, 13671, 13673, 13675, 13677, 21061, 21064, 21067, 21070, 21073, 21076, 20760, 20659, 20659, 20661, 20663,
 			20665, 20667, 20669, 20671, 20673, 20675, 20677, 20679, 20681, 20683, 20685, 20687, 20689, 20691, 13133,
@@ -106,7 +106,7 @@ public class Config {
 			13612, 13613, 13614, 13615, 13616, 13617, 13618, 13619, 13620, 13621, 13622, 13623, 13624, 13625, 13626,
 			13627, 13628, 13629, 13630, 13631, 13632, 13633, 13634, 13635, 13636, 13648, 13649, 13650, 12773, 12774,
 			 2415, 2416, 2417, 13199, 13197, 12810, 12811, 12812, 12813, 12814, 12815, 11919, 12956, 12957, 12958,
-			12959, 12899, 12926, 12931, 12006, 12853, 611, 13320, 13321, 13322, 13226, 12816, 12791, 5733,
+			12959, 12899, 12926, 12931, 12853, 611, 13320, 13321, 13322, 13226, 12816, 12791, 5733,
 			13225, 13247, 8014, 8015, 9958, 9959, 5509, 5510, 5512, 11849, 12840, 775, 12648, 13116, 13069, 13070,
 			13072, 13073, 12921, 12954, 11865, 11864, 15573, 8135, 1050, 1051, 1044, 1045, 1046, 1047, 1048, 1049, 1052,
 			3839, 3840, 3841, 3842, 3843, 3844, 8844, 8845, 8846, 8847, 8848, 8849, 8850, 6570, 7462,
@@ -114,7 +114,7 @@ public class Config {
 			9799, 9805, 9781, 9796, 9793, 9775, 9772, 9778, 9787, 9811, 9766, 9749, 9755, 9752, 9770, 9758, 9761, 9764,
 			9803, 9809, 9785, 9800, 9806, 9782, 9797, 9794, 9776, 9773, 9779, 9788, 9812, 9767, 9747, 9753, 9750, 9768,
 			9756, 9759, 9762, 9801, 9807, 9783, 9798, 9804, 9780, 9795, 9792, 9774, 9771, 9777, 9786, 9810, 9765, 2639, 2641, 2643, 10802,
-			10804, 10806, 12321, 12323, 12325, 6746, 19675, 21003, 21004, 21012, 21013, 21000, 21001, 21009, 21010, 21006, 21007,
+			10804, 10806, 12321, 12323, 12325, 6746, 19675, 21003, 21004, 21013, 21000, 21001, 21009, 21010, 21007,
 			21015, 21016, 21018, 21019, 21021, 21022, 21024, 21025,12650, 12649, 12651, 12652, 12644, 12645,
 			12643, 11995, 15568, 12653, 12655, 13178, 12646, 13179, 13177, 12921, 13181, 12816, 12647,299,21992, 3144, 13442, 13441,
 			LootingBag.LOOTING_BAG, LootingBag.LOOTING_BAG_OPEN,
@@ -122,7 +122,7 @@ public class Config {
 	/**
 	 * Items that cannot be traded or staked.
 	 */
-	public static final int[] NOT_SHAREABLE = {22545, 22550, 22555, 21898, 33033, 33034, 33035, 33036, 33037, 33038, 33039, 33040, 33041, 33042,
+	public static final int[] NOT_SHAREABLE = {19564, 21285, 21284, 22388, 22390, 22392, 22394, 22396, 977, 23490, 12921, 12939, 12940, 22545, 22550, 21898, 33033, 33034, 33035, 33036, 33037, 33038, 33039, 33040, 33041, 33042,
 			33043, 33044, 33045, 33046, 33047, 33048, 33049, 33050, 33051, 33052, 33053, 33054, 33055, 4083, 20834, 22719, 2520, 2677, 2722, 2801, 2714, 2775, 2802, 23943, 12899, 13197, 12931,13199, 7979, 7980, 13489, 13490, 2425, 21907, 7978, 7976, 7977, 7984,
 			21816, 20374, 20370, 20372, 20368, 19720, 12436, 20366, 11730, 11731, 11732, 11733, 21027, 22322, 13190, 10508, 10553, 10555, 11021, 2841, 11019, 11020, 11022, 4566, 1961, 1989, 6863, 6862,
 			1959, 13072, 9927,11899,22109,13258, 13259, 13260, 13261, 19730, 12020, 6713, 12013, 10071,
@@ -162,8 +162,8 @@ public class Config {
 	 * Items that are kepts on death
 	 */
 
-	public static final int[] ITEMS_KEPT_ON_DEATH = { 21898, 33033, 33034, 33035, 33036, 33037, 33038, 33039, 33040, 33041, 33042,
-			33043, 33044, 33045, 33046, 33047, 33048, 33049, 33050, 33051, 33052, 33053, 33054, 33055, 22547, 21295, 22542, 22552, 9927,8025,22109,19564, 21285,12791,6713, 12013, 10071, 12014, 12015, 12016, 20008, 776, 13258,
+	public static final int[] ITEMS_KEPT_ON_DEATH = {10998, 20368, 20372, 20370, 20374, 21898, 33033, 33034, 33035, 33036, 33037, 33038, 33039, 33040, 33041, 33042,
+			33043, 33044, 33045, 33046, 33047, 33048, 33049, 33050, 33051, 33052, 33053, 33054, 33055, 22547, 21295, 22542, 22552, 9927,8025,22109,19564, 21285, 21284, 12791,6713, 12013, 10071, 12014, 12015, 12016, 20008, 776, 13258,
 			132259, 13260, 13269, 13261, 10933, 10939, 10940, 10941, 10945, 13640, 13642, 13644, 13646, 5553, 5554, 5555, 5556,
 			5557, 20704, 20706, 20708, 20710, 13667, 13669, 13671, 13673, 13675, 13677, 20760, 20659, 20659, 20661,
 			20663, 20665, 20667, 20669, 20671, 20673, 20675, 20677, 20679, 20681, 20683, 20685, 20687, 20689, 20691,
@@ -183,7 +183,7 @@ public class Config {
 			12367, 12365, 12363, 3839, 3840, 3841, 3842, 3843, 3844, 7449, 611, 8840, 8839, 8842, 11664, 15098, 12650,
 			12649, 12651, 12652, 15567, 12644, 12645, 12643, 15568, 12653, 12655, 15571, 11663, 11665, 6570, 8845, 8846,
 			8847, 8848, 8849, 8850, 10551, 10548, 7462, 7461, 7460, 7459, 7458, 7457, 7456, 7455, 7582, 15572, 12855,
-			12856, 13274, 13275, 13276, 19675,21295,12638,12639,12637,11889,21791,21793,21795,21786,21784,21782,21780,21778,21776, 21992};
+			12856, 13274, 13275, 13276, 19675, 12638,12639,12637,11889,21791,21793,21795,21786,21784,21782,21780,21778,21776, 21992};
 	/**
 	 * Items lost above 20 wilderness
 	 */
@@ -201,7 +201,7 @@ public class Config {
 	 /**
 	 * Items that are deleted on death
 	 */
-	public static final int[] DROP_AND_DELETE_ON_DEATH = { 13190, 9748, 9754, 9751, 9769, 9757, 9760, 9763, 9802, 9808, 9784,
+	public static final int[] DROP_AND_DELETE_ON_DEATH = {13190, 9748, 9754, 9751, 9769, 9757, 9760, 9763, 9802, 9808, 9784,
 			9799, 9805, 9781, 9796, 9793, 9775, 9772, 9778, 9787, 9811, 9766, 9749, 9755, 9752, 9770, 9758, 9761, 9764,
 			9803, 9809, 9785, 9800, 9806, 9782, 9797, 9794, 9776, 9773, 9779, 9788, 9812, 9767, 9747, 9753, 9750, 9768,
 			9756, 9759, 9762, 9801, 9807, 9783, 9798, 9804, 9780, 9795, 9792, 9774, 9771, 9777, 9786, 9810, 9765, 13226,
@@ -233,7 +233,7 @@ public class Config {
 	 * Items that cannot be dropped in a tournament.
 	 */
 
-	public static final int[] UNDROPPABLE_ITEMS = { 13190, 6713, 19841, 11919, 12956, 12957, 12958, 12959, 12899, 11907, 12432,
+	public static final int[] UNDROPPABLE_ITEMS = { 13190, 6713, 19841, 11919, 12956, 12957, 12958, 12959, 12899, 11905, 12432,
 			12369, 12365, 12363, 6822, 6824, 6826, 6830, 6832, 6834, 6836, 6838, 6840, 6842,
 			6844, 6846, 6848, 6850, 19675,9927, 2993, 4421 };
 
@@ -376,13 +376,35 @@ public class Config {
 	/**
 	 * Combat experience rates.
 	 */
-	public static final int MELEE_EXP_RATE = 250;
-	public static final int RANGE_EXP_RATE = 250;
-	public static final int MAGIC_EXP_RATE = 250;
+	public static final int MELEE_EXP_RATE = 290;
+	public static final int RANGE_EXP_RATE = 290;
+	public static final int MAGIC_EXP_RATE = 290;
+	
+	/**
+	 * Skill experience multipliers.
+	 */
+	public static final int WOODCUTTING_EXPERIENCE = 47;
+	public static final int MINING_EXPERIENCE = 50;
+	public static final int SMITHING_EXPERIENCE = 50;
+	public static final int FARMING_EXPERIENCE = 26;
+	public static final int FIREMAKING_EXPERIENCE = 47;
+	public static final int HERBLORE_EXPERIENCE = 56;
+	public static final int FISHING_EXPERIENCE = 53;
+	public static final int AGILITY_EXPERIENCE = 67;
+	public static final int PRAYER_EXPERIENCE = 48;
+	public static final int RUNECRAFTING_EXPERIENCE = 72;
+	public static final int CRAFTING_EXPERIENCE = 42;
+	public static final int THIEVING_EXPERIENCE = 78;
+	public static final int SLAYER_EXPERIENCE = 57;
+	public static final int COOKING_EXPERIENCE = 38;
+	public static final int FLETCHING_EXPERIENCE = 41;
+	public static final int HUNTER_EXPERIENCE = 50;
+	
 	/**
 	 * Special server experience bonus rates. (Double experience weekend etc)
 	 */
 	public static final double SERVER_EXP_BONUS = 1.0;
+	
 	/**
 	 * XP given when XP is boosted by a voting reward only
 	 */
@@ -404,12 +426,12 @@ public class Config {
 	public static String QUESTION = "";
 	public static String ANSWER = "";
 	public static boolean BONUS_WEEKEND = false;
-	public static boolean BONUS_XP_WOGW = false;
+	public static boolean BONUS_XP_WOGW = true;
 	public static boolean DOUBLE_SCROLL_EXP = false;
 	public static boolean BONUS_PC = true;
 	public static boolean CYBER_MONDAY = false;
 	public static boolean DOUBLE_DROPS = false;
-	public static boolean BONUS_PC_WOGW = false;
+	public static boolean BONUS_PC_WOGW = true;
 	public static int BARROWS_RARE_CHANCE = 1;
 	public static boolean DOUBLE_PKP = false;
 	public static boolean DOUBLE_VOTE_INCENTIVES = false;
@@ -483,14 +505,14 @@ public class Config {
 	/**
 	 * The starting location of your server.
 	 */
-	public static final int START_LOCATION_X = 3085;
-	public static final int START_LOCATION_Y = 3495;
+	public static final int START_LOCATION_X = 3086;
+	public static final int START_LOCATION_Y = 3506;
 
 	/**
 	 * The re-spawn point of when someone dies.
 	 */
-	public static final int RESPAWN_X = 3087;
-	public static final int RESPAWN_Y = 3500;
+	public static final int RESPAWN_X = 3086;
+	public static final int RESPAWN_Y = 3506;
 	public static final int RESPAWN_Z = 0;
 
 	/**
@@ -611,25 +633,6 @@ public class Config {
 	 */
 	public static final int BUFFER_SIZE = 512;
 
-	/**
-	 * Skill experience multipliers.
-	 */
-	public static final int WOODCUTTING_EXPERIENCE = 55;
-	public static final int MINING_EXPERIENCE = 55;
-	public static final int SMITHING_EXPERIENCE = 60;
-	public static final int FARMING_EXPERIENCE = 25;
-	public static final int FIREMAKING_EXPERIENCE = 50;
-	public static final int HERBLORE_EXPERIENCE = 60;
-	public static final int FISHING_EXPERIENCE = 55;
-	public static final int AGILITY_EXPERIENCE = 70;
-	public static final int PRAYER_EXPERIENCE = 50;
-	public static final int RUNECRAFTING_EXPERIENCE = 75;
-	public static final int CRAFTING_EXPERIENCE = 45;
-	public static final int THIEVING_EXPERIENCE = 80;
-	public static final int SLAYER_EXPERIENCE = 70;
-	public static final int COOKING_EXPERIENCE = 40;
-	public static final int FLETCHING_EXPERIENCE = 40;
-	public static final int HUNTER_EXPERIENCE = 60;
 	
 	public static final String COMBAT_SCRIPT_DIR = "ethos.model.players.combat";
 }

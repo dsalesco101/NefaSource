@@ -6,23 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import ethos.Server;
-import ethos.ServerState;
 import ethos.model.players.Player;
 
 public class Hiscores implements Runnable {
 
-	public static final String HOST = "153.92.6.164"; 
-	public static final String USER = "u697564708_hiscores";
-	public static final String PASS = "Procode1288";
-	public static final String DATABASE = "u697564708_hiscores";
+	public static final String HOST = "185.201.11.127"; // website ip address
+	public static final String USER = "u603323171_hiscores";
+	public static final String PASS = "Testy4594";
+	public static final String DATABASE = "u603323171_hiscores";
 
 	public static final String TABLE = "hs_users";
 
 	private Player player;
 	private Connection conn;
 	private Statement stmt;
-
+	
 	public Hiscores(Player player) {
 		this.player = player;
 	}
@@ -138,9 +136,9 @@ public class Hiscores implements Runnable {
 		sb.append("farming_xp, ");
 		sb.append("runecrafting_xp, ");
 		sb.append("hunter_xp, ");
-		sb.append("construction_xp, ");
-		sb.append("summoning_xp, ");
-		sb.append("dungeoneering_xp) ");
+//		sb.append("construction_xp, ");
+//		sb.append("summoning_xp, ");
+//		sb.append("dungeoneering_xp) ");
 		sb.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		return sb.toString();
 	}

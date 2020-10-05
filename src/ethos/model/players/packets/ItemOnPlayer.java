@@ -10,11 +10,11 @@ import ethos.model.multiplayer_session.MultiplayerSessionFinalizeType;
 import ethos.model.multiplayer_session.MultiplayerSessionStage;
 import ethos.model.multiplayer_session.MultiplayerSessionType;
 import ethos.model.multiplayer_session.duel.DuelSession;
+import ethos.model.players.Boundary;
 import ethos.model.players.PacketType;
 import ethos.model.players.Player;
 import ethos.model.players.PlayerHandler;
 import ethos.model.players.Right;
-import ethos.model.players.skills.slayer.DuoSlayer;
 import ethos.util.Misc;
 
 public class ItemOnPlayer implements PacketType {
@@ -84,12 +84,6 @@ public class ItemOnPlayer implements PacketType {
 			c.getItems().deleteItem(itemId, c.getItems().isStackable(itemId) ? c.getItems().getItemAmount(itemId) : 1);
 		}
 		switch (itemId) {
-		case 4155:
-			if (!c.getRights().getPrimary().isOrInherits(Right.OWNER)) {
-				return;
-			}
-			DuoSlayer.handleTask(c, c.item, playerIndex);
-			break;
 		case 2697:
 			if (c.inWild() || c.inDuelArena() || Server.getMultiplayerSessionListener().inAnySession(c)) {
 				return;
@@ -167,7 +161,6 @@ public class ItemOnPlayer implements PacketType {
 					"You have received a " + ItemAssistant.getItemName(hat) + " from the christmas cracker.");
 			loser.sendMessage("Awee you didn't get the partyhat.");
 			break;
-			
 		case 13345:
 			if (other.connectedFrom.equalsIgnoreCase(c.connectedFrom)) {
 				c.sendMessage("You cannot use this on another player that is on the same host as you.");

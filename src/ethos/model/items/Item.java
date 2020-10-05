@@ -197,6 +197,11 @@ public class Item {
 		switch (itemId) {
 			case 11899:
 			case 11896:
+			case 577:
+			case 10460:
+			case 10786:
+			case 10378:
+			case 10836:
 				return true;
 		}
 		for (int i = 0; i < fullbody.length; i++) {
@@ -338,7 +343,7 @@ public class Item {
 		// Hardcode notes
 		itemIsNote[22125] = true; // Superior dragon bones note
 		itemIsNote[22787] = true; // Hydra bones note
-		itemIsNote[20998] = true; // Superior dragon bones note
+		itemIsNote[20998] = true; // tbow dragon bones note
 
 		counter = 0;
 		try {

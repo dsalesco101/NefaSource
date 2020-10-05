@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
@@ -17,10 +18,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
+import ethos.Config;
 import ethos.Server;
 import ethos.model.content.CheatEngine.CheatEngineBlock;
 import ethos.model.items.ContainerUpdate;
 import ethos.model.items.GameItem;
+import ethos.model.items.Item;
+import ethos.model.items.ItemAssistant;
 import ethos.model.items.ItemDefinition;
 import ethos.model.items.ItemList;
 import ethos.model.items.bank.BankTab;
@@ -164,7 +168,7 @@ public class PresetManager {
 	 * Loads all the default preset names into their tabs
 	 * @param player
 	 */
-	private void loadOverallPresets(Player player) {
+	/*private void loadOverallPresets(Player player) { // for pvm version for coins of preset
 		for (int i = 0; i < 4; i++) {
 			if (i < defaultPresets.size()) {
 				if (defaultPresets.get(i).getCost()/1000 >= 1000) {
@@ -174,7 +178,15 @@ public class PresetManager {
 				}
 			}
 		}
+	}*/
+	
+	private void loadOverallPresets(Player player) {
+	for (int i = 0; i < 4; i++) {
+		if (i < defaultPresets.size()) {
+				player.getPA().sendFrame126(defaultPresets.get(i).getName() + "  ", 21556 + (i * 2));
+		}
 	}
+}
 
 	/**
 	 * Loads the current preset the player is looking at
@@ -575,7 +587,7 @@ public class PresetManager {
                     return;
                 }
             }
-            if (!player.getItems().playerHasItem(995) || !player.getItems().playerHasItem(995, preset.getCost())) {
+            /*if (!player.getItems().playerHasItem(995) || !player.getItems().playerHasItem(995, preset.getCost())) { //FOR PVP TO MAKE PRESETS FREE
                 player.sendMessage("You need " + preset.getCost()/1000 + "k to load this preset!");
                 return;
             }
@@ -583,18 +595,18 @@ public class PresetManager {
             if (player.getItems().getItemAmount(995) != preset.getCost()) {
                 player.sendMessage("You must have exactly " + preset.getCost()/1000 + "k to load this preset!");
                 return;
-            }
+            }*/
            
             if (player.getItems().freeEquipmentSlots() != 14) {
             	player.sendMessage("You need to remove your equipment before doing this.");
             	return;
             }
-            if (player.getItems().freeSlots() != 27) {
+           /* if (player.getItems().freeSlots() != 27) { //FOR PVP TO MAKE PRESETS FREE
                 player.sendMessage("You can only have coins in your inventory to do this.");
                 return;
-            }
+            }*/
            
-            player.getItems().deleteItem(995, preset.getCost());
+           // player.getItems().deleteItem(995, preset.getCost());
            
             player.getItems().wearItem(preset.getEquipment().getWeapon(), 1, player.playerWeapon);
             player.getItems().wearItem(preset.getEquipment().getBoots(), 1, player.playerFeet);
@@ -649,6 +661,14 @@ public class PresetManager {
 		if (player.presetViewingDefault) {
 			player.sendMessage("You can't save a default preset!");
 			return;
+		}
+        if (ItemAssistant.getItemName(player.itemId).contains("unf") || ItemAssistant.getItemName(player.itemId).contains("grimy")
+        		|| ItemAssistant.getItemName(player.itemId).contains("logs") || ItemAssistant.getItemName(player.itemId).contains("bar")
+        		|| ItemAssistant.getItemName(player.itemId).contains("needle") || ItemAssistant.getItemName(player.itemId).contains("thread")
+        		|| ItemAssistant.getItemName(player.itemId).contains("bar") || ItemAssistant.getItemName(player.itemId).contains("ore")
+        		|| ItemAssistant.getItemName(player.itemId).contains("clean")) {
+				player.sendMessage("This item cannot be used in a preset.");
+				return;
 		}
 		
 		if (!globalPresets.containsKey(player.playerName)) { //never saved a set before

@@ -15,6 +15,7 @@ import ethos.model.Attributes;
 import ethos.model.content.instances.InstancedArea;
 import ethos.model.content.tournaments.TourneyManager;
 import ethos.model.minigames.raids.Raids;
+import ethos.model.minigames.tob.ToBFrame;
 import ethos.model.minigames.xeric.Xeric;
 import ethos.model.npcs.NPC;
 import ethos.model.players.Boundary;
@@ -80,6 +81,8 @@ public abstract class Entity {
 	private InstancedArea instance;
 
 	private Raids raidsInstance;
+	private ToBFrame tobInstance;
+	protected ToBFrame TobInstance;
 
 	@Setter @Getter
 	private Xeric xeric;
@@ -483,7 +486,13 @@ public abstract class Entity {
 		this.raidsInstance = raids;
 		return this;
 	}
-
+	public ToBFrame getToBInstance() { //TOB
+		return tobInstance;
+	}
+	public Entity setTobInstance(ToBFrame tobInstance) { //TOB
+		this.tobInstance = tobInstance;
+		return this;
+	}
 	public Animation getAnimation() {
 		return animation;
 	}

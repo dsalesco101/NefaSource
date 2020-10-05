@@ -5,7 +5,7 @@
 		"pointRewards": [ 10],
 		"available": [
 			{
-				"names": [ "banshee", "screaming banshee",  ],
+				"names": [ "jelly" ],
 				"level": 14,
 				"experience": 22,
 				"minimum": 15,
@@ -298,7 +298,7 @@
                 "teleport": [2707, 9484, 0]
             },
             {
-                "names": [ "blue dragon", "baby blue dragon", "brutal blue dragon" ],
+                "names": [ "blue dragon", "baby blue dragon", "brutal blue dragon", "vorkath" ],
                 "level": 1,
                 "experience": 107,
                 "minimum": 30,
@@ -521,7 +521,7 @@
         "pointRewards": [ 50 ],
         "available": [
              {
-                "names": [ "kree arra" ],
+                "names": [ "kree arra", "avansie" ],
                 "level": 1,
                 "experience": 300,
                 "minimum": 5,
@@ -580,6 +580,15 @@
                 "experience": 320,
                 "minimum": 5,
                 "maximum": 10,
+                "locations": [ "wilderness" ],
+                "teleport": [-1, -1, -1]
+            },
+            {
+             "names": [ "giant mole" ],
+                "level": 1,
+                "experience": 215,
+                "minimum": 10,
+                "maximum": 15,
                 "locations": [ "wilderness" ],
                 "teleport": [-1, -1, -1]
             },
@@ -1080,11 +1089,11 @@
                 "names": [ "cerberus" ],
                 "level": 91,
                 "experience": 450,
-                "minimum": 5,
-                "maximum": 10,
+                "minimum": 30,
+                "maximum": 45,
                 "locations": [ "cerberus lair" ],
                 "teleport": [-1, -1, -1]
-                 }
+           	 }
 	    	]
 	    },	
 		{
@@ -1096,7 +1105,7 @@
                 "names": [ "alchemical hydra", "hydra" ],
                 "level": 1,
                 "experience": 350,
-                "minimum": 45,
+                "minimum": 50,
                 "maximum": 90,
                 "locations": [ "Hydra Teleport" ],
                 "teleport": [2461, 9814, 0]    

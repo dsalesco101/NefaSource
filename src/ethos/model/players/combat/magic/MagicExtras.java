@@ -163,8 +163,7 @@ public class MagicExtras {
 					if (c2.getHealth().getCurrentHealth() - damage < 0) {
 						damage = c2.getHealth().getCurrentHealth();
 					}
-					c.getPA().addSkillXP((MagicData.MAGIC_SPELLS[c.oldSpellId][7] + damage * (c.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.MAGIC_EXP_RATE)), 6, true);
-					c.getPA().addSkillXP((MagicData.MAGIC_SPELLS[c.oldSpellId][7] + damage * (c.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.MAGIC_EXP_RATE) / 3), 3, true);
+					c.getPA().addSkillXP((MagicData.MAGIC_SPELLS[c.oldSpellId][7] + damage * (c.getMode().getType().equals(ModeType.OSRS) ? 1 : Config.MAGIC_EXP_RATE)), 6, true);					
 					c2.appendDamage(damage, damage > 0 ? Hitmark.HIT : Hitmark.MISS);
 					c2.addDamageTaken(c, damage);
 					c2.getPA().refreshSkill(3);

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import ethos.Config;
 import ethos.Server;
+import ethos.model.content.AlchemyPouch;
+import ethos.model.content.loot.LootableInterface;
 import ethos.model.content.lootbag.LootingBag;
 import ethos.model.content.teleportation.TeleportTablets;
 import ethos.model.items.ItemDefinition;
@@ -69,6 +71,9 @@ public class ItemOptionTwo implements PacketType {
 		TeleportTablets.operate(player, itemId);
 		ItemDefinition def = ItemDefinition.forId(itemId);
 		switch (itemId) {
+		 case 977:
+	        	AlchemyPouch.checkCharges(player);
+	        	break;
 		case 12007:
 		case 22106:
 		case 12936:
@@ -161,30 +166,6 @@ public class ItemOptionTwo implements PacketType {
 					player.getPA().resetAutocast();
 				}
 				break;
-		/*case 10556:
-        	player.sendMessage("@red@Attacker Icon gives 10% on max melee hit.");
-        	break;
-        case 10557:
-        	player.sendMessage("@red@Collector Icon gives 7% chance boost on pets.");
-        	break;
-        case 10558:
-        	player.sendMessage("@red@Defender Icon will reduce protect prayers by 5%.");
-        	break;
-        case 10559:
-        	player.sendMessage("@red@Collector Icon shares the same effects as guthans.");
-        	break;*/
-		case 10832:
-			player.getCoinBagSmall().openall();
-			break;
-		case 10833:
-			player.getCoinBagMedium().openall();
-			break;
-		case 10834:
-			player.getCoinBagLarge().openall();
-			break;
-		case 10835:
-			player.getCoinBagBuldging().openall();
-			break;
 		case 9780:
 			player.getPA().spellTeleport(3810, 3550, 0, false);
 			player.sendMessage("You have teleported to the Crafting Shop.");
@@ -202,8 +183,19 @@ public class ItemOptionTwo implements PacketType {
 			player.sendMessage("Your Viggora's chainmace current has "+stored2+" charges.");
 			break;
 		case 6199:
+            LootableInterface.openMysteryView(player);
+			break;
 		case 6828:
+            LootableInterface.openSuperMboxView(player);
+			break;
 		case 13346:
+            LootableInterface.openUltraMboxView(player);
+			break;
+		case 405:
+            LootableInterface.openPvmCasketView(player);
+			break;
+		case 11739:
+			LootableInterface.openVoteMboxView(player);
 			break;
 		case 21347:
 			player.boltTips = false;
@@ -382,7 +374,7 @@ public class ItemOptionTwo implements PacketType {
 			player.sendMessage("Your dragonfire shield currently has " + player.getDragonfireShieldCharge() + " charges.");
 			break;
 		case 4155:
-			player.getDH().sendItemStatement("Use the Enchanted gem on your slayer partner", itemId);	
+			player.getDH().sendDialogues(950, 6797);
 			break;
 		default:
 			if (player.getRights().isOrInherits(Right.OWNER)) {

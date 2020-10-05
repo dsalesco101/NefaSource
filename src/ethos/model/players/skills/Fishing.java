@@ -11,8 +11,6 @@ import ethos.model.content.achievement_diary.falador.FaladorDiaryEntry;
 import ethos.model.content.achievement_diary.kandarin.KandarinDiaryEntry;
 import ethos.model.content.achievement_diary.karamja.KaramjaDiaryEntry;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
-import ethos.model.content.dailytasks.DailyTasks;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
 import ethos.model.items.ItemAssistant;
 import ethos.model.players.Boundary;
 import ethos.model.players.Player;
@@ -143,7 +141,9 @@ public class Fishing extends SkillHandler {
 							return;
 						}
 						if (player.playerSkillProp[10][1] > 0) {
-							//player.sendMessage("You catch a " + ItemAssistant.getItemName(player.playerSkillProp[10][1]) + ".");
+							if (player.notification == true) {
+								player.sendMessage("You catch a " + ItemAssistant.getItemName(player.playerSkillProp[10][1]) + ".");
+							}
 							Achievements.increase(player, AchievementType.FISH, 1);
 							player.getItems().addItem(player.playerSkillProp[10][1], SkillcapePerks.FISHING.isWearing(player) || SkillcapePerks.isWearingMaxCape(player) && player.getFishingEffect() && Misc.random(2) == 1 ? 2 : 1);
 							player.startAnimation(player.playerSkillProp[10][0]);
@@ -194,7 +194,6 @@ public class Fishing extends SkillHandler {
 						
 						switch (player.playerSkillProp[10][4]) {
 						case 383:
-							DailyTasks.increase(player, PossibleTasks.SHARKS);
 							break;
 						case 389:
 							if (Boundary.isIn(player, Boundary.FALADOR_BOUNDARY)) {

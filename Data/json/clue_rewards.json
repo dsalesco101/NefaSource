@@ -2242,7 +2242,42 @@
 		"rarity": "rare"
 	},
 	{
+		"item_id": 12381,
+		"min_amount": 1,
+		"max_amount": 1,
+		"reward_level": "master",
+		"rarity": "rare"
+	},
+	{
+		"item_id": 12383,
+		"min_amount": 1,
+		"max_amount": 1,
+		"reward_level": "master",
+		"rarity": "rare"
+	},
+	{
+		"item_id": 12385,
+		"min_amount": 1,
+		"max_amount": 1,
+		"reward_level": "master",
+		"rarity": "rare"
+	},
+	{
+		"item_id": 12387,
+		"min_amount": 1,
+		"max_amount": 1,
+		"reward_level": "master",
+		"rarity": "rare"
+	},
+	{
 		"item_id": 20005,
+		"min_amount": 1,
+		"max_amount": 1,
+		"reward_level": "master",
+		"rarity": "rare"
+	},
+	{
+		"item_id": 12426,
 		"min_amount": 1,
 		"max_amount": 1,
 		"reward_level": "master",

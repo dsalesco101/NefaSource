@@ -20,11 +20,10 @@ public class Claim extends Command {
              c.sendMessage("You need atleast one free slots to use this command.");
              return;
          }
-    	 
-		new Thread(new Donation(c)).start();
-		
-		c.sendMessage("@blu@Succesfully scanned the name @red@"+c.playerName+" @blu@for your purchases.");
-	}
+  	 
+		 new Thread(new Donation(c)).start();
+		 	c.sendMessage("@blu@Searching donations made for username @red@"+c.playerName+"@blu@.");
+		}
 
 	@Override
 	public Optional<String> getDescription() {

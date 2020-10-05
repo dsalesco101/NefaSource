@@ -1,6 +1,7 @@
 package ethos.model.players.skills.agility.impl;
 
 import ethos.Config;
+import ethos.event.impl.RandomEvent;
 import ethos.model.content.achievement.AchievementType;
 import ethos.model.content.achievement.Achievements;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
@@ -95,7 +96,17 @@ public class WildernessAgility {
 			c.setForceMovement(c.absX, 3933, 0, 50, "SOUTH", c.getAgilityHandler().getAnimation(objectId));
 			c.getAgilityHandler().lapFinished(c, 5, c.getMode().getType().equals(ModeType.OSRS) ? 571 : 15600, 6000);
 			c.getDiaryManager().getWildernessDiary().progress(WildernessDiaryEntry.WILDERNESS_AGILITY);
-			 Achievements.increase(c, AchievementType.AGIL, 1);
+			Achievements.increase(c, AchievementType.AGIL, 1);
+			if (c.eventFinished == false && RandomEvent.eventNumber == 14) {
+				c.eventStage += 1;
+			}
+			if (c.eventStage == 15 && c.eventFinished == false && RandomEvent.eventNumber == 14) {
+				c.sendMessage("@blu@You have completed the event challenge: @red@Finish 15 Wilderness laps.");
+				c.sendMessage("@blu@You receive @red@1 @blu@Event Point for completing the Event Challenge.");
+				c.eventPoints+=1;
+				c.eventStage = 0;
+				c.eventFinished = true;
+			}
 			return true;
 		}
 		return false;

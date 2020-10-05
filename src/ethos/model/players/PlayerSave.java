@@ -31,9 +31,6 @@ import ethos.model.content.achievement_diary.morytania.MorytaniaDiaryEntry;
 import ethos.model.content.achievement_diary.varrock.VarrockDiaryEntry;
 import ethos.model.content.achievement_diary.western_provinces.WesternDiaryEntry;
 import ethos.model.content.achievement_diary.wilderness.WildernessDiaryEntry;
-import ethos.model.content.dailytasks.TaskTypes;
-import ethos.model.content.dailytasks.DailyTasks.PossibleTasks;
-import ethos.model.content.eventcalendar.EventChallengeKey;
 import ethos.model.content.kill_streaks.Killstreak;
 import ethos.model.content.titles.Title;
 import ethos.model.items.GameItem;
@@ -53,6 +50,9 @@ import lombok.extern.java.Log;
 
 import java.util.Optional;
 import java.util.Set;
+
+import Ranked.Ranked.rankTasks;
+import Ranked.Ranked.rankTypes;
 
 @Log
 public class PlayerSave {
@@ -322,6 +322,8 @@ public class PlayerSave {
 							p.setIpAddress(p.getIpAddress());
 						} else if (token.equals("play-time")) {
 							p.playTime = Integer.parseInt(token2);
+						} else if (token.equals("diceban")) {
+							p.diceBan = Integer.parseInt(token2);
 						} else if (token.equals("last-clan")) {
 							p.setLastClanChat(token2);
 						} else if (token.equals("character-specRestore")) {
@@ -373,12 +375,20 @@ public class PlayerSave {
 							p.horrorFromDeep = Integer.parseInt(token2);
 						}else if (token.equals("breakVials")) {
 							p.breakVials = Boolean.parseBoolean(token2);
-						} else if (token.equals("hasPartner")) {
-							p.hasPartner = Boolean.parseBoolean(token2);
 						}else if (token.equals("absorption")) {
 							p.absorption = Boolean.parseBoolean(token2);
+						}else if (token.equals("betap")) {
+							p.betap = Boolean.parseBoolean(token2);
+						}else if (token.equals("petGoblin")) {
+							p.petGoblin = Boolean.parseBoolean(token2);
+						}else if (token.equals("filter")) {
+							p.notification = Boolean.parseBoolean(token2);
+						}else if (token.equals("goblinFilter")) {
+							p.goblinFilter = Boolean.parseBoolean(token2);
 						}else if (token.equals("insurance")) {
 							p.insurance = Boolean.parseBoolean(token2);
+						}else if (token.equals("eventFinished")) {
+							p.eventFinished = Boolean.parseBoolean(token2);
 						}else if (token.equals("announce")) {
 							p.announce = Boolean.parseBoolean(token2);
 						}else if (token.equals("lootPickUp")) {
@@ -399,20 +409,12 @@ public class PlayerSave {
 							p.placeHolders = Boolean.parseBoolean(token2);
 						} else if (token.equals("newStarter")) {
 							p.newStarter = Boolean.parseBoolean(token2);
-						} else if (token.equals("dailyTaskDate")) {
-							p.dailyTaskDate = Integer.parseInt(token2);
-						} else if (token.equals("totalDailyDone")) {
-							p.totalDailyDone = Integer.parseInt(token2);
-						} else if (token.equals("currentTask")) {
+						} else if (token.equals("rankTask")) {
 							if(token2 != null && token2.equals("") == false)
-								p.currentTask = PossibleTasks.valueOf(token2); //Integer.parseInt(token2);
-						} else if (token.equals("completedDailyTask")) {
-							p.completedDailyTask = Boolean.parseBoolean(token2);
-						} else if (token.equals("playerChoice")) {
+								p.rankTask = rankTasks.valueOf(token2); 
+						} else if (token.equals("challengerChoice")) {
 							if(token2 != null && token2.equals("") == false)
-								p.playerChoice = TaskTypes.valueOf(token2); //Integer.parseInt(token2);
-						} else if (token.equals("dailyEnabled")) {
-							p.dailyEnabled = Boolean.parseBoolean(token2);
+								p.challengerChoice = rankTypes.valueOf(token2); //Integer.parseInt(token2);
 						} else if (token.equals("show-drop-warning")) {
 							p.setDropWarning(Boolean.parseBoolean(token2));
 						} else if (token.equals("hourly-box-toggle")) {
@@ -537,6 +539,10 @@ public class PlayerSave {
 							p.autoRet = Integer.parseInt(token2);
 						} else if (token.equals("christmasP")) {
 							p.christmasP = Integer.parseInt(token2);
+						} else if (token.equals("eventStage")) {
+							p.eventStage = Integer.parseInt(token2);
+						} else if (token.equals("eventPoints")) {
+							p.eventPoints = Integer.parseInt(token2);
 						} else if (token.equals("pkp")) {
 							p.pkp = Integer.parseInt(token2);
 						} else if (token.equals("elvenCharge")) {
@@ -553,12 +559,26 @@ public class PlayerSave {
 							p.viggoraCharge = Integer.parseInt(token2);
 						} else if (token.equals("pvmp")) {
 							p.pvmp = Integer.parseInt(token2);
+						} else if (token.equals("pkp")) {
+								p.pkp = Integer.parseInt(token2);
+						} else if (token.equals("alchCharge")) {
+							p.alchCharge = Integer.parseInt(token2);
+						} else if (token.equals("chestRateBoost")) {
+							p.chestRateBoost = Integer.parseInt(token2);
 						} else if (token.equals("tWin")) {
 							p.tWin = Integer.parseInt(token2);
 						} else if (token.equals("tPoint")) {
 							p.tPoint = Integer.parseInt(token2);
 						} else if (token.equals("streak")) {
 							p.streak = Integer.parseInt(token2);
+						} else if (token.equals("impS1")) {
+							p.impS1 = Integer.parseInt(token2);
+						} else if (token.equals("impS2")) {
+							p.impS2 = Integer.parseInt(token2);
+						} else if (token.equals("s1Quantity")) {
+							p.s1Quantity = Integer.parseInt(token2);
+						} else if (token.equals("s2Quantity")) {
+							p.s2Quantity = Integer.parseInt(token2);
 						} else if (token.equals("xpMaxSkills")) {
 							p.xpMaxSkills = Integer.parseInt(token2);
 						} else if (token.equals("LastLoginYear")) {
@@ -894,16 +914,6 @@ public class PlayerSave {
 							for (int j = 0; j < token3.length; j++) {
 								p.historyPrice[j] = Integer.parseInt(token3[j]);
 								p.salePrice.add(Integer.parseInt(token3[j]));
-							}
-						} else if (token.equals("event-calendar-progress")) {
-							if (token3.length >= 2) {
-								for (int index = 0; index < token3.length; index += 2) {
-									EventChallengeKey key = EventChallengeKey.fromString(token3[index]);
-									if (key != null) {
-										int value = Integer.parseInt(token3[index + 1]);
-										p.getEventCalendar().set(key, value);
-									}
-								}
 							}
 						} else if (token.equals("removed-slayer-tasks")) {
 							String[] backing = Misc.nullToEmpty(p.getSlayer().getRemoved().length);
@@ -1364,6 +1374,9 @@ public class PlayerSave {
 			characterfile.write("play-time = ", 0, 12);
 			characterfile.write(Integer.toString(p.playTime), 0, Integer.toString(p.playTime).length());
 			characterfile.newLine();
+			characterfile.write("diceban = ", 0, 9);
+			characterfile.write(Integer.toString(p.diceBan), 0, Integer.toString(p.diceBan).length());
+			characterfile.newLine();
 			characterfile.write("last-clan = ", 0, 12);
 			characterfile.write(p.getLastClanChat(), 0, p.getLastClanChat().length());
 			characterfile.newLine();
@@ -1387,22 +1400,6 @@ public class PlayerSave {
 			characterfile.write("newStarter = " + p.newStarter);
 			characterfile.newLine();
 			characterfile.write("bank-pin-cancellation-delay = " + p.getBankPin().getCancellationDelay());
-			characterfile.newLine();
-			characterfile.write("dailyTaskDate = " + p.dailyTaskDate);
-			characterfile.newLine();
-			characterfile.write("totalDailyDone = " + p.totalDailyDone);
-			characterfile.newLine();
-			characterfile.write("currentTask = ", 0, 14);
-			if(p.currentTask != null)
-                characterfile.write(p.currentTask.name(), 0, p.currentTask.name().length());
-			characterfile.newLine();
-			characterfile.write("completedDailyTask = " + p.completedDailyTask);
-			characterfile.newLine();
-			characterfile.write("playerChoice = ", 0, 15);
-			if(p.playerChoice != null)
-                characterfile.write(p.playerChoice.name(), 0, p.playerChoice.name().length());
-			characterfile.newLine();
-			characterfile.write("dailyEnabled = " + p.dailyEnabled);
 			characterfile.newLine();
 			characterfile.write("show-drop-warning = " + p.showDropWarning());
 			characterfile.newLine();
@@ -1435,18 +1432,6 @@ public class PlayerSave {
 				characterfile.write("killed-players = " + p.getPlayerKills().getList().get(i));
 				characterfile.newLine();
 			}
-
-			// EventCalendar
-			Set<Entry<EventChallengeKey, Integer>> eventCalendarProgress = p.getEventCalendar().getEntries();
-			characterfile.write("event-calendar-progress = ");
-			for (Entry<EventChallengeKey, Integer> entry : eventCalendarProgress) {
-				characterfile.write(EventChallengeKey.toSerializedString(entry.getKey()));
-				characterfile.write("\t");
-				characterfile.write(String.valueOf(entry.getValue()));
-				characterfile.write("\t");
-			}
-			characterfile.newLine();
-
 			String[] removed = p.getSlayer().getRemoved();
 			characterfile.write("removed-slayer-tasks = ");
 			for (int index = 0; index < removed.length; index++) {
@@ -1560,6 +1545,21 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("absorption = ", 0, 13);
 			characterfile.write(Boolean.toString(p.absorption), 0, Boolean.toString(p.absorption).length());
+			characterfile.newLine();	
+			characterfile.write("betap = ", 0, 8);
+			characterfile.write(Boolean.toString(p.betap), 0, Boolean.toString(p.betap).length());
+			characterfile.newLine();	
+			characterfile.write("petGoblin = ", 0, 12);
+			characterfile.write(Boolean.toString(p.petGoblin), 0, Boolean.toString(p.petGoblin).length());
+			characterfile.newLine();	
+			characterfile.write("filter = ", 0, 9);
+			characterfile.write(Boolean.toString(p.notification), 0, Boolean.toString(p.notification).length());
+			characterfile.newLine();
+			characterfile.write("goblinFilter = ", 0, 15); 
+			characterfile.write(Boolean.toString(p.goblinFilter), 0, Boolean.toString(p.goblinFilter).length());
+			characterfile.newLine();
+			characterfile.write("diceBanned = ", 0, 13);
+			characterfile.write(Boolean.toString(p.diceBanned), 0, Boolean.toString(p.diceBanned).length());
 			characterfile.newLine();
 			characterfile.write("announce = ", 0, 11);
 			characterfile.write(Boolean.toString(p.announce), 0, Boolean.toString(p.announce).length());
@@ -1567,15 +1567,15 @@ public class PlayerSave {
 			characterfile.write("insurance = ", 0, 12);
 			characterfile.write(Boolean.toString(p.insurance), 0, Boolean.toString(p.insurance).length());
 			characterfile.newLine();
+			characterfile.write("eventFinished = ", 0, 16);
+			characterfile.write(Boolean.toString(p.eventFinished), 0, Boolean.toString(p.eventFinished).length());
+			characterfile.newLine();
 			characterfile.write("lootPickUp = ", 0, 13);
 			characterfile.write(Boolean.toString(p.lootPickUp), 0, Boolean.toString(p.lootPickUp).length());
 			characterfile.newLine();
 			characterfile.write("breakVials = ", 0, 13);
 			characterfile.write(Boolean.toString(p.breakVials), 0, Boolean.toString(p.breakVials).length());
 			characterfile.newLine();
-			characterfile.write("hasPartner = ", 0, 13);
-			characterfile.write(Boolean.toString(p.hasPartner), 0, Boolean.toString(p.hasPartner).length());
-		    characterfile.newLine();
 			characterfile.write("barbarian = ", 0, 12);
 			characterfile.write(Boolean.toString(p.barbarian), 0, Boolean.toString(p.barbarian).length());
 			characterfile.newLine();
@@ -1727,9 +1727,24 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("christmasP = ", 0, 13);
 			characterfile.write(Integer.toString(p.christmasP), 0, Integer.toString(p.christmasP).length());
+			characterfile.newLine();			
+			characterfile.write("eventStage = ", 0, 13);
+			characterfile.write(Integer.toString(p.eventStage), 0, Integer.toString(p.eventStage).length());
+			characterfile.newLine();
+			characterfile.write("eventPoints = ", 0, 14);
+			characterfile.write(Integer.toString(p.eventPoints), 0, Integer.toString(p.eventPoints).length());
 			characterfile.newLine();
 			characterfile.write("pvmp = ", 0, 6);
 			characterfile.write(Integer.toString(p.pvmp), 0, Integer.toString(p.pvmp).length());
+			characterfile.newLine();
+			characterfile.write("pkp = ", 0, 5);
+			characterfile.write(Integer.toString(p.pkp), 0, Integer.toString(p.pkp).length());
+			characterfile.newLine();
+			characterfile.write("alchCharge = ", 0, 12);
+			characterfile.write(Integer.toString(p.alchCharge), 0, Integer.toString(p.alchCharge).length());
+			characterfile.newLine();
+			characterfile.write("chestRateBoost = ", 0, 16);
+			characterfile.write(Integer.toString(p.chestRateBoost), 0, Integer.toString(p.chestRateBoost).length());
 			characterfile.newLine();
 			characterfile.write("tWin = ", 0, 7);
 			characterfile.write(Integer.toString(p.tWin), 0, Integer.toString(p.tWin).length());
@@ -1739,6 +1754,18 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("streak = ", 0, 9);
 			characterfile.write(Integer.toString(p.streak), 0, Integer.toString(p.streak).length());
+			characterfile.newLine();
+			characterfile.write("impS1 = ", 0, 8);
+			characterfile.write(Integer.toString(p.impS1), 0, Integer.toString(p.impS1).length());
+			characterfile.newLine();
+			characterfile.write("impS2 = ", 0, 8);
+			characterfile.write(Integer.toString(p.impS2), 0, Integer.toString(p.impS2).length());
+			characterfile.newLine();
+			characterfile.write("s1Quantity = ", 0, 13);
+			characterfile.write(Integer.toString(p.s1Quantity), 0, Integer.toString(p.s1Quantity).length());
+			characterfile.newLine();
+			characterfile.write("s2Quantity = ", 0, 13);
+			characterfile.write(Integer.toString(p.s2Quantity), 0, Integer.toString(p.s2Quantity).length());
 			characterfile.newLine();
 			characterfile.write("xpMaxSkills = ", 0, 14);
 			characterfile.write(Integer.toString(p.xpMaxSkills), 0, Integer.toString(p.xpMaxSkills).length());

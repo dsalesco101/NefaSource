@@ -6,54 +6,63 @@ import ethos.util.Misc;
 
 public class HCIronmanMode extends Mode {
 
-    public HCIronmanMode(ModeType type) {
-        super(type);
-    }
+	public HCIronmanMode(ModeType type) {
+		super(type);
+	}
+	/*
+	 * Shows how much iron man gets xp rate
+	 */
 
-    @Override
-    public boolean isTradingPermitted() {
-        return false;
-    }
+	@Override
+	public boolean isTradingPermitted() {
+		return false;
+	}
 
-    @Override
-    public boolean isStakingPermitted() {
-        return false;
-    }
+	@Override
+	public boolean isStakingPermitted() {
+		return false;
+	}
 
-    @Override
-    public boolean isItemScavengingPermitted() {
-        return false;
-    }
+	@Override
+	public boolean isItemScavengingPermitted() {
+		return false;
+	}
 
-    @Override
-    public boolean isPVPCombatExperienceGained() {
-        return true;
-    }
+	@Override
+	public boolean isPVPCombatExperienceGained() {
+		return true;
+	}
+	
+	@Override
+	public boolean isDonatingPermitted() {
+		return true;
+	}
 
-    @Override
-    public boolean isDonatingPermitted() {
-        return true;
-    }
+	@Override
+	public boolean isVotingPackageClaimable(String packageName) {
+		if (packageName.equals("Vote Ticket")) {
+			return true;
+		}
+		return false;
+	}
 
-    @Override
-    public boolean isVotingPackageClaimable(String packageName) {
-        if (packageName.equals("Vote Ticket")) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-     public boolean isShopAccessible(int shopId) {
-        switch (shopId) {
-            /*
-             * case 78: case 77: case 48: case 44: case 40: case 26: case 22: case 20: case 16: case 14: case 12: case 2:
-             */
+	@Override
+	public boolean isShopAccessible(int shopId) {
+		switch (shopId) {
+		/*
+		 * case 78: case 77: case 48: case 44: case 40: case 26: case 22: case 20: case 16: case 14: case 12: case 2:
+		 */
 		case 15:
-        case 171:
+		case 176:
+		case 123:
+		case 124:
+		case 21:
+		case 77:
+		case 171:
+		case 178:
+		case 179:
 		case 172:
 		case 173:
-    	case 77:
 		case 121:
 		case 131:
 		case 10:
@@ -62,8 +71,6 @@ public class HCIronmanMode extends Mode {
 		case 44:
 		case 78:
 		case 22:
-		case 178:
-		case 179:
 		case 23:
 		case 20:
 		case 16:
@@ -86,25 +93,27 @@ public class HCIronmanMode extends Mode {
 		case 82:
 		case 119:
 		case 122:
-		case 3842:
 			return true;
 		}
 		return false;
 	}
 
-    @Override
-    public boolean isItemPurchasable(int shopId, int itemId) {
-        switch (shopId) {
+	@Override
+	public boolean isItemPurchasable(int shopId, int itemId) {
+		switch (shopId) {
 		case 15:
-        case 171:
+		case 171:
+		case 176:
+		case 123:
 		case 172:
-		case 121:
-		case 173:
-        case 26:
-		case 14:
-		case 131:
+		case 21:
 		case 178:
 		case 179:
+		case 173:
+		case 26:
+		case 14:
+		case 121:
+		case 131:
 		case 40:
 		case 41:
 		case 17:
@@ -123,21 +132,16 @@ public class HCIronmanMode extends Mode {
 		case 81:
 		case 118:
 		case 119:
+		case 3842:
+		case 44:
 		case 10:
 			return true;
-		case 44:
+		case 124:
 			switch (itemId) {
-			case 6121:
-			case 4166:
-			case 4164:
-			case 4168:
-			case 4551:
-			case 13226:
-			case 4170:
-			case 13116:
-			return true;
+			case 11730:
+				return true;
 			}
-			break;
+			return false;
 		case 6:
 			if (Item.getItemName(itemId).contains("rune")) {
 				return true;
@@ -152,7 +156,20 @@ public class HCIronmanMode extends Mode {
 				return true;
 			}
 			break;
-			
+
+		/*case 121:
+			switch (itemId) {
+			case 12695:
+			case 11824:
+			case 10551:
+			case 6746:
+			case 536:
+			case 6571:
+			case 11889:
+			case 2572:
+				return true;
+			}
+			break;*/ //cancelled because i was just going to make it so they can buy all items
 			
 		case 82:
 			switch (itemId){
@@ -213,10 +230,10 @@ public class HCIronmanMode extends Mode {
 		return false;
 	}
 
-    @Override
-    public boolean isItemSellable(int shopId, int itemId) {
-        switch (shopId) {
-        case 26:
+	@Override
+	public boolean isItemSellable(int shopId, int itemId) {
+		switch (shopId) {
+		case 26:
 		case 122:
 		case 29:
 		case 18:
@@ -237,9 +254,9 @@ public class HCIronmanMode extends Mode {
 		return false;
 	}
 
-    @Override
-    public int getModifiedShopPrice(int shopId, int itemId, int price) {
-    	switch (shopId) {
+	@Override
+	public int getModifiedShopPrice(int shopId, int itemId, int price) {
+		switch (shopId) {
 		// case 113:
 		case 81:
 			if (itemId == 2368) {
@@ -286,31 +303,31 @@ public class HCIronmanMode extends Mode {
 			} else if (itemId == 9075) {
 				price = 1500;
 			}
-			
+				
 			break;
 		}
 		return price;
 	}
 
-    @Override
-    public boolean isBankingPermitted() {
-        return true;
-    }
+	@Override
+	public boolean isBankingPermitted() {
+		return true;
+	}
 
-    @Override
-    public boolean isRewardSelectable(RewardButton reward) {
-        switch (reward) {
-            case VOID_KNIGHT_ROBE:
-            case VOID_MAGE_HELM:
-            case VOID_MELEE_HELM:
-            case VOID_KNIGHT_TOP:
-            case VOID_KNIGHT_GLOVES:
-            case VOID_RANGE_HELM:
-                return true;
+	@Override
+	public boolean isRewardSelectable(RewardButton reward) {
+		switch (reward) {
+		case VOID_KNIGHT_ROBE:
+		case VOID_MAGE_HELM:
+		case VOID_MELEE_HELM:
+		case VOID_KNIGHT_TOP:
+		case VOID_KNIGHT_GLOVES:
+		case VOID_RANGE_HELM:
+			return true;
 
-            default:
-                return false;
-        }
-    }
+		default:
+			return false;
+		}
+	}
 
 }
